@@ -3,28 +3,45 @@
 #' This function allows you to plot various types of plots that have
 #' that have passes as some sort of input. Returns a ggplot object. 
 #' @param pass_data The dataframe that stores your passing data
-#' @param standard TRUE if only plotting successful/unsuccessful passes
+#' @param plotType indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "st" 
 #' @param background Pick between white or dark background.
 #' @param prog indicates whether to map out progressive passes
-#' @example
-#' plot = plot_pass(passingdata, standard="st", background = "dark")
+#' @param cross indicates whether to map out crosses
+#' @param shot indicates whether to map out shot assists
+#' @param switch indicates whether to map out switches of play
+#' @param distance indicates what distance you want to map out
+#' @param outcome indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")
+#' @param team indicates what team's pass map one wants to see
+#' @param player indicates what player's pass map one wants to see
+#' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
+#' @return returns a ggplot2 object
+#' 
+#' @importFrom magrittr %>%
+#' @import dplyr
+#' @import ggplot2
+#' @import ggsoccer
+#' @import ggrepel
+#' @import StatsBombR
+#' @export 
 
-
-#' @export
-plot_pass <- function(pass_data, standard="", prog=FALSE, cross=FALSE, shot=FALSE, switch=FALSE, 
-                      to_zone = "" , from_zone= "", distance= "", outcome="all", team="", player="", background=""){
-  if(team != "" && player != ""){
-    pass_data = pass_data %>%
-      filter(team.name == team) %>%
-      filter(player.name == player)
-  }
-  else if(team != "" && player == ""){
+plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=FALSE, switch=FALSE, 
+                      distance= "", outcome="all", team="", player_fname="", player_lname="", theme=""){
+  pass_data = pass_data %>%
+    mutate(lname = sub(".* ", "", player.name)) %>%
+    mutate(fname = sub(" .*", "", player.name))
+  
+  if(team != ""){
     pass_data = pass_data %>%
       filter(team.name == team)
   }
-  else if(player != ""  && team == ""){
+  
+  if(player_fname != ""){
     pass_data = pass_data %>%
-      filter(player.name == player)
+      filter(fname == player_fname)
+  }
+  if(player_lname != ""){
+    pass_data = pass_data %>%
+      filter(lname == player_lname)
   }
   
   if(outcome == "suc"){
@@ -36,13 +53,10 @@ plot_pass <- function(pass_data, standard="", prog=FALSE, cross=FALSE, shot=FALS
       filter(!is.na(pass.outcome.name))
   }
   
-  if(standard=="st"){
     pass_data$pass.outcome.name = replace_na(pass_data$pass.outcome.name, "Successful")
     pass_data = pass_data %>% mutate(colorOutcome = ifelse(pass.outcome.name == "Successful",
                                                            "Successful",
                                                          "Unsuccessful"))
-  }
-  
   
   if(prog == TRUE){
     pass_data = pass_data %>%
@@ -72,16 +86,22 @@ plot_pass <- function(pass_data, standard="", prog=FALSE, cross=FALSE, shot=FALS
       filter(delta_y >= 35)
   }
   
-  
-  if(nrow(pass_data) > 0){
-    
-    colour_b = "black"
-    fill_b = "white"
-    if(background == "dark"){
+    if(theme == "dark" || theme == ""){
+      fill_b = "#0d1117"
       colour_b = "white"
-      fill_b = "#141622"
     }
-    
+    else if(theme == "white"){
+      fill_b = "#F5F5F5"
+      colour_b = "black"
+    }
+    else if(theme == "rose"){
+      fill_b = "#FFE4E1"
+      colour_b = "#696969"
+    }
+    else if(theme == "almond"){
+      fill_b = "#FFEBCD"
+      colour_b = "#696969"
+    }
     
     plot = ggplot(data=pass_data) + 
       annotate_pitch(dimensions = pitch_statsbomb,colour=colour_b,
@@ -89,12 +109,22 @@ plot_pass <- function(pass_data, standard="", prog=FALSE, cross=FALSE, shot=FALS
       theme_pitch()+
       theme(panel.background = element_rect(fill = fill_b))
     
-    if(standard=="st"){
+  if(nrow(pass_data) > 0){
+    if(plotType=="sep"){
       plot = plot +
         geom_segment(aes(x=location.x,y=location.y, 
                                          xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
                      lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
         facet_grid(~colorOutcome) +
+        labs(
+          color = "Outcome of Pass"
+        )
+    }
+    else if(plotType == "all"){
+      plot = plot +
+        geom_segment(aes(x=location.x,y=location.y, 
+                         xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
+                     lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
         labs(
           color = "Outcome of Pass"
         )

@@ -1,7 +1,8 @@
 #' Passflow plot function
 #' 
 #' This function takes in a dataframe and binsizes
-#' to make a passflow map.
+#' to make a passflow map. Compatible, for right now, with StatsBomb data only. Returns a ggplot object
+#' 
 #' @param pass_data Dataframe that must house pass data only and must have atleast 4 columns: starting x,y and ending x,y. 
 #' @param bin_size Details the binsize the passflow needs to bin to. Default is 20.
 #' @return returns a ggplot2 object

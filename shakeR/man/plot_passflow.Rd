@@ -16,7 +16,7 @@ returns a ggplot2 object
 }
 \description{
 This function takes in a dataframe and binsizes
-to make a passflow map.
+to make a passflow map. Compatible, for right now, with StatsBomb data only. Returns a ggplot object
 }
 \examples{
 plot = plot_passflow(data, bin_size=30)

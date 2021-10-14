@@ -1,15 +1,17 @@
 #' Plotting scatter plots
 #'
 #' This function allows you to plot various types of plots that have
-#' that have passes as some sort of input. Returns a ggplot object. 
-#' @param data the dataframe passed in for plottin
+#' that have passes as some sort of input. Compatible with any data frame of any data type. Returns a ggplot object. 
+#' 
+#' 
+#' @param data the dataframe passed in for plotting. 
 #' @param scatter_x name of column name in data to be used on x-axis
 #' @param scatter_y name of column name in data to be used on y-axis
 #' @param sc_label the name of column name in data to be label the scatter plot
-#' @param set_size_num sets the size of the points set as a constant. Default = 5
-#' @param set_size_var sets the size of the points as a variable
+#' @param set_size_num sets the size of the points set as a constant. Default size = 5.
+#' @param set_size_var Enter name of column name in data to set size based on variable.
 #' @param set_color_num sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"
-#' @param set_color_var sets the color of the points as a variable
+#' @param set_color_var Enter name of column name in data to set color based on variable.
 #' @param theme decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"
 #' @param scatter_title pick the title of the scatter plot
 #' @param title_size sets the size of the title of the scatter plot. Default size = 25.
@@ -26,6 +28,8 @@
 #' @import ggrepel
 #' 
 #' @export
+#' 
+#' @example plot = plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
 plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
                          set_size_num=5, set_size_var="",
                          set_color_num="red", set_color_var="",
@@ -131,7 +135,7 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
     
     if(sc_label != ""){
       plot =  plot + 
-        geom_label_repel(aes(x=scatter_x,y=scatter_y, label=sc_label))
+        geom_label_repel(aes(x=scatter_x,y=scatter_y, label=sc_label), max.overlaps = 2)
     }
     
     if(theme == "classic"){

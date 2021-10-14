@@ -4,12 +4,14 @@
 \alias{plot_shot}
 \title{Function for plotting shots}
 \usage{
-plot_shot(shotdata, type = "", bin_size = 30, theme = "")
+plot_shot(shotdata, type = "point", bin_size = 30, theme = "")
 }
 \arguments{
 \item{shotdata}{Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name}
 
 \item{type}{Type of showcasing the shotmap: hexbin, density, point (default)}
+
+\item{bin_size}{Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.}
 
 \item{theme}{Theme preferences for display: dark (default), white, rose, almond}
 }

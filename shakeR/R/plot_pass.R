@@ -1,9 +1,11 @@
 #' Plotting passes
 #'
 #' This function allows you to plot various types of plots that have
-#' that have passes as some sort of input. Returns a ggplot object. 
+#' that have passes as some sort of input. Data entered must have columns for which you want to plot with.
+#' Compatible, for right now, with StatsBomb data only! Returns a ggplot object. 
+#' 
 #' @param pass_data The dataframe that stores your passing data
-#' @param plotType indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "st" 
+#' @param plotType indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep" 
 #' @param background Pick between white or dark background.
 #' @param prog indicates whether to map out progressive passes
 #' @param cross indicates whether to map out crosses
@@ -23,6 +25,8 @@
 #' @import ggrepel
 #' @import StatsBombR
 #' @export 
+#' 
+#' @example plot = plot_pass(pass_data, plotType = "def", prog=TRUE, team="Barcelona", player_fname = "Lionel")
 
 plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=FALSE, switch=FALSE, 
                       distance= "", outcome="all", team="", player_fname="", player_lname="", theme=""){

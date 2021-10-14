@@ -22,7 +22,7 @@ plot_pass(
 \arguments{
 \item{pass_data}{The dataframe that stores your passing data}
 
-\item{plotType}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "st"}
+\item{plotType}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"}
 
 \item{prog}{indicates whether to map out progressive passes}
 
@@ -49,5 +49,6 @@ returns a ggplot2 object
 }
 \description{
 This function allows you to plot various types of plots that have
-that have passes as some sort of input. Returns a ggplot object.
+that have passes as some sort of input. Data entered must have columns for which you want to plot with.
+Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 }

@@ -5,6 +5,7 @@
 #'
 #' @param shotdata Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name
 #' @param type Type of showcasing the shotmap: hexbin, density, point (default)
+#' @param bin_size Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.
 #' @param theme Theme preferences for display: dark (default), white, rose, almond
 #' @return a ggplot2 object
 #' 
@@ -15,7 +16,9 @@
 #' @import StatsBombR
 #' 
 #' @export
-plot_shot <- function(shotdata, type="", bin_size=30, theme=""){
+#' 
+#' @example plot = plot_shot(shotdata, type+"hexbin", bin_size=20)
+plot_shot <- function(shotdata, type="point", bin_size=30, theme=""){
   
   last = sub(".* ", "", shotdata$player[nrow(shotdata)])
   first = sub(" .*", "", shotdata$player[nrow(shotdata)])

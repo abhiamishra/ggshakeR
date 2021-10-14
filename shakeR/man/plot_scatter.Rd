@@ -23,7 +23,7 @@ plot_scatter(
 )
 }
 \arguments{
-\item{data}{the dataframe passed in for plottin}
+\item{data}{the dataframe passed in for plotting.}
 
 \item{scatter_x}{name of column name in data to be used on x-axis}
 
@@ -31,13 +31,13 @@ plot_scatter(
 
 \item{sc_label}{the name of column name in data to be label the scatter plot}
 
-\item{set_size_num}{sets the size of the points set as a constant. Default = 5}
+\item{set_size_num}{sets the size of the points set as a constant. Default size = 5.}
 
-\item{set_size_var}{sets the size of the points as a variable}
+\item{set_size_var}{Enter name of column name in data to set size based on variable.}
 
 \item{set_color_num}{sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"}
 
-\item{set_color_var}{sets the color of the points as a variable}
+\item{set_color_var}{Enter name of column name in data to set color based on variable.}
 
 \item{theme}{decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"}
 
@@ -58,5 +58,5 @@ returns a ggplot2 object
 }
 \description{
 This function allows you to plot various types of plots that have
-that have passes as some sort of input. Returns a ggplot object.
+that have passes as some sort of input. Compatible with any data frame of any data type. Returns a ggplot object.
 }

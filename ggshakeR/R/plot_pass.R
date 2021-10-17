@@ -59,7 +59,7 @@ plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=F
         filter(!is.na(pass.outcome.name))
     }
 
-    pass_data$pass.outcome.name = replace_na(pass_data$pass.outcome.name, "Successful")
+    pass_data$pass.outcome.name = tidyr::replace_na(pass_data$pass.outcome.name, "Successful")
     pass_data = pass_data %>% mutate(colorOutcome = ifelse(pass.outcome.name == "Successful",
                                                            "Successful",
                                                            "Unsuccessful"))

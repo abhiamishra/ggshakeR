@@ -1,6 +1,6 @@
 An analysis and visualization R package that works with publicly available soccer data
 
-# ggshakeR <img src="pictures/hex-shakeR.png" align="right" width="181" height="201"/>
+# ggshakeR <img src="pictures/ggshakeRhex.png" align="right" width="181" height="201"/>
 
 ## Overview
 This package is designed to work with open soccer data. These datasets, for now, include:

@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @example plot = plot_shot(shotdata, type+"hexbin", bin_size=20)
-plot_shot <- function(shotdata, type="point", bin_size=30, theme=""){
+plot_shot <- function(shotdata, type="", bin_size=30, theme=""){
 
   if(nrow(shotdata)>0 &&
      sum(c("X","Y","xG","result","player") %in% names(shotdata))==5){
@@ -78,7 +78,7 @@ plot_shot <- function(shotdata, type="point", bin_size=30, theme=""){
       total_goal = sum(shotdata$result == "Goal")
       xg_sot = total_xG/nrow(shotdata)
 
-      if(type == ""){
+      if(type == "point" || type == ""){
         plot = plot +
           geom_point(data=shotdata, aes(x=X,y=(80-Y),size=xG,color=result),alpha=0.7)+
           scale_size_continuous(range = c(0.5,7))+

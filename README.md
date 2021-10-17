@@ -14,7 +14,7 @@ Install `ggshakeR` package from GitHub like this:
 
 ```
 # install.packages("devtools")
-devtools::install_github("abhiamishra/ggshakeR" subdir="ggshakeR")
+devtools::install_github("abhiamishra/ggshakeR", subdir="ggshakeR")
 ```
 
 ```
@@ -23,7 +23,7 @@ library(ggshakeR)
 
 
 # Credit
-Thank you to StatsBomb and [Ewan Henderson](https://github.com/ewenme) for their respective packages. A big thank you to Ninad Barbadikar for creating the beautiful logo and helping with the package in general. Thank you [Jase Viz](https://github.com/JaseZiv) for your help and your package [WorldFootballR](https://github.com/JaseZiv/worldfootballR) from which this took inspiration from.
+Thank you to StatsBomb and [Ewan Henderson](https://github.com/ewenme) for their respective packages. A big thank you to Ninad Barbadikar for creating the beautiful logo and helping with the package in general. Thank you [Jase Ziv](https://github.com/JaseZiv) for your help and your package [WorldFootballR](https://github.com/JaseZiv/worldfootballR) from which this took inspiration from.
 
 # Contact and Support
 Tell your friends about ggshakeR and shake theiR lives away! 

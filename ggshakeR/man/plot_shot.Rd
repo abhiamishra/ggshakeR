@@ -4,7 +4,7 @@
 \alias{plot_shot}
 \title{Function for plotting shots}
 \usage{
-plot_shot(shotdata, type = "point", bin_size = 30, theme = "")
+plot_shot(shotdata, type = "", bin_size = 30, theme = "")
 }
 \arguments{
 \item{shotdata}{Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name}

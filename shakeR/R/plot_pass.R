@@ -4,7 +4,7 @@
 #' that have passes as some sort of input. Data entered must have columns for which you want to plot with.
 #' Compatible, for right now, with StatsBomb data only! Returns a ggplot object. 
 #' 
-#' @param pass_data The dataframe that stores your passing data
+#' @param pass_data The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column
 #' @param plotType indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep" 
 #' @param background Pick between white or dark background.
 #' @param prog indicates whether to map out progressive passes
@@ -30,66 +30,69 @@
 
 plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=FALSE, switch=FALSE, 
                       distance= "", outcome="all", team="", player_fname="", player_lname="", theme=""){
-  pass_data = pass_data %>%
-    mutate(lname = sub(".* ", "", player.name)) %>%
-    mutate(fname = sub(" .*", "", player.name))
-  
-  if(team != ""){
+  if(nrow(pass_data)>0 &&
+     sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name") %in% names(pass_data))==5){
+    
     pass_data = pass_data %>%
-      filter(team.name == team)
-  }
-  
-  if(player_fname != ""){
-    pass_data = pass_data %>%
-      filter(fname == player_fname)
-  }
-  if(player_lname != ""){
-    pass_data = pass_data %>%
-      filter(lname == player_lname)
-  }
-  
-  if(outcome == "suc"){
-    pass_data = pass_data %>%
-      filter(is.na(pass.outcome.name))
-  }
-  else if(outcome == "unsuc"){
-    pass_data = pass_data %>%
-      filter(!is.na(pass.outcome.name))
-  }
-  
+      mutate(lname = sub(".* ", "", player.name)) %>%
+      mutate(fname = sub(" .*", "", player.name))
+    
+    if(team != ""){
+      pass_data = pass_data %>%
+        filter(team.name == team)
+    }
+    
+    if(player_fname != ""){
+      pass_data = pass_data %>%
+        filter(fname == player_fname)
+    }
+    if(player_lname != ""){
+      pass_data = pass_data %>%
+        filter(lname == player_lname)
+    }
+    
+    if(outcome == "suc"){
+      pass_data = pass_data %>%
+        filter(is.na(pass.outcome.name))
+    }
+    else if(outcome == "unsuc"){
+      pass_data = pass_data %>%
+        filter(!is.na(pass.outcome.name))
+    }
+    
     pass_data$pass.outcome.name = replace_na(pass_data$pass.outcome.name, "Successful")
     pass_data = pass_data %>% mutate(colorOutcome = ifelse(pass.outcome.name == "Successful",
                                                            "Successful",
-                                                         "Unsuccessful"))
-  
-  if(prog == TRUE){
-    pass_data = pass_data %>%
-      mutate(start= sqrt((100-location.x)^2 + (50-location.y)^2)) %>%
-      mutate(end = sqrt((100-pass.end_location.x)^2 + (50-pass.end_location.y)^2)) %>%
-      mutate(isProg = ifelse(end <= 0.75*start,
-                             1,
-                             0))
+                                                           "Unsuccessful"))
     
-    pass_data = pass_data %>% filter(isProg == 1)
-  }
-  
-  if(cross == TRUE){
-    pass_data = pass_data %>%
-      filter(pass.cross == TRUE)
-  }
-  
-  if(shot == TRUE){
-    pass_data = pass_data %>%
-      filter(pass.shot_assist == TRUE)
-  }
-  
-  if(switch==TRUE){
-    pass_data = pass_data %>% mutate(delta_y = abs(
-      pass.end_location.y - location.y
-    )) %>%
-      filter(delta_y >= 35)
-  }
-  
+    if(prog == TRUE){
+      pass_data = pass_data %>%
+        mutate(start= sqrt((100-location.x)^2 + (50-location.y)^2)) %>%
+        mutate(end = sqrt((100-pass.end_location.x)^2 + (50-pass.end_location.y)^2)) %>%
+        mutate(isProg = ifelse(end <= 0.75*start,
+                               1,
+                               0))
+      
+      pass_data = pass_data %>% filter(isProg == 1)
+    }
+    
+    if(cross == TRUE){
+      pass_data = pass_data %>%
+        filter(pass.cross == TRUE)
+    }
+    
+    if(shot == TRUE){
+      pass_data = pass_data %>%
+        filter(pass.shot_assist == TRUE)
+    }
+    
+    if(switch==TRUE){
+      pass_data = pass_data %>% mutate(delta_y = abs(
+        pass.end_location.y - location.y
+      )) %>%
+        filter(delta_y >= 35)
+    }
+    
     if(theme == "dark" || theme == ""){
       fill_b = "#0d1117"
       colour_b = "white"
@@ -113,27 +116,28 @@ plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=F
       theme_pitch()+
       theme(panel.background = element_rect(fill = fill_b))
     
-  if(nrow(pass_data) > 0){
-    if(plotType=="sep"){
-      plot = plot +
-        geom_segment(aes(x=location.x,y=location.y, 
-                                         xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
-                     lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
-        facet_grid(~colorOutcome) +
-        labs(
-          color = "Outcome of Pass"
-        )
+    if(nrow(pass_data) > 0){
+      if(plotType=="sep"){
+        plot = plot +
+          geom_segment(aes(x=location.x,y=location.y, 
+                           xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
+                       lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
+          facet_grid(~colorOutcome) +
+          labs(
+            color = "Outcome of Pass"
+          )
+      }
+      else if(plotType == "all"){
+        plot = plot +
+          geom_segment(aes(x=location.x,y=location.y, 
+                           xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
+                       lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
+          labs(
+            color = "Outcome of Pass"
+          )
+      }
     }
-    else if(plotType == "all"){
-      plot = plot +
-        geom_segment(aes(x=location.x,y=location.y, 
-                         xend=pass.end_location.x, yend=(pass.end_location.y), color=colorOutcome),
-                     lineend = "round", size = 1.5, arrow=arrow(length=unit(0.10, "inches")),stat="identity",position="identity")+
-        labs(
-          color = "Outcome of Pass"
-        )
-    }
+    
+    plot 
   }
-  
-  plot
 }

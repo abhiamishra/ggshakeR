@@ -20,7 +20,7 @@ plot_pass(
 )
 }
 \arguments{
-\item{pass_data}{The dataframe that stores your passing data}
+\item{pass_data}{The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column}
 
 \item{plotType}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"}
 

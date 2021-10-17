@@ -24,14 +24,14 @@ testthat::test_that("Plotting scatterplots: ",{
   testthat::expect_identical(p$labels$y, "yA")
   testthat::expect_identical(p$labels$colour, "col_scat")
   testthat::expect_identical(p$labels$size, "size_scat")
-  
+
   #Testting for plotting with an empty dataframe
   p = plot_scatter(data=df_empty,
                    scatter_x="xA",
                    scatter_y="yA",
                    set_size_var = "size")
   testthat::expect_true(!is.ggplot(p))
-  
+
   #Testing for using wrong/nonexistent column names
   p = plot_scatter(data=df,
                    scatter_x="xA",
@@ -40,7 +40,7 @@ testthat::test_that("Plotting scatterplots: ",{
                    set_size_var = "size")
   testthat::expect_true(is.ggplot(p))
   testthat::expect_identical(p$labels$size, "")
-  
+
   #Testing for using wrong x,y column names
   p = plot_scatter(data=df,
                    scatter_x="xA",
@@ -64,12 +64,12 @@ df = data.frame(
   Y = seq(81,100,by=1),
   xG = seq(1, 20, by=1),
   result = rep(c("A","B"),times=10),
-  name = rep(c("Abhishek"),times=20)
+  player = rep(c("Abhishek"),times=20)
 )
 
 #Creating an empty dataframe
 df_empty = data.frame(matrix(ncol=5,nrow=0))
-x = c("X", "Y", "xG", "result", "name")
+x = c("X", "Y", "xG", "result", "player")
 colnames(df_empty) <- x
 
 #Creating simple dataframe for testing basic plots
@@ -77,18 +77,18 @@ df_absent = data.frame(
   X = seq(81,100,by=1),
   Y = seq(81,100,by=1),
   result = rep(c("A","B"),times=10),
-  name = rep(c("Abhishek"),times=20)
+  player = rep(c("Abhishek"),times=20)
 )
 
 
 testthat::test_that("Testing plotting pass flow maps: ", {
   p = plot_shot(df)
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing for plotting on an empty dataframe
   p = plot_shot(df_empty)
   testthat::expect_true(!is.ggplot(p))
-  
+
   #testing using a dataframe that does not have the required columns
   p = plot_shot(df_absent)
   testthat::expect_true(!is.ggplot(p))
@@ -126,11 +126,11 @@ df_absent = data.frame(
 testthat::test_that("Testing plotting shot maps: ", {
   p = plot_passflow(df)
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing for plotting on an empty dataframe
   p = plot_passflow(df_empty)
   testthat::expect_true(!is.ggplot(p))
-  
+
   #testing using a dataframe that does not have the required columns
   p = plot_passflow(df_absent)
   testthat::expect_true(!is.ggplot(p))
@@ -169,11 +169,11 @@ df_absent = data.frame(
 testthat::test_that("Testing plotting shot maps: ", {
   p = plot_pass(df, plotType = "def", outcome = "suc")
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing for plotting on an empty dataframe
   p = plot_pass(df_empty)
   testthat::expect_true(!is.ggplot(p))
-  
+
   #testing using a dataframe that does not have the required columns
   p = plot_pass(df_absent)
   testthat::expect_true(!is.ggplot(p))

@@ -20,7 +20,7 @@
 plot_shot <- function(shotdata, type="point", bin_size=30, theme=""){
 
   if(nrow(shotdata)>0 &&
-     sum(c("X","Y","xG","result","name") %in% names(shotdata))==5){
+     sum(c("X","Y","xG","result","player") %in% names(shotdata))==5){
 
     last = sub(".* ", "", shotdata$player[nrow(shotdata)])
     first = sub(" .*", "", shotdata$player[nrow(shotdata)])

@@ -23,7 +23,10 @@ Imports:
   ggsoccer,
   ggrepel,
   viridis,
-  roxygen2
+  roxygen2,
+  ggtext,
+  Rcpp,
+  RcppRoll
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

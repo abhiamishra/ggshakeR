@@ -52,3 +52,6 @@ This function allows you to plot various types of plots that have
 that have passes as some sort of input. Data entered must have columns for which you want to plot with.
 Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 }
+\examples{
+plot = plot_pass(pass_data, plotType = "def", prog=TRUE, team="Barcelona", player_fname = "Lionel")
+}

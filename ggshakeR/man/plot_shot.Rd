@@ -22,3 +22,6 @@ a ggplot2 object
 This function allows for data, that has to be scraped from Understat, to be used
 for plotting shots.
 }
+\examples{
+plot = plot_shot(shotdata, type+"hexbin", bin_size=20)
+}

@@ -60,3 +60,6 @@ returns a ggplot2 object
 This function allows you to plot various types of plots that have
 that have passes as some sort of input. Compatible with any data frame of any data type. Returns a ggplot object.
 }
+\examples{
+plot = plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+}

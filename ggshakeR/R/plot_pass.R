@@ -25,7 +25,7 @@
 #' @import ggrepel
 #' @export
 #'
-#' @example plot = plot_pass(pass_data, plotType = "def", prog=TRUE, team="Barcelona", player_fname = "Lionel")
+#' @examples plot = plot_pass(pass_data, plotType = "def", prog=TRUE, team="Barcelona", player_fname = "Lionel")
 
 plot_pass <- function(pass_data, plotType="sep", prog=FALSE, cross=FALSE, shot=FALSE, switch=FALSE,
                       distance= "", outcome="all", team="", player_fname="", player_lname="", theme=""){

@@ -29,7 +29,7 @@
 #' 
 #' @export
 #' 
-#' @example plot = plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+#' @examples plot = plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
 plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
                          set_size_num=5, set_size_var="",
                          set_color_num="red", set_color_var="",

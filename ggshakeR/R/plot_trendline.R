@@ -1,6 +1,15 @@
 #' Function for plotting xG Trendline with FBref/ StatsBomb data. 
 #' 
-#' The data can be scraped from FBref.
+#' The data can be scraped from FBref.\cr
+#' Dataframe passed in must have the following column names: \cr
+#' \cr
+#' Date (format: year-month-day).yyyy-mm-dd, \cr
+#' Home_xG (xG for Home Team), \cr
+#' Away_xG (xG for Away Team), \cr
+#' Home (Home Team), \cr
+#' Away (Away Team)
+#' 
+#' For best clarity, export plot as a 2000x1000 png
 #' 
 #' @param data is for the dataset used. Select the number of matches wanted in the viz beforehand.
 #' @param team is to select the specific team for the viz. Team must be accurate as per FBref specifications.
@@ -17,7 +26,7 @@
 #' 
 #' @export
 #' 
-#' @example_plot <- plot_trendline(data = pl, team = "Tottenham",
+#' @examples <- plot_trendline(data = pl, team = "Tottenham",
 #'                                 colour_xg = "#08519c", colour_xga = "#cb181d",
 #'                                 roll_avg = 10, theme = "dark")
 

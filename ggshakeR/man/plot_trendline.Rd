@@ -20,5 +20,20 @@ plot_trendline(data, team, colour_xg, colour_xga, roll_avg, theme = "")
 \item{theme}{to select the theme from 4 options -> dark, almond, rose, white.}
 }
 \description{
-The data can be scraped from FBref.
+The data can be scraped from FBref.\cr
+Dataframe passed in must have the following column names: \cr
+\cr
+Date (format: year-month-day).yyyy-mm-dd, \cr
+Home_xG (xG for Home Team), \cr
+Away_xG (xG for Away Team), \cr
+Home (Home Team), \cr
+Away (Away Team)
+}
+\details{
+For best clarity, export plot as a 2000x1000 png
+}
+\examples{
+<- plot_trendline(data = pl, team = "Tottenham",
+                                colour_xg = "#08519c", colour_xga = "#cb181d",
+                                roll_avg = 10, theme = "dark")
 }

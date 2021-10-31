@@ -26,7 +26,8 @@ Imports:
   roxygen2,
   ggtext,
   Rcpp,
-  RcppRoll
+  RcppRoll,
+  TTR
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

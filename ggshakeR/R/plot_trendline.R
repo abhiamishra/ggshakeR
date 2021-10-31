@@ -23,6 +23,7 @@
 #' @import ggtext
 #' @import Rcpp
 #' @import RcppRoll
+#' @import TTR
 #' 
 #' @export
 #' 

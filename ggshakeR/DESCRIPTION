@@ -27,7 +27,10 @@ Imports:
   ggtext,
   Rcpp,
   RcppRoll,
-  TTR
+  TTR,
+  stringr,
+  stringi,
+  forcats
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

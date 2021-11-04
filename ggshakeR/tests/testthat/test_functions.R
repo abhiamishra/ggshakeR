@@ -224,3 +224,38 @@ testthat::test_that("Testing plotting trendlines: ", {
                       roll_avg = 10, theme = "dark")
   testthat::expect_true(is.ggplot(p))
 })
+
+
+
+
+
+############# TESTING PLOT_PIZZA ################
+# Scraping data 
+data1 <- fb_player_scouting_report("https://fbref.com/en/players/6928979a/Nicolo-Barella", pos_versus = "primary")
+data2 <- fb_player_scouting_report("https://fbref.com/en/players/819b3158/Ilkay-Gundogan", pos_versus = "primary")
+
+# Dataset for single player plot 
+View(data1)
+View(data2)
+
+# Dataset for comparison plot
+data <- rbind(data1, data2)
+
+testthat::test_that("Testing plotting pizzas: ", {
+  p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
+                  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
+                  colour_1 = "lightgreen", theme = "black")
+  testthat::expect_true(is.ggplot(p))
+  
+  #testing for single player plot
+  p <- plot_pizza(data = data1, type = "single", template = "midfielder", 
+                  colour_poss = "green", colour_att = "lightblue", 
+                  colour_def = "#fec44f", theme = "dark")
+  testthat::expect_true(is.ggplot(p))
+  
+  #testing for comparison plot
+  p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
+                  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
+                  colour_1 = "lightgreen", theme = "black")
+  testthat::expect_true(is.ggplot(p))
+})

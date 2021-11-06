@@ -13,7 +13,7 @@ plot_pizza(
   colour_def,
   player_1,
   player_2,
-  colour_1,
+  colour_compare,
   season,
   season_player_1,
   season_player_2,
@@ -38,9 +38,15 @@ forward, winger, midfielder, defender, goalkeeper and full back.}
 
 \item{player_2}{for selecting the second player. To be used only for comparison plot.}
 
-\item{colour_1}{for selecting the colour of first player's bars. To be used only for comparison plot.}
+\item{colour_compare}{for selecting the colour of comparison to be used only for comparison plot.}
 
-\item{theme}{Theme preferences for display: dark (default), white, black.}
+\item{season}{Specify what season to pick for a single player pizza chart. Pick the scouting period from the scouting period column in the data.}
+
+\item{season_player_1}{Specify what season to pick for the first player in a pizza chart}
+
+\item{season_player_2}{Specify what season to pick for the second player in a pizza chart}
+
+\item{theme}{Specify the theme of the pizza chart -> dark, black, and white. Default set to black}
 }
 \value{
 a ggplot2 object
@@ -57,7 +63,7 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")
 plot1 = plot_pizza(data = data, type = "comparison", template = "midfielder",
                              player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
                              season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", 
-                             colour_1 = "lightgreen", theme = "black")
+                             colour_compare = "lightgreen", theme = "black")
 
           plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
                              colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days", 

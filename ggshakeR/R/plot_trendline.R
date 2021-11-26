@@ -126,14 +126,13 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   subtitle <- paste(roll_avg, "Game Rolling Average")
   
   ggplot(data , aes(x = Date)) +
-    geom_line(aes(y = xGSM, colour = colour_xg), size = 3) +
-    geom_line(aes(y = xGASM, colour = colour_xga), size = 3) +
+    geom_line(aes(y = xGSM), colour = colour_xg, size = 3) +
+    geom_line(aes(y = xGASM), colour = colour_xga, size = 3) +
     geom_line(aes(y = xGSUM), colour = fill_b, size = 0.1) +  
     geom_point(aes(y = xGSM), colour = colour_xg, size = 4) +
     geom_point(aes(y = xGASM), colour = colour_xga, size = 4) +
+    scale_color_manual(labels = c("xG", "xGA"), values = c(colour_xg, colour_xga)) +
     expand_limits(y = c(0.25, 2.25)) +
-    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype ="dashed",alpha = 0.5, size = 2,se = FALSE)+
-    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype= "dashed", alpha = 0.5, size = 2,se = FALSE) +
     labs(title= team, 
          subtitle= subtitle) +
     theme(plot.title = element_markdown(lineheight = 1.1, size = 40, colour = colorText, face = "bold"),
@@ -155,7 +154,6 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype ="dashed",alpha = 0.5, size = 2,se = FALSE)+
     stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype= "dashed", alpha = 0.5, size = 2,se = FALSE) +
     labs(col = "Key") +
-    scale_color_manual(labels = c("xG", "xGA"), values = c(colour_xg, colour_xga)) +
     theme(legend.background = element_rect(colour = colour_b, fill = fill_b),
           legend.title = element_text(colour = colorText, size = 22, face = "bold"),
           legend.text = element_text(colour = colorText, size = 18),

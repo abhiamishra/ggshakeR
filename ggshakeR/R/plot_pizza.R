@@ -37,7 +37,7 @@
 #'                              season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", 
 #'                              colour_compare = "lightgreen", theme = "black")
 #'
-#'           plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
+#' @examples plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
 #'                              colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days", 
 #'                              colour_def = "red", theme = "dark")
 
@@ -360,8 +360,8 @@ Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
             axis.text.x = element_text(size = 12,colour = colorText, angle = ang),
-            text = element_text(family="Spartan-Light",colour= colorText, size = 20),                                   
-            plot.title = element_markdown(hjust=0.5,family="Spartan-Medium", size = 26, colour = colorText, face = "bold"),
+            text = element_text(colour= colorText, size = 20),                                   
+            plot.title = element_markdown(hjust=0.5, size = 26, colour = colorText, face = "bold"),
             plot.subtitle = element_text(hjust=0.5,size=20, colour = colorText),
             plot.caption = element_text(hjust=0.5,size=15, colour = colorText),
             panel.grid.major = element_blank(), 
@@ -509,7 +509,7 @@ Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
     title <- paste(player_name1, "|", lg1, "|", min1, "minutes")
     subtitle <- paste(player_name2, "|", lg2, "|", min2, "minutes")
     caption <- paste("Compared to", sub, ". 
-Inspired by @FootballSlices. Created using ggshakeR.")
+Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshakeR.")
     
     x <- data1$Statistic
     
@@ -536,10 +536,10 @@ Inspired by @FootballSlices. Created using ggshakeR.")
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
             axis.text.x = element_text(size = 12,colour = colorText, angle = ang),
-            text = element_text(family="Spartan-Light",colour= colorText, size = 20),                                   
-            plot.title = element_markdown(hjust=0.5,family="Spartan-Medium", size = 26, colour = colour_compare, face = "bold"),
-            plot.subtitle = element_text(hjust=0.5,family="Spartan-Medium", size=26, colour = colorLine, face = "bold"),
-            plot.caption = element_text(hjust=0.5,family="Spartan-Light", size=15, colour = colorText),
+            text = element_text(colour= colorText, size = 20),                                   
+            plot.title = element_markdown(hjust=0.5, size = 26, colour = colour_compare, face = "bold"),
+            plot.subtitle = element_text(hjust=0.5, size=26, colour = colorLine, face = "bold"),
+            plot.caption = element_text(hjust=0.5, size=15, colour = colorText),
             panel.grid.major = element_blank(), 
             panel.grid.minor = element_blank()) +
       scale_x_discrete(labels = function(x) str_wrap(x, width = 10))

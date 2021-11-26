@@ -65,7 +65,7 @@ plot1 = plot_pizza(data = data, type = "comparison", template = "midfielder",
                              season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", 
                              colour_compare = "lightgreen", theme = "black")
 
-          plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
+plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
                              colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days", 
                              colour_def = "red", theme = "dark")
 }

@@ -71,8 +71,7 @@ plot_shot <- function(shotdata, type="", bin_size=30, theme=""){
     if(nrow(shotdata)>=1){
       shotdata = shotdata %>%
         mutate(X = 120*X) %>%
-        mutate(Y = 80*Y) %>%
-        na.omit()
+        mutate(Y = 80*Y)
 
       total_xG = sum(shotdata$xG)
       total_goal = sum(shotdata$result == "Goal")

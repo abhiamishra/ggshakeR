@@ -186,6 +186,8 @@ testthat::test_that("Testing plotting shot maps: ", {
 
 ############# TESTING PLOT_TRENDLINE ################
 # Scraping data and selecting only 200 rows
+#install.packages(worldfootballR) if not downloaded
+library(worldfootballR)
 laliga_2022 <- get_match_results(country = "ESP", gender = "M", season_end_year = c(2020, 2021, 2022), tier = "1st")
 data <- laliga_2022
 data1 <- data[c(1:200), ]
@@ -245,7 +247,7 @@ testthat::test_that("Testing plotting pizzas: ", {
   p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
                   player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
                   season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                  colour_1 = "lightgreen", theme = "black")
+                  colour_compare = "#90ee90", theme = "black")
   testthat::expect_true(is.ggplot(p))
   
   #testing for single player plot
@@ -258,6 +260,81 @@ testthat::test_that("Testing plotting pizzas: ", {
   p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
                   player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
                   season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                  colour_1 = "lightgreen", theme = "black")
+                  colour_compare = "#90ee90", theme = "black")
   testthat::expect_true(is.ggplot(p))
 })
+############# TESTING PLOT_PIZZA ################
+
+
+
+
+
+############# TESTING PLOT_HEATMAP ################
+#Creating simple dataframe for testing basic plots
+df = data.frame(
+  location.x = seq(81,100,by=1),
+  location.y = seq(81,100,by=1),
+  pass.end_location.x = seq(51, 70, by=1),
+  pass.end_location.y = seq(61, 80, by=1)
+)
+
+#Creating an empty dataframe
+df_empty = data.frame(matrix(ncol=4,nrow=0))
+x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y")
+colnames(df_empty) <- x
+
+#Creating simple dataframe for testing basic plots
+df_absent = data.frame(
+  location.x = seq(81,100,by=1),
+  location.y = seq(81,100,by=1),
+  pass.end_location.x = seq(51, 70, by=1)
+)
+
+
+testthat::test_that("Testing plotting heatmaps: ", {
+  p = plot_heatmap(df, type="hex")
+  testthat::expect_true(is.ggplot(p))
+
+  #testing for plotting on an empty dataframe
+  p = plot_heatmap(df_empty)
+  testthat::expect_true(!is.ggplot(p))
+
+  #testing using a dataframe that does not have the required columns
+  p = plot_heatmap(df_absent)
+  testthat::expect_true(!is.ggplot(p))
+})
+############# TESTING PLOT_HEATMAP ################
+
+
+
+
+
+
+
+
+
+
+############# TESTING CALCULATE_THREAT ################
+df = data.frame(
+  location.x = seq(81,100,by=1),
+  location.y = seq(81,100,by=1),
+  pass.end_location.x = seq(51, 70, by=1),
+  pass.end_location.y = seq(61, 80, by=1)
+)
+
+#Creating an empty dataframe
+df_empty = data.frame(matrix(ncol=4,nrow=0))
+x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y")
+colnames(df_empty) <- x
+
+testthat::test_that("Testing calculation of expected threat: ", {
+  p = calculate_threat(df, x_col="location.x", y_col="location.y",
+                          xend_col = "pass.end_location.x", yend_col = "pass.end_location.y")
+  testthat::expect_equal((ncol(df)+2), ncol(p))
+
+
+  #testing for plotting on an empty dataframe
+  p = plot_heatmap(df_empty)
+  testthat::expect_equal(NULL, ncol(p))
+})
+############# TESTING CALCULATE_THREAT ################

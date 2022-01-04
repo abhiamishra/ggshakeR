@@ -47,10 +47,10 @@ calculate_threat <- function(eventData, dataType="opta", x_col = "", y_col = "",
         }
       }
 
-      parsing = parsing %>% drop_na(y_col)
-      parsing = parsing %>% drop_na(x_col)
-      parsing = parsing %>% drop_na(xend_col)
-      parsing = parsing %>% drop_na(yend_col)
+      parsing = parsing %>% tidyr::drop_na(y_col)
+      parsing = parsing %>% tidyr::drop_na(x_col)
+      parsing = parsing %>% tidyr::drop_na(xend_col)
+      parsing = parsing %>% tidyr::drop_na(yend_col)
 
       if(dataType != "opta"){
         to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)

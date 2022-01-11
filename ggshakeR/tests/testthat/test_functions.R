@@ -82,7 +82,7 @@ df_absent = data.frame(
 
 
 testthat::test_that("Testing plotting pass flow maps: ", {
-  p = plot_shot(df)
+  p = plot_shot(df, highlight_goals = TRUE, avg_loc = FALSE)
   testthat::expect_true(is.ggplot(p))
 
   #testing for plotting on an empty dataframe
@@ -94,7 +94,6 @@ testthat::test_that("Testing plotting pass flow maps: ", {
   testthat::expect_true(!is.ggplot(p))
 })
 ############# TESTING PLOT_SHOTS ################
-
 
 
 

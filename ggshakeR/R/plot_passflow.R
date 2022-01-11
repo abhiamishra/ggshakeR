@@ -13,7 +13,11 @@
 #' @import ggsoccer
 #' @import viridis
 #' @export
-#' @examples plot = plot_passflow(data, bin_size=30)
+#' @examples
+#' \dontrun{
+#' plot <- plot_passflow(data, bin_size = 30)
+#' plot
+#' }
 plot_passflow <- function(pass_data, bin_size=0){
 
     fill_b = "#0d1117"

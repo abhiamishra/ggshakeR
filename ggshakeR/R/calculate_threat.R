@@ -14,9 +14,13 @@
 #' @import ggsoccer
 #' @export
 #'
-#' @examples endResult = calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
-#'                       y_col = "location.y", xend_col = "pass.end_location.x",
-#'                      yend_col = "pass.end_location.y")
+#' @examples
+#' \dontrun{
+#' endResult <- calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
+#'                               y_col = "location.y", xend_col = "pass.end_location.x",
+#'                               yend_col = "pass.end_location.y")
+#' endResult
+#' }
 
 calculate_threat <- function(eventData, dataType="opta", x_col = "", y_col = "",
                              xend_col = "", yend_col = ""){

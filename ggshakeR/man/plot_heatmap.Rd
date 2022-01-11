@@ -24,5 +24,8 @@ density heatmap, and
 bin heatmap
 }
 \examples{
-plot = plot = plot_heatmap(touchData, type="hex")
+\dontrun{
+plot <- plot_heatmap(touchData, type="hex")
+plot
+}
 }

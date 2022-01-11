@@ -18,7 +18,12 @@
 #' @import viridis
 #' @export
 #'
-#' @examples plot = plot = plot_heatmap(touchData, type="hex")
+#' @examples
+#' \dontrun{
+#' plot <- plot_heatmap(touchData, type="hex")
+#' plot
+#' }
+
 plot_heatmap <- function(eventData, type="", theme=""){
   if(nrow(eventData) > 0 &&
   sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y") %in% names(eventData))==4){
@@ -67,7 +72,7 @@ plot_heatmap <- function(eventData, type="", theme=""){
           color = "Density"
         )
         plot
-        
+
   }
   else{
       plot

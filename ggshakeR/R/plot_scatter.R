@@ -1,10 +1,10 @@
 #' Plotting scatter plots
 #'
 #' This function allows you to plot various types of plots that have
-#' that have passes as some sort of input. Compatible with any data frame of any data type. Returns a ggplot object. 
-#' 
-#' 
-#' @param data the dataframe passed in for plotting. 
+#' that have passes as some sort of input. Compatible with any data frame of any data type. Returns a ggplot object.
+#'
+#'
+#' @param data the dataframe passed in for plotting.
 #' @param scatter_x name of column name in data to be used on x-axis
 #' @param scatter_y name of column name in data to be used on y-axis
 #' @param sc_label the name of column name in data to be label the scatter plot
@@ -20,16 +20,20 @@
 #' @param scatter_cap pick the caption of the scatter plot
 #' @param cap_size sets the size of the caption of the scatter plot. Default size = 10.
 #' @return returns a ggplot2 object
-#' 
+#'
 #' @importFrom magrittr %>%
 #' @import dplyr
 #' @import ggplot2
 #' @import ggsoccer
 #' @import ggrepel
-#' 
+#'
 #' @export
-#' 
-#' @examples plot = plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+#'
+#' @examples
+#' \dontrun{
+#' plot <- plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+#' plot
+#' }
 plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
                          set_size_num=5, set_size_var="",
                          set_color_num="red", set_color_var="",
@@ -41,23 +45,23 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
                          scatter_cap = "",
                          cap_size=10){
   if(nrow(data)>0){
-    
+
     total = 0
-    
+
     if(scatter_x %in% names(data) && scatter_y %in% names(data)){
       selection = c(scatter_x,scatter_y)
-      
+
       renaming = c('scatter_x','scatter_y')
-      
+
       total=2
-      
+
       col_var = ""
       size_var = ""
-      
+
       if(sc_label != "" && sc_label %in% names(data)){
         if(sc_label %in% selection == TRUE){
           data[,"sc_label"] = data[,sc_label]
-          
+
           selection = append(selection, 'sc_label')
           renaming = append(renaming, 'sc_label')
         }
@@ -67,11 +71,11 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
         }
         total = total+1
       }
-      
+
       if(set_size_var != "" && set_size_var %in% names(data)){
         if(set_size_var %in% selection == TRUE){
           data[,"set_size_var"] = data[,set_size_var]
-          
+
           selection = append(selection, 'set_size_var')
           renaming = append(renaming, 'set_size_var')
         }
@@ -80,14 +84,14 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
           renaming = append(renaming, 'set_size_var')
         }
         total = total+1
-        
+
         size_var = set_size_var
       }
-      
+
       if(set_color_var != "" && set_color_var %in% names(data)){
         if(set_color_var %in% selection == TRUE){
           data[,"set_color_var"] = data[,set_color_var]
-          
+
           selection = append(selection, 'set_color_var')
           renaming = append(renaming, 'set_color_var')
         }
@@ -96,26 +100,26 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
           renaming = append(renaming, 'set_color_var')
         }
         total = total+1
-        
+
         col_var = set_color_var
       }
-      
+
       data = data %>%
         select(c(selection))
-      
-      
+
+
       for(i in 1:total){
         names(data)[i] = renaming[i]
       }
       #Preprocessing over
-      
+
       #Plotting
       plot = data %>%
         ggplot(aes(x=scatter_x,y=scatter_y))
-      
+
       x_title = scatter_x
       y_title = scatter_y
-      
+
       if(set_size_var != "" && set_color_var != ""){
         plot = plot+
           geom_point(aes(size=set_size_var, color=set_color_var))
@@ -132,32 +136,32 @@ plot_scatter <- function(data, scatter_x="", scatter_y="", sc_label="",
         plot = plot+
           geom_point(size=set_size_num,color=set_color_num)
       }
-      
+
       if(sc_label != ""){
-        plot =  plot + 
+        plot =  plot +
           geom_label_repel(aes(x=scatter_x,y=scatter_y, label=sc_label), max.overlaps = 2)
       }
-      
+
       if(theme == "classic"){
-        plot = plot + 
+        plot = plot +
           theme_classic()
       }
       else if(theme == "minimal"){
-        plot = plot + 
+        plot = plot +
           theme_minimal()
       }
       else if(theme == "grey"){
-        plot = plot + 
+        plot = plot +
           theme_grey()
       }
       else if(theme == "bw"){
-        plot = plot + 
+        plot = plot +
           theme_bw()
       }
-      
-      
-      
-      plot = plot + 
+
+
+
+      plot = plot +
         labs(
           title = scatter_title,
           subtitle = scatter_subtitle,

@@ -16,7 +16,11 @@
 #'
 #' @export
 #'
-#' @examples plot = plot_shot(shotdata, type+"hexbin", bin_size=20)
+#' @examples
+#' \dontrun{
+#' plot <- plot_shot(shotdata, type = "hexbin", bin_size = 20)
+#' }
+
 plot_shot <- function(shotdata, type="", bin_size=30, theme=""){
 
   if(nrow(shotdata)>0 &&

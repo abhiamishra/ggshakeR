@@ -5,9 +5,6 @@ An analysis and visualization R package that works with publicly available socce
 ## Overview
 This package is designed to work with open soccer data. These datasets, for now, include:
 
-[![CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggshakeR)](https://CRAN.R-project.org/package=ggshakeR)
-
 * [FBref](https://fbref.com/en/)
 * [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
 * [Understat](https://understat.com/)

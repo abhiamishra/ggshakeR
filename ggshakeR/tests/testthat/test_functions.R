@@ -112,7 +112,7 @@ df = data.frame(
 
 #Creating an empty dataframe
 df_empty = data.frame(matrix(ncol=5,nrow=0))
-x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y")
+x = c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
 #Creating simple dataframe for testing basic plots
@@ -213,13 +213,13 @@ testthat::test_that("Testing plotting trendlines: ", {
                       colour_xg = "blue", colour_xga = "red",
                       roll_avg = 10, theme = "dark")
   testthat::expect_true(is.ggplot(p))
-  
-  #testing for plotting on a dataframe with NA's 
+
+  #testing for plotting on a dataframe with NA's
   p <- plot_trendline(data = data3, team = "Barcelona",
                       colour_xg = "blue", colour_xga = "red",
                       roll_avg = 10, theme = "dark")
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing using a dataframe that has limited rows
   p <- plot_trendline(data = data1, team = "Barcelona",
                       colour_xg = "blue", colour_xga = "red",
@@ -232,11 +232,11 @@ testthat::test_that("Testing plotting trendlines: ", {
 
 
 ############# TESTING PLOT_PIZZA ################
-# Scraping data 
+# Scraping data
 data1 <- fb_player_scouting_report("https://fbref.com/en/players/6928979a/Nicolo-Barella", pos_versus = "primary")
 data2 <- fb_player_scouting_report("https://fbref.com/en/players/819b3158/Ilkay-Gundogan", pos_versus = "primary")
 
-# Dataset for single player plot 
+# Dataset for single player plot
 View(data1)
 View(data2)
 
@@ -245,17 +245,17 @@ data <- rbind(data1, data2)
 
 testthat::test_that("Testing plotting pizzas: ", {
   p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
-                  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
+                  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
                   season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
                   colour_compare = "#90ee90", theme = "black")
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing for single player plot
-  p <- plot_pizza(data = data1, type = "single", template = "midfielder", 
-                  colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days", 
+  p <- plot_pizza(data = data1, type = "single", template = "midfielder",
+                  colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
                   colour_def = "#fec44f", theme = "dark")
   testthat::expect_true(is.ggplot(p))
-  
+
   #testing for comparison plot
   p <- plot_pizza(data = data, type = "comparison", template = "midfielder",
                   player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
@@ -280,7 +280,7 @@ df = data.frame(
 
 #Creating an empty dataframe
 df_empty = data.frame(matrix(ncol=4,nrow=0))
-x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y")
+x = c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
 #Creating simple dataframe for testing basic plots
@@ -338,3 +338,44 @@ testthat::test_that("Testing calculation of expected threat: ", {
   testthat::expect_equal(NULL, ncol(p))
 })
 ############# TESTING CALCULATE_THREAT ################
+
+
+
+
+
+
+############# TESTING PLOT_SONAR ################
+#Creating simple dataframe for testing basic plots
+df = data.frame(
+  location.x = seq(81,100,by=1),
+  location.y = seq(81,100,by=1),
+  pass.end_location.x = seq(51, 70, by=1),
+  pass.end_location.y = seq(61, 80, by=1)
+)
+
+#Creating an empty dataframe
+df_empty = data.frame(matrix(ncol=4,nrow=0))
+x = c("x", "y", "finalX", "finalY")
+colnames(df_empty) <- x
+
+#Creating simple dataframe for testing basic plots
+df_absent = data.frame(
+  x = seq(81,100,by=1),
+  y = seq(81,100,by=1),
+  finalX = seq(51, 70, by=1)
+)
+
+
+testthat::test_that("Testing plotting sonars: ", {
+  p = plot_sonar(df, titlePlot="Test 1")
+  testthat::expect_true(is.ggplot(p))
+
+  #testing for plotting on an empty dataframe
+  p = plot_sonar(df_empty)
+  testthat::expect_true(!is.ggplot(p))
+
+  #testing using a dataframe that does not have the required columns
+  p = plot_sonar(df_absent)
+  testthat::expect_true(!is.ggplot(p))
+})
+############# TESTING PLOT_SONAR ################

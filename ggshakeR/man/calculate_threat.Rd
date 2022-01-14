@@ -4,36 +4,19 @@
 \alias{calculate_threat}
 \title{Calculating xT for passes, carries, etc}
 \usage{
-calculate_threat(
-  eventData,
-  dataType = "opta",
-  x_col = "",
-  y_col = "",
-  xend_col = "",
-  yend_col = ""
-)
+calculate_threat(eventData, dataType = "opta")
 }
 \arguments{
-\item{eventData}{The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations}
+\item{eventData}{The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: x,y,finalX,finalY}
 
 \item{dataType}{indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"}
-
-\item{x_col}{name of the column that stores the starting x location}
-
-\item{y_col}{name of the column that stores the starting y location}
-
-\item{xend_col}{name of the column that stores the ending x location}
-
-\item{yend_col}{name of the column that stores the ending x location}
 }
 \value{
-returns a ggplot2 object
+returns a dataframe object
 }
 \description{
 Calculating xT for passes, carries, etc
 }
 \examples{
-endResult = calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
-                      y_col = "location.y", xend_col = "pass.end_location.x",
-                     yend_col = "pass.end_location.y")
+endResult = calculate_threat(test, dataType = "statsbomb")
 }

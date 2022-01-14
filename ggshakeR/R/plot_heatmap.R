@@ -67,13 +67,14 @@ plot_heatmap <- function(eventData, type="", theme="", dataType = "statsbomb", b
       else if(type == "bin"){
         plot = plot +
           geom_bin2d(aes(x=x,y=y),
-                     binwidth=c(bin,bin))
+                     binwidth=c(bin,bin),
+                     alpha=0.9)
       }
 
       plot = plot +
         scale_fill_continuous(type = "viridis")+
         labs(
-          color = "Density"
+          fill = "Density"
         )
         plot
 

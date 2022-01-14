@@ -1,0 +1,91 @@
+---
+title: "Guide to Expected Threat"
+author: "Abhishek A. Mishra"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Guide to Expected Threat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Welcome to the Expected Threat Guide for ggshakeR!
+
+First things first, we are only able to do this because of the amazing work by Karun Singh. Read his excellent [xT blog post](https://karun.in/blog/expected-threat.html) that goes into indepth explanation of the need and use of the metric. 
+
+Karun Singh's xT grid is what gghshakeR uses. Every time you load in the package, ggshakeR will load in a dataframe called __xTGrid__. __xTGrid__ houses all the xT data that Karun Singh made public and now it is available for you in a line of code!
+
+Simply write:
+```{r, eval=FALSE}
+library(ggshakeR)
+head(xTGrid)
+```
+![xTGrid dataframe in ggshakeR](images/xTGrid.png){width=90%}
+
+This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (X0) to the opponent's goal (X11). The grid is symmetrical in half and as such, there is no "top"/"bottom" of the pitch.
+
+However, what if you want to use xT? Calculate it?
+
+ggshakeR offers you the calculate_threat() function that calculates xT for the data that is passed in!
+
+Here are some characteristics:
+
+* Needs 4 columns named as __x,y,finalX,finalY__
+
+Here's the cool thing about the calculate_threat() function: __It calculates the xT of the start of a pass/carry and the xT of the end of the pass/carry__.
+
+Why is this important? Well, let's take a take-on. That only has a starting x,y. In the dataframe, the columns of finalX and finalY have ```{r, eval=FALSE} NAs```
+in them. The calculate_threat() will give you the xT for both the starting and ending locations allowing you to give a value to single-event values - basically, it gives you the most freedom and information regarding xT.
+
+Let's see how we can use it!
+
+## Using the calculate_threat()
+
+First, let's get some data! You can either import you data or use [Statsbomb's open free dataset](https://github.com/statsbomb/open-data)
+
+In this example, I'll be using Statsbomb's Messi Data for LaLiga 2014/15:
+
+```{r, eval=FALSE}
+Comp <- FreeCompetitions() %>%
+  filter(competition_id==11 & season_name=="2014/2015")
+Matches <- FreeMatches(Comp)
+StatsBombData <- StatsBombFreeEvents(MatchesDF = Matches, Parallel = T)
+StatsBombData = allclean(StatsBombData)
+
+plottingData = StatsBombData
+```
+
+Before plotting, I am going to rename my columns:
+
+```{r, eval=FALSE}
+plottingData = plottingData %>%
+  rename("x"="location.x") %>%
+  rename("y"="location.y") %>%
+  rename("finalX"="pass.end_location.x") %>%
+  rename("finalY"="pass.end_location.y")
+```
+
+For calculate_threat(), __always write the dataType that the data is: opta or statsbomb__. After that, we simply get:
+```{r, eval=FALSE}
+xTData = calculate_threat(plottingData, dataType="statsbomb")
+```
+
+If we inspect xTData, we see these two new columns at the very end:
+
+![calculate_threat() producing xTStart and xTEnd](images/calculate_threat().png){width=90%}
+
+As you'll see, calculate_threat() will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in xT, simply write:
+
+```{r, eval=FALSE}
+xTData = xTData %>%
+  mutate(xT = xTEnd - xTStart)
+```
+
+This will give you the difference in xT and this value can be used for passes, carries - anything that has a start and an end location. Use xTStart/xTEnd for single-occuring events such as take-ons, tackles, if you so wish.

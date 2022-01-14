@@ -39,6 +39,9 @@ There are 7 different templates to choose from, which are *forward*, *midfielder
 They select specific stats that (subjectively, in the author's opinion) reflect the important attributes requires for each position.
 Users have the option to select their own stats using the *custom* template as well. 
 Filter for the season required and select the colours for each stat subgroup according to your liking.
+
+For season filter, please look at the data scraped from FBRef and look at the "term" in scouting period. The term there will determine what season you will be filtering for when you put it in the function.
+
 There are three colour theme's for the background, namely *dark*, *black* and *white*.
 
 ### Custom Stats - Single Player
@@ -63,7 +66,7 @@ data1 <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-
 data2 <- fb_player_scouting_report("https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin", pos_versus = "primary")
 data <- rbind(data1, data2)
 comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
-                         player_1 = "Tammy Abraham", player_2 = "Dominic Calvert_Lewin", 
+                         player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
                          season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
                          colour_compare = "#41ab5d", theme = "black")
 comp_pizza

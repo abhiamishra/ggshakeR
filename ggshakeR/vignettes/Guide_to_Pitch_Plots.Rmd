@@ -143,6 +143,9 @@ sonarPlot
 ```
 ![plot_sonar() of all of Jordi Alba's passes from 2014/15](images/plot_sonar().png){width=80%}
 
+### Contributors
+Design inspiration credit goes to [e.](https://twitter.com/barcanumbers) and their pass compass while part of the sonar production code goes to [Eliot Mckinley](https://github.com/etmckinley/PassSonar)
+
 ## plot_passflow()
 
 Since we already have Jordi Alba's passes, we can just construct the passflow like this:
@@ -151,5 +154,5 @@ Since we already have Jordi Alba's passes, we can just construct the passflow li
 passflowPlot = plot_passflow(passflowPlot)
 passflowPlot
 ```
-![plot_sonar() of all of Jordi Alba's passes from 2014/15](images/plot_passflow().png){width=80%}
+![plot_passflow() of all of Jordi Alba's passes from 2014/15](images/plot_passflow().png){width=80%}
 

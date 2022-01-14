@@ -34,6 +34,6 @@ For best clarity, export plot as a 2000x1000 png
 }
 \examples{
 <- plot_trendline(data = pl, team = "Tottenham",
-                                colour_xg = "#08519c", colour_xga = "#cb181d",
-                                roll_avg = 10, theme = "dark")
+                            colour_xg = "#08519c", colour_xga = "#cb181d",
+                            roll_avg = 10, theme = "dark")
 }

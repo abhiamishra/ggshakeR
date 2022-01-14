@@ -9,7 +9,7 @@
 #' @param data that houses data. Dataframe can contain either one player or two depending on the type of plot made.
 #' @param type Type of plot -> single and comparison.
 #' @param template for selecting a group of pre-selected metrics for each position by position namely:
-#'                 forward, winger, midfielder, defender, goalkeeper and full back.
+#'                 forward, winger, midfielder, defender, goalkeeper, full back and custom.
 #' @param theme Theme preferences for display: dark (default), white, black.
 #' @param colour_poss for selecting the colour for possession group of stats. To be used only for single player plot.
 #' @param colour_att for selecting the colour for attacking group of stats. To be used only for single player plot.
@@ -317,6 +317,17 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
                                   Statistic == "Average Pass Length" ~ "Possession",
                                 TRUE ~ "Attacking")) 
       }
+    } else if(template == "custom") {
+
+        data_selected <- data %>%
+        mutate(stat = ifelse(StatGroup == "Standard", "Attacking",
+                             ifelse(StatGroup == "Shooting", "Attacking",
+                                    ifelse(StatGroup == "Passing", "Possession",
+                                           ifelse(StatGroup == "Pass Types", "Possession",
+                                                  ifelse(StatGroup == "Goal and Shot Creation", "Possession",
+                                                         ifelse(StatGroup == "Defense", "Defending",
+                                                                ifelse(StatGroup == "Possession", "Possession",
+                                                                       ifelse(StatGroup == "Miscellaneous Stats", "Defending", NA)))))))))
     }
     
     player_name <- data$Player  
@@ -486,6 +497,11 @@ Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
         data1 <- data1[c(4,19,21,23,25,28,34,35,36), ]
         data2 <- data2[c(4,20,22,24,26,29,35,36,37), ]
       }
+    } 
+    
+    else if(template == "custom") {
+      data1
+      data2
     }
     
     

@@ -31,7 +31,9 @@ Imports:
   stringi, 
   stringr, 
   forcats,
-  wesanderson
+  wesanderson,
+  glue,
+  berryFunctions
 Suggests: 
     rmarkdown,
     knitr,

@@ -378,3 +378,19 @@ testthat::test_that("Testing plotting sonars: ", {
   testthat::expect_true(!is.ggplot(p))
 })
 ############# TESTING PLOT_SONAR ################
+
+
+
+
+
+############# TESTING PLOT_TIMELINE ################
+#loading dataset
+
+data <- understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2021")
+
+testthat::test_that("Testing plotting timelines: ", {
+  p = plot_timeline(data = data, match_year = 2021, team_home = "Manchester United", team_away = "Manchester City",
+                    home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+  testthat::expect_true(is.ggplot(p))
+})
+############# TESTING PLOT_TIMELINE ################

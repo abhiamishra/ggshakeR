@@ -26,7 +26,7 @@ plot_pizza(
 \item{type}{Type of plot -> single and comparison.}
 
 \item{template}{for selecting a group of pre-selected metrics for each position by position namely:
-forward, winger, midfielder, defender, goalkeeper and full back.}
+forward, winger, midfielder, defender, goalkeeper, full back and custom.}
 
 \item{colour_poss}{for selecting the colour for possession group of stats. To be used only for single player plot.}
 

@@ -8,6 +8,7 @@ This package is designed to work with open soccer data. These datasets, for now,
 * [FBref](https://fbref.com/en/)
 * [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
 * [Understat](https://understat.com/)
+* Opta
 
 ## Installation
 Install `ggshakeR` package from GitHub like this:

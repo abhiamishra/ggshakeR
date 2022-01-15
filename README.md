@@ -45,14 +45,14 @@ install.packages("devtools")
 After that, write the actual code to install ggshakeR:
 
 ``` r
-devtools::install_github("abhiamishra/ggshakeR", subdir="ggshakeR")
+devtools::install_github("abhiamishra/ggshakeR")
 ```
 
 Now the library is installed but it’s not in your session just yet\!
 When a package is in a session means you can actually use the package:
 
 ``` r
-library(gghshakeR)
+library(ggshakeR)
 ```
 
 And that’s it you’re done\!

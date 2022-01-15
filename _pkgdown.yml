@@ -39,7 +39,6 @@ reference:
       - plot_scatter
       - plot_trendline
       - plot_timeline
-
   - title: Expected Threat (xT)
     desc: Functions for xT analysis
     contents:

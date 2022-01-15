@@ -34,5 +34,6 @@ This function allows for data, that has to be scraped from Understat, to be used
 for plotting shots.
 }
 \examples{
-plot = plot_shot(shotdata, type+"hexbin", bin_size=20, avg_loc = TRUE, highlight_goals = FALSE)
+\dontrun{
+plot <- plot_shot(shotdata, type = "hexbin", bin_size = 20, avg_loc = TRUE, highlight_goals = FALSE)
 }

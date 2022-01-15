@@ -20,8 +20,14 @@
 #' @import viridis
 #' @export
 #'
-#' @examples plot = plot = plot_heatmap(touchData, type="hex")
+#' @examples
+#' \dontrun{
+#' plot <- plot_heatmap(touchData, type="hex")
+#' plot
+#' }
+
 plot_heatmap <- function(eventData, type="", theme="", dataType = "statsbomb", bin=20){
+
   if(nrow(eventData) > 0 &&
   sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData))==4){
 

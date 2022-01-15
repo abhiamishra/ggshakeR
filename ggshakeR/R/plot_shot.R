@@ -18,9 +18,13 @@
 #'
 #' @export
 #'
-#' @examples plot = plot_shot(shotdata, type+"hexbin", bin_size=20, avg_loc = TRUE, highlight_goals = FALSE)
+#' @examples
+#' \dontrun{
+#' plot <- plot_shot(shotdata, type = "hexbin", bin_size = 20, avg_loc = TRUE, highlight_goals = FALSE)
+#' }
 
 plot_shot <- function(shotdata, type="", bin_size=30, highlight_goals = "", avg_loc = "", theme=""){
+
 
   if(nrow(shotdata)>0 &&
      sum(c("X","Y","xG","result","player") %in% names(shotdata))==5){

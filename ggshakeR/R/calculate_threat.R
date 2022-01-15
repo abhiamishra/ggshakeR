@@ -8,7 +8,13 @@
 #' @import dplyr
 #' @export
 #'
-#' @examples endResult = calculate_threat(test, dataType = "statsbomb")
+#' @examples
+#' \dontrun{
+#' endResult <- calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
+#'                               y_col = "location.y", xend_col = "pass.end_location.x",
+#'                               yend_col = "pass.end_location.y")
+#' endResult
+#' }
 
 calculate_threat <- function(eventData, dataType="opta"){
   if(nrow(eventData)>0){

@@ -18,5 +18,9 @@ returns a dataframe object
 Calculating xT for passes, carries, etc
 }
 \examples{
-endResult = calculate_threat(test, dataType = "statsbomb")
+\dontrun{
+endResult <- calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
+                              y_col = "location.y", xend_col = "pass.end_location.x",
+                              yend_col = "pass.end_location.y")
+endResult
 }

@@ -60,12 +60,16 @@ For best image quality use:
 ggsave("image.png", width = 2900, height = 2800, units = "px")
 }
 \examples{
-plot1 = plot_pizza(data = data, type = "comparison", template = "midfielder",
-                             player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan", 
-                             season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", 
-                             colour_compare = "lightgreen", theme = "black")
+\dontrun{
+plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
+                    player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
+                    season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+                    colour_compare = "lightgreen", theme = "black")
+plot1
 
-plot2 = plot_pizza(data = data1, type = "single", template = "midfielder", 
-                             colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days", 
-                             colour_def = "red", theme = "dark")
+plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
+                    colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
+                    colour_def = "red", theme = "dark")
+plot2
+}
 }

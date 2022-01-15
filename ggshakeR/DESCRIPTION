@@ -31,11 +31,18 @@ Imports:
   TTR,
   stringi, 
   stringr, 
-  forcats
+  forcats,
+  wesanderson,
+  glue,
+  berryFunctions
 Suggests: 
+    rmarkdown,
+    knitr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
 URL: https://github.com/abhiamishra/ggshakeR
 BugReports: https://github.com/abhiamishra/ggshakeR/issues
+VignetteBuilder: knitr
+

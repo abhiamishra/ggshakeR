@@ -37,8 +37,6 @@
 
 plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = "") {
 
-  print("Thank you for using ggshakeR!")
-
   fill_b = ""
   colour_b = ""
   colorLine = ""
@@ -125,9 +123,8 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
              xGSUM = TTR::SMA(xGSUM, n = roll_avg))
   }
 
-  team <- data$Team
-  team <- paste(team, "xG Trendline [xG vs. xGA]")
-  subtitle <- paste(roll_avg, "Game Rolling Average")
+  team <- paste(team, "xG Trendline")
+  subtitle <- glue("{roll_avg} Game Rolling Average [<b style='color:{colour_xg}'> xG </b> vs <b style='color:{colour_xga}'> xGA </b>]")
 
   ggplot(data , aes(x = Date)) +
     geom_line(aes(y = xGSM), colour = colour_xg, size = 3) +
@@ -135,7 +132,7 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     geom_line(aes(y = xGSUM), colour = fill_b, size = 0.1) +
     geom_point(aes(y = xGSM), colour = colour_xg, size = 4) +
     geom_point(aes(y = xGASM), colour = colour_xga, size = 4) +
-    scale_color_manual(labels = c("xG", "xGA"), values = c(colour_xg, colour_xga)) +
+    scale_color_manual(values = c(colour_xg, colour_xga)) +
     expand_limits(y = c(0.25, 2.25)) +
     labs(title= team,
          subtitle= subtitle) +
@@ -151,17 +148,10 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     theme(panel.grid.major = element_line(colour = gridc, size = 1, linetype = "dashed"),
           panel.grid.minor = element_blank()) +
     theme(panel.grid.major.x = element_line(colour = gridc, size = 1, linetype = "dashed"),
-          panel.background = element_blank()) +
-    theme(axis.line = element_line(size = 0.8, colour = colorLine)) +
+          panel.background = element_blank()) + 
+    theme(axis.line = element_blank()) + 
     geom_ribbon(aes(ymin=xGASM, ymax=xGSUM, x=Date), fill = colour_xga, alpha = 0.4) +
     geom_ribbon(aes(ymin=xGSUM, ymax=xGSM, x=Date), fill = colour_xg, alpha = 0.4) +
     stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype ="dashed",alpha = 0.5, size = 2,se = FALSE)+
-    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype= "dashed", alpha = 0.5, size = 2,se = FALSE) +
-    labs(col = "Key") +
-    theme(legend.background = element_rect(colour = colour_b, fill = fill_b),
-          legend.title = element_text(colour = colorText, size = 22, face = "bold"),
-          legend.text = element_text(colour = colorText, size = 18),
-          legend.position = "bottom") +
-    theme(legend.key.width = unit(3, "cm"),
-          legend.key.size = unit(1, "cm"))
+    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype= "dashed", alpha = 0.5, size = 2,se = FALSE)
 }

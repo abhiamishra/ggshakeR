@@ -5,10 +5,12 @@
 #' density heatmap, and
 #' bin heatmap
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations
+#' @param eventData The dataframe that stores your data. Dataframe must contain atleast the following columns: x,y
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 #' "bin" indicates bin heatmap pass
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
+#' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param bin indicates the size of the bin to construct heatmap for type "bin". Default set to 20.
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -24,12 +26,19 @@
 #' plot
 #' }
 
-plot_heatmap <- function(eventData, type="", theme=""){
+plot_heatmap <- function(eventData, type="", theme="", dataType = "statsbomb", bin=20){
+
   if(nrow(eventData) > 0 &&
-  sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y") %in% names(eventData))==4){
+  sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData))==4){
+
+    if(dataType == "opta"){
+      to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
+      eventData$x = to_sb$x(eventData$x)
+      eventData$y = to_sb$y(eventData$y)
+    }
 
     plot = eventData %>%
-      ggplot(aes(x=location.x,y=location.y))
+      ggplot(aes(x=x,y=y))
 
     if(theme == "dark" || theme == ""){
       fill_b = "#0d1117"
@@ -59,17 +68,19 @@ plot_heatmap <- function(eventData, type="", theme=""){
       }
       else if(type == "hex"){
         plot = plot +
-          geom_hex(aes(x=location.x,y=location.y))
+          geom_hex(aes(x=x,y=y))
       }
       else if(type == "bin"){
         plot = plot +
-          geom_bin2d(aes(x=location.x,y=location.y))
+          geom_bin2d(aes(x=x,y=y),
+                     binwidth=c(bin,bin),
+                     alpha=0.9)
       }
 
       plot = plot +
         scale_fill_continuous(type = "viridis")+
         labs(
-          color = "Density"
+          fill = "Density"
         )
         plot
 

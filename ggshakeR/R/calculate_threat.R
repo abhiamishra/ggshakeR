@@ -1,17 +1,11 @@
 #' Calculating xT for passes, carries, etc
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations
+#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: x,y,finalX,finalY
 #' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
-#' @param x_col name of the column that stores the starting x location
-#' @param y_col name of the column that stores the starting y location
-#' @param xend_col name of the column that stores the ending x location
-#' @param yend_col name of the column that stores the ending x location
-#' @return returns a ggplot2 object
+#' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
 #' @import dplyr
-#' @import ggplot2
-#' @import ggsoccer
 #' @export
 #'
 #' @examples
@@ -22,8 +16,7 @@
 #' endResult
 #' }
 
-calculate_threat <- function(eventData, dataType="opta", x_col = "", y_col = "",
-                             xend_col = "", yend_col = ""){
+calculate_threat <- function(eventData, dataType="opta"){
   if(nrow(eventData)>0){
       copydata = eventData
 
@@ -33,20 +26,20 @@ calculate_threat <- function(eventData, dataType="opta", x_col = "", y_col = "",
 
 
       for(i in 1:length(names(parsing))){
-        if(names(parsing)[i] == x_col){
+        if(names(parsing)[i] == "x"){
           names(parsing)[i] = "x_col"
           #print(names(parsing)[i])
         }
 
-        if(names(parsing)[i] == y_col){
+        if(names(parsing)[i] == "y"){
           names(parsing)[i] = "y_col"
         }
 
-        if(names(parsing)[i] == xend_col){
+        if(names(parsing)[i] == "finalX"){
           names(parsing)[i] = "xend_col"
         }
 
-        if(names(parsing)[i] == yend_col){
+        if(names(parsing)[i] == "finalY"){
           names(parsing)[i] = "yend_col"
         }
       }
@@ -135,20 +128,20 @@ calculate_threat <- function(eventData, dataType="opta", x_col = "", y_col = "",
 
       for(i in 1:length(names(parsing))){
         if(names(parsing)[i] == "x_col"){
-          names(parsing)[i] = x_col
+          names(parsing)[i] = "x"
           #print(names(parsing)[i])
         }
 
         if(names(parsing)[i] == "y_col"){
-          names(parsing)[i] = y_col
+          names(parsing)[i] = "y"
         }
 
         if(names(parsing)[i] == "xend_col"){
-          names(parsing)[i] = xend_col
+          names(parsing)[i] = "finalX"
         }
 
         if(names(parsing)[i] == "yend_col"){
-          names(parsing)[i] = yend_col
+          names(parsing)[i] = "finalY"
         }
       }
 

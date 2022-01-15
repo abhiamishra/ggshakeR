@@ -4,12 +4,14 @@
 \alias{plot_passflow}
 \title{Passflow plot function}
 \usage{
-plot_passflow(pass_data, bin_size = 0)
+plot_passflow(pass_data, bin_size = 0, dataType = "statsbomb")
 }
 \arguments{
-\item{pass_data}{Dataframe that must house pass data only and must have atleast 4 columns: starting x,y and ending x,y.}
+\item{pass_data}{Dataframe that must house pass data only and must contain atleast the following columns: x,y,finalX,finalY}
 
 \item{bin_size}{Details the binsize the passflow needs to bin to. Default is 20.}
+
+\item{dataType}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 }
 \value{
 returns a ggplot2 object

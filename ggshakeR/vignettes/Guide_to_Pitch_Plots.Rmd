@@ -64,7 +64,8 @@ After that, simply write and execute the following code to get a beautiful shotm
 plot = plot_shot(shot_data,type = "density")
 plot
 ```
-![plot_shot() of Mohammed Salah](images/plot_shot().png){width=80%}
+
+![plot_shot() of Mohammed Salah](../man/figures/plot_shot.png){width=80%}
 
 Note that, you can write hexbin, density, and point to get three different types of shotmaps. Try it out!
 
@@ -115,13 +116,15 @@ Sweet, let's plot!
 ## plot_heatmap()
 
 For the heatmap, we simply select our columns and plot! Note that we don't specify __dataType__ since default is set to Statsbomb, so we can simply write this:
+
 ```{r, eval=FALSE}
 heatData = plottingData %>%
   select(c(x,y,finalX,finalY))
 heatplot = plot_heatmap(heatData, type="bin")
 heatplot
 ```
-![plot_heatmap() of all of LaLiga's events in 2014/15](images/plot_heatmap().png){width=80%}
+
+![plot_heatmap() of all of LaLiga's events in 2014/15](../man/figures/plot_heatmap.png){width=80%}
 
 ## plot_sonar()
 
@@ -137,11 +140,13 @@ plottingData = plottingData %>%
 ```
 
 Now I can construct a pass sonar! Default dataType is set to Statsbomb, so here we can simply write:
+
 ```{r, eval=FALSE}
 sonarPlot = plot_sonar(plottingData)
 sonarPlot
 ```
-![plot_sonar() of all of Jordi Alba's passes from 2014/15](images/plot_sonar().png){width=80%}
+
+![plot_sonar() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_sonar.png){width=80%}
 
 ### Contributors
 Design inspiration credit goes to [e.](https://twitter.com/barcanumbers) and their pass compass while part of the sonar production code goes to [Eliot Mckinley](https://github.com/etmckinley/PassSonar)
@@ -154,5 +159,6 @@ Since we already have Jordi Alba's passes, we can just construct the passflow li
 passflowPlot = plot_passflow(passflowPlot)
 passflowPlot
 ```
-![plot_passflow() of all of Jordi Alba's passes from 2014/15](images/plot_passflow().png){width=80%}
+
+![plot_passflow() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_passflow.png){width=80%}
 

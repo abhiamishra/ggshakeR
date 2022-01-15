@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 Welcome to the Expected Threat Guide for ggshakeR!
 
-First things first, we are only able to do this because of the amazing work by Karun Singh. Read his excellent [xT blog post](https://karun.in/blog/expected-threat.html) that goes into indepth explanation of the need and use of the metric. 
+First things first, we are only able to do this because of the amazing work by Karun Singh. Read his excellent [xT blog post](https://karun.in/blog/expected-threat.html) that goes into in-depth explanation of the need and use of the metric. 
 
 Karun Singh's xT grid is what gghshakeR uses. Every time you load in the package, ggshakeR will load in a dataframe called __xTGrid__. __xTGrid__ houses all the xT data that Karun Singh made public and now it is available for you in a line of code!
 
@@ -27,7 +27,8 @@ Simply write:
 library(ggshakeR)
 head(xTGrid)
 ```
-![xTGrid dataframe in ggshakeR](images/xTGrid.png){width=90%}
+
+![xTGrid dataframe in ggshakeR](../man/figures/xTGrid.png){width=90%}
 
 This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (X0) to the opponent's goal (X11). The grid is symmetrical in half and as such, there is no "top"/"bottom" of the pitch.
 
@@ -73,13 +74,14 @@ plottingData = plottingData %>%
 ```
 
 For calculate_threat(), __always write the dataType that the data is: opta or statsbomb__. After that, we simply get:
+
 ```{r, eval=FALSE}
 xTData = calculate_threat(plottingData, dataType="statsbomb")
 ```
 
 If we inspect xTData, we see these two new columns at the very end:
 
-![calculate_threat() producing xTStart and xTEnd](images/calculate_threat().png){width=90%}
+![calculate_threat() producing xTStart and xTEnd](../man/figures/calculate_threat.png){width=90%}
 
 As you'll see, calculate_threat() will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in xT, simply write:
 

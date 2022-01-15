@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 # Introduction 
 
 `plot_pizza` is the function that allows users to plot **percentile plots** (popularly called pizza plots due to their appearance) with minimal lines of code.
-The funtion allows for plotting both **single** and **comparison** player plots, the usage of which shall be outlined below.
+The function allows for plotting both **single** and **comparison** player plots, the usage of which shall be outlined below.
 
 The data inputted into the function can be scraped from the `worldfootballR` library.
 
@@ -104,4 +104,4 @@ comp_pizza
 ## Contributors
 
 A big thanks to [Robin Wilhelmus](https://twitter.com/RobinWilhelmus) for the tutorial that helped create the plots in the function. 
-Thanks to [Ham](https://twitter.com/DyslexicDdue) for inspring the design for the comparison pizza plots with the excellent Football Slices project.
+Thanks to [Ham](https://twitter.com/DyslexicDdue) for inspiring the design for the comparison pizza plots with the excellent Football Slices project.

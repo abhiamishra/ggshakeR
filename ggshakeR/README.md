@@ -3,27 +3,72 @@
 
 # ggshakeR <img src="man/figures/ggshakeRhex-small.png" align="right"/>
 
-## Overview
+Welcome to ggshakeR\!
 
-This package is designed to work with open soccer data. These datasets,
-for now, include:
+This is R’s all-inclusive package for visualization and analysis of
+openly available soccer data.
+
+This package aims to provide people interested in football analysis and
+visualization a platform to learn about it while also learning a new
+language while at it. This package is designed to work with open soccer
+data. These data sets, for now, include:
 
   - [FBref](https://fbref.com/en/)
   - [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
   - [Understat](https://understat.com/)
 
-## Installation
+R gets a bad rep, at times, especially compared to it’s more cooler
+brother, Python. However, as you’ll find with ggshakeR, it really isn’t
+that bad\!
 
-Install `ggshakeR` package from GitHub like this:
+Let’s get you started with the package\!
+
+# Getting Started With ggshakeR
+
+First things first, install R and RStudio. R is the actual language
+while RStudio is the IDE that will help you work with language in a nice
+way.
+
+Here are links to download both:
+
+  - [R](https://www.r-project.org/)
+  - [RStudio](https://www.rstudio.com/products/rstudio/download/)
+
+OK, now how do you get ggshakeR into RStudio?
+
+First install the devtools package:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("abhiamishra/ggshakeR", subdir = "ggshakeR")
+install.packages("devtools")
 ```
 
+After that, write the actual code to install ggshakeR:
+
 ``` r
-library(ggshakeR)
+devtools::install_github("abhiamishra/ggshakeR", subdir="ggshakeR")
 ```
+
+Now the library is installed but it’s not in your session just yet\!
+When a package is in a session means you can actually use the package:
+
+``` r
+library(gghshakeR)
+```
+
+And that’s it you’re done\!
+
+We hope you have fun\!
+
+## Helpful Links
+
+Here are some helpful links to get you started with the package:
+
+  - [Guide To Pitch
+    Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html)
+  - [Guide To Expected
+    Threat](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html)
+  - [Guide To Pizza
+    Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html)
 
 # Credit
 

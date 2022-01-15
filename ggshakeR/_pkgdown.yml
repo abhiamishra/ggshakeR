@@ -20,7 +20,7 @@ navbar:
     href: index.html
   - text: Reference
     href: reference/index.html
-  - text: Articles
+  - text: Guides
     href: articles/index.html
 
 reference:
@@ -45,3 +45,4 @@ reference:
     contents:
       - calculate_threat
       - xTGrid
+

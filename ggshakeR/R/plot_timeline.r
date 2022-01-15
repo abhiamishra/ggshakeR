@@ -1,27 +1,31 @@
 #' Create timeline charts (xG) using event data.
 #'
 #'This function allows to make match timelines using data collected event-by-event.
-#' 
+#'
 #' @param data is for the dataset used.
-#' @param match_year 
+#' @param match_year
 #' @param team_home is for the home team according to data.
 #' @param team_away is for the away team according to data.
 #' @param home_color is for the colour of the line for the home team.
 #' @param away_color is for the colour of the line for the away team.
 #' @param theme to select the colours. Choose from 4 themes -> dark, almond, rose, white.
 #' @return a ggplot2 object
-#' 
+#'
 #' @import dplyr
 #' @import ggtext
 #' @import ggplot2
 #' @import berryFunctions
 #' @import ggrepel
 #' @import glue
-#' 
-#' @export 
-#' 
-#' @examples_plot <- plot_timeline(data = data, match_year = 2021, team_home = "Manchester United", team_away = "Liverpool",
-#'                                 home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plot <- plot_timeline(data = data, match_year = 2021, team_home = "Manchester United", team_away = "Liverpool",
+#'                       home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+#' plot
+#' }
 
 plot_timeline <- function(data, match_year, team_home, team_away, home_color, away_color, theme = "") {
 
@@ -30,12 +34,12 @@ colour_b = ""
 colorLine = ""
 colorText = ""
 gridc = ""
-  
+
 if(theme == "dark" || theme == ""){
     fill_b = "#0d1117"
     colour_b = "white"
-    
-    
+
+
     colorLine = "white"
     gridc = "#525252"
     colorText = "white"
@@ -43,7 +47,7 @@ if(theme == "dark" || theme == ""){
 else if(theme == "white"){
     fill_b = "#F5F5F5"
     colour_b = "black"
-    
+
     colorLine = "black"
     gridc = "grey"
     colorText = "black"
@@ -51,7 +55,7 @@ else if(theme == "white"){
 else if(theme == "rose"){
     fill_b = "#FFE4E1"
     colour_b = "#696969"
-    
+
     colorLine = "#322E2E"
     gridc = "grey"
     colorText = "#322E2E"
@@ -59,7 +63,7 @@ else if(theme == "rose"){
 else if(theme == "almond"){
     fill_b = "#FFEBCD"
     colour_b = "#696969"
-    
+
     colorLine = "#322E2E"
     gridc = "grey"
     colorText = "#322E2E"
@@ -143,21 +147,21 @@ ggplot() +
   geom_point(data = dat1, aes(x = minute, y = xGsum), colour = home_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
   geom_point(data = dat2, aes(x = minute, y = xGsum), colour = away_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
   geom_text_repel(data = dat1, aes(x = minute, y = xGsum, label = player_lab1),
-                   box.padding   = 2, 
+                   box.padding   = 2,
                    point.padding = 1.5,
-                   segment.color = colorLine, 
-                   alpha = 0.8, 
+                   segment.color = colorLine,
+                   alpha = 0.8,
                    colour = colorText,
                    size = 5) +
   geom_text_repel(data = dat2, aes(x = minute, y = xGsum, label = player_lab2),
-                   box.padding   = 2, 
+                   box.padding   = 2,
                    point.padding = 1.5,
-                   segment.color = colorLine, 
-                   alpha = 0.8, 
-                   colour = colorText, 
+                   segment.color = colorLine,
+                   alpha = 0.8,
+                   colour = colorText,
                    size = 5) +
   theme_minimal() +
-  labs(title= plot_title) + 
+  labs(title= plot_title) +
   theme(plot.title = element_markdown(lineheight = 1.1, colour = colorText, hjust = 0.5, size = 20, face = "bold")) +
   theme(plot.background = element_rect(fill = fill_b, colour = colour_b)) +
   theme(panel.background = element_rect(fill = fill_b, colour = colour_b)) +
@@ -172,5 +176,5 @@ ggplot() +
         panel.border = element_blank(),
         panel.background = element_blank()) +
   scale_x_continuous(breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)) +
-  geom_vline(xintercept = 45, linetype = "dashed", colour = colorLine, size = 1) 
+  geom_vline(xintercept = 45, linetype = "dashed", colour = colorLine, size = 1)
 }

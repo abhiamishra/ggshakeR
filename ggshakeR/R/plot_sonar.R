@@ -16,7 +16,12 @@
 #'
 #' @export
 #'
-#' @examples plot = plot_sonar(sonarData, dataType="statsbomb")
+#' @examples
+#' \dontrun{
+#' plot <- plot_sonar(sonarData, dataType = "statsbomb")
+#' plot
+#' }
+
 plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot=""){
   #Prerequiste checking: if the data has rows, whether it has the right columns
   #and whether it has the right dataTypes

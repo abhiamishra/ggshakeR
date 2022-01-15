@@ -17,8 +17,6 @@ plot_timeline(
 \arguments{
 \item{data}{is for the dataset used.}
 
-\item{match_year}{}
-
 \item{team_home}{is for the home team according to data.}
 
 \item{team_away}{is for the away team according to data.}
@@ -36,6 +34,9 @@ a ggplot2 object
 This function allows to make match timelines using data collected event-by-event.
 }
 \examples{
-_plot <- plot_timeline(data = data, year = 2021, team_home = "Manchester United", team_away = "Liverpool",
-                                home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+\dontrun{
+plot <- plot_timeline(data = data, match_year = 2021, team_home = "Manchester United", team_away = "Liverpool",
+                      home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+plot
+}
 }

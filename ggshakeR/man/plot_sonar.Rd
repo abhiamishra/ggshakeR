@@ -21,5 +21,8 @@ This function allows for data, that can be from Opta or Statsbomb, to be used
 for plotting pass sonars.
 }
 \examples{
-plot = plot_sonar(sonarData, dataType="statsbomb")
+\dontrun{
+plot <- plot_sonar(sonarData, dataType = "statsbomb")
+plot
+}
 }

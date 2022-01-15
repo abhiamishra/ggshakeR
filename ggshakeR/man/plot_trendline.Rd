@@ -39,4 +39,4 @@ plot <- plot_trendline(data = pl, team = "Tottenham",
                        roll_avg = 10, theme = "dark")
 plot
 }
-
+}

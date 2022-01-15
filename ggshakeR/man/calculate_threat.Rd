@@ -24,3 +24,4 @@ endResult <- calculate_threat(test, dataType = "statsbomb", x_col = "location.x"
                               yend_col = "pass.end_location.y")
 endResult
 }
+}

@@ -37,3 +37,4 @@ for plotting shots.
 \dontrun{
 plot <- plot_shot(shotdata, type = "hexbin", bin_size = 20, avg_loc = TRUE, highlight_goals = FALSE)
 }
+}

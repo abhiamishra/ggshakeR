@@ -3,6 +3,14 @@
 
 # ggshakeR <img src="man/figures/ggshakeRhex-small.png" align="right"/>
 
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
 Welcome to ggshakeR\!
 
 This is R’s all-inclusive package for visualization and analysis of

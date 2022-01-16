@@ -75,7 +75,7 @@ bin heatmap</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>eventData</dt>
-<dd><p>The dataframe that stores your data. Dataframe must contain atleast the following columns: x,y</p></dd>
+<dd><p>The dataframe that stores your data. Dataframe must contain atleast the following columns: <code>x</code>, <code>y</code></p></dd>
 <dt>type</dt>
 <dd><p>indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 "bin" indicates bin heatmap pass</p></dd>
@@ -94,7 +94,7 @@ bin heatmap</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">plot_heatmap</span><span class="op">(</span><span class="va">touchData</span>, type<span class="op">=</span><span class="st">"hex"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">plot_heatmap</span><span class="op">(</span><span class="va">touchData</span>, type <span class="op">=</span> <span class="st">"hex"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">plot</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

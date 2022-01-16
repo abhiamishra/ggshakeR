@@ -7,7 +7,7 @@
 plot_sonar(sonarData, dataType = "statsbomb", titlePlot = "")
 }
 \arguments{
-\item{sonarData}{Dataframe that houses pass data. Dataframe must contain atleast the following columns: x,y,finalX,finalY}
+\item{sonarData}{Dataframe that houses pass data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
 \item{dataType}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 

@@ -48,7 +48,7 @@ plot_pass(
 returns a ggplot2 object
 }
 \description{
-This function allows you to plot various types of plots that have
+This function allows you to plot various types of plots
 that have passes as some sort of input. Data entered must have columns for which you want to plot with.
 Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 }

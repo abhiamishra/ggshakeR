@@ -13,7 +13,7 @@ plot_heatmap(
 )
 }
 \arguments{
-\item{eventData}{The dataframe that stores your data. Dataframe must contain atleast the following columns: x,y}
+\item{eventData}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}}
 
 \item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 "bin" indicates bin heatmap pass}
@@ -35,7 +35,7 @@ bin heatmap
 }
 \examples{
 \dontrun{
-plot <- plot_heatmap(touchData, type="hex")
+plot <- plot_heatmap(touchData, type = "hex")
 plot
 }
 }

@@ -1,6 +1,6 @@
 #' Calculating xT for passes, carries, etc
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: x,y,finalX,finalY
+#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
 #' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
@@ -142,8 +142,8 @@ calculate_threat <- function(eventData, dataType = "opta") {
     joined <- joined %>%
       select(-c("uniqueID"))
     
-    joined$xTStart[joined$xTStart=="NULL"] <- -1
-    joined$xTEnd[joined$xTEnd=="NULL"] <- -1
+    joined$xTStart[joined$xTStart == "NULL"] <- -1
+    joined$xTEnd[joined$xTEnd == "NULL"] <- -1
     
     joined$xTStart <- as.numeric(joined$xTStart)
     joined$xTEnd <- as.numeric(joined$xTEnd)

@@ -7,7 +7,7 @@
 calculate_threat(eventData, dataType = "opta")
 }
 \arguments{
-\item{eventData}{The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: x,y,finalX,finalY}
+\item{eventData}{The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
 \item{dataType}{indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"}
 }

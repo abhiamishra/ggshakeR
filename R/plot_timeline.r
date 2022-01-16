@@ -3,7 +3,7 @@
 #'This function allows to make match timelines using data collected event-by-event.
 #'
 #' @param data is for the dataset used.
-#' @param match_year
+#' @param match_year the year the match was played.
 #' @param team_home is for the home team according to data.
 #' @param team_away is for the away team according to data.
 #' @param home_color is for the colour of the line for the home team.
@@ -22,7 +22,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_timeline(data = data, match_year = 2021, team_home = "Manchester United", team_away = "Liverpool",
+#' plot <- plot_timeline(data = data, match_year = 2021, 
+#'                       team_home = "Manchester United", team_away = "Liverpool",
 #'                       home_color = "#e31a1c", away_color = "#980043", theme = "dark")
 #' plot
 #' }

@@ -27,6 +27,8 @@ The data for the function can be scraped from the [worldfootballR](https://jasez
 The code required to plot a single player plot using `plot_pizza()` is:
 
 ```{r, eval=FALSE}
+library(worldfootballR)
+
 single_player <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-Abraham", pos_versus = "primary")
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "forward", 

@@ -87,7 +87,9 @@
 </h2>
 <p>The code required to plot a single player plot using <code><a href="../reference/plot_pizza.html">plot_pizza()</a></code> is:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">single_player</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span>
+
+<span class="va">single_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
 <span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"forward"</span>, 
                     colour_poss <span class="op">=</span> <span class="st">"#41ab5d"</span>, colour_att <span class="op">=</span> <span class="st">"#fec44f"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, 
@@ -119,9 +121,9 @@
 </h2>
 <p>The comparison graph can be plotted as shown below.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
-<span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
+<span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">data1</span>, <span class="va">data2</span><span class="op">)</span>
 
@@ -142,8 +144,8 @@
 </h3>
 <p>For using your own stat selections with comparison plots, the following format is to be used.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
-<span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
+<span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
 <span class="va">data1</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data1</span><span class="op">)</span> <span class="co">## reference</span>
 <span class="va">data2</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span> <span class="co">## reference</span>
@@ -174,7 +176,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Abhishek Amol Mishra, Harsh Krishna.</p>
+<p>Developed by Abhishek Amol Mishra, Harsh Krishna, Ryo Nakagawara.</p>
 </div>
 
 <div class="pkgdown-footer-right">

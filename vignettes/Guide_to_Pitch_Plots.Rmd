@@ -62,7 +62,7 @@ shot_data <- get_player_shots(player_id = 1250) # Salah's `player_id` on underst
 After that, simply write and execute the following code to get a beautiful shot map:
 
 ```{r, eval=FALSE}
-plot <- plot_shot(shot_data,type = "density")
+plot <- plot_shot(shot_data, type = "density")
 
 plot
 ```

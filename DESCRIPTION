@@ -7,7 +7,10 @@ Authors@R: c(
            role = c("aut", "cre"),
            email = "abhiamishra0@gmail.com"),
     person(given = "Harsh", family = "Krishna",
-           role = c("aut"))
+           role = c("aut")),
+    person(given = "Ryo", family = "Nakagawara",
+           role = c("aut"),
+           email = "ryonakagawara@gmail.com")
            )
 Description: ggshakeR is an analysis and visualization R package that works with publically available soccer data. The datasets (for now) include FBref, StatsBomb, and understat.
 License: MIT

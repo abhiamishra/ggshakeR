@@ -60,6 +60,8 @@ pizza <- plot_pizza(data = single_player, type = "single", template = "forward",
 pizza
 ```
 
+![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_cus2.png){width=80%}
+
 ## Comparison Plot
 
 The comparison graph can be plotted as shown below.  
@@ -112,6 +114,8 @@ comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
                          colour_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```
+
+![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_cus1.png){width=80%}
 
 ## Contributors
 

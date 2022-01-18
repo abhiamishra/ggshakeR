@@ -69,14 +69,6 @@ calculate_threat <- function(eventData, dataType = "opta") {
           col <- as.integer(a / 8.33)
           row <- as.integer(b / 12.5)
           
-          if (maindata$x[i+j] == 0) {
-            col <- 1
-          }
-          
-          if (maindata$y[i+j] == 0) {
-            row <- 1
-          }
-          
         } else {
           col <- as.integer(a / 8.33)
           if (as.integer(b / 12.5) + 1 > 8) {

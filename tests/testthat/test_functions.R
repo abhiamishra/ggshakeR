@@ -103,10 +103,10 @@ testthat::test_that("Testing plotting pass flow maps: ", {
 ############# TESTING PLOT_PASSFLOW ################
 #Creating simple dataframe for testing basic plots
 df = data.frame(
-  location.x = seq(81,100,by=1),
-  location.y = seq(81,100,by=1),
-  pass.end_location.x = seq(51, 70, by=1),
-  pass.end_location.y = rep(61, 80, by=1)
+  x = seq(81,100,by=1),
+  y = seq(81,100,by=1),
+  finalX = seq(51, 70, by=1),
+  finalY = rep(61, 80, by=1)
 )
 
 #Creating an empty dataframe
@@ -122,7 +122,7 @@ df_absent = data.frame(
 )
 
 
-testthat::test_that("Testing plotting shot maps: ", {
+testthat::test_that("Testing plotting passflow maps: ", {
   p = plot_passflow(df)
   testthat::expect_true(is.ggplot(p))
 
@@ -271,10 +271,10 @@ testthat::test_that("Testing plotting pizzas: ", {
 ############# TESTING PLOT_HEATMAP ################
 #Creating simple dataframe for testing basic plots
 df = data.frame(
-  location.x = seq(81,100,by=1),
-  location.y = seq(81,100,by=1),
-  pass.end_location.x = seq(51, 70, by=1),
-  pass.end_location.y = seq(61, 80, by=1)
+  x = seq(81,100,by=1),
+  y = seq(81,100,by=1),
+  finalX = seq(51, 70, by=1),
+  finalY = seq(61, 80, by=1)
 )
 
 #Creating an empty dataframe
@@ -315,20 +315,19 @@ testthat::test_that("Testing plotting heatmaps: ", {
 
 ############# TESTING CALCULATE_THREAT ################
 df = data.frame(
-  location.x = seq(81,100,by=1),
-  location.y = seq(81,100,by=1),
-  pass.end_location.x = seq(51, 70, by=1),
-  pass.end_location.y = seq(61, 80, by=1)
+  x = seq(81,100,by=1),
+  y = seq(81,100,by=1),
+  finalX = seq(51, 70, by=1),
+  finalY = seq(61, 80, by=1)
 )
 
 #Creating an empty dataframe
 df_empty = data.frame(matrix(ncol=4,nrow=0))
-x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y")
+x = c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
 testthat::test_that("Testing calculation of expected threat: ", {
-  p = calculate_threat(df, x_col="location.x", y_col="location.y",
-                          xend_col = "pass.end_location.x", yend_col = "pass.end_location.y")
+  p = calculate_threat(df, dataType="statsbomb")
   testthat::expect_equal((ncol(df)+2), ncol(p))
 
 
@@ -346,10 +345,10 @@ testthat::test_that("Testing calculation of expected threat: ", {
 ############# TESTING PLOT_SONAR ################
 #Creating simple dataframe for testing basic plots
 df = data.frame(
-  location.x = seq(81,100,by=1),
-  location.y = seq(81,100,by=1),
-  pass.end_location.x = seq(51, 70, by=1),
-  pass.end_location.y = seq(61, 80, by=1)
+  x = seq(81,100,by=1),
+  y = seq(81,100,by=1),
+  finalX = seq(51, 70, by=1),
+  finalY = seq(61, 80, by=1)
 )
 
 #Creating an empty dataframe

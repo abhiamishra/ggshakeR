@@ -27,19 +27,19 @@
 #' }
 
 plot_heatmap <- function(eventData, type = "", theme = "", dataType = "statsbomb", bin = 20) {
-  
+
   if (nrow(eventData) > 0 &&
       sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
-    
+
     if (dataType == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
       eventData$x = to_sb$x(eventData$x)
       eventData$y = to_sb$y(eventData$y)
     }
-    
+
     plot <- eventData %>%
       ggplot(aes(x = x, y = y))
-    
+
     if (theme == "dark" || theme == "") {
       fill_b <- "#0d1117"
       colour_b <- "white"
@@ -53,33 +53,33 @@ plot_heatmap <- function(eventData, type = "", theme = "", dataType = "statsbomb
       fill_b <- "#FFEBCD"
       colour_b <- "#696969"
     }
-    
+
     plot <- plot + annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
                                   fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))
-    
+
     if (type == "" || type == "density") {
       plot <- plot +
-        stat_density_2d(aes(fill = ..level..), geom = "polygon")
+        stat_density_2d(aes(x=x,y=80-y,fill = ..level..), geom = "polygon")
     } else if (type == "hex") {
       plot <- plot +
-        geom_hex(aes(x = x, y = y))
+        geom_hex(aes(x = x, y = 80-y))
     } else if (type == "bin") {
       plot <- plot +
-        geom_bin2d(aes(x = x, y = y),
+        geom_bin2d(aes(x = x, y = 80-y),
                    binwidth = c(bin, bin),
                    alpha = 0.9)
     }
-    
+
     plot <- plot +
       scale_fill_continuous(type = "viridis") +
       labs(
         fill = "Density"
       )
-    
+
     plot
-    
+
   } else {
     plot
   }

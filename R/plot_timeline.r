@@ -14,9 +14,9 @@
 #' @import dplyr
 #' @import ggtext
 #' @import ggplot2
-#' @import berryFunctions
+#' @importFrom berryFunctions insertRows
 #' @import ggrepel
-#' @import glue
+#' @importFrom glue glue
 #'
 #' @export
 #'
@@ -69,8 +69,7 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   
   data$minute <- as.numeric(data$minute)
   
-  if ("season" %in% colnames(data)) {
-  } else {
+  if (!"season" %in% colnames(data)) {
     data <- data %>%
       mutate(season = year)
   }
@@ -78,8 +77,7 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   data <- data %>%
     filter(season == match_year)
   
-  if ("home_away" %in% colnames(data)) {
-  } else {
+  if (!"home_away" %in% colnames(data)) {
     data <- data %>%
       mutate(home_away = h_a)
   }
@@ -117,13 +115,13 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   g1 <- data$home_goals
   g2 <- data$away_goals
   
-  if (g1 == 1) {
+  if (any(g1 == 1)) {
     gls1 <- "Goal"
   } else {
     gls1 <- "Goals"
   }
   
-  if (g2 == 1) {
+  if (any(g2 == 1)) {
     gls2 <- "Goal"
   } else {
     gls2 <- "Goals"
@@ -139,7 +137,7 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   player_lab1 <- glue("{p1} : {min1}")
   player_lab2 <- glue("{p2} : {min2}")
   
-  ggplot() +
+  plot_timeline <- ggplot() +
     geom_step(data = data1, aes(x = minute, y = xGsum), colour = home_color, size = 3) +
     geom_step(data = data2, aes(x = minute, y = xGsum), colour = away_color, size = 3) +
     geom_point(data = dat1, aes(x = minute, y = xGsum), colour = home_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
@@ -175,4 +173,6 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
           panel.background = element_blank()) +
     scale_x_continuous(breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)) +
     geom_vline(xintercept = 45, linetype = "dashed", colour = colorLine, size = 1)
+  
+  return(plot_timeline)
 }

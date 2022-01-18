@@ -6,7 +6,6 @@
 #'
 #' @param pass_data The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column
 #' @param plotType indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
-#' @param background Pick between white or dark background.
 #' @param prog indicates whether to map out progressive passes
 #' @param cross indicates whether to map out crosses
 #' @param shot indicates whether to map out shot assists
@@ -14,7 +13,8 @@
 #' @param distance indicates what distance you want to map out
 #' @param outcome indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")
 #' @param team indicates what team's pass map one wants to see
-#' @param player indicates what player's pass map one wants to see
+#' @param player_fname player first name
+#' @param player_lname player last name
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return returns a ggplot2 object
 #'
@@ -27,7 +27,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot  <- plot_pass(pass_data, plotType = "def", prog = TRUE, team = "Barcelona", player_fname = "Lionel")
+#' plot  <- plot_pass(pass_data, plotType = "def", prog = TRUE, 
+#'                    team = "Barcelona", player_fname = "Lionel")
 #' plot
 #' }
 

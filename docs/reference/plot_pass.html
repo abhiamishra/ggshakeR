@@ -31,6 +31,9 @@ Compatible, for right now, with StatsBomb data only! Returns a ggplot object."><
 <li class="nav-item">
   <a class="nav-link" href="../articles/index.html">Guides</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">News</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -96,12 +99,12 @@ Compatible, for right now, with StatsBomb data only! Returns a ggplot object.</p
 <dd><p>indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")</p></dd>
 <dt>team</dt>
 <dd><p>indicates what team's pass map one wants to see</p></dd>
+<dt>player_fname</dt>
+<dd><p>player first name</p></dd>
+<dt>player_lname</dt>
+<dd><p>player last name</p></dd>
 <dt>theme</dt>
 <dd><p>indicates what theme the map must be shown in: dark (default), white, rose, almond</p></dd>
-<dt>background</dt>
-<dd><p>Pick between white or dark background.</p></dd>
-<dt>player</dt>
-<dd><p>indicates what player's pass map one wants to see</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -111,7 +114,8 @@ Compatible, for right now, with StatsBomb data only! Returns a ggplot object.</p
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">plot</span>  <span class="op">&lt;-</span> <span class="fu">plot_pass</span><span class="op">(</span><span class="va">pass_data</span>, plotType <span class="op">=</span> <span class="st">"def"</span>, prog <span class="op">=</span> <span class="cn">TRUE</span>, team <span class="op">=</span> <span class="st">"Barcelona"</span>, player_fname <span class="op">=</span> <span class="st">"Lionel"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">plot</span>  <span class="op">&lt;-</span> <span class="fu">plot_pass</span><span class="op">(</span><span class="va">pass_data</span>, plotType <span class="op">=</span> <span class="st">"def"</span>, prog <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span class="r-in">                   team <span class="op">=</span> <span class="st">"Barcelona"</span>, player_fname <span class="op">=</span> <span class="st">"Lionel"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">plot</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

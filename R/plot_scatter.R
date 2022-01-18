@@ -15,7 +15,7 @@
 #' @param theme decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"
 #' @param scatter_title pick the title of the scatter plot
 #' @param title_size sets the size of the title of the scatter plot. Default size = 25.
-#' @param scatter_subtile pick the subtitle of the scatter plot
+#' @param scatter_subtitle pick the subtitle of the scatter plot
 #' @param subt_size sets the size of the subtitle of the scatter plot Default size =15.
 #' @param scatter_cap pick the caption of the scatter plot
 #' @param cap_size sets the size of the caption of the scatter plot. Default size = 10.

@@ -54,6 +54,8 @@ First, let's get some data! You can either import you data or use [Statsbomb's o
 In this example, I'll be using StatsBomb's [Messi Data](https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/) for La Liga 2014/15:
 
 ```{r, eval=FALSE}
+library(StatsBombR)
+
 Comp <- FreeCompetitions() %>%
   filter(competition_id == 11 & season_name == "2014/2015")
 

@@ -41,7 +41,7 @@ The easiest Pitch Plot function to use! To use this package, which *only works w
 
 Once you have installed the package, put the package in your work session by writing:
 
-```{r}
+```{r eval=FALSE}
 library(understatr)
 ```
 

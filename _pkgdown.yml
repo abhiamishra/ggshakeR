@@ -22,6 +22,8 @@ navbar:
     href: reference/index.html
   - text: Guides
     href: articles/index.html
+  - text: News
+    href: news/index.html
 
 reference:
   - title: Pitch Plots

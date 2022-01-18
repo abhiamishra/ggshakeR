@@ -38,11 +38,11 @@ plot_pass(
 
 \item{team}{indicates what team's pass map one wants to see}
 
+\item{player_fname}{player first name}
+
+\item{player_lname}{player last name}
+
 \item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
-
-\item{background}{Pick between white or dark background.}
-
-\item{player}{indicates what player's pass map one wants to see}
 }
 \value{
 returns a ggplot2 object
@@ -54,7 +54,8 @@ Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 }
 \examples{
 \dontrun{
-plot  <- plot_pass(pass_data, plotType = "def", prog = TRUE, team = "Barcelona", player_fname = "Lionel")
+plot  <- plot_pass(pass_data, plotType = "def", prog = TRUE, 
+                   team = "Barcelona", player_fname = "Lionel")
 plot
 }
 }

@@ -19,6 +19,7 @@
 #' @param theme to select the theme from 4 options -> dark, almond, rose, white.
 #'
 #' @import dplyr
+#' @importFrom glue glue
 #' @import ggplot2
 #' @import ggtext
 #' @import Rcpp

@@ -1,11 +1,11 @@
-pandoc: 2.7.1
-pkgdown: 2.0.1
+pandoc: 2.11.4
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   Guide_to_Exp_Threat: Guide_to_Exp_Threat.html
   Guide_to_Pitch_Plots: Guide_to_Pitch_Plots.html
   Guide_to_PizzaPlots: Guide_to_PizzaPlots.html
-last_built: 2022-01-18T13:03Z
+last_built: 2022-01-18T15:38Z
 urls:
   reference: https://abhiamishra.github.io/ggshakeR/reference
   article: https://abhiamishra.github.io/ggshakeR/articles

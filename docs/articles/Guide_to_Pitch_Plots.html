@@ -34,7 +34,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../index.html">Home</a>
@@ -67,6 +67,9 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Guide to Pitch Plots</h1>
@@ -91,10 +94,10 @@
 <li><code><a href="../reference/plot_shot.html">plot_shot()</a></code></li>
 </ul>
 <p>Let’s learn simple guides on how to use them!</p>
-<div class="section level1">
-<h1 id="plot_shot">
+<div class="section level2">
+<h2 id="plot_shot">
 <code>plot_shot()</code><a class="anchor" aria-label="anchor" href="#plot_shot"></a>
-</h1>
+</h2>
 <p>Characteristics:</p>
 <ul>
 <li>Only works with <a href="https://understat.com/" class="external-link">Understat</a> data</li>
@@ -123,14 +126,14 @@
 
 <span class="va">plot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/plot_shot.png" alt="plot_shot() of Mohammed Salah" style="width:80.0%"><p class="caption">plot_shot() of Mohammed Salah</p>
+<img src="../reference/figures/plot_shot.png" style="width:80.0%" alt=""><p class="caption">plot_shot() of Mohammed Salah</p>
 </div>
 <p>Note that, you can write hexbin, density, and point to get three different types of shot maps. Try it out!</p>
 </div>
-<div class="section level1">
-<h1 id="plot_sonar-plot_heatmap-plot_passflow">
+<div class="section level2">
+<h2 id="plot_sonar-plot_heatmap-plot_passflow">
 <code>plot_sonar()</code>, <code>plot_heatmap()</code>, &amp; <code>plot_passflow()</code><a class="anchor" aria-label="anchor" href="#plot_sonar-plot_heatmap-plot_passflow"></a>
-</h1>
+</h2>
 <p>These three functions are quite similar in what they require.</p>
 <ul>
 <li>
@@ -181,10 +184,10 @@
          <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
          <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
 <p>Sweet, let’s plot!</p>
-<div class="section level2">
-<h2 id="plot_heatmap">
+<div class="section level3">
+<h3 id="plot_heatmap">
 <code>plot_heatmap()</code><a class="anchor" aria-label="anchor" href="#plot_heatmap"></a>
-</h2>
+</h3>
 <p>For the heat map, we simply select our columns and plot! Note that we don’t specify <strong>dataType</strong> since the default is set to “statsbomb”, so we can simply write this:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">heatData</span>  <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -194,13 +197,13 @@
 
 <span class="va">heatplot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/plot_heatmap.png" alt="plot_heatmap() of all of LaLiga’s events in 2014/15" style="width:80.0%"><p class="caption">plot_heatmap() of all of LaLiga’s events in 2014/15</p>
+<img src="../reference/figures/plot_heatmap.png" style="width:80.0%" alt=""><p class="caption">plot_heatmap() of all of LaLiga’s events in 2014/15</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="plot_sonar">
+<div class="section level3">
+<h3 id="plot_sonar">
 <code>plot_sonar()</code><a class="anchor" aria-label="anchor" href="#plot_sonar"></a>
-</h2>
+</h3>
 <p>For the pass sonar, we’re going to a bit more data cleaning. I don’t want everybody’s passing sonar - that’s redundant!</p>
 <p>For our purposes, I want Jordi Alba’s passing sonar. First, let me get all passes from Jordi Alba:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -212,25 +215,25 @@
 
 <span class="va">sonarPlot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/plot_sonar.png" alt="plot_sonar() of all of Jordi Alba’s passes from 2014/15" style="width:80.0%"><p class="caption">plot_sonar() of all of Jordi Alba’s passes from 2014/15</p>
+<img src="../reference/figures/plot_sonar.png" style="width:80.0%" alt=""><p class="caption">plot_sonar() of all of Jordi Alba’s passes from 2014/15</p>
 </div>
-<div class="section level3">
-<h3 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
-</h3>
+<div class="section level4">
+<h4 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
+</h4>
 <p>Design inspiration credit goes to <a href="https://twitter.com/barcanumbers" class="external-link">e.</a> and their pass compass while part of the sonar production code goes to <a href="https://github.com/etmckinley/PassSonar" class="external-link">Eliot Mckinley</a></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="plot_passflow">
+<div class="section level3">
+<h3 id="plot_passflow">
 <code>plot_passflow()</code><a class="anchor" aria-label="anchor" href="#plot_passflow"></a>
-</h2>
+</h3>
 <p>Since we already have Jordi Alba’s passes, we can just construct the pass flow like this:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">passflowPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">plottingData</span><span class="op">)</span>
 
 <span class="va">passflowPlot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/plot_passflow.png" alt="plot_passflow() of all of Jordi Alba’s passes from 2014/15" style="width:80.0%"><p class="caption">plot_passflow() of all of Jordi Alba’s passes from 2014/15</p>
+<img src="../reference/figures/plot_passflow.png" style="width:80.0%" alt=""><p class="caption">plot_passflow() of all of Jordi Alba’s passes from 2014/15</p>
 </div>
 </div>
 </div>
@@ -247,7 +250,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>

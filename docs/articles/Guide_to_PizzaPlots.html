@@ -34,7 +34,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../index.html">Home</a>
@@ -67,6 +67,9 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Guide to Creating Pizza Plots</h1>
@@ -80,14 +83,14 @@
 
     
     
-<div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p><code><a href="../reference/plot_pizza.html">plot_pizza()</a></code> is the function that allows users to plot <strong>percentile plots</strong> (popularly called pizza plots due to their appearance) with minimal lines of code. The function allows for plotting both <strong>single</strong> and <strong>comparison</strong> player plots, the usage of which is outlined below.</p>
 <p>The data for the function can be scraped from the <a href="https://jaseziv.github.io/worldfootballR/" class="external-link">worldfootballR</a> library.</p>
-<div class="section level2">
-<h2 id="single-player-plot">Single Player Plot<a class="anchor" aria-label="anchor" href="#single-player-plot"></a>
-</h2>
+<div class="section level3">
+<h3 id="single-player-plot">Single Player Plot<a class="anchor" aria-label="anchor" href="#single-player-plot"></a>
+</h3>
 <p>The code required to plot a single player plot using <code><a href="../reference/plot_pizza.html">plot_pizza()</a></code> is:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span>
@@ -99,34 +102,36 @@
                     colour_def <span class="op">=</span> <span class="st">"#de2d26"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
 <span class="va">pizza</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/pizza_plot.png" alt="pizza plot for Tammy Abraham" style="width:80.0%"><p class="caption">pizza plot for Tammy Abraham</p>
+<img src="../reference/figures/pizza_plot.png" style="width:80.0%" alt=""><p class="caption">pizza plot for Tammy Abraham</p>
 </div>
 <p>There are 7 different templates to choose from, which are <em>forward</em>, <em>midfielder</em>, <em>winger</em>, <em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and <em>custom</em>. They select specific stats that (subjectively, in the author’s opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the <em>custom</em> template as well. You can filter for the season required and select the colours for each stat subgroup according to your liking.</p>
 <p>For the season filter, please look at the data scraped from FBRef and look at the “term” in scouting period. The term there will determine what season you will be filtering for when you put it in the function.</p>
 <p>There are three colour theme’s for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
-<div class="section level3">
-<h3 id="custom-stats---single-player">Custom Stats - Single Player<a class="anchor" aria-label="anchor" href="#custom-stats---single-player"></a>
-</h3>
+<div class="section level4">
+<h4 id="custom-stats---single-player">Custom Stats - Single Player<a class="anchor" aria-label="anchor" href="#custom-stats---single-player"></a>
+</h4>
 <p>Users can use custom stats within <code>plot_pizza</code> as well.</p>
+<p>First, we’ll add an index column to help us.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">single_player</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">single_player</span><span class="op">)</span> <span class="co">## use this column for reference in stat selection</span>
-
-<span class="va">single_player</span> <span class="op">&lt;-</span> <span class="va">single_player</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">13</span>, <span class="fl">24</span>, <span class="fl">42</span>, <span class="fl">128</span>, <span class="fl">45</span>, <span class="fl">115</span>, <span class="fl">133</span>, <span class="fl">107</span>, <span class="fl">101</span>, <span class="fl">102</span>, <span class="fl">26</span>, <span class="fl">147</span><span class="op">)</span>,<span class="op">]</span>
+<code class="sourceCode R"><span class="va">single_player</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">single_player</span><span class="op">)</span> <span class="co">## use this column for reference in stat selection</span></code></pre></div>
+<p>Here, when you look at the index column, you’ll see the numbers correspond to the statistics. Choose those numbers as shown below to select the specific stats!</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">single_player</span> <span class="op">&lt;-</span> <span class="va">single_player</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"forward"</span>, 
                     colour_poss <span class="op">=</span> <span class="st">"#41ab5d"</span>, colour_att <span class="op">=</span> <span class="st">"#fec44f"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, 
                     colour_def <span class="op">=</span> <span class="st">"#de2d26"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
 <span class="va">pizza</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/comp_pizza_cus2.png" alt="custom pizza plot for Tammy Abraham" style="width:80.0%"><p class="caption">custom pizza plot for Tammy Abraham</p>
+<img src="../reference/figures/comp_pizza_cus2.png" style="width:80.0%" alt=""><p class="caption">custom pizza plot for Tammy Abraham</p>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="comparison-plot">Comparison Plot<a class="anchor" aria-label="anchor" href="#comparison-plot"></a>
-</h2>
+<div class="section level3">
+<h3 id="comparison-plot">Comparison Plot<a class="anchor" aria-label="anchor" href="#comparison-plot"></a>
+</h3>
 <p>The comparison graph can be plotted as shown below.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
 <span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
@@ -139,25 +144,27 @@
                          colour_compare <span class="op">=</span> <span class="st">"#41ab5d"</span>, theme <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 <span class="va">comp_pizza</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/pizza_plot_comparison.png" alt="pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin" style="width:80.0%"><p class="caption">pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin</p>
+<img src="../reference/figures/pizza_plot_comparison.png" style="width:80.0%" alt=""><p class="caption">pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin</p>
 </div>
 <p>There are 7 different templates to choose from, which are <em>forward</em>, <em>midfielder</em>, <em>winger</em>, <em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and <em>custom</em>. They select specific stats that (subjectively, in the author’s opinion) reflect the important attributes requires for each position. Users also have the option to select their own stats using the <em>custom</em> template as well.</p>
 <p>The seasons and names of both players have to be specified within the function in their respective parameters.</p>
 <p>There are three colour themes for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
 <p><strong>An important thing to note with player name’s is the their entire name’s have to specified.</strong> <strong>Special care must be taken to remove any accents from the name of the player.</strong> <strong>For example, <em>Dušan Vlahović</em> should be inputted as <em>Dusan Vlahovic</em>.</strong></p>
-<div class="section level3">
-<h3 id="custom-stats---comparison-plot">Custom Stats - Comparison Plot<a class="anchor" aria-label="anchor" href="#custom-stats---comparison-plot"></a>
-</h3>
+<div class="section level4">
+<h4 id="custom-stats---comparison-plot">Custom Stats - Comparison Plot<a class="anchor" aria-label="anchor" href="#custom-stats---comparison-plot"></a>
+</h4>
 <p>For using your own stat selections with comparison plots, the following format is to be used.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>Just like when we did custom stats for single plots, we make an index column first.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 <span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
-<span class="va">data1</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data1</span><span class="op">)</span> <span class="co">## reference</span>
-<span class="va">data2</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span> <span class="co">## reference</span>
-
-<span class="va">data1</span> <span class="op">&lt;-</span> <span class="va">data1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">13</span>, <span class="fl">24</span>, <span class="fl">42</span>, <span class="fl">128</span>, <span class="fl">45</span>, <span class="fl">115</span>, <span class="fl">133</span>, <span class="fl">107</span>, <span class="fl">101</span>, <span class="fl">102</span>, <span class="fl">26</span>, <span class="fl">147</span><span class="op">)</span>,<span class="op">]</span>
-<span class="va">data2</span> <span class="op">&lt;-</span> <span class="va">data2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">13</span>, <span class="fl">24</span>, <span class="fl">42</span>, <span class="fl">128</span>, <span class="fl">45</span>, <span class="fl">115</span>, <span class="fl">133</span>, <span class="fl">107</span>, <span class="fl">101</span>, <span class="fl">102</span>, <span class="fl">26</span>, <span class="fl">147</span><span class="op">)</span>,<span class="op">]</span>
+<span class="va">data1</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data1</span><span class="op">)</span> <span class="co">## reference for stats selection</span>
+<span class="va">data2</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span> <span class="co">## reference for stats selection</span></code></pre></div>
+<p>After that, we select the numbers that reflect the stats and plot away!</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="va">data1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">data2</span> <span class="op">&lt;-</span> <span class="va">data2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">data1</span>, <span class="va">data2</span><span class="op">)</span>
 
@@ -167,13 +174,13 @@
                          colour_compare <span class="op">=</span> <span class="st">"#41ab5d"</span>, theme <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 <span class="va">comp_pizza</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/comp_pizza_cus1.png" alt="custom pizza plot for Tammy Abraham" style="width:80.0%"><p class="caption">custom pizza plot for Tammy Abraham</p>
+<img src="../reference/figures/comp_pizza_cus1.png" style="width:80.0%" alt=""><p class="caption">custom pizza plot for Tammy Abraham</p>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
-</h2>
+<div class="section level3">
+<h3 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
+</h3>
 <p>A big thanks to <a href="https://twitter.com/RobinWilhelmus" class="external-link">Robin Wilhelmus</a> for the tutorial that helped create the plots in the function. Thanks to <a href="https://twitter.com/DyslexicDdue" class="external-link">Ham</a> for inspiring the design for the comparison pizza plots with the excellent Football Slices project.</p>
 </div>
 </div>
@@ -190,7 +197,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>

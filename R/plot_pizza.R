@@ -313,7 +313,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
           StatGroup == "Defense" ~ "Defending",
           StatGroup == "Possession" ~ "Possession",
           StatGroup == "Miscellaneous Stats" ~ "Defending",
-          TRUE ~ NA
+          TRUE ~ NA_character_
         ))
     }
     

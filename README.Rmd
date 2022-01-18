@@ -15,17 +15,20 @@ knitr::opts_chunk$set(
 
 # ggshakeR <img src="man/figures/ggshakeRhex-small.png" align="right"/>
 
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
 Welcome to ggshakeR!
 
-This is R's all-inclusive package for visualization and analysis of openly available soccer data.
+This is R's all-inclusive package for visualization and analysis of publicly available soccer data.
 
-This package aims to provide people interested in football analysis and visualization a platform to learn about it while also learning a new language while at it. This package is designed to work with open soccer data. These data sets, for now, include:
+This package aims to provide people interested in football analysis and visualization a platform to learn about it while also learning a new language at the same time. This package is designed to work with free soccer data and, for now, include:
 
 * [FBref](https://fbref.com/en/)
 * [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
 * [Understat](https://understat.com/)
-
-R gets a bad rep, at times, especially compared to it's more cooler brother, Python. However, as you'll find with ggshakeR, it really isn't that bad!
 
 Let's get you started with the package!
 

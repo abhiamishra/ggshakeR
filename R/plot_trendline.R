@@ -36,51 +36,49 @@
 #' }
 
 plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = "") {
-
-  fill_b = ""
-  colour_b = ""
-  colorLine = ""
-  colorText = ""
-  gridc = ""
-
-  if(theme == "dark" || theme == ""){
-    fill_b = "#0d1117"
-    colour_b = "white"
-
-
-    colorLine = "white"
-    gridc = "#525252"
-    colorText = "white"
+  
+  fill_b <- ""
+  colour_b <- ""
+  colorLine <- ""
+  colorText <- ""
+  gridc <- ""
+  
+  ## Theme ----
+  if (theme == "dark" || theme == "") {
+    fill_b <- "#0d1117"
+    colour_b <- "white"
+    
+    colorLine <- "white"
+    gridc <- "#525252"
+    colorText <- "white"
+  } else if (theme == "white") {
+    fill_b <- "#F5F5F5"
+    colour_b <- "black"
+    
+    colorLine <- "black"
+    gridc <- "grey"
+    colorText <- "black"
+  } else if (theme == "rose") {
+    fill_b <- "#FFE4E1"
+    colour_b <- "#696969"
+    
+    colorLine <- "#322E2E"
+    gridc <- "grey"
+    colorText <- "#322E2E"
+  } else if (theme == "almond") {
+    fill_b <- "#FFEBCD"
+    colour_b <- "#696969"
+    
+    colorLine <- "#322E2E"
+    gridc <- "grey"
+    colorText <- "#322E2E"
   }
-  else if(theme == "white"){
-    fill_b = "#F5F5F5"
-    colour_b = "black"
-
-    colorLine = "black"
-    gridc = "grey"
-    colorText = "black"
-  }
-  else if(theme == "rose"){
-    fill_b = "#FFE4E1"
-    colour_b = "#696969"
-
-    colorLine = "#322E2E"
-    gridc = "grey"
-    colorText = "#322E2E"
-  }
-  else if(theme == "almond"){
-    fill_b = "#FFEBCD"
-    colour_b = "#696969"
-
-    colorLine = "#322E2E"
-    gridc = "grey"
-    colorText = "#322E2E"
-  }
-
-  data <- data[complete.cases(data[ ,'Date']), ]
-  data <- data[complete.cases(data[ ,'Home_xG']), ]
-  data <- data[complete.cases(data[ ,'Away_xG']), ]
-
+  
+  ## Clean data ----
+  data <- data[complete.cases(data[ , 'Date']), ]
+  data <- data[complete.cases(data[ , 'Home_xG']), ]
+  data <- data[complete.cases(data[ , 'Away_xG']), ]
+  
   df1 <- data %>%
     filter(Home == team)
   df1 <- df1[, c("Date","Home", "Home_xG")]
@@ -94,16 +92,16 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     rename(xG = Away_xG) %>%
     rename(Team = Away)
   df <- rbind(df1, df2)
-
+  
   df3 <- data %>%
     filter(Home == team)
-  df3 <- df3[, c("Date","Away", "Away_xG")]
+  df3 <- df3[, c("Date", "Away", "Away_xG")]
   df3 <- df3 %>%
     rename(xGA = Away_xG) %>%
     rename(Team = Away)
   df4 <- data %>%
     filter(Away == team)
-  df4 <- df4[, c("Date","Home", "Home_xG")]
+  df4 <- df4[, c("Date", "Home", "Home_xG")]
   df4 <- df4 %>%
     rename(xGA = Home_xG) %>%
     rename(Team = Home)
@@ -112,21 +110,21 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   data <- cbind(df, dfa)
   data <- data %>%
     rename(xGA = dfa) %>%
-    mutate(xGSUM = (xG + xGA)/2)
-
-  data <- data[order(as.Date(data$Date),decreasing = FALSE),]
-
-  if(nrow(data) > 0) {
+    mutate(xGSUM = (xG + xGA) / 2)
+  
+  data <- data[order(as.Date(data$Date), decreasing = FALSE),]
+  
+  if (nrow(data) > 0) {
     data <- data %>%
       mutate(xGSM = TTR::SMA(xG, n = roll_avg),
              xGASM = TTR::SMA(xGA, n = roll_avg),
              xGSUM = TTR::SMA(xGSUM, n = roll_avg))
   }
-
+  
   team <- paste(team, "xG Trendline")
   subtitle <- glue("{roll_avg} Game Rolling Average [<b style='color:{colour_xg}'> xG </b> vs <b style='color:{colour_xga}'> xGA </b>]")
-
-  ggplot(data , aes(x = Date)) +
+  
+  ggplot(data, aes(x = Date)) +
     geom_line(aes(y = xGSM), colour = colour_xg, size = 3) +
     geom_line(aes(y = xGASM), colour = colour_xga, size = 3) +
     geom_line(aes(y = xGSUM), colour = fill_b, size = 0.1) +
@@ -134,8 +132,8 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     geom_point(aes(y = xGASM), colour = colour_xga, size = 4) +
     scale_color_manual(values = c(colour_xg, colour_xga)) +
     expand_limits(y = c(0.25, 2.25)) +
-    labs(title= team,
-         subtitle= subtitle) +
+    labs(title = team,
+         subtitle = subtitle) +
     theme(plot.title = element_markdown(lineheight = 1.1, size = 40, colour = colorText, face = "bold"),
           plot.subtitle = element_textbox_simple(lineheight = 1.1, size = 30, colour = colorText)) +
     theme(plot.background = element_rect(fill = fill_b, colour = colour_b)) +
@@ -150,8 +148,8 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     theme(panel.grid.major.x = element_line(colour = gridc, size = 1, linetype = "dashed"),
           panel.background = element_blank()) + 
     theme(axis.line = element_blank()) + 
-    geom_ribbon(aes(ymin=xGASM, ymax=xGSUM, x=Date), fill = colour_xga, alpha = 0.4) +
-    geom_ribbon(aes(ymin=xGSUM, ymax=xGSM, x=Date), fill = colour_xg, alpha = 0.4) +
-    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype ="dashed",alpha = 0.5, size = 2,se = FALSE)+
-    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype= "dashed", alpha = 0.5, size = 2,se = FALSE)
+    geom_ribbon(aes(ymin = xGASM, ymax = xGSUM, x = Date), fill = colour_xga, alpha = 0.4) +
+    geom_ribbon(aes(ymin = xGSUM, ymax = xGSM, x = Date), fill = colour_xg, alpha = 0.4) +
+    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)+
+    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)
 }

@@ -125,6 +125,24 @@ comp_pizza
 
 ![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_cus1.png){width=80%}
 
+## Save
+
+You might notice that the output of the ggplot2 plot appears to be warped. 
+To save these plots without this issue, the following code is to be run.
+
+```{r, eval=FALSE}
+# install.packages("ggplot2")
+
+library(ggplot2)
+
+#' The "bg" parameter is to be set w.r.t the theme of the plot.
+#' "dark" = "#0d1117"
+#' "black" = "black"
+#' "white" = "white"
+
+ggsave("image.png", bg = "black", width = 3000, height = 2800, units = "px") 
+```
+
 ## Contributors
 
 A big thanks to [Robin Wilhelmus](https://twitter.com/RobinWilhelmus) for the tutorial that helped create the plots in the function. 

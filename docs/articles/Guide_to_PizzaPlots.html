@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>Guide to Creating Pizza Plots</h1>
                         <h4 data-toc-skip class="author">Harsh Krishna</h4>
             
-            <h4 data-toc-skip class="date">2022-01-18</h4>
+            <h4 data-toc-skip class="date">2022-01-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_PizzaPlots.Rmd" class="external-link"><code>vignettes/Guide_to_PizzaPlots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_PizzaPlots.Rmd</code></div>
@@ -177,6 +177,22 @@
 <img src="../reference/figures/comp_pizza_cus1.png" style="width:80.0%" alt=""><p class="caption">custom pizza plot for Tammy Abraham</p>
 </div>
 </div>
+</div>
+<div class="section level3">
+<h3 id="save">Save<a class="anchor" aria-label="anchor" href="#save"></a>
+</h3>
+<p>You might notice that the output of the ggplot2 plot appears to be warped. To save these plots without this issue, the following code is to be run.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("ggplot2")</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+
+<span class="co">#' The "bg" parameter is to be set w.r.t the theme of the plot.</span>
+<span class="co">#' "dark" = "#0d1117"</span>
+<span class="co">#' "black" = "black"</span>
+<span class="co">#' "white" = "white"</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span><span class="st">"image.png"</span>, bg <span class="op">=</span> <span class="st">"black"</span>, width <span class="op">=</span> <span class="fl">3000</span>, height <span class="op">=</span> <span class="fl">2800</span>, units <span class="op">=</span> <span class="st">"px"</span><span class="op">)</span> </code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>

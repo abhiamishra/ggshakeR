@@ -324,7 +324,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
     sub1 <- data$scouting_period
     subtitle <- paste("Compared to", sub, "|", sub1, "|", min, "minutes played")
     caption <- "Plot code by @RobinWilhelmus
-Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
+Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
     temp <- (360 / (length(data_selected$Player)) / 2)
     myAng <- seq(-temp, -360 + temp, length.out = length(data_selected$Player))
@@ -334,17 +334,17 @@ Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
     x <- c(data_selected$Statistic, data_selected$stat)
     
     ggplot(data_selected, aes(fct_reorder(Statistic, stat), Percentile)) +
-      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, colour = gridline,
-               alpha = 0.5, show.legend = FALSE) +
+      geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, colour = fill_b,
+               alpha = 0.1, show.legend = FALSE) +
       geom_bar(stat = "identity", width = 1, aes(fill = stat), colour = fill_b, alpha = 1) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = gridline, linetype = "longdash", alpha = 0.5) +
-      geom_hline(yintercept = 50, colour = gridline, linetype = "longdash", alpha = 0.5)+
-      geom_hline(yintercept = 75, colour = gridline, linetype = "longdash", alpha = 0.5)+
+      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.8)+
+      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.8)+
       scale_fill_manual(values = c("Possession" = colour_poss,
                                    "Attacking" = colour_att,
                                    "Defending" = colour_def)) +
-      geom_label(aes(label = Per90, fill = stat), size = 3, color = fill_b, show.legend = FALSE)+
+      geom_label(aes(y = 90, label = Per90, fill = stat), size = 3, color = fill_b, show.legend = FALSE)+
       scale_y_continuous(limits = c(-20, 100))+
       labs(fill = "",
            caption = caption,
@@ -369,6 +369,20 @@ Data from StatsBomb via FBref. Inspired by @Worville. Created using ggshakeR."
   } else if (type == "comparison") { ## COMPARISON PLOT ----
     
     data$Player <- stri_trans_general(str = data$Player, id = "Latin-ASCII")
+    
+    data <- data %>% 
+      mutate(stat = case_when(
+        StatGroup == "Standard" ~ "Attacking", 
+        StatGroup == "Shooting" ~ "Attacking",
+        StatGroup == "Passing" ~ "Possession",
+        StatGroup == "Pass Types" ~ "Possession",
+        StatGroup == "Goal and Shot Creation" ~ "Possession",
+        StatGroup == "Defense" ~ "Defending",
+        StatGroup == "Possession" ~ "Possession",
+        StatGroup == "Miscellaneous Stats" ~ "Defending",
+        StatGroup == "Advanced Goalkeeping" ~ "Attacking",
+        TRUE ~ NA_character_
+      ))
     
     data1 <- data %>%
       filter(Player == player_1) %>%
@@ -497,17 +511,16 @@ Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshak
     
     x <- data1$Statistic
     
-    ggplot(data1, aes(x = Statistic, y = Percentile)) +
-      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1,colour = colour_b,
+    ggplot(data1, aes(x = fct_reorder(Statistic, stat), y = Percentile)) +
+      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, colour = gridline,
                alpha = 0.5, show.legend = FALSE) +
-      geom_bar(data = data1, aes(fill = colour_compare), colour = colour_compare, stat = "identity", width = 1, alpha = 1) +
+      geom_bar(data = data1, aes(y = Percentile, fill = colour_compare), colour = colour_compare, stat = "identity", width = 1, alpha = 1) +
       scale_fill_manual(values = colour_compare) +
       geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, colour = colorLine, size = 3) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = gridline, linetype = "longdash", alpha = 0.5)+
-      geom_hline(yintercept = 50, colour = gridline, linetype = "longdash", alpha = 0.5)+
-      geom_hline(yintercept = 75, colour = gridline, linetype = "longdash", alpha = 0.5)+
-      geom_hline(yintercept = 100, colour = gridline, linetype = "solid", alpha = 0.5)+
+      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.7)+
+      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.7)+
+      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.7)+
       scale_y_continuous(limits = c(-20, 100))+
       labs(caption = caption,
            title = title,

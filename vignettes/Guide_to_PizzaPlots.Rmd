@@ -58,13 +58,13 @@ Here, when you look at the index column, you'll see the numbers correspond to th
 ```{r, eval=FALSE}
 single_player <- single_player[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
 
-pizza <- plot_pizza(data = single_player, type = "single", template = "forward", 
+pizza <- plot_pizza(data = single_player, type = "single", template = "custom", 
                     colour_poss = "#41ab5d", colour_att = "#fec44f", season = "Last 365 Days", 
                     colour_def = "#de2d26", theme = "dark")
 pizza
 ```
 
-![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_cus2.png){width=80%}
+![custom pizza plot for Tammy Abraham](../man/figures/pizza_plot_comparison.png){width=80%}
 
 ## Comparison Plot
 
@@ -84,7 +84,7 @@ comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
 comp_pizza
 ```
 
-![pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin](../man/figures/pizza_plot_comparison.png){width=80%}
+![pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin](../man/figures/comp_pizza_plot.png){width=80%}
 
 There are 7 different templates to choose from, which are *forward*, *midfielder*, *winger*, *defender*, *full back*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes requires for each position. Users also have the option to select their own stats using the *custom* template as well. 
 
@@ -116,14 +116,72 @@ data2 <- data2[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
 
 data <- rbind(data1, data2)
 
-comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
+comp_pizza <- plot_pizza(data = data, type = "comparison", template = "custom",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
                          season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
                          colour_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```
 
-![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_cus1.png){width=80%}
+![custom pizza plot for Tammy Abraham](../man/figures/comp_pizza_plot_cus.png){width=80%}
+
+## Save
+
+You might notice that the output of the ggplot2 plot appears to be warped. 
+To save these plots without this issue, the following code is to be run.
+
+```{r, eval=FALSE}
+# install.packages("ggplot2")
+library(ggplot2)
+#' The "bg" parameter is to be set w.r.t the theme of the plot.
+#' "dark" = "#0d1117"
+#' "black" = "black"
+#' "white" = "white"
+ggsave("image.png", bg = "black", width = 3000, height = 2800, units = "px") 
+```
+
+## Adding Player Image 
+
+In this section, we shall detail the process of adding an image of the player to the centre of the pizza plot. This can be done via the 
+`magick` package. 
+
+For this, you have to first save the original pizza plot as a PNG and save a PNG image of the player in question from the internet. 
+Make sure that both the plot and image are in the same working directory (file). 
+
+Follow the steps detailed below.
+
+```{r, eval=FALSE}
+# install.packages("magick")
+library(magick)
+
+# This is a custom function. There is no need to change the code within the function. Simply run it and then use it as you would any other R function.
+
+add_image_centre <- function(plot_path, image_path) {
+  
+## Read in plot
+fig <- image_read(plot_path)
+fig <- image_resize(fig, "1000x1000")
+  
+## Read in image
+img <- image_read(image_path)
+img <- image_scale(img, "62x85")
+  
+## Overlay
+image_composite(fig, img, offset = "+471+425")
+
+}
+
+# Here you use the function to add the player picture to the plot image.
+
+imagepl <- add_image_centre(plot_path = "pizza_plot.png", image_path = "tammypic.png")
+imagepl
+
+# Save it as such
+
+image_write(imagepl, "addimage.png")
+```
+
+![Image added plot for Tammy Abraham](../man/figures/addimage.png){width=80%}
 
 ## Contributors
 

@@ -34,7 +34,7 @@
 
 plot_pass <- function(pass_data, plotType = "sep", prog = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
                       distance = "", outcome = "all", team = "", player_fname = "", player_lname = "", theme = "") {
-  if ( (nrow(pass_data) > 0) &&
+  if ((nrow(pass_data) > 0) &&
        sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name") %in% names(pass_data)) == 5) {
 
     pass_data <- pass_data %>%
@@ -48,7 +48,7 @@ plot_pass <- function(pass_data, plotType = "sep", prog = FALSE, cross = FALSE, 
 
     ## Player name
     if (player_fname != "") {
-      pass_data = pass_data %>%
+      pass_data <- pass_data %>%
         filter(fname == player_fname)
     }
 
@@ -116,24 +116,24 @@ plot_pass <- function(pass_data, plotType = "sep", prog = FALSE, cross = FALSE, 
 
     plot <- ggplot(data = pass_data) +
       annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
-                     fill = fill_b)+
-      theme_pitch()+
+                     fill = fill_b) +
+      theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))
 
     if (nrow(pass_data) > 0) {
       if (plotType == "sep") {
         plot <- plot +
-          geom_segment(aes(x = location.x, y = 80-location.y,
-                           xend = pass.end_location.x, yend = 80-(pass.end_location.y), color = colorOutcome),
+          geom_segment(aes(x = location.x, y = 80 - location.y,
+                           xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),
                        lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
           facet_grid(~colorOutcome) +
           labs(
             color = "Outcome of Pass"
           )
-      } else if(plotType == "all") {
+      } else if (plotType == "all") {
         plot <- plot +
-          geom_segment(aes(x = location.x, y = 80-location.y,
-                           xend = pass.end_location.x, yend = 80-(pass.end_location.y), color = colorOutcome),
+          geom_segment(aes(x = location.x, y = 80 - location.y,
+                           xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),
                        lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
           labs(
             color = "Outcome of Pass"

@@ -89,7 +89,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       if (nrow(data) > 148) {
         
         data$no <- seq_len(data)
-        data_selected <- data[c(3, 8 ,1 3, 24 ,42 ,1 28, 45, 115 ,13 3,1 07 ,101, 102, 26, 147),]
+        data_selected <- data[c(3, 8 , 13, 24 ,42 , 128, 45, 115 , 133, 107 ,101, 102, 26, 147),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
                                     Statistic == "xG" |

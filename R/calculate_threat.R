@@ -20,11 +20,11 @@ calculate_threat <- function(eventData, dataType = "opta") {
   if (nrow(eventData) > 0) {
     copydata <- eventData
     
-    copydata <- copydata %>% mutate(uniqueID = seq_len(copydata))
+    copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
     
     parsing <- copydata
     
-    for (i in seq_len(names(parsing))) {
+    for (i in 1:length(names(parsing))) {
       if (names(parsing)[i] == "x") {
         names(parsing)[i] <- "x_col"
         #print(names(parsing)[i])
@@ -108,7 +108,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
     parsing <- parsing %>%
       select(-c(x, y ,endX, endY))
     
-    for (i in seq_len(names(parsing))) {
+    for (i in 1:length(names(parsing))) {
       if (names(parsing)[i] == "x_col") {
         names(parsing)[i] <- "x"
         #print(names(parsing)[i])

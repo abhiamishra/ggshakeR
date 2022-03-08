@@ -88,7 +88,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if (nrow(data) > 148) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 8 , 13, 24 ,42 , 128, 45, 115 , 133, 107 ,101, 102, 26, 147),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -106,7 +106,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
         data_selected$stat[4] <- "Attacking"
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 8, 13, 24, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -127,7 +127,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if (nrow(data) > 148) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "npxG + xA" |
@@ -146,7 +146,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
         data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 97),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "npxG + xA" |
@@ -168,7 +168,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if (nrow(data) > 148) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -184,7 +184,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
         data_selected$stat[2] <- "Attacking"
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -203,7 +203,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if (nrow(data) > 148) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -221,7 +221,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
         data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -240,7 +240,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if (nrow(data) > 148) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -258,7 +258,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
         data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101),]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
@@ -279,7 +279,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
       
       if(nrow(data) > 36) {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Save%" |
@@ -291,7 +291,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
                                   TRUE ~ "Attacking"))
       } else {
         
-        data$no <- seq_len(data)
+        data$no <- 1:nrow(data)
         data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Save%" |
@@ -395,14 +395,14 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if (nrow(data1) > 148) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147),]
         data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147),]
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 8, 13, 23, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146),]
         data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147),]
       }
@@ -410,14 +410,14 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if (nrow(data1) > 148) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96),]
         data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96),]
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 95),]
         data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96),]
       }
@@ -425,15 +425,15 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if (nrow(data1) > 148) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108),]
         data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108),]
         
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107),]
         data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108),]
       }
@@ -441,14 +441,14 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if(nrow(data1) > 148) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102),]
         data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102),]
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101),]
         data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102),]
       }
@@ -456,14 +456,14 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if (nrow(data1) > 148) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102),]
         data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102),]
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101),]
         data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102),]
       }
@@ -471,14 +471,14 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
       
       if(nrow(data1) > 36) {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
         data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
       } else {
         
-        data1$no <- seq_len(data1)
-        data2$no <- seq_len(data2)
+        data1$no <- 1:nrow(data1)
+        data2$no <- 1:nrow(data2)
         data1 <- data1[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
         data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
       }

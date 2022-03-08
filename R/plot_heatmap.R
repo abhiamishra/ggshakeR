@@ -33,8 +33,8 @@ plot_heatmap <- function(eventData, type = "", theme = "", dataType = "statsbomb
 
     if (dataType == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
-      eventData$x = to_sb$x(eventData$x)
-      eventData$y = to_sb$y(eventData$y)
+      eventData$x <- to_sb$x(eventData$x)
+      eventData$y <- to_sb$y(eventData$y)
     }
 
     plot <- eventData %>%
@@ -61,13 +61,13 @@ plot_heatmap <- function(eventData, type = "", theme = "", dataType = "statsbomb
 
     if (type == "" || type == "density") {
       plot <- plot +
-        stat_density_2d(aes(x=x,y=80-y,fill = ..level..), geom = "polygon")
+        stat_density_2d(aes(x = x, y = 80 - y, fill = ..level..), geom = "polygon")
     } else if (type == "hex") {
       plot <- plot +
-        geom_hex(aes(x = x, y = 80-y))
+        geom_hex(aes(x = x, y = 80 - y))
     } else if (type == "bin") {
       plot <- plot +
-        geom_bin2d(aes(x = x, y = 80-y),
+        geom_bin2d(aes(x = x, y = 80 - y),
                    binwidth = c(bin, bin),
                    alpha = 0.9)
     }

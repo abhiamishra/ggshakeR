@@ -25,8 +25,8 @@
 plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
   #Prerequiste checking: if the data has rows, whether it has the right columns
   #and whether it has the right dataTypes
-  if ( (nrow(sonarData) > 0) &&
-       sum(c("x","y","finalX","finalY") %in% names(sonarData)) == 4 &&
+  if ((nrow(sonarData) > 0) &&
+       sum(c("x", "y", "finalX", "finalY") %in% names(sonarData)) == 4 &&
        (dataType == "statsbomb" || dataType == "opta")) {
     
     #Converting opta data to stasbomb data
@@ -58,7 +58,7 @@ plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
     
     #Summarizing and binning the passes by frequency, distance, and angle
     sonar <- data2 %>%
-      mutate(N = n())%>%
+      mutate(N = n()) %>%
       ungroup() %>%
       group_by(angle.round) %>%
       mutate(n.angle = n() / N) %>%
@@ -80,7 +80,7 @@ plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
     pal <- wes_palette("Zissou1", 10, type = "continuous")
     
     if (titlePlot == "") {
-      titlePlot = "Pass Sonar"
+      titlePlot <- "Pass Sonar"
     }
     
     plotCaption <- paste("Length of passes is in length of arrows + color of dots while frequency is in transparency. ", "Forward is toward's opponent's goal while backwards is towards own goal. ", sep = "\n")

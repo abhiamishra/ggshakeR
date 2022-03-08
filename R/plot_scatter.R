@@ -45,7 +45,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
                          subt_size = 15,
                          scatter_cap = "",
                          cap_size = 10) {
-  if (nrow(data) > 0 ) {
+  if (nrow(data) > 0) {
     
     ## Pre-processing ----
     total <- 0
@@ -53,7 +53,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
     if (scatter_x %in% names(data) && scatter_y %in% names(data)) {
       selection <- c(scatter_x, scatter_y)
       
-      renaming <- c('scatter_x','scatter_y')
+      renaming <- c('scatter_x', 'scatter_y')
       
       total <- 2
       
@@ -62,7 +62,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       
       if (sc_label != "" && sc_label %in% names(data)) {
         if (sc_label %in% selection == TRUE) {
-          data[,"sc_label"] <- data[,sc_label]
+          data[, "sc_label"] <- data[, sc_label]
           
           selection <- append(selection, 'sc_label')
           renaming <- append(renaming, 'sc_label')
@@ -75,7 +75,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       
       if (set_size_var != "" && set_size_var %in% names(data)) {
         if (set_size_var %in% selection == TRUE) {
-          data[,"set_size_var"] <- data[,set_size_var]
+          data[, "set_size_var"] <- data[, set_size_var]
           
           selection <- append(selection, 'set_size_var')
           renaming <- append(renaming, 'set_size_var')
@@ -90,7 +90,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       
       if (set_color_var != "" && set_color_var %in% names(data)) {
         if (set_color_var %in% selection == TRUE) {
-          data[,"set_color_var"] <- data[,set_color_var]
+          data[, "set_color_var"] <- data[, set_color_var]
           
           selection <- append(selection, 'set_color_var')
           renaming <- append(renaming, 'set_color_var')
@@ -108,7 +108,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       
       
       for (i in 1:total) {
-        names(data)[i] = renaming[i]
+        names(data)[i] <- renaming[i]
       }
       #Preprocessing over
       
@@ -142,7 +142,7 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       if (theme == "classic") {
         plot <- plot +
           theme_classic()
-      } else if(theme == "minimal") {
+      } else if (theme == "minimal") {
         plot <- plot +
           theme_minimal()
       } else if (theme == "grey") {

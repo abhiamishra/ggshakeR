@@ -38,7 +38,7 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
   passfx <- seq(0, 120, by = bin)
   passfy <- seq(0, 80, by = bin)
 
-  if ( (nrow(pass_data) > 0) &&
+  if ((nrow(pass_data) > 0) &&
        sum(x = c("x", "y", "finalX", "finalY") %in% names(pass_data)) == 4) {
 
     # Converting opta data to stasbomb data
@@ -69,7 +69,7 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
 
         if (nrow(filtery) >= 1) {
 
-          me_x <-mean(filtery$x)
+          me_x <- mean(filtery$x)
           me_y <- mean(filtery$y)
           me_ex <- mean(filtery$finalX)
           me_ey <- mean(filtery$finalY)
@@ -88,18 +88,18 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
     PassFlow <- PassFlow[2:nrow(PassFlow), ]
 
     plot <- PassFlow %>%
-      ggplot()+
+      ggplot() +
       annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
-                     fill = fill_b)+
+                     fill = fill_b) +
       theme_pitch()
 
     if (nrow(PassFlow) > 0) {
       plot <- plot +
-        geom_bin2d(data = pass_data, aes(x = x, y = 80-y), alpha = bin_alpha,
-                   binwidth = c(bin, bin), position = "identity")+
-        scale_fill_viridis()+
-        geom_segment(aes(x = x, y = 80-y, xend = finalX, yend = 80-finalY, alpha = countPasses),
-                     color = "white", lineend = "round", size = 2, arrow = arrow(length = unit(0.08, "inches")))+
+        geom_bin2d(data = pass_data, aes(x = x, y = 80 - y), alpha = bin_alpha,
+                   binwidth = c(bin, bin), position = "identity") +
+        scale_fill_viridis() +
+        geom_segment(aes(x = x, y = 80 - y, xend = finalX, yend = 80 - finalY, alpha = countPasses),
+                     color = "white", lineend = "round", size = 2, arrow = arrow(length = unit(0.08, "inches"))) +
         labs(
           fill = "Count of Passes Started",
           alpha = "Number of Passes Made"

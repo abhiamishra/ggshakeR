@@ -8,3 +8,4 @@
 ^LICENSE\.md$
 ^\.github$
 ^\.lintr$
+^lintr-generator\.R$

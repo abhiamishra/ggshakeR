@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  eval = FALSE
 )
 ```
 
@@ -18,6 +19,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![check-standard](https://github.com/abhiamishra/ggshakeR/workflows/check-standard/badge.svg)](https://github.com/abhiamishra/ggshakeR/actions)
+[![codecov](https://codecov.io/gh/Ryo-N7/ggshakeR/branch/main/graph/badge.svg?token=R5C2FI2JBM)](https://codecov.io/gh/Ryo-N7/ggshakeR)
 <!-- badges: end -->
 
 Welcome to ggshakeR!
@@ -45,19 +48,19 @@ OK, now how do you get ggshakeR into RStudio?
 
 First install the devtools package:
 
-```{r, eval=FALSE}
+```{r}
 install.packages("devtools")
 ```
 
 After that, write the actual code to install ggshakeR:
 
-```{r, eval=FALSE}
+```{r}
 devtools::install_github("abhiamishra/ggshakeR")
 ```
 
 Now the library is installed but it's not in your session just yet! When a package is in a session means you can actually use the package:
 
-```{r, eval=FALSE}
+```{r}
 library(ggshakeR)
 ```
 

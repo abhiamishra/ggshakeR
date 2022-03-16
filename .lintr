@@ -1,15 +1,12 @@
 linters: with_defaults(
-  line_length_linter = NULL, # 
-  trailing_whitespace_linter = NULL, # 
-  object_name_linter = NULL, # 
-  commented_code_linter = NULL, # 
-  commas_linter = NULL, # 
-  seq_linter = NULL, # 
-  single_quotes_linter = NULL, # 
-  object_usage_linter = NULL, # 
-  cyclocomp_linter = NULL, # 
-  paren_brace_linter = NULL, # 
-  spaces_left_parentheses_linter = NULL # 
+  line_length_linter = NULL, 
+  object_name_linter = NULL, 
+  commented_code_linter = NULL, 
+  seq_linter = NULL, 
+  single_quotes_linter = NULL, 
+  object_usage_linter = NULL, 
+  trailing_whitespace_linter = NULL,
+  cyclocomp_linter = NULL
   )
 exclusions: list(
     "data/xTGrid.rda",

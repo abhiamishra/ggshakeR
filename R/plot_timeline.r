@@ -127,7 +127,7 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
     gls2 <- "Goals"
   }
   
-  plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
   
   min1 <- dat1$minute
   min2 <- dat2$minute

@@ -48,7 +48,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
     parsing <- parsing %>% tidyr::drop_na(xend_col)
     parsing <-  parsing %>% tidyr::drop_na(yend_col)
     
-    if(dataType != "opta") {
+    if (dataType != "opta") {
       to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)
       parsing$x <- to_opta$x(parsing$x_col)
       parsing$y <- to_opta$y(parsing$y_col)
@@ -95,7 +95,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
           if (as.integer(b / 12.5) + 1 > 8) {
             row <- as.integer(b / 12.5)
           } else {
-            row = as.integer(b / 12.5) + 1
+            row <- as.integer(b / 12.5) + 1
           }
         }
       }
@@ -106,7 +106,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
     parsing$xTEnd <- mapply(assign_threat, parsing$endX, parsing$endY)
     
     parsing <- parsing %>%
-      select(-c(x,y,endX,endY))
+      select(-c(x, y ,endX, endY))
     
     for (i in 1:length(names(parsing))) {
       if (names(parsing)[i] == "x_col") {

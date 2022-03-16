@@ -40,7 +40,7 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   
   fill_b <- ""
   colour_b <- ""
-  colorLine <- ""
+  colorLine <- ""   ## Not used anywhere...?
   colorText <- ""
   gridc <- ""
   
@@ -76,19 +76,19 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   }
   
   ## Clean data ----
-  data <- data[complete.cases(data[ , 'Date']), ]
-  data <- data[complete.cases(data[ , 'Home_xG']), ]
-  data <- data[complete.cases(data[ , 'Away_xG']), ]
+  data <- data[complete.cases(data[, 'Date']),]
+  data <- data[complete.cases(data[, 'Home_xG']),]
+  data <- data[complete.cases(data[, 'Away_xG']),]
   
   df1 <- data %>%
     filter(Home == team)
-  df1 <- df1[, c("Date","Home", "Home_xG")]
+  df1 <- df1[, c("Date", "Home", "Home_xG")]
   df1 <- df1 %>%
     rename(xG = Home_xG) %>%
     rename(Team = Home)
   df2 <- data %>%
     filter(Away == team)
-  df2 <- df2[, c("Date","Away", "Away_xG")]
+  df2 <- df2[, c("Date", "Away", "Away_xG")]
   df2 <- df2 %>%
     rename(xG = Away_xG) %>%
     rename(Team = Away)
@@ -113,7 +113,7 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     rename(xGA = dfa) %>%
     mutate(xGSUM = (xG + xGA) / 2)
   
-  data <- data[order(as.Date(data$Date), decreasing = FALSE),]
+  data <- data[order(as.Date(data$Date), decreasing = FALSE), ]
   
   if (nrow(data) > 0) {
     data <- data %>%
@@ -151,6 +151,6 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
     theme(axis.line = element_blank()) + 
     geom_ribbon(aes(ymin = xGASM, ymax = xGSUM, x = Date), fill = colour_xga, alpha = 0.4) +
     geom_ribbon(aes(ymin = xGSUM, ymax = xGSM, x = Date), fill = colour_xg, alpha = 0.4) +
-    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)+
+    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE) +
     stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)
 }

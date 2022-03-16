@@ -25,7 +25,7 @@
 
 plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", avg_loc = "", theme = "") {
   
-  if ( (nrow(shotdata) > 0) &&
+  if ((nrow(shotdata) > 0) &&
        sum(c("X", "Y", "xG", "result", "player") %in% names(shotdata)) == 5) {
     
     last <- sub(".* ", "", shotdata$player[nrow(shotdata)])
@@ -67,8 +67,8 @@ plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", 
     ## base plot ----
     plot <- shotdata %>%
       ggplot() +
-      annotate_pitch(dimensions = pitch_statsbomb,colour = colour_b,
-                     fill = fill_b)+
+      annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+                     fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))
     
@@ -86,7 +86,7 @@ plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", 
         
         if (type == "point" || type == "") {
           
-          if(highlight_goals == FALSE || highlight_goals == "") { ## Don't highlight goals ----
+          if (highlight_goals == FALSE || highlight_goals == "") { ## Don't highlight goals ----
             plot  <- plot +
               geom_point(data = shotdata, aes(x = X, y = (80 - Y), size = xG, color = result), alpha = 0.7) +
               scale_size_continuous(range = c(0.5, 7)) +
@@ -169,7 +169,7 @@ plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", 
             geom_text(x = 86, y = 70, label = format(round(total_goal, 2)), color = colorText, size = 10) +
             geom_text(x = 80, y = 70, label = "Goals", color = colorText, size = 10) +
             geom_point(x = 86, y = 40, size = 40, color = colorText, shape = 1) +
-            geom_text(x = 86, y = 40, label = format(round(xg_sot,2)), color = colorText, size = 10) +
+            geom_text(x = 86, y = 40, label = format(round(xg_sot, 2)), color = colorText, size = 10) +
             geom_text(x = 80, y = 40, label = "xG/Shot", color = colorText, size = 10) +
             coord_flip(xlim = c(80, 120),
                        ylim = c(0, 80)) +
@@ -183,7 +183,7 @@ plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", 
           
           if (highlight_goals == FALSE || highlight_goals == "") {
             plot <- plot +
-              geom_point(data=shotdata, aes(x = X, y = (80 - Y), size = xG, color = result), alpha = 0.7) +
+              geom_point(data = shotdata, aes(x = X, y = (80 - Y), size = xG, color = result), alpha = 0.7) +
               scale_size_continuous(range = c(0.5, 7)) +
               geom_point(x = 86, y = 10, size = 40, color = colorText, shape = 1) +
               geom_text(x = 86, y = 10, label = format(round(total_xG, 2)), color = colorText, size = 10) +
@@ -217,7 +217,7 @@ plot_shot <- function(shotdata, type = "", bin_size = 30, highlight_goals = "", 
               geom_text(x = 80, y = 70, label = "Goals", color = colorText, size = 10) +
               geom_point(x = 86, y = 40, size = 40, color = colorText, shape = 1) +
               geom_text(x = 86, y = 40, label = format(round(xg_sot, 2)), color = colorText, size = 10) +
-              geom_text(x = 80,y = 40, label = "xG/Shot", color = colorText, size = 10) +
+              geom_text(x = 80, y = 40, label = "xG/Shot", color = colorText, size = 10) +
               coord_flip(xlim = c(80, 120),
                          ylim = c(0, 80)) +
               labs(

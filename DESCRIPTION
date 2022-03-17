@@ -1,6 +1,6 @@
 Package: ggshakeR
 Title: Analytics and Visualization Package for Soccer Data
-Version: 0.1.0.0
+Version: 0.1.1
 Authors@R: c(
     person(given = "Abhishek Amol",
            family = "Mishra",
@@ -45,7 +45,7 @@ Suggests:
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5.0)
-URL: https://github.com/abhiamishra/ggshakeR
+URL: https://github.com/abhiamishra/ggshakeR,
+    https://abhiamishra.github.io/ggshakeR/
 BugReports: https://github.com/abhiamishra/ggshakeR/issues
 VignetteBuilder: knitr
-

@@ -6,3 +6,7 @@
 ^docs$
 ^pkgdown$
 ^LICENSE\.md$
+^\.github$
+^\.lintr$
+^lintr-generator\.R$
+^codecov\.yml$

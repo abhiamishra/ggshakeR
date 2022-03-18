@@ -76,9 +76,9 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   }
   
   ## Clean data ----
-  data <- data[complete.cases(data[, 'Date']),]
-  data <- data[complete.cases(data[, 'Home_xG']),]
-  data <- data[complete.cases(data[, 'Away_xG']),]
+  data <- data[complete.cases(data[, 'Date']), ]
+  data <- data[complete.cases(data[, 'Home_xG']), ]
+  data <- data[complete.cases(data[, 'Away_xG']), ]
   
   df1 <- data %>%
     filter(Home == team)

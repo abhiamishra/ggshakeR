@@ -1,3 +1,11 @@
+# ggshakeR 0.1.1
+
+* Implement Github Actions CI tools:
+  * codecov test coverage checks
+  * R Package Build checks
+  * lintr checks
+  * Build pkgdown website
+
 # ggshakeR 0.1.0 
 
 * Added `plot_timeline()` function

@@ -1,0 +1,39 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  pull_request:
+    branches: [main, master]
+
+name: lint-changed-files
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: lintr
+          
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::gh
+            any::purrr
+          needs: check
+
+      - name: Extract and lint files changed by this PR
+        run: |
+          files <- gh::gh("GET https://api.github.com/repos/abhiamishra/ggshakeR/pulls/${{ github.event.pull_request.number }}/files")
+          changed_files <- purrr::map_chr(files, "filename")
+          all_files <- list.files(recursive = TRUE)
+          exclusions_list <- as.list(setdiff(all_files, changed_files))
+          lintr::lint_package(exclusions = exclusions_list)
+        shell: Rscript {0}

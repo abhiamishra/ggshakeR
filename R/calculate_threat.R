@@ -99,14 +99,14 @@ calculate_threat <- function(eventData, dataType = "opta") {
           }
         }
       }
-      xTGrid[row, col]
+      return(xTGrid[row, col])
     }
     
     parsing$xTStart <- mapply(assign_threat, parsing$x, parsing$y)
     parsing$xTEnd <- mapply(assign_threat, parsing$endX, parsing$endY)
     
     parsing <- parsing %>%
-      select(-c(x, y ,endX, endY))
+      select(-c(x, y, endX, endY))
     
     for (i in 1:length(names(parsing))) {
       if (names(parsing)[i] == "x_col") {
@@ -140,8 +140,8 @@ calculate_threat <- function(eventData, dataType = "opta") {
     joined$xTStart <- as.numeric(joined$xTStart)
     joined$xTEnd <- as.numeric(joined$xTEnd)
     
-    joined
-  } else{
-    eventData
+    return(joined)
+  } else {
+    return(eventData)
   }
 }

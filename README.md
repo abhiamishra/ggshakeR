@@ -9,8 +9,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![check-standard](https://github.com/abhiamishra/ggshakeR/workflows/check-standard/badge.svg)](https://github.com/abhiamishra/ggshakeR/actions)
-[![codecov](https://codecov.io/gh/Ryo-N7/ggshakeR/branch/main/graph/badge.svg?token=R5C2FI2JBM)](https://codecov.io/gh/Ryo-N7/ggshakeR)
+[![check-standard](https://github.com/abhiamishra/ggshakeR/workflows/R-CMD-check/badge.svg)](https://github.com/abhiamishra/ggshakeR/actions)
+[![codecov](https://codecov.io/gh/abhiamishra/ggshakeR/branch/main/graph/badge.svg?token=GO5918U56P)](https://codecov.io/gh/abhiamishra/ggshakeR)
 <!-- badges: end -->
 
 Welcome to ggshakeR\!

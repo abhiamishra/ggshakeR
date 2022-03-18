@@ -9,3 +9,4 @@
 ^\.github$
 ^\.lintr$
 ^lintr-generator\.R$
+^codecov\.yml$

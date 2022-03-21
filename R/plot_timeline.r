@@ -14,9 +14,7 @@
 #' @import dplyr
 #' @import ggtext
 #' @import ggplot2
-#' @importFrom berryFunctions insertRows
 #' @import ggrepel
-#' @importFrom glue glue
 #'
 #' @export
 #'
@@ -75,7 +73,7 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   }
   
   data <- data %>%
-    filter(season == match_year)
+    dplyr::filter(season == match_year)
   
   if (!"home_away" %in% colnames(data)) {
     data <- data %>%
@@ -83,27 +81,36 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   }
   
   data <- data %>%
-    filter(home_team == team_home,
+    dplyr::filter(home_team == team_home,
            away_team == team_away)
   data1 <- data %>%
-    filter(home_away == "h") %>%
+    dplyr::filter(home_away == "h") %>%
     mutate(xGsum = cumsum(xG))
   data2 <- data %>%
-    filter(home_away == "a") %>%
+    dplyr::filter(home_away == "a") %>%
     mutate(xGsum = cumsum(xG))
   
-  data1 <- insertRows(data1, 1, new = 0)
-  data2 <- insertRows(data2, 1, new = 0)
+  # data1 <- insertRows(data1, 1, new = 0)
+  # data2 <- insertRows(data2, 1, new = 0)
+  data1 <- dplyr::add_row(.data = data1, .before = 1, 
+                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
+                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
+                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
+  
+  data2 <- dplyr::add_row(.data = data2, .before = 1, 
+                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
+                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
+                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
   
   dat1 <- data1 %>%
-    filter(result == "Goal")
+    dplyr::filter(result == "Goal")
   d1 <- data1 %>%
-    filter(result == "OwnGoal")
+    dplyr::filter(result == "OwnGoal")
   dat1 <- rbind(dat1, d1)
   dat2 <- data2 %>%
-    filter(result == "Goal")
+    dplyr::filter(result == "Goal")
   d2 <- data2 %>%
-    filter(result == "OwnGoal")
+    dplyr::filter(result == "OwnGoal")
   dat2 <- rbind(dat2, d2)
   
   team1 <- data$home_team
@@ -127,15 +134,18 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
     gls2 <- "Goals"
   }
   
-  plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  # plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  plot_title <- sprintf("<b style='color:%s'> %s : %s %s (%s xG) </b> vs. <b style='color:%s'> %s : %s %s (%s xG)</b>",
+                        home_color, team1, g1, gls1, xG1, 
+                        away_color, team2, g2, gls2, xG2)
   
   min1 <- dat1$minute
   min2 <- dat2$minute
   p1 <- dat1$player
   p2 <- dat2$player
   
-  player_lab1 <- glue("{p1} : {min1}")
-  player_lab2 <- glue("{p2} : {min2}")
+  player_lab1 <- paste0(p1, " : ", min1)
+  player_lab2 <- paste0(p2, " : ", min2)
   
   plot_timeline <- ggplot() +
     geom_step(data = data1, aes(x = minute, y = xGsum), colour = home_color, size = 3) +

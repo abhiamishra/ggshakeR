@@ -20,24 +20,19 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports:
   tidyr,
-  devtools,
   magrittr,
   dplyr,
   ggplot2,
   ggsoccer,
   ggrepel,
   viridis,
-  roxygen2,
   ggtext,
   Rcpp,
   RcppRoll,
   TTR,
   stringi, 
-  stringr, 
   forcats,
-  wesanderson,
-  glue,
-  berryFunctions
+  wesanderson
 Suggests: 
     rmarkdown,
     knitr,

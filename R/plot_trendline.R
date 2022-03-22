@@ -19,7 +19,6 @@
 #' @param theme to select the theme from 4 options -> dark, almond, rose, white.
 #'
 #' @import dplyr
-#' @importFrom glue glue
 #' @import ggplot2
 #' @import ggtext
 #' @import Rcpp
@@ -123,7 +122,9 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   }
   
   team <- paste(team, "xG Trendline")
-  subtitle <- glue("{roll_avg} Game Rolling Average [<b style='color:{colour_xg}'> xG </b> vs <b style='color:{colour_xga}'> xGA </b>]")
+  # subtitle <- glue("{roll_avg} Game Rolling Average [<b style='color:{colour_xg}'> xG </b> vs <b style='color:{colour_xga}'> xGA </b>]")
+  subtitle <- sprintf("%s Game Rolling Average [<b style='color:%s'> xG </b> vs <b style='color:%s'> xGA </b>]",
+                      roll_avg, colour_xg, colour_xga)
   
   ggplot(data, aes(x = Date)) +
     geom_line(aes(y = xGSM), colour = colour_xg, size = 3) +

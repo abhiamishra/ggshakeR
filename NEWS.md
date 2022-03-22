@@ -1,3 +1,8 @@
+# ggshakeR 0.1.2
+
+* Remove extraneous dependencies from package imports
+  * See [issue #20](https://github.com/abhiamishra/ggshakeR/issues/20)
+
 # ggshakeR 0.1.1
 
 * Implement Github Actions CI tools:

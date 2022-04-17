@@ -363,7 +363,7 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
             plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
-      scale_x_discrete(labels = function(x) stri_wrap(x, width = 10))
+      scale_x_discrete(labels = function(x) text_wrap(x = x))
     
   } else if (type == "comparison") { ## COMPARISON PLOT ----
     
@@ -538,6 +538,6 @@ Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshak
             plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
-      scale_x_discrete(labels = function(x) stri_wrap(x, width = 10))
+      scale_x_discrete(labels = function(x) text_wrap(x = x))
   }
 }

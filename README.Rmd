@@ -37,7 +37,7 @@ Let's get you started with the package!
 
 # Getting Started With ggshakeR
 
-First things first, install R and RStudio. R is the actual language while RStudio is the IDE that will help you work with language in a nice way.
+First things first, install R and RStudio. R is the actual language while RStudio is the IDE that will help you work with the R programming language in a nice way.
 
 Here are links to download both:
 
@@ -84,7 +84,9 @@ You can contact me at [email](abhiamishra0@gmail.com) or at my [Twitter](https:/
 
 Powered by Chatalytics:tm:
 
-Owner and Creator: __Abhishek Amol Mishra__
+Owner and Creator: [__Abhishek Amol Mishra__](https://github.com/abhiamishra)
+
+Authors: [__Harsh Krishna__](https://github.com/harshkrishna17) & [__Ryo Nakagawara__](https://github.com/Ryo-N7)
 
 # Licenses Used
 * [Torvaney](https://github.com/Torvaney/ggsoccer) and the ggsoccer package has been used in the package for creation of pitches. The use of this adheres to the [MIT License](https://github.com/Torvaney/ggsoccer/blob/master/LICENSE.md) provided. 

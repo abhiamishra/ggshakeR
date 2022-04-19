@@ -13,7 +13,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![codecov](https://codecov.io/gh/abhiamishra/ggshakeR/branch/main/graph/badge.svg?token=GO5918U56P)](https://codecov.io/gh/abhiamishra/ggshakeR)
 <!-- badges: end -->
 
-Welcome to ggshakeR\!
+Welcome to ggshakeR!
 
 This is R’s all-inclusive package for visualization and analysis of
 publicly available soccer data.
@@ -23,22 +23,22 @@ visualization a platform to learn about it while also learning a new
 language at the same time. This package is designed to work with free
 soccer data and, for now, include:
 
-  - [FBref](https://fbref.com/en/)
-  - [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
-  - [Understat](https://understat.com/)
+-   [FBref](https://fbref.com/en/)
+-   [StatsBomb Open Dataset](https://github.com/statsbomb/StatsBombR)
+-   [Understat](https://understat.com/)
 
-Let’s get you started with the package\!
+Let’s get you started with the package!
 
 # Getting Started With ggshakeR
 
 First things first, install R and RStudio. R is the actual language
-while RStudio is the IDE that will help you work with language in a nice
-way.
+while RStudio is the IDE that will help you work with the R programming
+language in a nice way.
 
 Here are links to download both:
 
-  - [R](https://www.r-project.org/)
-  - [RStudio](https://www.rstudio.com/products/rstudio/download/)
+-   [R](https://www.r-project.org/)
+-   [RStudio](https://www.rstudio.com/products/rstudio/download/)
 
 OK, now how do you get ggshakeR into RStudio?
 
@@ -54,26 +54,26 @@ After that, write the actual code to install ggshakeR:
 devtools::install_github("abhiamishra/ggshakeR")
 ```
 
-Now the library is installed but it’s not in your session just yet\!
-When a package is in a session means you can actually use the package:
+Now the library is installed but it’s not in your session just yet! When
+a package is in a session means you can actually use the package:
 
 ``` r
 library(ggshakeR)
 ```
 
-And that’s it you’re done\!
+And that’s it you’re done!
 
-We hope you have fun\!
+We hope you have fun!
 
 ## Helpful Links
 
 Here are some helpful links to get you started with the package:
 
-  - [Guide To Pitch
+-   [Guide To Pitch
     Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html)
-  - [Guide To Expected
+-   [Guide To Expected
     Threat](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html)
-  - [Guide To Pizza
+-   [Guide To Pizza
     Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html)
 
 # Credit
@@ -87,17 +87,21 @@ which this took inspiration from.
 
 # Contact and Support
 
-Tell your friends about ggshakeR and shake theiR lives away\! You can
+Tell your friends about ggshakeR and shake theiR lives away! You can
 contact me at [email](abhiamishra0@gmail.com) or at my
 [Twitter](https://twitter.com/MishraAbhiA)
 
 Powered by Chatalytics:tm:
 
-Owner and Creator: **Abhishek Amol Mishra**
+Owner and Creator: [**Abhishek Amol
+Mishra**](https://github.com/abhiamishra)
+
+Authors: [**Harsh Krishna**](https://github.com/harshkrishna17) & [**Ryo
+Nakagawara**](https://github.com/Ryo-N7)
 
 # Licenses Used
 
-  - [Torvaney](https://github.com/Torvaney/ggsoccer) and the ggsoccer
+-   [Torvaney](https://github.com/Torvaney/ggsoccer) and the ggsoccer
     package has been used in the package for creation of pitches. The
     use of this adheres to the [MIT
     License](https://github.com/Torvaney/ggsoccer/blob/master/LICENSE.md)

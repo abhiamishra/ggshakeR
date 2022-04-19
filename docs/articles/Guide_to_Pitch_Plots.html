@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>Guide to Pitch Plots</h1>
                         <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-02-19</h4>
+            <h4 data-toc-skip class="date">2022-04-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Pitch_Plots.Rmd" class="external-link"><code>vignettes/Guide_to_Pitch_Plots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Pitch_Plots.Rmd</code></div>
@@ -106,7 +106,7 @@
 <p>The easiest Pitch Plot function to use! To use this package, which <em>only works with Understat data</em>, we need the <a href="https://github.com/ewenme/understatr" class="external-link">understatr package</a>.</p>
 <p>Once you have installed the package, put the package in your work session by writing:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ewenme.github.io/understatr" class="external-link">understatr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">understatr</span><span class="op">)</span></code></pre></div>
 <p>We will use the understatr package to get the data for <code><a href="../reference/plot_shot.html">plot_shot()</a></code>. Browse through the understatr package to get their data. As a sanity check, make sure the dataframe has columns with these names:</p>
 <ul>
 <li>
@@ -119,7 +119,7 @@
 </ul>
 <p>Here, I am going to get Mohammed Salah’s data. To learn more about how to get data, read <a href="https://sagnikdas1.medium.com/tabguide-1-making-shot-maps-1c030f08393e" class="external-link">Nandy’s excellent guide</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">shot_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ewenme.github.io/understatr/reference/get_player_shots.html" class="external-link">get_player_shots</a></span><span class="op">(</span>player_id <span class="op">=</span> <span class="fl">1250</span><span class="op">)</span> <span class="co"># Salah's `player_id` on understat is `1250`</span></code></pre></div>
+<code class="sourceCode R"><span class="va">shot_data</span> <span class="op">&lt;-</span> <span class="fu">get_player_shots</span><span class="op">(</span>player_id <span class="op">=</span> <span class="fl">1250</span><span class="op">)</span> <span class="co"># Salah's `player_id` on understat is `1250`</span></code></pre></div>
 <p>After that, simply write and execute the following code to get a beautiful shot map:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">shot_data</span>, type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span>
@@ -168,18 +168,18 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span>
 
-<span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeCompetitions.html" class="external-link">FreeCompetitions</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
+<span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
 
-<span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeMatches.html" class="external-link">FreeMatches</a></span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
+<span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
 
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/StatsBombFreeEvents.html" class="external-link">StatsBombFreeEvents</a></span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">plottingData</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/allclean.html" class="external-link">allclean</a></span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></code></pre></div>
+<span class="va">plottingData</span>  <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></code></pre></div>
 <p>Before plotting, I am going to rename my columns:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,
+<code class="sourceCode R"><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span>
+  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,
          <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,
          <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
          <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
@@ -190,8 +190,8 @@
 </h3>
 <p>For the heat map, we simply select our columns and plot! Note that we don’t specify <strong>dataType</strong> since the default is set to “statsbomb”, so we can simply write this:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">heatData</span>  <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">finalX</span>, <span class="va">finalY</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">heatData</span>  <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">finalX</span>, <span class="va">finalY</span><span class="op">)</span>
 
 <span class="va">heatplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">heatData</span>, type <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span>
 
@@ -207,8 +207,8 @@
 <p>For the pass sonar, we’re going to a bit more data cleaning. I don’t want everybody’s passing sonar - that’s redundant!</p>
 <p>For our purposes, I want Jordi Alba’s passing sonar. First, let me get all passes from Jordi Alba:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plottingData</span>  <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type.name</span> <span class="op">==</span> <span class="st">"Pass"</span> <span class="op">&amp;</span> <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span> <span class="op">&amp;</span> <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plottingData</span>  <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type.name</span> <span class="op">==</span> <span class="st">"Pass"</span> <span class="op">&amp;</span> <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span> <span class="op">&amp;</span> <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span></code></pre></div>
 <p>Now I can construct a pass sonar! Default dataType is set to Statsbomb, so here we can simply write:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sonarPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">plottingData</span><span class="op">)</span>

@@ -1,0 +1,12 @@
+^ggshakeR\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^LICENSE\.md$
+^\.github$
+^\.lintr$
+^lintr-generator\.R$
+^codecov\.yml$

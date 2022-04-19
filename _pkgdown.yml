@@ -1,0 +1,49 @@
+url: https://abhiamishra.github.io/ggshakeR
+
+template:
+  bootstrap: 5
+  bslib:
+    bg: "#0d1117"
+    fg: "#FFFFFF"
+    primary: "#FFFFFF"
+    text-muted: "#FFFFFF"
+    text-secondary-color: "#44A2A7"
+    link-hover-color: "#44A2A7"
+    navbar-bg: "#78d4d8"
+    headings-color: "#44A2A7"
+
+navbar:
+  title: ggshakeR
+  type: inverse
+  left:
+  - text: Home
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: Guides
+    href: articles/index.html
+  - text: News
+    href: news/index.html
+
+reference:
+  - title: Pitch Plots
+    desc: Plots on a football/soccer pitch!
+    contents:
+      - plot_heatmap
+      - plot_pass
+      - plot_passflow
+      - plot_shot
+      - plot_sonar
+  - title: Analysis Plots
+    desc: Into the Scattergram!
+    contents:
+      - plot_pizza
+      - plot_scatter
+      - plot_trendline
+      - plot_timeline
+  - title: Expected Threat (xT)
+    desc: Functions for xT analysis
+    contents:
+      - calculate_threat
+      - xTGrid
+

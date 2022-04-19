@@ -3,7 +3,7 @@
 #' @param x text vector
 #' @return text vector
 #' @rdname text_wrap
-#' @export 
+#' @keywords internal 
 #' @importFrom stringi stri_wrap stri_c
 
 text_wrap <- function(x) {

@@ -15,3 +15,4 @@ text vector
 \description{
 Wrap text using stringi to mimic stringr
 }
+\keyword{internal}

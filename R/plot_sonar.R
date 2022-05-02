@@ -3,7 +3,7 @@
 #' This function allows for data, that can be from Opta or Statsbomb, to be used
 #' for plotting pass sonars.
 #'
-#' @param sonarData Dataframe that houses pass data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
+#' @param data Dataframe that houses pass data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
 #' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param titlePlot Title of the passing sonar plot
 #' @return a ggplot2 object
@@ -18,28 +18,28 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_sonar(sonarData, dataType = "statsbomb")
+#' plot <- plot_sonar(data, dataType = "statsbomb")
 #' plot
 #' }
 
-plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
+plot_sonar <- function(data, dataType = "statsbomb", titlePlot = "") {
   #Prerequiste checking: if the data has rows, whether it has the right columns
   #and whether it has the right dataTypes
-  if ((nrow(sonarData) > 0) &&
-       sum(c("x", "y", "finalX", "finalY") %in% names(sonarData)) == 4 &&
+  if ((nrow(data) > 0) &&
+       sum(c("x", "y", "finalX", "finalY") %in% names(data)) == 4 &&
        (dataType == "statsbomb" || dataType == "opta")) {
     
     #Converting opta data to stasbomb data
     if (dataType == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
-      sonarData$x <- to_sb$x(sonarData$x)
-      sonarData$y <- to_sb$y(sonarData$y)
-      sonarData$finalX <- to_sb$x(sonarData$finalX)
-      sonarData$finalY <- to_sb$y(sonarData$finalY)
+      data$x <- to_sb$x(data$x)
+      data$y <- to_sb$y(data$y)
+      data$finalX <- to_sb$x(data$finalX)
+      data$finalY <- to_sb$y(data$finalY)
     }
     
     #Adding columns to calculate the angle and other important variables
-    passData <- sonarData %>%
+    passData <- data %>%
       mutate(xstart = (finalX - x)) %>%
       mutate(ystart = (finalY - y)) %>%
       mutate(slope = ystart / xstart) %>%

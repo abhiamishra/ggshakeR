@@ -5,7 +5,7 @@
 #' density heatmap, and
 #' bin heatmap
 #'
-#' @param event_data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
+#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 #' "bin" indicates bin heatmap pass
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
@@ -26,18 +26,18 @@
 #' plot
 #' }
 
-plot_heatmap <- function(event_data, type = "", theme = "", data_type = "statsbomb", bin = 20) {
+plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", bin = 20) {
 
-  if (nrow(event_data) > 0 &&
-      sum(x = c("x", "y", "finalX", "finalY") %in% names(event_data)) == 4) {
+  if (nrow(data) > 0 &&
+      sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
 
     if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
-      event_data$x <- to_sb$x(event_data$x)
-      event_data$y <- to_sb$y(event_data$y)
+      data$x <- to_sb$x(data$x)
+      data$y <- to_sb$y(data$y)
     }
 
-    plot <- event_data %>%
+    plot <- data %>%
       ggplot(aes(x = x, y = y))
 
     if (theme == "dark" || theme == "") {

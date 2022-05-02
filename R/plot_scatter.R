@@ -7,7 +7,7 @@
 #' @param data the dataframe passed in for plotting.
 #' @param scatter_x name of column name in data to be used on x-axis
 #' @param scatter_y name of column name in data to be used on y-axis
-#' @param sc_label the name of column name in data to be label the scatter plot
+#' @param scatter_label the name of column name in data to be label the scatter plot
 #' @param set_size_num sets the size of the points set as a constant. Default size = 5.
 #' @param set_size_var Enter name of column name in data to set size based on variable.
 #' @param set_color_num sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"
@@ -16,9 +16,9 @@
 #' @param scatter_title pick the title of the scatter plot
 #' @param title_size sets the size of the title of the scatter plot. Default size = 25.
 #' @param scatter_subtitle pick the subtitle of the scatter plot
-#' @param subt_size sets the size of the subtitle of the scatter plot Default size =15.
+#' @param subtitle_size sets the size of the subtitle of the scatter plot Default size =15.
 #' @param scatter_cap pick the caption of the scatter plot
-#' @param cap_size sets the size of the caption of the scatter plot. Default size = 10.
+#' @param caption_size sets the size of the caption of the scatter plot. Default size = 10.
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -31,20 +31,20 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+#' plot <- plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", scatter_label = "team")
 #' plot
 #' }
 
-plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
+plot_scatter <- function(data, scatter_x = "", scatter_y = "", scatter_label = "",
                          set_size_num = 5, set_size_var = "",
                          set_color_num = "red", set_color_var = "",
                          theme = "classic",
                          scatter_title = "",
                          title_size = 25,
                          scatter_subtitle = "",
-                         subt_size = 15,
+                         subtitle_size = 15,
                          scatter_cap = "",
-                         cap_size = 10) {
+                         caption_size = 10) {
   if (nrow(data) > 0) {
     
     ## Pre-processing ----
@@ -60,15 +60,15 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
       col_var <- ""
       size_var <- ""
       
-      if (sc_label != "" && sc_label %in% names(data)) {
-        if (sc_label %in% selection == TRUE) {
-          data[, "sc_label"] <- data[, sc_label]
+      if (scatter_label != "" && scatter_label %in% names(data)) {
+        if (scatter_label %in% selection == TRUE) {
+          data[, "scatter_label"] <- data[, scatter_label]
           
-          selection <- append(selection, 'sc_label')
-          renaming <- append(renaming, 'sc_label')
+          selection <- append(selection, 'scatter_label')
+          renaming <- append(renaming, 'scatter_label')
         } else{
-          selection <- append(selection, sc_label)
-          renaming <- append(renaming, 'sc_label')
+          selection <- append(selection, scatter_label)
+          renaming <- append(renaming, 'scatter_label')
         }
         total <- total + 1
       }
@@ -133,9 +133,9 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
           geom_point(size = set_size_num, color = set_color_num)
       }
       
-      if (sc_label != "") {
+      if (scatter_label != "") {
         plot <- plot +
-          geom_label_repel(aes(x = scatter_x, y = scatter_y, label = sc_label), max.overlaps = 2)
+          geom_label_repel(aes(x = scatter_x, y = scatter_y, label = scatter_label), max.overlaps = 2)
       }
       
       ## Theme ----
@@ -165,8 +165,8 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", sc_label = "",
         ) +
         theme(
           plot.title = element_text(color = "black", size = title_size),
-          plot.subtitle = element_text(color = "black", size = subt_size),
-          plot.caption = element_text(color = "black", size = cap_size)
+          plot.subtitle = element_text(color = "black", size = subtitle_size),
+          plot.caption = element_text(color = "black", size = caption_size)
         )
     }
   }

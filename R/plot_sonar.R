@@ -4,8 +4,8 @@
 #' for plotting pass sonars.
 #'
 #' @param data Dataframe that houses pass data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
-#' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
-#' @param titlePlot Title of the passing sonar plot
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param title Title of the passing sonar plot
 #' @return a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -18,19 +18,19 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_sonar(data, dataType = "statsbomb")
+#' plot <- plot_sonar(data, data_type = "statsbomb")
 #' plot
 #' }
 
-plot_sonar <- function(data, dataType = "statsbomb", titlePlot = "") {
+plot_sonar <- function(data, data_type = "statsbomb", title = "") {
   #Prerequiste checking: if the data has rows, whether it has the right columns
-  #and whether it has the right dataTypes
+  #and whether it has the right data_types
   if ((nrow(data) > 0) &&
        sum(c("x", "y", "finalX", "finalY") %in% names(data)) == 4 &&
-       (dataType == "statsbomb" || dataType == "opta")) {
+       (data_type == "statsbomb" || data_type == "opta")) {
     
     #Converting opta data to stasbomb data
-    if (dataType == "opta") {
+    if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
       data$x <- to_sb$x(data$x)
       data$y <- to_sb$y(data$y)
@@ -79,8 +79,8 @@ plot_sonar <- function(data, dataType = "statsbomb", titlePlot = "") {
     #Initializing a Wes Anderson palette
     pal <- wes_palette("Zissou1", 10, type = "continuous")
     
-    if (titlePlot == "") {
-      titlePlot <- "Pass Sonar"
+    if (title == "") {
+      title <- "Pass Sonar"
     }
     
     plotCaption <- paste("Length of passes is in length of arrows + color of dots while frequency is in transparency. ", "Forward is toward's opponent's goal while backwards is towards own goal. ", sep = "\n")
@@ -97,7 +97,7 @@ plot_sonar <- function(data, dataType = "statsbomb", titlePlot = "") {
       scale_color_gradientn(colours = pal) +
       scale_x_continuous(breaks = seq(-180, 180, by = 90), limits = c(-180, 180)) +
       coord_polar(start = pi, direction = -1) +
-      labs(x = '', y = '', title = titlePlot,
+      labs(x = '', y = '', title = title,
            alpha = "Frequency of Passes", color = "Avg. Distance",
            caption = plotCaption) +
       ylim(-0.5, 1.5) +

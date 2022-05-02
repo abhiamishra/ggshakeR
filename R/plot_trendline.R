@@ -39,7 +39,7 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   
   fill_b <- ""
   colour_b <- ""
-  colorLine <- ""   ## Not used anywhere...?
+  colorLine <- ""   
   colorText <- ""
   gridc <- ""
   

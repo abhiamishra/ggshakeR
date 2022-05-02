@@ -354,7 +354,7 @@ x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
 testthat::test_that("Testing calculation of expected threat: ", {
-  p <- calculate_threat(df, dataType = "statsbomb")
+  p <- calculate_threat(df, data_type = "statsbomb")
   testthat::expect_equal((ncol(df) + 2), ncol(p))
 
 

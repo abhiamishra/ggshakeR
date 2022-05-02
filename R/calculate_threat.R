@@ -1,7 +1,7 @@
 #' Calculating xT for passes, carries, etc
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
-#' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
+#' @param event_data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
+#' @param data_type indicator for what type of data the event_data. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
@@ -10,15 +10,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_threat(test, dataType = "statsbomb", x_col = "location.x",
+#' endResult <- calculate_threat(test, data_type = "statsbomb", x_col = "location.x",
 #'                               y_col = "location.y", xend_col = "pass.end_location.x",
 #'                               yend_col = "pass.end_location.y")
 #' endResult
 #' }
 
-calculate_threat <- function(eventData, dataType = "opta") {
-  if (nrow(eventData) > 0) {
-    copydata <- eventData
+calculate_threat <- function(event_data, data_type = "opta") {
+  if (nrow(event_data) > 0) {
+    copydata <- event_data
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
     
@@ -48,7 +48,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
     parsing <- parsing %>% tidyr::drop_na(xend_col)
     parsing <-  parsing %>% tidyr::drop_na(yend_col)
     
-    if (dataType != "opta") {
+    if (data_type != "opta") {
       to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)
       parsing$x <- to_opta$x(parsing$x_col)
       parsing$y <- to_opta$y(parsing$y_col)
@@ -142,6 +142,6 @@ calculate_threat <- function(eventData, dataType = "opta") {
     
     return(joined)
   } else {
-    return(eventData)
+    return(event_data)
   }
 }

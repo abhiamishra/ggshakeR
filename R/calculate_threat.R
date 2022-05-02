@@ -1,7 +1,7 @@
 #' Calculating xT for passes, carries, etc
 #'
-#' @param event_data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
-#' @param data_type indicator for what type of data the event_data. Currently, options include "opta" (default) and "statsbomb"
+#' @param data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
+#' @param data_type indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
@@ -16,9 +16,9 @@
 #' endResult
 #' }
 
-calculate_threat <- function(event_data, data_type = "opta") {
-  if (nrow(event_data) > 0) {
-    copydata <- event_data
+calculate_threat <- function(data, data_type = "opta") {
+  if (nrow(data) > 0) {
+    copydata <- data
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
     
@@ -142,6 +142,6 @@ calculate_threat <- function(event_data, data_type = "opta") {
     
     return(joined)
   } else {
-    return(event_data)
+    return(data)
   }
 }

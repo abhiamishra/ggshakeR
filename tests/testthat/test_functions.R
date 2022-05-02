@@ -318,15 +318,15 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting heatmaps: ", {
-  p <- plot_heatmap(df, type = "hex")
+  p <- plot_heatmap(event_data = df, type = "hex")
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(df_empty)
+  p <- plot_heatmap(event_data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_heatmap(df_absent)
+  p <- plot_heatmap(event_data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
 ############# TESTING PLOT_HEATMAP ################

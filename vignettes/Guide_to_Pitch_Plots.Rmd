@@ -126,7 +126,7 @@ For the heat map, we simply select our columns and plot! Note that we don't spec
 heatData  <- plottingData %>%
   select(x, y, finalX, finalY)
 
-heatplot <- plot_heatmap(heatData, type = "bin")
+heatplot <- plot_heatmap(event_data = heatData, type = "bin")
 
 heatplot
 ```

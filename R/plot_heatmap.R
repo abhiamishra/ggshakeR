@@ -5,11 +5,11 @@
 #' density heatmap, and
 #' bin heatmap
 #'
-#' @param eventData The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
+#' @param event_data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 #' "bin" indicates bin heatmap pass
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
-#' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param bin indicates the size of the bin to construct heatmap for type "bin". Default set to 20.
 #' @return returns a ggplot2 object
 #'
@@ -26,18 +26,18 @@
 #' plot
 #' }
 
-plot_heatmap <- function(eventData, type = "", theme = "", dataType = "statsbomb", bin = 20) {
+plot_heatmap <- function(event_data, type = "", theme = "", data_type = "statsbomb", bin = 20) {
 
-  if (nrow(eventData) > 0 &&
-      sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
+  if (nrow(event_data) > 0 &&
+      sum(x = c("x", "y", "finalX", "finalY") %in% names(event_data)) == 4) {
 
-    if (dataType == "opta") {
+    if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
-      eventData$x <- to_sb$x(eventData$x)
-      eventData$y <- to_sb$y(eventData$y)
+      event_data$x <- to_sb$x(event_data$x)
+      event_data$y <- to_sb$y(event_data$y)
     }
 
-    plot <- eventData %>%
+    plot <- event_data %>%
       ggplot(aes(x = x, y = y))
 
     if (theme == "dark" || theme == "") {

@@ -131,15 +131,15 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting passflow maps: ", {
-  p <- plot_passflow(df)
+  p <- plot_passflow(pass_data = df)
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_passflow(df_empty)
+  p <- plot_passflow(pass_data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_passflow(df_absent)
+  p <- plot_passflow(pass_data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
 ############# TESTING PLOT_PASSFLOW ################
@@ -174,15 +174,15 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting shot maps: ", {
-  p <- plot_pass(df, plotType = "def", outcome = "suc")
+  p <- plot_pass(pass_data = df, plot_type = "def", outcome = "suc")
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_pass(df_empty)
+  p <- plot_pass(pass_data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_pass(df_absent)
+  p <- plot_pass(pass_data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
 ############# TESTING PLOT_PASS ################

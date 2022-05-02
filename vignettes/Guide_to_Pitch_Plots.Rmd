@@ -162,7 +162,7 @@ Design inspiration credit goes to [e.](https://twitter.com/barcanumbers) and the
 Since we already have Jordi Alba's passes, we can just construct the pass flow like this:
 
 ```{r, eval=FALSE}
-passflowPlot <- plot_passflow(plottingData)
+passflowPlot <- plot_passflow(pass_data = plottingData)
 
 passflowPlot
 ```

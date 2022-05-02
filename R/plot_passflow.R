@@ -5,7 +5,7 @@
 #'
 #' @param pass_data Dataframe that must house pass data only and must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
 #' @param bin_size Details the binsize the passflow needs to bin to. Default is 20.
-#' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -20,7 +20,7 @@
 #' plot
 #' }
 
-plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
+plot_passflow <- function(pass_data, bin_size = 0, data_type = "statsbomb") {
 
   fill_b <- "#0d1117"
   colour_b <- "white"
@@ -41,8 +41,8 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
   if ((nrow(pass_data) > 0) &&
        sum(x = c("x", "y", "finalX", "finalY") %in% names(pass_data)) == 4) {
 
-    # Converting opta data to stasbomb data
-    if (dataType == "opta") {
+    # Converting Opta data
+    if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
       pass_data$x <- to_sb$x(pass_data$x)
       pass_data$y <- to_sb$y(pass_data$y)

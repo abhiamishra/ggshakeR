@@ -42,19 +42,19 @@ plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", b
 
     if (theme == "dark" || theme == "") {
       fill_b <- "#0d1117"
-      colour_b <- "white"
+      color_b <- "white"
     } else if (theme == "white") {
       fill_b <- "#F5F5F5"
-      colour_b <- "black"
+      color_b <- "black"
     } else if (theme == "rose") {
       fill_b <- "#FFE4E1"
-      colour_b <- "#696969"
+      color_b <- "#696969"
     } else if (theme == "almond") {
       fill_b <- "#FFEBCD"
-      colour_b <- "#696969"
+      color_b <- "#696969"
     }
 
-    plot <- plot + annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+    plot <- plot + annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                                   fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))

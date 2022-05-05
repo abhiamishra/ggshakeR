@@ -6,8 +6,8 @@
 #' @param data Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name
 #' @param type Type of showcasing the shotmap: hexbin, density, point (default)
 #' @param bin_size Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.
-#' @param highlight_goals to choose to display only the goals in a different colour.
-#' @param avg_loc for removing lines denoting average location of shots if need be.
+#' @param highlight_goals to choose to display only the goals in a different color.
+#' @param average_location for removing lines denoting average location of shots if need be.
 #' @param theme Theme preferences for display: dark (default), white, rose, almond
 #' @return a ggplot2 object
 #'
@@ -20,10 +20,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_shot(data, type = "hexbin", bin_size = 20, avg_loc = TRUE, highlight_goals = FALSE)
+#' plot <- plot_shot(data, type = "hexbin", bin_size = 20, average_location = TRUE, highlight_goals = FALSE)
 #' }
 
-plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_loc = "", theme = "") {
+plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", average_location = "", theme = "") {
   
   if ((nrow(data) > 0) &&
        sum(c("X", "Y", "xG", "result", "player") %in% names(data)) == 5) {
@@ -33,32 +33,32 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
     player_name <- paste(first, last, "Shot Map", sep = "\n")
     
     fill_b <- ""
-    colour_b <- ""
+    color_b <- ""
     colorLine <- ""
     colorText <- ""
     
     ## theme ----
     if (theme == "dark" || theme == "") {
       fill_b <- "#0d1117"
-      colour_b <- "white"
+      color_b <- "white"
       
       colorLine <- "white"
       colorText <- "white"
     } else if (theme == "white") {
       fill_b <- "#F5F5F5"
-      colour_b <- "black"
+      color_b <- "black"
       
       colorLine <- "black"
       colorText <- "black"
     } else if (theme == "rose") {
       fill_b <- "#FFE4E1"
-      colour_b <- "#696969"
+      color_b <- "#696969"
       
       colorLine <- "#322E2E"
       colorText <- "#322E2E"
     } else if (theme == "almond") {
       fill_b <- "#FFEBCD"
-      colour_b <- "#696969"
+      color_b <- "#696969"
       
       colorLine <- "#322E2E"
       colorText <- "#322E2E"
@@ -67,7 +67,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
     ## base plot ----
     plot <- data %>%
       ggplot() +
-      annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+      annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))
@@ -82,7 +82,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
       total_goal <- sum(data$result == "Goal")
       xg_sot <- total_xG / nrow(data)
       
-      if (avg_loc == TRUE || avg_loc == "") {
+      if (average_location == TRUE || average_location == "") {
         
         if (type == "point" || type == "") {
           
@@ -113,7 +113,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
               mutate(isGoal = ifelse(result == "Goal", "Goal", "No Goal"))
             
             plot <- plot +
-              geom_point(data = data, aes(x = X, y = (80 - Y), size = xG, fill = isGoal), color = colour_b, pch = 21, alpha = 0.7) +
+              geom_point(data = data, aes(x = X, y = (80 - Y), size = xG, fill = isGoal), color = color_b, pch = 21, alpha = 0.7) +
               scale_fill_manual(values = c("#2fc22f", fill_b)) +
               scale_size_continuous(range = c(0.5, 7)) +
               geom_vline(xintercept = mean(data$X), color = colorLine, linetype = 2, size = 1.5) +
@@ -177,7 +177,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
               fill = "Count of Shots"
             )
         }
-      } else if (avg_loc == FALSE) {
+      } else if (average_location == FALSE) {
         
         if (type == "point" || type == "") {
           
@@ -206,7 +206,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", avg_
               mutate(isGoal = ifelse(result == "Goal", "Goal", "No Goal"))
             
             plot <- plot +
-              geom_point(data = data, aes(x = X, y = (80 - Y), size = xG, fill = isGoal), color = colour_b, pch = 21, alpha = 0.7) +
+              geom_point(data = data, aes(x = X, y = (80 - Y), size = xG, fill = isGoal), color = color_b, pch = 21, alpha = 0.7) +
               scale_fill_manual(values = c("#2fc22f", fill_b)) +
               scale_size_continuous(range = c(0.5, 7)) +
               geom_point(x = 86, y = 10, size = 40, color = colorText, shape = 1) +

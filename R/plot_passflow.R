@@ -23,7 +23,7 @@
 plot_passflow <- function(data, bin_size = 0, data_type = "statsbomb") {
 
   fill_b <- "#0d1117"
-  colour_b <- "white"
+  color_b <- "white"
   bin_alpha <- 0.6
 
   if (bin_size == 0) {
@@ -89,7 +89,7 @@ plot_passflow <- function(data, bin_size = 0, data_type = "statsbomb") {
 
     plot <- PassFlow %>%
       ggplot() +
-      annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+      annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
       theme_pitch()
 

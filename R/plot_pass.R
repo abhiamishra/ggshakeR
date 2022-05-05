@@ -6,7 +6,7 @@
 #'
 #' @param data The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column
 #' @param plot_type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
-#' @param prog indicates whether to map out progressive passes
+#' @param progressive_pass indicates whether to map out progressive passes
 #' @param cross indicates whether to map out crosses
 #' @param shot indicates whether to map out shot assists
 #' @param switch indicates whether to map out switches of play
@@ -27,12 +27,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot  <- plot_pass(data, plot_type = "def", prog = TRUE, 
+#' plot  <- plot_pass(data, plot_type = "def", progressive_pass = TRUE, 
 #'                    team = "Barcelona", player_fname = "Lionel")
 #' plot
 #' }
 
-plot_pass <- function(data, plot_type = "sep", prog = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
+plot_pass <- function(data, plot_type = "sep", progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
                       distance = "", outcome = "all", team = "", player_fname = "", player_lname = "", theme = "") {
   if ((nrow(data) > 0) &&
       sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name") %in% names(data)) == 5) {
@@ -71,7 +71,7 @@ plot_pass <- function(data, plot_type = "sep", prog = FALSE, cross = FALSE, shot
                                                             "Successful",
                                                             "Unsuccessful"))
     
-    if (prog == TRUE) {
+    if (progressive_pass == TRUE) {
       data <- data %>%
         mutate(start = sqrt((100 - location.x)^2 + (50 - location.y)^2)) %>%
         mutate(end = sqrt((100 - pass.end_location.x)^2 + (50 - pass.end_location.y)^2)) %>%
@@ -102,20 +102,20 @@ plot_pass <- function(data, plot_type = "sep", prog = FALSE, cross = FALSE, shot
     
     if (theme == "dark" || theme == "") {
       fill_b <- "#0d1117"
-      colour_b <- "white"
+      color_b <- "white"
     } else if (theme == "white") {
       fill_b <- "#F5F5F5"
-      colour_b <- "black"
+      color_b <- "black"
     } else if (theme == "rose") {
       fill_b <- "#FFE4E1"
-      colour_b <- "#696969"
+      color_b <- "#696969"
     } else if (theme == "almond") {
       fill_b <- "#FFEBCD"
-      colour_b <- "#696969"
+      color_b <- "#696969"
     }
     
     plot <- ggplot(data = data) +
-      annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+      annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))

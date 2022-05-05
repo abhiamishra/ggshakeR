@@ -8,12 +8,12 @@ plot_pizza(
   data,
   type = "",
   template = "",
-  colour_poss,
-  colour_att,
-  colour_def,
+  color_possession,
+  color_attack,
+  color_defense,
   player_1,
   player_2,
-  colour_compare,
+  color_compare,
   season,
   season_player_1,
   season_player_2,
@@ -28,17 +28,17 @@ plot_pizza(
 \item{template}{for selecting a group of pre-selected metrics for each position by position namely:
 forward, winger, midfielder, defender, goalkeeper, full back and custom.}
 
-\item{colour_poss}{for selecting the colour for possession group of stats. To be used only for single player plot.}
+\item{color_possession}{for selecting the color for possession group of stats. To be used only for single player plot.}
 
-\item{colour_att}{for selecting the colour for attacking group of stats. To be used only for single player plot.}
+\item{color_attack}{for selecting the color for attacking group of stats. To be used only for single player plot.}
 
-\item{colour_def}{for selecting the colour for defense group of stats. To be used only for single player plot.}
+\item{color_defense}{for selecting the color for defense group of stats. To be used only for single player plot.}
 
 \item{player_1}{for selecting the first player. To be used only for comparison plot.}
 
 \item{player_2}{for selecting the second player. To be used only for comparison plot.}
 
-\item{colour_compare}{for selecting the colour of comparison to be used only for comparison plot.}
+\item{color_compare}{for selecting the color of comparison to be used only for comparison plot.}
 
 \item{season}{Specify what season to pick for a single player pizza chart. Pick the scouting period from the scouting period column in the data.}
 
@@ -64,12 +64,12 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")
 plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
                     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                    colour_compare = "lightgreen", theme = "black")
+                    color_compare = "lightgreen", theme = "black")
 plot1
 
 plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
-                    colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
-                    colour_def = "red", theme = "dark")
+                    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+                    color_defense = "red", theme = "dark")
 plot2
 }
 }

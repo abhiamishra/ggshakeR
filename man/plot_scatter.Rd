@@ -8,18 +8,18 @@ plot_scatter(
   data,
   scatter_x = "",
   scatter_y = "",
-  sc_label = "",
+  scatter_label = "",
   set_size_num = 5,
   set_size_var = "",
   set_color_num = "red",
   set_color_var = "",
   theme = "classic",
-  scatter_title = "",
+  title = "",
   title_size = 25,
-  scatter_subtitle = "",
-  subt_size = 15,
-  scatter_cap = "",
-  cap_size = 10
+  subtitle = "",
+  subtitle_size = 15,
+  caption = "",
+  caption_size = 10
 )
 }
 \arguments{
@@ -29,7 +29,7 @@ plot_scatter(
 
 \item{scatter_y}{name of column name in data to be used on y-axis}
 
-\item{sc_label}{the name of column name in data to be label the scatter plot}
+\item{scatter_label}{the name of column name in data to be label the scatter plot}
 
 \item{set_size_num}{sets the size of the points set as a constant. Default size = 5.}
 
@@ -41,17 +41,17 @@ plot_scatter(
 
 \item{theme}{decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"}
 
-\item{scatter_title}{pick the title of the scatter plot}
+\item{title}{pick the title of the scatter plot}
 
 \item{title_size}{sets the size of the title of the scatter plot. Default size = 25.}
 
-\item{scatter_subtitle}{pick the subtitle of the scatter plot}
+\item{subtitle}{pick the subtitle of the scatter plot}
 
-\item{subt_size}{sets the size of the subtitle of the scatter plot Default size =15.}
+\item{subtitle_size}{sets the size of the subtitle of the scatter plot Default size = 15.}
 
-\item{scatter_cap}{pick the caption of the scatter plot}
+\item{caption}{pick the caption of the scatter plot}
 
-\item{cap_size}{sets the size of the caption of the scatter plot. Default size = 10.}
+\item{caption_size}{sets the size of the caption of the scatter plot. Default size = 10.}
 }
 \value{
 returns a ggplot2 object
@@ -62,7 +62,7 @@ that have passes as some sort of input. Compatible with any data frame of any da
 }
 \examples{
 \dontrun{
-plot <- plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", sc_label = "team")
+plot <- plot_scatter(data, scatter_x = "player", scatter_y = "age", scatter_label = "team")
 plot
 }
 }

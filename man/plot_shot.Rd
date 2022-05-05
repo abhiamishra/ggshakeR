@@ -5,24 +5,24 @@
 \title{Function for plotting shots}
 \usage{
 plot_shot(
-  shotdata,
+  data,
   type = "",
   bin_size = 30,
   highlight_goals = "",
-  avg_loc = "",
+  average_location = "",
   theme = ""
 )
 }
 \arguments{
-\item{shotdata}{Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name}
+\item{data}{Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name}
 
 \item{type}{Type of showcasing the shotmap: hexbin, density, point (default)}
 
 \item{bin_size}{Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.}
 
-\item{highlight_goals}{to choose to display only the goals in a different colour.}
+\item{highlight_goals}{to choose to display only the goals in a different color.}
 
-\item{avg_loc}{for removing lines denoting average location of shots if need be.}
+\item{average_location}{for removing lines denoting average location of shots if need be.}
 
 \item{theme}{Theme preferences for display: dark (default), white, rose, almond}
 }
@@ -35,6 +35,6 @@ for plotting shots.
 }
 \examples{
 \dontrun{
-plot <- plot_shot(shotdata, type = "hexbin", bin_size = 20, avg_loc = TRUE, highlight_goals = FALSE)
+plot <- plot_shot(data, type = "hexbin", bin_size = 20, average_location = TRUE, highlight_goals = FALSE)
 }
 }

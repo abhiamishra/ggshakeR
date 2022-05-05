@@ -11,12 +11,12 @@
 #' @param template for selecting a group of pre-selected metrics for each position by position namely:
 #'                 forward, winger, midfielder, defender, goalkeeper, full back and custom.
 #' @param theme Theme preferences for display: dark (default), white, black.
-#' @param colour_poss for selecting the colour for possession group of stats. To be used only for single player plot.
-#' @param colour_att for selecting the colour for attacking group of stats. To be used only for single player plot.
-#' @param colour_def for selecting the colour for defense group of stats. To be used only for single player plot.
+#' @param color_possession for selecting the color for possession group of stats. To be used only for single player plot.
+#' @param color_attack for selecting the color for attacking group of stats. To be used only for single player plot.
+#' @param color_defense for selecting the color for defense group of stats. To be used only for single player plot.
 #' @param player_1 for selecting the first player. To be used only for comparison plot.
 #' @param player_2 for selecting the second player. To be used only for comparison plot.
-#' @param colour_compare for selecting the colour of comparison to be used only for comparison plot.
+#' @param color_compare for selecting the color of comparison to be used only for comparison plot.
 #' @param season Specify what season to pick for a single player pizza chart. Pick the scouting period from the scouting period column in the data.
 #' @param season_player_1 Specify what season to pick for the first player in a pizza chart
 #' @param season_player_2 Specify what season to pick for the second player in a pizza chart
@@ -36,42 +36,42 @@
 #' plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
 #'                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
 #'                     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-#'                     colour_compare = "lightgreen", theme = "black")
+#'                     color_compare = "lightgreen", theme = "black")
 #' plot1
 #'
 #' plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
-#'                     colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
-#'                     colour_def = "red", theme = "dark")
+#'                     color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+#'                     color_defense = "red", theme = "dark")
 #' plot2
 #' }
 
-plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, colour_def, 
-                       player_1, player_2, colour_compare, 
+plot_pizza <- function(data, type = "", template = "", color_possession, color_attack, color_defense, 
+                       player_1, player_2, color_compare, 
                        season, season_player_1, season_player_2, theme = "") {
   
   colorText <- ""
   gridline <- ""
   fill_b <- ""
-  colour_b <- ""
+  color_b <- ""
   colorLine <- ""
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
-    colour_b <- "#0d1117"
+    color_b <- "#0d1117"
     
     colorText <- "white"
     gridline <- "565656"
     colorLine <- "white"
   } else if (theme == "black") {
     fill_b <- "black"
-    colour_b <- "black"
+    color_b <- "black"
     
     colorText <- "white"
     gridline <- "565656"
     colorLine <- "white"
   } else if (theme == "white") {
     fill_b <- "white"
-    colour_b <- "white"
+    color_b <- "white"
     
     colorText <- "black"
     gridline <- "565656"
@@ -333,16 +333,16 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
     x <- c(data_selected$Statistic, data_selected$stat)
     
     ggplot(data_selected, aes(fct_reorder(Statistic, stat), Percentile)) +
-      geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, colour = fill_b,
+      geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, color = fill_b,
                alpha = 0.1, show.legend = FALSE) +
-      geom_bar(stat = "identity", width = 1, aes(fill = stat), colour = fill_b, alpha = 1) +
+      geom_bar(stat = "identity", width = 1, aes(fill = stat), color = fill_b, alpha = 1) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.8) +
-      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.8) +
-      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.8) +
-      scale_fill_manual(values = c("Possession" = colour_poss,
-                                   "Attacking" = colour_att,
-                                   "Defending" = colour_def)) +
+      geom_hline(yintercept = 25, color = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 50, color = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 75, color = colorLine, linetype = "dashed", alpha = 0.8) +
+      scale_fill_manual(values = c("Possession" = color_possession,
+                                   "Attacking" = color_attack,
+                                   "Defending" = color_defense)) +
       geom_label(aes(y = 90, label = Per90, fill = stat), size = 3, color = fill_b, show.legend = FALSE) +
       scale_y_continuous(limits = c(-20, 100)) +
       labs(fill = "",
@@ -350,17 +350,17 @@ Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR
            title = title,
            subtitle = subtitle) +
       theme_minimal() +
-      theme(plot.background = element_rect(fill = fill_b, color = colour_b),
-            panel.background = element_rect(fill = fill_b, color = colour_b),
+      theme(plot.background = element_rect(fill = fill_b, color = color_b),
+            panel.background = element_rect(fill = fill_b, color = color_b),
             legend.position = "bottom",
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText, angle = ang),
-            text = element_text(colour = colorText, size = 20),
-            plot.title = element_markdown(hjust = 0.5, size = 26, colour = colorText, face = "bold"),
-            plot.subtitle = element_text(hjust = 0.5, size = 20, colour = colorText),
-            plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
+            axis.text.x = element_text(size = 12, color = colorText, angle = ang),
+            text = element_text(color = colorText, size = 20),
+            plot.title = element_markdown(hjust = 0.5, size = 26, color = colorText, face = "bold"),
+            plot.subtitle = element_text(hjust = 0.5, size = 20, color = colorText),
+            plot.caption = element_text(hjust = 0.5, size = 15, color = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
       scale_x_discrete(labels = function(x) text_wrap(x = x))
@@ -511,31 +511,31 @@ Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshak
     x <- data1$Statistic
     
     ggplot(data1, aes(x = fct_reorder(Statistic, stat), y = Percentile)) +
-      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, colour = gridline,
+      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, color = gridline,
                alpha = 0.5, show.legend = FALSE) +
-      geom_bar(data = data1, aes(y = Percentile, fill = colour_compare), colour = colour_compare, stat = "identity", width = 1, alpha = 1) +
-      scale_fill_manual(values = colour_compare) +
-      geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, colour = colorLine, size = 3) +
+      geom_bar(data = data1, aes(y = Percentile, fill = color_compare), color = color_compare, stat = "identity", width = 1, alpha = 1) +
+      scale_fill_manual(values = color_compare) +
+      geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, color = colorLine, size = 3) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.7) +
-      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.7) +
-      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 25, color = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 50, color = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 75, color = colorLine, linetype = "dashed", alpha = 0.7) +
       scale_y_continuous(limits = c(-20, 100)) +
       labs(caption = caption,
            title = title,
            subtitle = subtitle) +
       theme_minimal() +
-      theme(plot.background = element_rect(fill = fill_b, color = colour_b),
-            panel.background = element_rect(fill = fill_b, color = colour_b),
+      theme(plot.background = element_rect(fill = fill_b, color = color_b),
+            panel.background = element_rect(fill = fill_b, color = color_b),
             legend.position = "none",
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText, angle = ang),
-            text = element_text(colour = colorText, size = 20),
-            plot.title = element_markdown(hjust = 0.5, size = 26, colour = colour_compare, face = "bold"),
-            plot.subtitle = element_text(hjust = 0.5, size = 26, colour = colorLine, face = "bold"),
-            plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
+            axis.text.x = element_text(size = 12, color = colorText, angle = ang),
+            text = element_text(color = colorText, size = 20),
+            plot.title = element_markdown(hjust = 0.5, size = 26, color = color_compare, face = "bold"),
+            plot.subtitle = element_text(hjust = 0.5, size = 26, color = colorLine, face = "bold"),
+            plot.caption = element_text(hjust = 0.5, size = 15, color = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
       scale_x_discrete(labels = function(x) text_wrap(x = x))

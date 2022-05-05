@@ -1,4 +1,4 @@
-############# TESTING PLOT_SCATTER ################
+#############  |- PLOT_SCATTER ################
 # Creating a dataframe and testing plot_scatter
 df <- data.frame(
   xA = seq(1, 100, by = 1),
@@ -24,7 +24,7 @@ testthat::test_that("Plotting scatterplots: ", {
   testthat::expect_true(is.ggplot(p))
   testthat::expect_identical(p$labels$x, "xA")
   testthat::expect_identical(p$labels$y, "yA")
-  testthat::expect_identical(p$labels$colour, "col_scat")
+  testthat::expect_identical(p$labels$colour, "col_scat") ## in internals it's 'colour' here
   testthat::expect_identical(p$labels$size, "size_scat")
 
   # Testting for plotting with an empty dataframe
@@ -57,15 +57,10 @@ testthat::test_that("Plotting scatterplots: ", {
   )
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_SCATTER ################
 
 
 
-
-
-
-
-############# TESTING PLOT_SHOTS ################
+#############  |- PLOT_SHOTS ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   X = seq(81, 100, by = 1),
@@ -90,7 +85,7 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting pass flow maps: ", {
-  p <- plot_shot(df, highlight_goals = TRUE, avg_loc = FALSE)
+  p <- plot_shot(df, highlight_goals = TRUE, average_location = FALSE)
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
@@ -101,14 +96,11 @@ testthat::test_that("Testing plotting pass flow maps: ", {
   p <- plot_shot(df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_SHOTS ################
 
 
 
 
-
-
-############# TESTING PLOT_PASSFLOW ################
+#############  |- PLOT_PASSFLOW ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
@@ -131,24 +123,21 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting passflow maps: ", {
-  p <- plot_passflow(pass_data = df)
+  p <- plot_passflow(data = df)
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_passflow(pass_data = df_empty)
+  p <- plot_passflow(data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_passflow(pass_data = df_absent)
+  p <- plot_passflow(data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_PASSFLOW ################
 
 
 
-
-
-############# TESTING PLOT_PASS ################
+#############  |- PLOT_PASS ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   location.x = seq(81, 100, by = 1),
@@ -174,24 +163,21 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting shot maps: ", {
-  p <- plot_pass(pass_data = df, plot_type = "def", outcome = "suc")
+  p <- plot_pass(data = df, plot_type = "def", outcome = "suc")
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_pass(pass_data = df_empty)
+  p <- plot_pass(data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_pass(pass_data = df_absent)
+  p <- plot_pass(data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_PASS ################
 
 
 
-
-
-############# TESTING PLOT_TRENDLINE ################
+#############  |- PLOT_TRENDLINE ################
 # Scraping data and selecting only 200 rows
 # install.packages(worldfootballR) if not downloaded
 # laliga_2022 <- worldfootballR::get_match_results(country = "ESP", gender = "M", season_end_year = c(2020, 2021, 2022), tier = "1st")
@@ -220,24 +206,24 @@ data5 <- laliga_2022
 testthat::test_that("Testing plotting trendlines: ", {
   p <- plot_trendline(
     data = laliga_2022, team = "Barcelona",
-    colour_xg = "blue", colour_xga = "red",
-    roll_avg = 10, theme = "dark"
+    color_xg = "blue", color_xga = "red",
+    rolling_average = 10, theme = "dark"
   )
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on a dataframe with NA's
   p <- plot_trendline(
     data = data3, team = "Barcelona",
-    colour_xg = "blue", colour_xga = "red",
-    roll_avg = 10, theme = "dark"
+    color_xg = "blue", color_xga = "red",
+    rolling_average = 10, theme = "dark"
   )
   testthat::expect_true(is.ggplot(p))
 
   # testing using a dataframe that has limited rows
   p <- plot_trendline(
     data = data1, team = "Barcelona",
-    colour_xg = "blue", colour_xga = "red",
-    roll_avg = 10, theme = "dark"
+    color_xg = "blue", color_xga = "red",
+    rolling_average = 10, theme = "dark"
   )
   testthat::expect_true(is.ggplot(p))
 })
@@ -246,7 +232,7 @@ testthat::test_that("Testing plotting trendlines: ", {
 
 
 
-############# TESTING PLOT_PIZZA ################
+#############  |- PLOT_PIZZA ################
 # Scraping data
 # data1 <- worldfootballR::fb_player_scouting_report("https://fbref.com/en/players/6928979a/Nicolo-Barella", pos_versus = "primary")
 # data2 <- worldfootballR::fb_player_scouting_report("https://fbref.com/en/players/819b3158/Ilkay-Gundogan", pos_versus = "primary")
@@ -268,15 +254,15 @@ testthat::test_that("Testing plotting pizzas: ", {
     data = data, type = "comparison", template = "midfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-    colour_compare = "#90ee90", theme = "black"
+    color_compare = "#90ee90", theme = "black"
   )
   testthat::expect_true(is.ggplot(p))
 
   # testing for single player plot
   p <- plot_pizza(
     data = data1, type = "single", template = "midfielder",
-    colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
-    colour_def = "#fec44f", theme = "dark"
+    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+    color_defense = "#fec44f", theme = "dark"
   )
   testthat::expect_true(is.ggplot(p))
 
@@ -285,17 +271,14 @@ testthat::test_that("Testing plotting pizzas: ", {
     data = data, type = "comparison", template = "midfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-    colour_compare = "#90ee90", theme = "black"
+    color_compare = "#90ee90", theme = "black"
   )
   testthat::expect_true(is.ggplot(p))
 })
-############# TESTING PLOT_PIZZA ################
 
 
 
-
-
-############# TESTING PLOT_HEATMAP ################
+#############  |- PLOT_HEATMAP ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
@@ -318,18 +301,17 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting heatmaps: ", {
-  p <- plot_heatmap(event_data = df, type = "hex")
+  p <- plot_heatmap(data = df, type = "hex")
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(event_data = df_empty)
+  p <- plot_heatmap(data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_heatmap(event_data = df_absent)
+  p <- plot_heatmap(data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_HEATMAP ################
 
 
 
@@ -338,9 +320,7 @@ testthat::test_that("Testing plotting heatmaps: ", {
 
 
 
-
-
-############# TESTING CALCULATE_THREAT ################
+#############  |- CALCULATE_THREAT ################
 df <- data.frame(
   x = seq(81, 100, by = 1),
   y = seq(81, 100, by = 1),
@@ -354,22 +334,20 @@ x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
 testthat::test_that("Testing calculation of expected threat: ", {
-  p <- calculate_threat(df, data_type = "statsbomb")
+  p <- calculate_threat(data = df, data_type = "statsbomb")
   testthat::expect_equal((ncol(df) + 2), ncol(p))
 
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(df_empty)
+  p <- plot_heatmap(data = df_empty)
   testthat::expect_equal(NULL, ncol(p))
 })
-############# TESTING CALCULATE_THREAT ################
 
 
 
 
 
-
-############# TESTING PLOT_SONAR ################
+#############  |- PLOT_SONAR ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
@@ -392,24 +370,25 @@ df_absent <- data.frame(
 
 
 testthat::test_that("Testing plotting sonars: ", {
-  p <- plot_sonar(df, titlePlot = "Test 1")
+  p <- plot_sonar(data = df, title = "Test 1")
   testthat::expect_true(is.ggplot(p))
+  testthat::expect_equal(p$labels$title, "Test 1")
 
   # testing for plotting on an empty dataframe
-  p <- plot_sonar(df_empty)
+  p <- plot_sonar(data = df_empty)
   testthat::expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
-  p <- plot_sonar(df_absent)
+  p <- plot_sonar(data = df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_SONAR ################
 
 
 
 
 
-############# TESTING PLOT_TIMELINE ################
+
+#############  |- PLOT_TIMELINE ################
 # loading dataset
 
 # data <- worldfootballR::understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2021")
@@ -575,8 +554,8 @@ data <- data.frame(
 testthat::test_that("Testing plotting timelines: ", {
   p <- plot_timeline(
     data = data, match_year = 2021, team_home = "Manchester United", team_away = "Manchester City",
-    home_color = "#e31a1c", away_color = "#980043", theme = "dark"
+    color_home = "#e31a1c", color_away = "#980043", theme = "dark"
   )
   testthat::expect_true(is.ggplot(p))
 })
-############# TESTING PLOT_TIMELINE ################
+

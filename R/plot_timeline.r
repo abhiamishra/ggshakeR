@@ -6,9 +6,9 @@
 #' @param match_year the year the match was played.
 #' @param team_home is for the home team according to data.
 #' @param team_away is for the away team according to data.
-#' @param home_color is for the colour of the line for the home team.
-#' @param away_color is for the colour of the line for the away team.
-#' @param theme to select the colours. Choose from 4 themes -> dark, almond, rose, white.
+#' @param color_home is for the color of the line for the home team.
+#' @param color_away is for the color of the line for the away team.
+#' @param theme to select the colors. Choose from 4 themes -> dark, almond, rose, white.
 #' @return a ggplot2 object
 #'
 #' @import dplyr
@@ -22,43 +22,42 @@
 #' \dontrun{
 #' plot <- plot_timeline(data = data, match_year = 2021, 
 #'                       team_home = "Manchester United", team_away = "Liverpool",
-#'                       home_color = "#e31a1c", away_color = "#980043", theme = "dark")
+#'                       color_home = "#e31a1c", color_away = "#980043", theme = "dark")
 #' plot
 #' }
 
-plot_timeline <- function(data, match_year, team_home, team_away, home_color, away_color, theme = "") {
+plot_timeline <- function(data, match_year, team_home, team_away, color_home, color_away, theme = "") {
   
   fill_b <- ""
-  colour_b <- ""
+  color_b <- ""
   colorLine <- ""
   colorText <- ""
   gridc <- ""
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
-    colour_b <- "white"
-    
+    color_b <- "white"
     
     colorLine <- "white"
     gridc <- "#525252"
     colorText <- "white"
   } else if (theme == "white") {
     fill_b <- "#F5F5F5"
-    colour_b <- "black"
+    color_b <- "black"
     
     colorLine <- "black"
     gridc <- "grey"
     colorText <- "black"
   } else if (theme == "rose") {
     fill_b <- "#FFE4E1"
-    colour_b <- "#696969"
+    color_b <- "#696969"
     
     colorLine <- "#322E2E"
     gridc <- "grey"
     colorText <- "#322E2E"
   } else if (theme == "almond") {
     fill_b <- "#FFEBCD"
-    colour_b <- "#696969"
+    color_b <- "#696969"
     
     colorLine <- "#322E2E"
     gridc <- "grey"
@@ -134,10 +133,10 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
     gls2 <- "Goals"
   }
   
-  # plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  # plot_title <- glue("<b style='color:{color_home}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{color_away}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
   plot_title <- sprintf("<b style='color:%s'> %s : %s %s (%s xG) </b> vs. <b style='color:%s'> %s : %s %s (%s xG)</b>",
-                        home_color, team1, g1, gls1, xG1, 
-                        away_color, team2, g2, gls2, xG2)
+                        color_home, team1, g1, gls1, xG1, 
+                        color_away, team2, g2, gls2, xG2)
   
   min1 <- dat1$minute
   min2 <- dat2$minute
@@ -148,41 +147,41 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
   player_lab2 <- paste0(p2, " : ", min2)
   
   plot_timeline <- ggplot() +
-    geom_step(data = data1, aes(x = minute, y = xGsum), colour = home_color, size = 3) +
-    geom_step(data = data2, aes(x = minute, y = xGsum), colour = away_color, size = 3) +
-    geom_point(data = dat1, aes(x = minute, y = xGsum), colour = home_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
-    geom_point(data = dat2, aes(x = minute, y = xGsum), colour = away_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
+    geom_step(data = data1, aes(x = minute, y = xGsum), color = color_home, size = 3) +
+    geom_step(data = data2, aes(x = minute, y = xGsum), color = color_away, size = 3) +
+    geom_point(data = dat1, aes(x = minute, y = xGsum), color = color_home, fill = fill_b, shape = 21, stroke = 2, size = 6) +
+    geom_point(data = dat2, aes(x = minute, y = xGsum), color = color_away, fill = fill_b, shape = 21, stroke = 2, size = 6) +
     geom_text_repel(data = dat1, aes(x = minute, y = xGsum, label = player_lab1),
                     box.padding   = 2,
                     point.padding = 1.5,
                     segment.color = colorLine,
                     alpha = 0.8,
-                    colour = colorText,
+                    color = colorText,
                     size = 5) +
     geom_text_repel(data = dat2, aes(x = minute, y = xGsum, label = player_lab2),
                     box.padding   = 2,
                     point.padding = 1.5,
                     segment.color = colorLine,
                     alpha = 0.8,
-                    colour = colorText,
+                    color = colorText,
                     size = 5) +
     theme_minimal() +
     labs(title = plot_title) +
-    theme(plot.title = element_markdown(lineheight = 1.1, colour = colorText, hjust = 0.5, size = 20, face = "bold")) +
-    theme(plot.background = element_rect(fill = fill_b, colour = colour_b)) +
-    theme(panel.background = element_rect(fill = fill_b, colour = colour_b)) +
+    theme(plot.title = element_markdown(lineheight = 1.1, color = colorText, hjust = 0.5, size = 20, face = "bold")) +
+    theme(plot.background = element_rect(fill = fill_b, color = color_b)) +
+    theme(panel.background = element_rect(fill = fill_b, color = color_b)) +
     labs(x = "Minute", y = "Cumulative xG") +
-    theme(axis.title.x = element_text(colour = colorLine, size = 15, face = "bold")) +
-    theme(axis.title.y = element_text(colour = colorLine, size = 15, face = "bold")) +
-    theme(axis.text.x = element_text(colour = colorLine, size = 12),
-          axis.text.y = element_text(colour = colorLine, size = 12)) +
-    theme(panel.grid.major = element_line(colour = gridc, size = 0.5, linetype = "dashed")) +
+    theme(axis.title.x = element_text(color = colorLine, size = 15, face = "bold")) +
+    theme(axis.title.y = element_text(color = colorLine, size = 15, face = "bold")) +
+    theme(axis.text.x = element_text(color = colorLine, size = 12),
+          axis.text.y = element_text(color = colorLine, size = 12)) +
+    theme(panel.grid.major = element_line(color = gridc, size = 0.5, linetype = "dashed")) +
     theme(panel.grid.minor = element_blank()) +
     theme(axis.line = element_blank(),
           panel.border = element_blank(),
           panel.background = element_blank()) +
     scale_x_continuous(breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)) +
-    geom_vline(xintercept = 45, linetype = "dashed", colour = colorLine, size = 1)
+    geom_vline(xintercept = 45, linetype = "dashed", color = colorLine, size = 1)
   
   return(plot_timeline)
 }

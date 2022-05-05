@@ -13,11 +13,11 @@
 #' @param set_color_num sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"
 #' @param set_color_var Enter name of column name in data to set color based on variable.
 #' @param theme decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"
-#' @param scatter_title pick the title of the scatter plot
+#' @param title pick the title of the scatter plot
 #' @param title_size sets the size of the title of the scatter plot. Default size = 25.
-#' @param scatter_subtitle pick the subtitle of the scatter plot
-#' @param subtitle_size sets the size of the subtitle of the scatter plot Default size =15.
-#' @param scatter_cap pick the caption of the scatter plot
+#' @param subtitle pick the subtitle of the scatter plot
+#' @param subtitle_size sets the size of the subtitle of the scatter plot Default size = 15.
+#' @param caption pick the caption of the scatter plot
 #' @param caption_size sets the size of the caption of the scatter plot. Default size = 10.
 #' @return returns a ggplot2 object
 #'
@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_scatter(dtaa, scatter_x = "player", scatter_y = "age", scatter_label = "team")
+#' plot <- plot_scatter(data, scatter_x = "player", scatter_y = "age", scatter_label = "team")
 #' plot
 #' }
 
@@ -39,11 +39,11 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", scatter_label = "
                          set_size_num = 5, set_size_var = "",
                          set_color_num = "red", set_color_var = "",
                          theme = "classic",
-                         scatter_title = "",
+                         title = "",
                          title_size = 25,
-                         scatter_subtitle = "",
+                         subtitle = "",
                          subtitle_size = 15,
-                         scatter_cap = "",
+                         caption = "",
                          caption_size = 10) {
   if (nrow(data) > 0) {
     
@@ -155,9 +155,9 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", scatter_label = "
       
       plot <- plot +
         labs(
-          title = scatter_title,
-          subtitle = scatter_subtitle,
-          caption = scatter_cap,
+          title = title,
+          subtitle = subtitle,
+          caption = caption,
           color = col_var,
           size = size_var,
           x = x_title,

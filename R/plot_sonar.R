@@ -94,7 +94,7 @@ plot_sonar <- function(data, data_type = "statsbomb", title = "") {
                    arrow = arrow(length = unit(0.03, "npc"))) +
       scale_alpha(guide = 'none') +
       geom_point(aes(x = angle.round, y = 0, color = distance), size = 6) +
-      scale_color_gradientn(colours = pal) +
+      scale_color_gradientn(colors = pal) +
       scale_x_continuous(breaks = seq(-180, 180, by = 90), limits = c(-180, 180)) +
       coord_polar(start = pi, direction = -1) +
       labs(x = '', y = '', title = title,
@@ -103,8 +103,8 @@ plot_sonar <- function(data, data_type = "statsbomb", title = "") {
       ylim(-0.5, 1.5) +
       theme(plot.title = element_text(hjust = 0.5, color = "white", size = 25),
             plot.caption = element_text(color = "white"),
-            plot.background = element_rect(fill = "black", colour = NA),
-            panel.background = element_rect(fill = "black", colour = NA),
+            plot.background = element_rect(fill = "black", color = NA),
+            panel.background = element_rect(fill = "black", color = NA),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
             panel.border = element_blank(),

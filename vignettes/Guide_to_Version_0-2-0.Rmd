@@ -1,0 +1,139 @@
+---
+title: "Guide to Version 0.2.0"
+author: "Ryo Nakagawara"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Guide_to_Version_0-2-0}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+Along side the new functionality in this update, there have been a lot of changes made to existing {ggshakeR} functions as well. This is regarding the consistency and standardization of argument names in the package.
+
+```{r setup}
+library(ggshakeR)
+```
+
+The problem that really kicked off these changes was the fact that we had functions with arguments using `snake_case` in some functions, others using `camelCase`, and worst of all some functions that used both `snake_case` AND `camelCase` in the argument names.
+
+```{r example-bad}
+plot_passflow(pass_data, dataType, bin_size) # !!!
+```
+
+After some discussion with the other authors, I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of consistency. This does mean     in the short-term, please do know these changes are done with user experience in mind in the long-term.
+
+Listed below are the changes made:
+
+## `calculate_threat()`
+
+```{r}
+calculate_threat(data, data_type)
+```
+
+- `data`: changed from `event_data`
+- `data_type`: changed from `dataType`
+
+## `plot_heatmap()`
+
+```{r}
+plot_heatmap(data, type, theme, data_type, bin)
+```
+
+
+## `plot_pass()`
+
+```{r}
+plot_pass(data, 
+          plot_type, progressive_pass, cross, shot, switch, 
+          distance, outcome, 
+          team, 
+          player_fname, player_lname, 
+          theme)
+```
+
+
+## `plot_passflow()`
+
+```{r}
+plot_passflow(data, bin_size, data_type)
+```
+
+
+
+## `plot_pizza()`
+
+```{r}
+plot_pizza(data, type, template, 
+           color_possession, color_attack, color_defense, color_compare,
+           player_1, player_2, 
+           season, season_player_1, season_player_2, 
+           theme)
+```
+
+
+## `plot_scatter()`
+
+```{r}
+plot_scatter(data, scatter_x, scatter_y, scatter_label,
+             set_size_num, set_size_var,
+             set_color_num, set_color_var,
+             theme, 
+             title, title_size,
+             subtitle, subtitle_size,
+             caption, caption_size)
+```
+
+
+## `plot_shot()`
+
+```{r}
+plot_shot(data, type, bin_size, highlight_goals, average_location)
+```
+
+
+
+## `plot_sonar()`
+
+```{r}
+plot_sonar(data, data_type, title)
+```
+
+
+## `plot_trendline()`
+
+```{r}
+plot_trendline(data, team, color_xg, color_xga, rolling_average, theme)
+```
+
+
+## `plot_timeline()`
+
+```{r}
+plot_timeline(data, match_year, team_home, color_home, team_away, color_away, theme)
+```
+
+
+
+
+
+
+
+## Conclusion
+
+For those who are not ready to fully commit to these changes (because you have a large script with {ggshakeR} functions or whatever) but have accidentally installed the new version, fear not as you can go back and install a prior version of the package.
+
+```{r}
+## Install previous 0.1.2 version
+devtools::install_github("abhimishra/ggshakeR@0.1.2")
+```
+
+Do note that the changes listed in this vignette are permanent and will be the standard going forward. So please take the time to read this vignette and the documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version 0.2.0 (and beyond!) provides. 

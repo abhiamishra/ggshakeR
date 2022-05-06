@@ -62,7 +62,7 @@ shot_data <- get_player_shots(player_id = 1250) # Salah's `player_id` on underst
 After that, simply write and execute the following code to get a beautiful shot map:
 
 ```{r, eval=FALSE}
-plot <- plot_shot(shot_data, type = "density")
+plot <- plot_shot(data, type = "density")
 
 plot
 ```
@@ -126,7 +126,7 @@ For the heat map, we simply select our columns and plot! Note that we don't spec
 heatData  <- plottingData %>%
   select(x, y, finalX, finalY)
 
-heatplot <- plot_heatmap(event_data = heatData, type = "bin")
+heatplot <- plot_heatmap(data = heatData, type = "bin")
 
 heatplot
 ```
@@ -147,7 +147,7 @@ plottingData  <- plottingData %>%
 Now I can construct a pass sonar! Default dataType is set to Statsbomb, so here we can simply write:
 
 ```{r, eval=FALSE}
-sonarPlot <- plot_sonar(plottingData)
+sonarPlot <- plot_sonar(data = plottingData)
 
 sonarPlot
 ```
@@ -162,7 +162,7 @@ Design inspiration credit goes to [e.](https://twitter.com/barcanumbers) and the
 Since we already have Jordi Alba's passes, we can just construct the pass flow like this:
 
 ```{r, eval=FALSE}
-passflowPlot <- plot_passflow(pass_data = plottingData)
+passflowPlot <- plot_passflow(data = plottingData)
 
 passflowPlot
 ```

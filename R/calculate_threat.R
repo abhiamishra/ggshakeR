@@ -80,7 +80,7 @@ calculate_threat <- function(data, data_type = "opta") {
       } else {
         if (b %% 12.5 == 0) {
           if (as.integer(a / 8.33) + 1 > 12) {
-            col <- as.integer(a / 8.33)
+            col <- as.integer(a / 8.33)  
           } else {
             col <- as.integer(a / 8.33) + 1
           }

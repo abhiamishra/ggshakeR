@@ -5,7 +5,7 @@
 #' Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 #'
 #' @param data The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column
-#' @param plot_type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
+#' @param type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
 #' @param progressive_pass indicates whether to map out progressive passes
 #' @param cross indicates whether to map out crosses
 #' @param shot indicates whether to map out shot assists
@@ -27,12 +27,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot  <- plot_pass(data, plot_type = "def", progressive_pass = TRUE, 
+#' plot  <- plot_pass(data, type = "def", progressive_pass = TRUE, 
 #'                    team = "Barcelona", player_fname = "Lionel")
 #' plot
 #' }
 
-plot_pass <- function(data, plot_type = "sep", progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
+plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
                       distance = "", outcome = "all", team = "", player_fname = "", player_lname = "", theme = "") {
   if ((nrow(data) > 0) &&
       sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name") %in% names(data)) == 5) {
@@ -121,7 +121,7 @@ plot_pass <- function(data, plot_type = "sep", progressive_pass = FALSE, cross =
       theme(panel.background = element_rect(fill = fill_b))
     
     if (nrow(data) > 0) {
-      if (plot_type == "sep") {
+      if (type == "sep") {
         plot <- plot +
           geom_segment(aes(x = location.x, y = 80 - location.y,
                            xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),
@@ -130,7 +130,7 @@ plot_pass <- function(data, plot_type = "sep", progressive_pass = FALSE, cross =
           labs(
             color = "Outcome of Pass"
           )
-      } else if (plot_type == "all") {
+      } else if (type == "all") {
         plot <- plot +
           geom_segment(aes(x = location.x, y = 80 - location.y,
                            xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),

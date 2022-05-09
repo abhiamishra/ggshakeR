@@ -27,8 +27,8 @@
 plot_convexhull <- function(data, data_type = "statsbomb", 
                             colour = "#E74C3C", title_plot = "", theme = "dark") {
   
-  if(data_type == "opta") {
-    if(nrow(data) > 0 &&
+  if (data_type == "opta") {
+    if (nrow(data) > 0 &&
        sum(x = c("x", "y", "finalX", "finalY", "playerId") %in% names(data)) == 5) {
     } else {
       print(c("x", "y", "finalX", "finalY", "playerId"))
@@ -42,7 +42,7 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     data <- data %>%
       drop_na(playerId, x, y)
     
-  } else if(data_type == "statsbomb") {
+  } else if (data_type == "statsbomb") {
     
     if (!"playerId" %in% colnames(data)) {
       data <- data %>%
@@ -74,22 +74,15 @@ plot_convexhull <- function(data, data_type = "statsbomb",
   
   list_data <- split(data, data$playerId)
   
-  hull_fun <- function(data) {
-    hull_data <- data %>%
-      filter((x > x_low) & (x < x_high)) %>%
-      filter((y > y_low) & (y < y_high)) %>%
-      slice(chull(x, y))
-    
-    return(hull_data)
-  }
-  
   hull_data <- list_data %>%
     purrr::map(hull_fun) %>%
     purrr::reduce(full_join)
   
   if(title_plot == "") {
     title_plot <- "Convex Hulls"
-  } else {}
+  } else {
+    title_plot
+  }
   
   convex_hull <- ggplot(hull_data) +
     annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = colour_b) +

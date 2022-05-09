@@ -5,7 +5,7 @@
 #'
 #' @param data Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name
 #' @param type Type of showcasing the shotmap: hexbin, density, point (default)
-#' @param bin_size Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.
+#' @param bins Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.
 #' @param highlight_goals to choose to display only the goals in a different color.
 #' @param average_location for removing lines denoting average location of shots if need be.
 #' @param theme Theme preferences for display: dark (default), white, rose, almond
@@ -20,10 +20,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_shot(data, type = "hexbin", bin_size = 20, average_location = TRUE, highlight_goals = FALSE)
+#' plot <- plot_shot(data, type = "hexbin", bins = 20, average_location = TRUE, highlight_goals = FALSE)
 #' }
 
-plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", average_location = "", theme = "") {
+plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_location = "", theme = "") {
   
   if ((nrow(data) > 0) &&
        sum(c("X", "Y", "xG", "result", "player") %in% names(data)) == 5) {
@@ -157,7 +157,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", aver
           
         } else if (type == "hexbin") { ## HEXBIN ----
           plot <- plot +
-            geom_hex(data = data, aes(x = X, y = (80 - Y)), bins = bin_size) +
+            geom_hex(data = data, aes(x = X, y = (80 - Y)), bins = bins) +
             scale_fill_continuous(type = "viridis") +
             scale_size_continuous(range = c(0.5, 7)) +
             geom_vline(xintercept = mean(data$X), color = colorLine, linetype = 2, size = 1.5) +
@@ -246,7 +246,7 @@ plot_shot <- function(data, type = "", bin_size = 30, highlight_goals = "", aver
           
         } else if (type == "hexbin") {
           plot <- plot +
-            geom_hex(data = data, aes(x = X, y = (80 - Y)), bins = bin_size) +
+            geom_hex(data = data, aes(x = X, y = (80 - Y)), bins = bins) +
             scale_fill_continuous(type = "viridis") +
             scale_size_continuous(range = c(0.5, 7)) +
             geom_point(x = 86, y = 10, size = 40, color = colorText, shape = 1) +

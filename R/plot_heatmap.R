@@ -1,16 +1,16 @@
 #' Plotting heatmap
 #'
 #' This function allows you to plot various types of heatmaps of starting x and y coordinates:
-#' hex bin heatmap,
+#' hex binwidth heatmap,
 #' density heatmap, and
-#' bin heatmap
+#' binwidth heatmap
 #'
 #' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-#' "bin" indicates bin heatmap pass
+#' "binwidth" indicates binwidth heatmap pass
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
-#' @param bin indicates the size of the bin to construct heatmap for type "bin". Default set to 20.
+#' @param binwidth indicates the size of the binwidth to construct heatmap for type "binwidth". Default set to 20.
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -26,7 +26,7 @@
 #' plot
 #' }
 
-plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", bin = 20) {
+plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", binwidth = 20) {
 
   if (nrow(data) > 0 &&
       sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
@@ -65,10 +65,10 @@ plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", b
     } else if (type == "hex") {
       plot <- plot +
         geom_hex(aes(x = x, y = 80 - y))
-    } else if (type == "bin") {
+    } else if (type == "binwidth") {
       plot <- plot +
         geom_bin2d(aes(x = x, y = 80 - y),
-                   binwidth = c(bin, bin),
+                   binwidth = c(binwidth, binwidth),
                    alpha = 0.9)
     }
 
@@ -78,9 +78,9 @@ plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", b
         fill = "Density"
       )
 
-    plot
+    return(plot)
 
   } else {
-    plot
+    stop("Please check that your data has the columns: 'x', 'y', 'finalX' and 'finalY'")
   }
 }

@@ -4,7 +4,7 @@
 #' to make a passflow map. Compatible, for right now, with StatsBomb data only. Returns a ggplot object
 #'
 #' @param data Dataframe that must house pass data only and must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
-#' @param bin_size Details the binsize the passflow needs to bin to. Default is 20.
+#' @param binwidth Details the binsize the passflow needs to bin to. Default is 20.
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @return returns a ggplot2 object
 #'
@@ -16,20 +16,20 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' plot <- plot_passflow(data, bin_size = 30)
+#' plot <- plot_passflow(data, binwidth = 30)
 #' plot
 #' }
 
-plot_passflow <- function(data, bin_size = 0, data_type = "statsbomb") {
+plot_passflow <- function(data, binwidth = 0, data_type = "statsbomb") {
 
   fill_b <- "#0d1117"
   color_b <- "white"
   bin_alpha <- 0.6
 
-  if (bin_size == 0) {
+  if (binwidth == 0) {
     bin <- 20
   } else {
-    bin <- bin_size
+    bin <- binwidth
   }
 
   x_bin <- 120 / bin

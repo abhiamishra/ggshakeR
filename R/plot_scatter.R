@@ -5,9 +5,9 @@
 #'
 #'
 #' @param data the dataframe passed in for plotting.
-#' @param scatter_x name of column name in data to be used on x-axis
-#' @param scatter_y name of column name in data to be used on y-axis
-#' @param scatter_label the name of column name in data to be label the scatter plot
+#' @param x name of column name in data to be used on x-axis
+#' @param y name of column name in data to be used on y-axis
+#' @param label the name of column name in data to label the scatter plot
 #' @param set_size_num sets the size of the points set as a constant. Default size = 5.
 #' @param set_size_var Enter name of column name in data to set size based on variable.
 #' @param set_color_num sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"
@@ -31,11 +31,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_scatter(data, scatter_x = "player", scatter_y = "age", scatter_label = "team")
+#' plot <- plot_scatter(data, x = "player", y = "age", label = "team")
 #' plot
 #' }
 
-plot_scatter <- function(data, scatter_x = "", scatter_y = "", scatter_label = "",
+plot_scatter <- function(data, x = "", y = "", label = "",
                          set_size_num = 5, set_size_var = "",
                          set_color_num = "red", set_color_var = "",
                          theme = "classic",
@@ -51,6 +51,9 @@ plot_scatter <- function(data, scatter_x = "", scatter_y = "", scatter_label = "
   
   ## Pre-processing ----
   total <- 0
+  scatter_x <- x
+  scatter_y <- y
+  scatter_label <- label
   
   if (scatter_x %in% names(data) && scatter_y %in% names(data)) {
     selection <- c(scatter_x, scatter_y)

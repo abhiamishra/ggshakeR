@@ -580,3 +580,37 @@ testthat::test_that("Testing plotting timelines: ", {
   testthat::expect_true(is.ggplot(p))
 })
 ############# TESTING PLOT_TIMELINE ################
+
+
+
+
+
+############# TESTING PLOT_CONVEXHULL ################
+# Creating dataset 
+
+names <- c("Jesse", "Jasmine", "Cruz", "Muneeb", "Robert", "Shyanne", 
+           "Angela", "Jennifer", "Ariel", "Austin", "Anaisha")
+x <- sample(100)
+y <- sample(100)
+finalX <- sample(100)
+finalY <- sample(100)
+
+names_rep <- rep_len(names, length.out = 700)
+x <- rep_len(x, length.out = 700)
+y <- rep_len(y, length.out = 700)
+finalX <- rep_len(finalX, length.out = 700)
+finalY <- rep_len(finalY, length.out = 700)
+
+data <- data.frame(playerId = names_rep,
+                   x = x, 
+                   y = y, 
+                   finalX = finalX, 
+                   finalY = finalY)
+
+# Test
+
+testthat::test_that("Testing plotting convex hulls: ", {
+  p <- plot_convexhull(data, data_type = "opta", title_plot = "Test 1")
+  testthat::expect_true(is.ggplot(p))
+})
+############# TESTING PLOT_CONVEXHULL ################

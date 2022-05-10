@@ -32,7 +32,8 @@ Imports:
   TTR,
   stringi, 
   forcats,
-  wesanderson
+  wesanderson,
+  purrr
 Suggests: 
     rmarkdown,
     knitr,

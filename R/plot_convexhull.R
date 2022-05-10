@@ -65,20 +65,14 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     fill_b <- "#FFEBCD"
     colour_b <- "#696969"
   }
-  
-  x_low <- quantile(data$x, 0.05)
-  x_high <- quantile(data$x, 0.95)
-  
-  y_low <- quantile(data$y, 0.05)
-  y_high <- quantile(data$y, 0.95)
-  
+    
   list_data <- split(data, data$playerId)
   
   hull_data <- list_data %>%
     purrr::map(hull_fun) %>%
     purrr::reduce(full_join)
   
-  if(title_plot == "") {
+  if (title_plot == "") {
     title_plot <- "Convex Hulls"
   } else {
     title_plot

@@ -614,3 +614,8 @@ testthat::test_that("Testing plotting convex hulls: ", {
   testthat::expect_true(is.ggplot(p))
 })
 ############# TESTING PLOT_CONVEXHULL ################
+
+devtools::document()
+roxygen2::roxygenise()
+devtools::build()
+devtools::check()

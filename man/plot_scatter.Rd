@@ -6,9 +6,9 @@
 \usage{
 plot_scatter(
   data,
-  scatter_x = "",
-  scatter_y = "",
-  scatter_label = "",
+  x = "",
+  y = "",
+  label = "",
   set_size_num = 5,
   set_size_var = "",
   set_color_num = "red",
@@ -25,11 +25,11 @@ plot_scatter(
 \arguments{
 \item{data}{the dataframe passed in for plotting.}
 
-\item{scatter_x}{name of column name in data to be used on x-axis}
+\item{x}{name of column name in data to be used on x-axis}
 
-\item{scatter_y}{name of column name in data to be used on y-axis}
+\item{y}{name of column name in data to be used on y-axis}
 
-\item{scatter_label}{the name of column name in data to be label the scatter plot}
+\item{label}{the name of column name in data to label the scatter plot}
 
 \item{set_size_num}{sets the size of the points set as a constant. Default size = 5.}
 
@@ -62,7 +62,7 @@ that have passes as some sort of input. Compatible with any data frame of any da
 }
 \examples{
 \dontrun{
-plot <- plot_scatter(data, scatter_x = "player", scatter_y = "age", scatter_label = "team")
+plot <- plot_scatter(data, x = "player", y = "age", label = "team")
 plot
 }
 }

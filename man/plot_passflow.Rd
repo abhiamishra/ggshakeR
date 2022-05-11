@@ -4,12 +4,12 @@
 \alias{plot_passflow}
 \title{Passflow plot function}
 \usage{
-plot_passflow(data, bin_size = 0, data_type = "statsbomb")
+plot_passflow(data, binwidth = 0, data_type = "statsbomb")
 }
 \arguments{
 \item{data}{Dataframe that must house pass data only and must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
-\item{bin_size}{Details the binsize the passflow needs to bin to. Default is 20.}
+\item{binwidth}{Details the binsize the passflow needs to bin to. Default is 20.}
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 }
@@ -22,7 +22,7 @@ to make a passflow map. Compatible, for right now, with StatsBomb data only. Ret
 }
 \examples{
 \dontrun{
-plot <- plot_passflow(data, bin_size = 30)
+plot <- plot_passflow(data, binwidth = 30)
 plot
 }
 }

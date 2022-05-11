@@ -4,28 +4,34 @@
 \alias{plot_heatmap}
 \title{Plotting heatmap}
 \usage{
-plot_heatmap(data, type = "", theme = "", data_type = "statsbomb", bin = 20)
+plot_heatmap(
+  data,
+  type = "",
+  theme = "",
+  data_type = "statsbomb",
+  binwidth = 20
+)
 }
 \arguments{
 \item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}}
 
 \item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-"bin" indicates bin heatmap pass}
+"binwidth" indicates binwidth heatmap pass}
 
 \item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{bin}{indicates the size of the bin to construct heatmap for type "bin". Default set to 20.}
+\item{binwidth}{indicates the size of the binwidth to construct heatmap for type "binwidth". Default set to 20.}
 }
 \value{
 returns a ggplot2 object
 }
 \description{
 This function allows you to plot various types of heatmaps of starting x and y coordinates:
-hex bin heatmap,
+hex binwidth heatmap,
 density heatmap, and
-bin heatmap
+binwidth heatmap
 }
 \examples{
 \dontrun{

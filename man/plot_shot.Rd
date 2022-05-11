@@ -7,7 +7,7 @@
 plot_shot(
   data,
   type = "",
-  bin_size = 30,
+  bins = 30,
   highlight_goals = "",
   average_location = "",
   theme = ""
@@ -18,7 +18,7 @@ plot_shot(
 
 \item{type}{Type of showcasing the shotmap: hexbin, density, point (default)}
 
-\item{bin_size}{Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.}
+\item{bins}{Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.}
 
 \item{highlight_goals}{to choose to display only the goals in a different color.}
 
@@ -35,6 +35,6 @@ for plotting shots.
 }
 \examples{
 \dontrun{
-plot <- plot_shot(data, type = "hexbin", bin_size = 20, average_location = TRUE, highlight_goals = FALSE)
+plot <- plot_shot(data, type = "hexbin", bins = 20, average_location = TRUE, highlight_goals = FALSE)
 }
 }

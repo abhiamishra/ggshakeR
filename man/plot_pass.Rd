@@ -6,7 +6,7 @@
 \usage{
 plot_pass(
   data,
-  plot_type = "sep",
+  type = "sep",
   progressive_pass = FALSE,
   cross = FALSE,
   shot = FALSE,
@@ -22,7 +22,7 @@ plot_pass(
 \arguments{
 \item{data}{The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column}
 
-\item{plot_type}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"}
+\item{type}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"}
 
 \item{progressive_pass}{indicates whether to map out progressive passes}
 
@@ -54,7 +54,7 @@ Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
 }
 \examples{
 \dontrun{
-plot  <- plot_pass(data, plot_type = "def", progressive_pass = TRUE, 
+plot  <- plot_pass(data, type = "def", progressive_pass = TRUE, 
                    team = "Barcelona", player_fname = "Lionel")
 plot
 }

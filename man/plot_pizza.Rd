@@ -7,21 +7,21 @@
 plot_pizza(
   data,
   type = "",
-  template = "",
-  colour_poss,
-  colour_att,
-  colour_def,
+  template,
+  colour_poss = "#41ab5d",
+  colour_att = "#2171b5",
+  colour_def = "#fec44f",
   player_1,
   player_2,
-  colour_compare,
-  season,
-  season_player_1,
-  season_player_2,
+  colour_compare = "#41ab5d",
+  season = "Last 365 Days",
+  season_player_1 = "Last 365 Days",
+  season_player_2 = "Last 365 Days",
   theme = ""
 )
 }
 \arguments{
-\item{data}{that houses data. Dataframe can contain either one player or two depending on the type of plot made.}
+\item{data}{that houses data. Data frame can contain either one player or two depending on the type of plot made.}
 
 \item{type}{Type of plot -> single and comparison.}
 

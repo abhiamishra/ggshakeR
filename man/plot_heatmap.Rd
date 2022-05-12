@@ -4,25 +4,19 @@
 \alias{plot_heatmap}
 \title{Plotting heatmap}
 \usage{
-plot_heatmap(
-  eventData,
-  type = "",
-  theme = "",
-  dataType = "statsbomb",
-  bin = 20
-)
+plot_heatmap(data, type = "", data_type = "statsbomb", bin = 20, theme = "")
 }
 \arguments{
-\item{eventData}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}}
+\item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}.}
 
-\item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-"bin" indicates bin heatmap pass}
+\item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
+"bin" indicates bin heatmap pass and "jdp" indicates a binned heatmap according jdp pitch markings.}
 
-\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
-
-\item{dataType}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
+\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".}
 
 \item{bin}{indicates the size of the bin to construct heatmap for type "bin". Default set to 20.}
+
+\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond.}
 }
 \value{
 returns a ggplot2 object

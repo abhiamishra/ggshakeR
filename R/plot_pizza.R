@@ -6,7 +6,7 @@
 #' For best image quality use:
 #' ggsave("image.png", width = 2900, height = 2800, units = "px")
 #'
-#' @param data that houses data. Dataframe can contain either one player or two depending on the type of plot made.
+#' @param data that houses data. Data frame can contain either one player or two depending on the type of plot made.
 #' @param type Type of plot -> single and comparison.
 #' @param template for selecting a group of pre-selected metrics for each position by position namely:
 #'                 forward, winger, midfielder, defender, goalkeeper, full back and custom.
@@ -45,15 +45,9 @@
 #' plot2
 #' }
 
-plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, colour_def, 
-                       player_1, player_2, colour_compare, 
-                       season, season_player_1, season_player_2, theme = "") {
-  
-  colorText <- ""
-  gridline <- ""
-  fill_b <- ""
-  colour_b <- ""
-  colorLine <- ""
+plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colour_att = "#2171b5", 
+                       colour_def = "#fec44f", player_1, player_2, colour_compare = "#41ab5d", 
+                       season = "Last 365 Days", season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", theme = "") {
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
@@ -83,202 +77,78 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
     data <- data %>%
       filter(scouting_period == season)
     
-    if (template == "forward" || template == "") {
+    data <- data %>% 
+      mutate(stat = case_when(
+        StatGroup == "Standard" ~ "Attacking", 
+        StatGroup == "Shooting" ~ "Attacking",
+        StatGroup == "Passing" ~ "Possession",
+        StatGroup == "Pass Types" ~ "Possession",
+        StatGroup == "Goal and Shot Creation" ~ "Possession",
+        StatGroup == "Defense" ~ "Defending",
+        StatGroup == "Possession" ~ "Possession",
+        StatGroup == "Miscellaneous Stats" ~ "Defending",
+        TRUE ~ NA_character_
+      ))
+    
+    if (template == "forward") {
       
       if (nrow(data) > 148) {
-        
-        data$no <- 1:nrow(data)
+
         data_selected <- data[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "xG" |
-                                    Statistic == "Shots Total" |
-                                    Statistic == "Non-Penalty Goals - npxG" |
-                                    Statistic == "npxG/Shot" ~ "Attacking",
-                                  Statistic == "xA" |
-                                    Statistic == "Miscontrols" |
-                                    Statistic == "Passes into Penalty Area" |
-                                    Statistic == "Touches (Att Pen)" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[4] <- "Attacking"
       } else {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 8, 13, 24, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "xG" |
-                                    Statistic == "Shots Total" |
-                                    Statistic == "Non-Penalty Goals - npxG" |
-                                    Statistic == "npxG/Shot" ~ "Attacking",
-                                  Statistic == "xA" |
-                                    Statistic == "Miscontrols" |
-                                    Statistic == "Passes into Penalty Area" |
-                                    Statistic == "Touches (Att Pen)" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[4] <- "Attacking"
       }
     } else if (template == "midfielder") {
       
       if (nrow(data) > 148) {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "npxG + xA" |
-                                    Statistic == "Average Shot Distance" |
-                                    Statistic == "Shots Total" |
-                                    Statistic == "Non-Penalty Goals" ~ "Attacking",
-                                  Statistic == "Progressive Passes" |
-                                    Statistic == "Passes Under Pressure" |
-                                    Statistic == "Passes into Final Third" |
-                                    Statistic == "Touches (Live-Ball)" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[2] <- "Attacking"
-        data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 97), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "npxG + xA" |
-                                    Statistic == "Average Shot Distance" |
-                                    Statistic == "Shots Total" |
-                                    Statistic == "Non-Penalty Goals" ~ "Attacking",
-                                  Statistic == "Progressive Passes" |
-                                    Statistic == "Passes Under Pressure" |
-                                    Statistic == "Passes into Final Third" |
-                                    Statistic == "Touches (Live-Ball)" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[2] <- "Attacking"
-        data_selected$stat[3] <- "Attacking"
       }
     } else if (template == "defender") {
       
       if (nrow(data) > 148) {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "npxG + xA" |
-                                    Statistic == "Shots Total" ~ "Attacking",
-                                  Statistic == "Passes into Final Third" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Touches" |
-                                    Statistic == "Dispossessed" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[2] <- "Attacking"
       } else {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "npxG + xA" |
-                                    Statistic == "Shots Total" ~ "Attacking",
-                                  Statistic == "Passes into Final Third" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Touches" |
-                                    Statistic == "Dispossessed" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[2] <- "Attacking"
       }
     } else if (template == "full back") {
       
       if (nrow(data) > 148) {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "npxG" |
-                                    Statistic == "xA" |
-                                    Statistic == "Shots Total" ~ "Attacking",
-                                  Statistic == "Passes into Final Third" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Touches (Att 3rd)" |
-                                    Statistic == "Crosses into Penalty Area" |
-                                    Statistic == "Key Passes" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "npxG" |
-                                    Statistic == "xA" |
-                                    Statistic == "Shots Total" ~ "Attacking",
-                                  Statistic == "Passes into Final Third" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Progressive Carries" |
-                                    Statistic == "Touches (Att 3rd)" |
-                                    Statistic == "Crosses into Penalty Area" |
-                                    Statistic == "Key Passes" ~ "Possession",
-                                  TRUE ~ "Defending"))
+        
       }
     } else if (template == "winger") {
       
       if (nrow(data) > 148) {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "xG" |
-                                    Statistic == "xA" |
-                                    Statistic == "Penalty Kicks Won" |
-                                    Statistic == "npxG/Shot" ~ "Attacking",
-                                  Statistic == "Progressive Carrying Distance" |
-                                    Statistic == "Successful Dribble %" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Passes into Penalty Area" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[3] <- "Attacking"
       } else {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Non-Penalty Goals" |
-                                    Statistic == "xG" |
-                                    Statistic == "xA" |
-                                    Statistic == "Penalty Kicks Won" |
-                                    Statistic == "npxG/Shot" ~ "Attacking",
-                                  Statistic == "Progressive Carrying Distance" |
-                                    Statistic == "Successful Dribble %" |
-                                    Statistic == "Progressive Passes" |
-                                    Statistic == "Passes into Penalty Area" |
-                                    Statistic == "Progressive Passes Rec" ~ "Possession",
-                                  TRUE ~ "Defending"))
         
-        data_selected$stat[3] <- "Attacking"
       }
     } else if (template == "goalkeeper") {
       
       if (nrow(data) > 36) {
         
-        data$no <- 1:nrow(data)
         data_selected <- data[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Save%" |
@@ -289,8 +159,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
                                     Statistic == "Average Pass Length" ~ "Possession",
                                   TRUE ~ "Attacking"))
       } else {
-        
-        data$no <- 1:nrow(data)
+      
         data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Save%" |
@@ -302,18 +171,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
                                   TRUE ~ "Attacking"))
       }
     } else if (template == "custom") {
-      data_selected <- data %>% 
-        mutate(stat = case_when(
-          StatGroup == "Standard" ~ "Attacking", 
-          StatGroup == "Shooting" ~ "Attacking",
-          StatGroup == "Passing" ~ "Possession",
-          StatGroup == "Pass Types" ~ "Possession",
-          StatGroup == "Goal and Shot Creation" ~ "Possession",
-          StatGroup == "Defense" ~ "Defending",
-          StatGroup == "Possession" ~ "Possession",
-          StatGroup == "Miscellaneous Stats" ~ "Defending",
-          TRUE ~ NA_character_
-        ))
+      data_selected
     }
     
     player_name <- data$Player
@@ -322,8 +180,7 @@ plot_pizza <- function(data, type = "", template = "", colour_poss, colour_att, 
     sub <- data$Versus
     sub1 <- data$scouting_period
     subtitle <- paste("Compared to", sub, " |", sub1, " |", min, "minutes played")
-    caption <- "Plot code by @RobinWilhelmus
-Data from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
+    caption <- "Plot code by @RobinWilhelmus\nData from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
     temp <- (360 / (length(data_selected$Player)) / 2)
     myAng <- seq(-temp, -360 + temp, length.out = length(data_selected$Player))

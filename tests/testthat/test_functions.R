@@ -614,3 +614,51 @@ testthat::test_that("Testing plotting convex hulls: ", {
   testthat::expect_true(is.ggplot(p))
 })
 ############# TESTING PLOT_CONVEXHULL ################
+
+
+
+
+
+
+############# TESTING PLOT_VORONOI ################
+# Creating simple dataframe for testing basic plots
+x = sample.int(100,10)
+y = sample.int(100,10)
+
+opta_df <- data.frame(x, y)
+
+
+x = sample.int(120,10)
+y = sample.int(80,10)
+
+sb_df <- data.frame(x, y)
+
+# Creating an empty dataframe
+df_empty <- data.frame(matrix(ncol = 2, nrow = 0))
+x <- c("x", "y")
+colnames(df_empty) <- x
+
+# Creating simple dataframe for testing basic plots
+x = sample.int(100,10)
+
+df_absent <- data.frame(x)
+
+
+testthat::test_that("Testing plotting voronoi plots: ", {
+  p <- plot_voronoi(opta_df, data_type = "opta", voro_fill = "y", voro_alpha = 0.3)
+  testthat::expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(sb_df, data_type = "statsbomb", voro_fill = "y", voro_alpha = 0.3)
+  testthat::expect_true(is.ggplot(p))
+  
+  # testing for plotting on an empty dataframe
+  testthat::expect_error(plot_voronoi(df_empty, data_type = "opta"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
+  
+  # testing using a dataframe that does not have the required columns
+  testthat::expect_error(plot_voronoi(df_absent, data_type = "opta"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
+})
+############# TESTING PLOT_VORONOI ################

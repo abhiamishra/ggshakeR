@@ -33,7 +33,8 @@ Imports:
   stringi, 
   forcats,
   wesanderson,
-  purrr
+  purrr,
+  ggvoronoi
 Suggests: 
     rmarkdown,
     knitr,

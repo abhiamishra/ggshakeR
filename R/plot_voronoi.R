@@ -16,7 +16,7 @@
 #' @import tidyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import ggvoronoi
+#' @import ggforce
 #'
 #' @export
 #'
@@ -74,46 +74,20 @@ plot_voronoi <- function(data, data_type = "statsbomb",
   if (voro_fill %in% names(data) == TRUE) {
     data[, "voro_fill"] <- data[, voro_fill]
   }
-  
-  l_sx <- rep(0, 500)
-  l_sy <- seq(0, limit_y,length.out=500)
-  left <- data.frame(x = l_sx,
-                     y = l_sy,
-                     group = rep(1, 500))
 
-
-  sx <- seq(0, limit_x, length.out = 500)
-  sy <- rep(0, 500)
-  bottom <- data.frame(x = sx,
-                       y = sy,
-                       group = rep(1, 500))
-  
-  r_sx <- rep(limit_x, 500)
-  r_sy <- seq(0, limit_y,length.out=500)
-  right <- data.frame(x = r_sx,
-                      y = r_sy,
-                      group = rep(1, 500))
-  
-  
-  t_sx <- seq(limit_x, 0, length.out = 500)
-  t_sy <- rep(limit_y, 500)
-  top <- data.frame(x = t_sx,
-                    y = t_sy,
-                    group = rep(1, 500))
-  
-  final <- rbind(left, bottom)
-  final <- rbind(final, right)
-  final <- rbind(final, top)
-  
-  voro_plot = ggplot(data, aes(x, y, fill=voro_fill)) +
+  voro_plot = ggplot(data, aes(x, y)) +
     annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
                    fill = fill_b) +
     theme_pitch()+
-    geom_point(color=colour)+
-    geom_voronoi(outline = final,
-                 alpha=voro_alpha,
-                 geom="path",
-                 color="white")+
+    geom_point(color=colour)
+  
+  if(voro_fill != ""){
+    voro_plot = voro_plot + 
+      geom_voronoi_tile(data=data, aes(fill=voro_fill), alpha=voro_alpha, bound=c(0,120,0,80))
+  }
+  
+  voro_plot =  voro_plot + 
+    geom_voronoi_segment(color="white", bound=c(0,120,0,80))+
     coord_fixed()+
     ggtitle(title_plot)
   

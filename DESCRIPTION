@@ -34,7 +34,7 @@ Imports:
   forcats,
   wesanderson,
   purrr,
-  ggvoronoi
+  ggforce
 Suggests: 
     rmarkdown,
     knitr,

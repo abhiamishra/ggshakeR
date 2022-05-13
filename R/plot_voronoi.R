@@ -46,8 +46,8 @@ plot_voronoi <- function(data, data_type = "statsbomb",
     colour_b <- "#696969"
   }
   
-  limit_x = 120
-  limit_y = 80
+  limit_x <- 120
+  limit_y <- 80
   
   if (data_type == "opta") {
     if (nrow(data) <= 0 ||
@@ -75,20 +75,20 @@ plot_voronoi <- function(data, data_type = "statsbomb",
     data[, "voro_fill"] <- data[, voro_fill]
   }
 
-  voro_plot = ggplot(data, aes(x, y)) +
+  voro_plot <- ggplot(data, aes(x, y)) +
     annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
                    fill = fill_b) +
-    theme_pitch()+
-    geom_point(color=colour)
+    theme_pitch() +
+    geom_point(color = colour)
   
-  if(voro_fill != ""){
-    voro_plot = voro_plot + 
-      geom_voronoi_tile(data=data, aes(fill=voro_fill), alpha=voro_alpha, bound=c(0,120,0,80))
+  if (voro_fill != "") {
+    voro_plot <- voro_plot + 
+      geom_voronoi_tile(data = data, aes(fill = voro_fill), alpha = voro_alpha, bound = c(0,120,0,80))
   }
   
-  voro_plot =  voro_plot + 
-    geom_voronoi_segment(color="white", bound=c(0,120,0,80))+
-    coord_fixed()+
+  voro_plot <- voro_plot + 
+    geom_voronoi_segment(color = "white", bound = c(0,120,0,80)) +
+    coord_fixed() +
     ggtitle(title_plot)
   
   return(voro_plot)

@@ -3,11 +3,11 @@
 #' This function allows for data, that can be from Opta or Statsbomb, to be used
 #' for plotting convex hulls on top of an outline of a football pitch.
 #'
-#' @param data Dataframe that houses pass data. Opta dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`, `playerId`.
-#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".
-#' @param colour The colour of the outline of the convex hull.
-#' @param title_plot Title of the plot.
-#' @param theme Indicates what theme the map must be shown in: dark (default), white, rose, almond.
+#' @param data Data frame that houses pass data. Opta dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`, `playerId`
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param color The color of the outline of the convex hull
+#' @param title_plot Title of the plot
+#' @param theme Indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return a ggplot2 object
 #'
 #' @import dplyr
@@ -20,19 +20,19 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_convexhull(data = data, data_type = "opta", colour = "blue", title_plot = "Team 1")
+#' plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title_plot = "Team 1")
 #' plot
 #' }
 
 plot_convexhull <- function(data, data_type = "statsbomb", 
-                            colour = "#E74C3C", title_plot = "", theme = "dark") {
+                            color = "#E74C3C", title_plot = "", theme = "dark") {
   
   if (data_type == "opta") {
     if (nrow(data) > 0 &&
        sum(x = c("x", "y", "finalX", "finalY", "playerId") %in% names(data)) == 5) {
     } else {
       print(c("x", "y", "finalX", "finalY", "playerId"))
-      stop("The dataset has insufficient columns")
+      stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
     to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
@@ -82,7 +82,7 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = colour_b) +
     theme_pitch() +
     geom_point(data = data, aes(x = x, y = y), alpha = 0.5, colour = colour_b) +
-    geom_polygon(aes(x = x, y = y), colour = colour, alpha = 0.2, fill = colour, size = 1) +
+    geom_polygon(aes(x = x, y = y), color = color, alpha = 0.25, fill = color, size = 1) +
     facet_wrap(~playerId) +
     labs(title = title_plot) +
     theme(plot.background = element_rect(fill = fill_b, colour = NA),

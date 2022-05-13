@@ -5,12 +5,12 @@
 #' density heatmap, and
 #' bin heatmap
 #'
-#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`.
+#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
-#' "bin" indicates bin heatmap pass and "jdp" indicates a binned heatmap according jdp pitch markings. 
-#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".
-#' @param bin indicates the size of the bin to construct heatmap for type "bin". Default set to 20.
-#' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond.
+#' "bin" indicates bin heatmap pass and "jdp" indicates a binned heatmap according jdp pitch markings
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param bin indicates the size of the bin to construct heatmap for type "bin". Default set to 20
+#' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%

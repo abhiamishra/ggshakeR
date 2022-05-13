@@ -7,17 +7,17 @@
 plot_trendline(data, team, colour_xg, colour_xga, roll_avg, theme = "")
 }
 \arguments{
-\item{data}{is for the dataset used. Select the number of matches wanted in the viz beforehand.}
+\item{data}{Data frame used in the function}
 
-\item{team}{is to select the specific team for the viz. Team must be accurate as per FBref specifications.}
+\item{team}{Select the specific team for the viz. Team must be accurate as per FBref specifications}
 
-\item{colour_xg}{is for selecting colour for xGoals.}
+\item{colour_xg}{is for selecting colour for xGoals}
 
-\item{colour_xga}{is for selecting the colour for xGoalsAgainst.}
+\item{colour_xga}{is for selecting the colour for xGoalsAgainst}
 
-\item{roll_avg}{is for setting the rolling average for the data.}
+\item{roll_avg}{is for setting the rolling average for the data}
 
-\item{theme}{to select the theme from 4 options -> dark, almond, rose, white.}
+\item{theme}{to select the theme from 4 options -> dark, almond, rose, white}
 }
 \description{
 The data can be scraped from FBref.\cr

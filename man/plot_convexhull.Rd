@@ -7,21 +7,21 @@
 plot_convexhull(
   data,
   data_type = "statsbomb",
-  colour = "#E74C3C",
+  color = "#E74C3C",
   title_plot = "",
   theme = "dark"
 )
 }
 \arguments{
-\item{data}{Dataframe that houses pass data. Opta dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}, \code{playerId}.}
+\item{data}{Data frame that houses pass data. Opta dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}, \code{playerId}}
 
-\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".}
+\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{colour}{The colour of the outline of the convex hull.}
+\item{color}{The color of the outline of the convex hull}
 
-\item{title_plot}{Title of the plot.}
+\item{title_plot}{Title of the plot}
 
-\item{theme}{Indicates what theme the map must be shown in: dark (default), white, rose, almond.}
+\item{theme}{Indicates what theme the map must be shown in: dark (default), white, rose, almond}
 }
 \value{
 a ggplot2 object
@@ -32,7 +32,7 @@ for plotting convex hulls on top of an outline of a football pitch.
 }
 \examples{
 \dontrun{
-plot <- plot_convexhull(data = data, data_type = "opta", colour = "blue", title_plot = "Team 1")
+plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title_plot = "Team 1")
 plot
 }
 }

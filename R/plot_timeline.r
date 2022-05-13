@@ -2,13 +2,13 @@
 #'
 #'This function allows to make match timelines using data collected event-by-event.
 #'
-#' @param data is for the dataset used.
-#' @param match_year the year the match was played.
-#' @param team_home is for the home team according to data.
-#' @param team_away is for the away team according to data.
-#' @param home_color is for the colour of the line for the home team.
-#' @param away_color is for the colour of the line for the away team.
-#' @param theme to select the colours. Choose from 4 themes -> dark, almond, rose, white.
+#' @param data Data frame used in the function
+#' @param match_year Year the match was played
+#' @param team_home Home team according to data
+#' @param team_away Away team according to data
+#' @param home_color Color of the line for the home team
+#' @param away_color Color of the line for the away team
+#' @param theme to select the colors. Choose from 4 themes -> dark, almond, rose, white
 #' @return a ggplot2 object
 #'
 #' @import dplyr
@@ -26,13 +26,8 @@
 #' plot
 #' }
 
-plot_timeline <- function(data, match_year, team_home, team_away, home_color, away_color, theme = "") {
-  
-  fill_b <- ""
-  colour_b <- ""
-  colorLine <- ""
-  colorText <- ""
-  gridc <- ""
+plot_timeline <- function(data, match_year, team_home, team_away, 
+                          home_color, away_color, theme = "") {
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
@@ -139,13 +134,13 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
                         home_color, team1, g1, gls1, xG1, 
                         away_color, team2, g2, gls2, xG2)
   
-  min1 <- dat1$minute
-  min2 <- dat2$minute
+  expG1 <- dat1$xG
+  expG2 <- dat2$xG
   p1 <- dat1$player
   p2 <- dat2$player
   
-  player_lab1 <- paste0(p1, " : ", min1)
-  player_lab2 <- paste0(p2, " : ", min2)
+  player_lab1 <- paste0(p1, " : ", expG1)
+  player_lab2 <- paste0(p2, " : ", expG2)
   
   plot_timeline <- ggplot() +
     geom_step(data = data1, aes(x = minute, y = xGsum), colour = home_color, size = 3) +

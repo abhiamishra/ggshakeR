@@ -15,19 +15,19 @@ plot_timeline(
 )
 }
 \arguments{
-\item{data}{is for the dataset used.}
+\item{data}{Data frame used in the function}
 
-\item{match_year}{the year the match was played.}
+\item{match_year}{Year the match was played}
 
-\item{team_home}{is for the home team according to data.}
+\item{team_home}{Home team according to data}
 
-\item{team_away}{is for the away team according to data.}
+\item{team_away}{Away team according to data}
 
-\item{home_color}{is for the colour of the line for the home team.}
+\item{home_color}{Color of the line for the home team}
 
-\item{away_color}{is for the colour of the line for the away team.}
+\item{away_color}{Color of the line for the away team}
 
-\item{theme}{to select the colours. Choose from 4 themes -> dark, almond, rose, white.}
+\item{theme}{to select the colors. Choose from 4 themes -> dark, almond, rose, white}
 }
 \value{
 a ggplot2 object

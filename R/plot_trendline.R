@@ -11,18 +11,16 @@
 #'
 #' For best clarity, export plot as a 2000x1000 png
 #'
-#' @param data is for the dataset used. Select the number of matches wanted in the viz beforehand.
-#' @param team is to select the specific team for the viz. Team must be accurate as per FBref specifications.
-#' @param colour_xg is for selecting colour for xGoals.
-#' @param colour_xga is for selecting the colour for xGoalsAgainst.
-#' @param roll_avg is for setting the rolling average for the data.
-#' @param theme to select the theme from 4 options -> dark, almond, rose, white.
+#' @param data Data frame used in the function
+#' @param team Select the specific team for the viz. Team must be accurate as per FBref specifications
+#' @param colour_xg is for selecting colour for xGoals
+#' @param colour_xga is for selecting the colour for xGoalsAgainst
+#' @param roll_avg is for setting the rolling average for the data
+#' @param theme to select the theme from 4 options -> dark, almond, rose, white
 #'
 #' @import dplyr
 #' @import ggplot2
 #' @import ggtext
-#' @import Rcpp
-#' @import RcppRoll
 #' @import TTR
 #'
 #' @export

@@ -83,15 +83,13 @@ plot_voronoi <- function(data, data_type = "statsbomb",
   
   if (voro_fill != "") {
     voro_plot <- voro_plot + 
-      geom_voronoi_tile(data = data, aes(fill = voro_fill), alpha = voro_alpha, bound = c(0,120,0,80))
+      geom_voronoi_tile(data = data, aes(fill = voro_fill), alpha = voro_alpha, bound = c(0, 120, 0, 80))
   }
   
   voro_plot <- voro_plot + 
-    geom_voronoi_segment(color = "white", bound = c(0,120,0,80)) +
+    geom_voronoi_segment(color = "white", bound = c(0, 120, 0, 80)) +
     coord_fixed() +
     ggtitle(title_plot)
   
   return(voro_plot)
 }
-
-

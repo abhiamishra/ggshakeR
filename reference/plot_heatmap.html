@@ -66,28 +66,22 @@ bin heatmap</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_heatmap</span><span class="op">(</span>
-  <span class="va">eventData</span>,
-  type <span class="op">=</span> <span class="st">""</span>,
-  theme <span class="op">=</span> <span class="st">""</span>,
-  dataType <span class="op">=</span> <span class="st">"statsbomb"</span>,
-  bin <span class="op">=</span> <span class="fl">20</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_heatmap</span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">""</span>, data_type <span class="op">=</span> <span class="st">"statsbomb"</span>, bin <span class="op">=</span> <span class="fl">20</span>, theme <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>eventData</dt>
-<dd><p>The dataframe that stores your data. Dataframe must contain atleast the following columns: <code>x</code>, <code>y</code></p></dd>
+    <dl><dt>data</dt>
+<dd><p>The dataframe that stores your data. Dataframe must contain atleast the following columns: <code>x</code>, <code>y</code>, <code>finalX</code>, <code>finalY</code>.</p></dd>
 <dt>type</dt>
-<dd><p>indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-"bin" indicates bin heatmap pass</p></dd>
-<dt>theme</dt>
-<dd><p>indicates what theme the map must be shown in: dark (default), white, rose, almond</p></dd>
-<dt>dataType</dt>
-<dd><p>Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"</p></dd>
+<dd><p>indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
+"bin" indicates bin heatmap pass and "jdp" indicates a binned heatmap according jdp pitch markings.</p></dd>
+<dt>data_type</dt>
+<dd><p>Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".</p></dd>
 <dt>bin</dt>
 <dd><p>indicates the size of the bin to construct heatmap for type "bin". Default set to 20.</p></dd>
+<dt>theme</dt>
+<dd><p>indicates what theme the map must be shown in: dark (default), white, rose, almond.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -111,7 +105,7 @@ bin heatmap</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

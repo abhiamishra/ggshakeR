@@ -63,16 +63,16 @@ for plotting single and comparison percentile plots.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_pizza</span><span class="op">(</span>
   <span class="va">data</span>,
   type <span class="op">=</span> <span class="st">""</span>,
-  template <span class="op">=</span> <span class="st">""</span>,
-  <span class="va">colour_poss</span>,
-  <span class="va">colour_att</span>,
-  <span class="va">colour_def</span>,
+  <span class="va">template</span>,
+  colour_poss <span class="op">=</span> <span class="st">"#41ab5d"</span>,
+  colour_att <span class="op">=</span> <span class="st">"#2171b5"</span>,
+  colour_def <span class="op">=</span> <span class="st">"#fec44f"</span>,
   <span class="va">player_1</span>,
   <span class="va">player_2</span>,
-  <span class="va">colour_compare</span>,
-  <span class="va">season</span>,
-  <span class="va">season_player_1</span>,
-  <span class="va">season_player_2</span>,
+  colour_compare <span class="op">=</span> <span class="st">"#41ab5d"</span>,
+  season <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
+  season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
+  season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
   theme <span class="op">=</span> <span class="st">""</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -80,7 +80,7 @@ for plotting single and comparison percentile plots.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>that houses data. Dataframe can contain either one player or two depending on the type of plot made.</p></dd>
+<dd><p>that houses data. Data frame can contain either one player or two depending on the type of plot made.</p></dd>
 <dt>type</dt>
 <dd><p>Type of plot -&gt; single and comparison.</p></dd>
 <dt>template</dt>
@@ -142,7 +142,7 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

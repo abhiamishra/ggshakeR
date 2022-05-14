@@ -181,11 +181,11 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     
     if (is.character(data$playerId) == FALSE) {
       stop("The playerId column is supposed to contain player names.")
-    } else {}
+    }
     
     if (is.character(data$teamId) == FALSE) {
       stop("The teamId column is supposed to contain team names.")
-    } else {}
+    }
     
     # Calculate xT 
     
@@ -208,7 +208,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
       mutate(finalY = finalY * 0.8) %>%
       filter(teamId == team_name)
     
-    data1 <- data1[complete.cases(data1[ , "playerId"]), ]
+    data1 <- data1[complete.cases(data1[, "playerId"]),]
     data1 <- shift.column(data = data1, columns = "playerId", newNames = "receiver", len = 1, up = TRUE)
     
     # Filter to before first substitution

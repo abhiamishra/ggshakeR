@@ -48,7 +48,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     # Checking dataframe
     
     if ((nrow(data) > 0) &&
-       sum(c("x","y","finalX","finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name") %in% names(data)) == 10 &&
+       sum(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name") %in% names(data)) == 10 &&
        (data_type == "statsbomb")) {
     } else {
       print(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name"))
@@ -89,7 +89,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     nodes <- data1 %>% 
       filter(type.name %in% c("Pass", "Ball Receipt*", "Ball Recovery", "Shot", "Dispossessed", "Interception", "Clearance", "Dribble", "Shot", "Goal Keeper", "Miscontrol", "Error")) %>% 
       group_by(player.name) %>% 
-      summarise(x = mean(x, na.rm=T), y = mean(y, na.rm=T), events = n(), xT = sum(xT)) %>% 
+      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), xT = sum(xT)) %>% 
       na.omit()
     
     # Edges
@@ -142,7 +142,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
       annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = pitch_line) +
       theme_pitch() +
       geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, show.legend = FALSE) +
-      scale_size_continuous(range = c(0.5,3)) +
+      scale_size_continuous(range = c(0.5, 3)) +
       geom_point(data = nodes, aes(x, y, fill = xT), size = 9, shape = 21, stroke = 1, colour = colorLine) +
       scale_fill_gradient(low = "black", high = color_scale) +
       geom_text(data = nodes, aes(x, y, label = id), colour = "white") +
@@ -159,9 +159,9 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
             plot.title = element_text(colour = colorText, hjust = 0, size = 25, face = "bold"),
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
-      coord_flip(ylim = c(0,120),
-                 xlim = c(0,120)) +
-      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin=0, xmax=120, ymin=90, ymax=120) +
+      coord_flip(ylim = c(0, 120),
+                 xlim = c(0, 120)) +
+      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin = 0, xmax = 120, ymin = 90, ymax = 120) +
       direction_label(colour = colorLine, x_label = 107, y_label = 10)
   }
   
@@ -170,10 +170,10 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     # Checking data frame 
     
     if ((nrow(data) > 0) &&
-       sum(c("x","y","finalX","finalY", "teamId", "playerId", "type", "minute", "outcome") %in% names(data)) == 9 &&
+       sum(c("x", "y", "finalX", "finalY", "teamId", "playerId", "type", "minute", "outcome") %in% names(data)) == 9 &&
        (data_type == "opta")) {
     } else {
-      print(c("x","y","finalX","finalY", "teamId", "playerId", "type", "minute", "outcome"))
+      print(c("x", "y", "finalX", "finalY", "teamId", "playerId", "type", "minute", "outcome"))
       stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
@@ -230,7 +230,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     
     nodes <- data1 %>% 
       group_by(playerId) %>% 
-      summarise(x = mean(x, na.rm=T), y = mean(y, na.rm=T), events = n(), xT = sum(xT)) %>% 
+      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), xT = sum(xT)) %>% 
       na.omit()
     
     # Edges
@@ -282,7 +282,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
       annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = pitch_line) +
       theme_pitch() +
       geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, show.legend = FALSE) +
-      scale_size_continuous(range = c(0.5,3)) +
+      scale_size_continuous(range = c(0.5, 3)) +
       geom_point(data = nodes, aes(x, y, fill = xT), size = 9, shape = 21, stroke = 1, colour = colorLine) +
       scale_fill_gradient(low = "black", high = color_scale) +
       geom_text(data = nodes, aes(x, y, label = id), colour = "white") +
@@ -299,9 +299,9 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
             plot.title = element_text(colour = colorText, hjust = 0, size = 25, face = "bold"),
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
-      coord_flip(ylim = c(120,0),
-                 xlim = c(0,120)) +
-      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin=0, xmax=120, ymin=120, ymax=90) +
+      coord_flip(ylim = c(120, 0),
+                 xlim = c(0, 120)) +
+      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin = 0, xmax = 120, ymin = 120, ymax = 90) +
       direction_label(colour = colorLine, x_label = 107, y_label = 10)
   }
   return(plot_passnet)

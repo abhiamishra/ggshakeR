@@ -20,11 +20,11 @@ plot_passnet(
 
 \item{team_name}{The name of the team of which you want a pass network}
 
+\item{color_scale}{Color of higher end of xT color scale. Default set to "#E74C3C"}
+
 \item{subtitle_plot}{Subtitle of the pass network plot}
 
 \item{theme}{The background theme -> "light" or "dark"}
-
-\item{colour_scale}{Color of higher end of xT color scale. Default set to "#E74C3C"}
 }
 \value{
 a ggplot2 object

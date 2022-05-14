@@ -6,7 +6,7 @@
 #' @param data Data frame that houses pass data
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param team_name The name of the team of which you want a pass network
-#' @param colour_scale Color of higher end of xT color scale. Default set to "#E74C3C"
+#' @param color_scale Color of higher end of xT color scale. Default set to "#E74C3C"
 #' @param subtitle_plot Subtitle of the pass network plot
 #' @param theme The background theme -> "light" or "dark"
 #' @return a ggplot2 object
@@ -14,7 +14,7 @@
 #' @import dplyr
 #' @import tidyr
 #' @import ggsoccer
-#' @import gridExtra
+#' @importFrom gridExtra tableGrob ttheme_minimal
 #' @import useful
 #'
 #' @export

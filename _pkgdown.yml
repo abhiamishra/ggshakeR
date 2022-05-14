@@ -34,6 +34,7 @@ reference:
       - plot_heatmap
       - plot_pass
       - plot_passflow
+      - plot_passnet
       - plot_shot
       - plot_sonar
   - title: Analysis Plots

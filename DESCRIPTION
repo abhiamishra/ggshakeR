@@ -34,7 +34,9 @@ Imports:
   forcats,
   wesanderson,
   purrr,
-  ggforce
+  ggforce,
+  gridExtra,
+  useful
 Suggests: 
     rmarkdown,
     knitr,

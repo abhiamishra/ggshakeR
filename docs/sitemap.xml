@@ -34,7 +34,13 @@
     <loc>https://abhiamishra.github.io/ggshakeR/reference/calculate_threat.html</loc>
   </url>
   <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/hull_fun.html</loc>
+  </url>
+  <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_convexhull.html</loc>
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_heatmap.html</loc>
@@ -44,6 +50,9 @@
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_passflow.html</loc>
+  </url>
+  <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_passnet.html</loc>
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_pizza.html</loc>
@@ -62,6 +71,12 @@
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_trendline.html</loc>
+  </url>
+  <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/plot_voronoi.html</loc>
+  </url>
+  <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/text_wrap.html</loc>
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/xTGrid.html</loc>

@@ -662,3 +662,74 @@ testthat::test_that("Testing plotting voronoi plots: ", {
                          fixed=TRUE)
 })
 ############# TESTING PLOT_VORONOI ################
+
+
+
+
+
+############# TESTING PLOT_PASSNET ################
+# Create Dataset
+
+names <- c("Adam", "Tony", "Avery", "Darrick", "Zachary", "Zachary", "Daisha", 
+           "Maliha", "Candace", "Jeffrey", "Abdul Khaliq", "Andrew", "Raafi",
+           "Jalyn", "Rochelle", "Safwaan", "Angel", "Tawasa", "Olympia", "Nikko",
+           "Mikayla", "Kimberly")
+teams <- c("Team 1", "Team 2")
+outcome <- c("Successful", "Unsuccessful")
+type <- "Pass"
+minute <- c(1:90)
+x <- sample(100)
+y <- sample(100)
+finalX <- sample(100)
+finalY <- sample(100)
+
+names_rep <- rep_len(names, length.out = 1000)
+teams_rep <- rep_len(teams, length.out = 1000)
+outcome_rep <- rep_len(outcome, length.out = 1000)
+type_rep <- rep_len(type, length.out = 1000)
+minute <- rep_len(minute, length.out = 1000)
+x <- rep_len(x, length.out = 1000)
+y <- rep_len(y, length.out = 1000)
+finalX <- rep_len(finalX, length.out = 1000)
+finalY <- rep_len(finalY, length.out = 1000)
+
+data <- data.frame(teamId = teams_rep,
+                   playerId = names_rep,
+                   x = x, 
+                   y = y, 
+                   finalX = finalX, 
+                   finalY = finalY,
+                   minute = minute,
+                   type = type_rep,
+                   outcome = outcome_rep)
+
+data$type[c(500,600,700)] <- "SubstitutionOff"
+
+# Dataset without the required columns 
+
+data_absent <- data[, c("x", "y", "finalX", "finalY")]
+
+# Empty dataset
+
+data_empty <- data.frame(matrix(ncol = 9, nrow = 0))
+x <- c("x", "y", "finalX", "finalY", "playerId", "teamId", "type", "minute", "outcome")
+colnames(data_empty) <- x
+
+# Test 
+
+testthat::test_that("Testing plotting pass networks: ", {
+  #testing
+  p <- plot_passnet(data, data_type = "opta", team_name = "Team 1", subtitle_plot = "Test 1")
+  testthat::expect_true(is.ggplot(p))
+  
+  # testing for plotting on an empty dataframe
+  testthat::expect_error(plot_passnet(data_empty, data_type = "opta", team_name = "Team 1"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
+  
+  # testing using a dataframe that does not have the required columns
+  testthat::expect_error(plot_passnet(data_absent, data_type = "opta", team_name = "Team 1"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
+})
+############# TESTING PLOT_PASSNET ################

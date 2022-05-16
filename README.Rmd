@@ -58,6 +58,14 @@ After that, write the actual code to install ggshakeR:
 devtools::install_github("abhiamishra/ggshakeR")
 ```
 
+There were many __BIG__ changes made in __version 0.2.0__, so if you want to go back to version `0.1.2` after you've already installed `0.2.0`, you can re-install version `0.1.2` by doing this:
+
+```{r}
+devtools::install_github("abhiamishra/ggshakeR@0.1.2")
+```
+
+Do note that the changes are permanent and will be the standard going forward. So please take the time to read this vignette and the documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version `0.2.0` (and beyond!) provides. 
+
 Now the library is installed but it's not in your session just yet! When a package is in a session means you can actually use the package:
 
 ```{r}

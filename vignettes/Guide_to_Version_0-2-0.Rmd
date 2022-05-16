@@ -34,34 +34,31 @@ The problem that really kicked off these changes was the fact that we had functi
 plot_passflow(pass_data, dataType, bin_size) # !!!
 ```
 
-After some discussion with the other authors (Abhishek & Harsh), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of consistency. This does mean some painin the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well).
+After some discussion with the other authors (Abhishek & Harsh), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of consistency. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well).
 
-**Note on argument order**:
+Some arguments have changed their order in the functions, to learn about why function order is important, check out [Function arguments section in 'Advanced R'](http://adv-r.had.co.nz/Functions.html#function-arguments). The functions in {ggshakeR} follows R function conventions by having the `data` argument come first, then usually a `type` argument, then the rest in an order we think makes sense.
 
-```{r}
-
-```
-
-Listed below are the changes made:
+Listed below are the changes made for version `0.2.0`:
 
 ## `calculate_threat()`
 
 ```{r}
-calculate_threat(data, data_type)
+calculate_threat(data, type)
 ```
 
 - `data`: changed from `event_data`
-- `data_type`: changed from `dataType`
+- `type`: changed from `dataType`
 
 ## `plot_heatmap()`
 
 ```{r}
-plot_heatmap(data, type, theme, data_type, binwidth)
+plot_heatmap(data, type, data_type, binwidth, theme)
 ```
 
 * `data`: changed from `event_data`
 * `data_type`: changed from `dataType`
 * `binwidth`: changed from `bin`, now the same argument name as the underlying call to `geom_bin2d()`
+* `theme`: moved to be the last argument
 
 ## `plot_pass()`
 
@@ -81,10 +78,11 @@ plot_pass(data,
 ## `plot_passflow()`
 
 ```{r}
-plot_passflow(data, binwidth, data_type)
+plot_passflow(data, data_type, binwidth)
 ```
 
 * `data`: changed from `pass_data`
+* `data_type`: moved to come after the `data` argument
 * `binwidth`: changed from `bin_size`, now the same argument name as the underlying call to `geom_bin2d()`
 
 ## `plot_pizza()`
@@ -107,10 +105,10 @@ plot_pizza(data, type, template,
 plot_scatter(data, x, y, label,
              set_size_num, set_size_var,
              set_color_num, set_color_var,
-             theme, 
              title, title_size,
              subtitle, subtitle_size,
-             caption, caption_size)
+             caption, caption_size,
+             theme)
 ```
 
 * `x`: changed from `scatter_x`
@@ -122,7 +120,7 @@ plot_scatter(data, x, y, label,
 * `caption`: changed from `scatter_cap`
 * `caption_size`: changed from `cap_size`
 * `scatter_label`: changed from `sc_label`
-
+* `theme`: moved to the very end of the argument order
 
 ## `plot_shot()`
 
@@ -154,7 +152,9 @@ plot_trendline(data, team, color_xg, color_xga, rolling_average, theme)
 ## `plot_timeline()`
 
 ```{r}
-plot_timeline(data, match_year, team_home, color_home, team_away, color_away, theme)
+plot_timeline(data, match_year, 
+              team_home, team_away,
+              color_home, color_away, theme)
 ```
 
 * `color_home`: changed from `home_color`
@@ -166,7 +166,7 @@ For those who are not ready to fully commit to these changes (because you have a
 
 ```{r}
 ## Install previous 0.1.2 version
-devtools::install_github("abhimishra/ggshakeR@0.1.2")
+devtools::install_github("abhiamishra/ggshakeR@0.1.2")
 ```
 
 Do note that the changes listed in this vignette are permanent and will be the standard going forward. So please take the time to read this vignette and the documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version 0.2.0 (and beyond!) provides. 

@@ -1,7 +1,7 @@
 #' Calculating xT for passes, carries, etc
 #'
 #' @param data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
-#' @param data_type indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"
+#' @param type indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
@@ -10,13 +10,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_threat(test, data_type = "statsbomb", x_col = "location.x",
+#' endResult <- calculate_threat(test, type = "statsbomb", x_col = "location.x",
 #'                               y_col = "location.y", xend_col = "pass.end_location.x",
 #'                               yend_col = "pass.end_location.y")
 #' endResult
 #' }
 
-calculate_threat <- function(data, data_type = "opta") {
+calculate_threat <- function(data, type = "opta") {
   if (nrow(data) > 0) {
     copydata <- data
     
@@ -48,7 +48,7 @@ calculate_threat <- function(data, data_type = "opta") {
     parsing <- parsing %>% tidyr::drop_na(xend_col)
     parsing <-  parsing %>% tidyr::drop_na(yend_col)
     
-    if (data_type != "opta") {
+    if (type != "opta") {
       to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)
       parsing$x <- to_opta$x(parsing$x_col)
       parsing$y <- to_opta$y(parsing$y_col)

@@ -12,50 +12,48 @@ df_empty <- data.frame(matrix(ncol = 3, nrow = 0))
 x <- c("xA", "yA", "size_scat")
 colnames(df_empty) <- x
 
-testthat::test_that("Plotting scatterplots: ", {
+test_that("Plotting scatterplots: ", {
   # Testing for normal plotting
   p <- plot_scatter(
     data = df,
-    scatter_x = "xA",
-    scatter_y = "yA",
+    x = "xA",
+    y = "yA",
     set_color_var = "col_scat",
     set_size_var = "size_scat"
   )
-  testthat::expect_true(is.ggplot(p))
-  testthat::expect_identical(p$labels$x, "xA")
-  testthat::expect_identical(p$labels$y, "yA")
-  testthat::expect_identical(p$labels$colour, "col_scat") ## in internals it's 'colour' here
-  testthat::expect_identical(p$labels$size, "size_scat")
+  expect_true(is.ggplot(p))
+  expect_identical(p$labels$x, "xA")
+  expect_identical(p$labels$y, "yA")
+  expect_identical(p$labels$colour, "col_scat") ## in internals it's 'colour' here
+  expect_identical(p$labels$size, "size_scat")
 
   # Testting for plotting with an empty dataframe
-  p <- plot_scatter(
+  expect_error(plot_scatter(
     data = df_empty,
-    scatter_x = "xA",
-    scatter_y = "yA",
-    set_size_var = "size"
-  )
-  testthat::expect_true(!is.ggplot(p))
+    x = "xA",
+    y = "yA",
+    set_size_var = "size_scat"
+  ))
 
   # Testing for using wrong/nonexistent column names
   p <- plot_scatter(
     data = df,
-    scatter_x = "xA",
-    scatter_y = "yA",
+    x = "xA",
+    y = "yA",
     set_color_var = "col_scat",
     set_size_var = "size"
   )
-  testthat::expect_true(is.ggplot(p))
-  testthat::expect_identical(p$labels$size, "")
+  expect_true(is.ggplot(p))
+  expect_identical(p$labels$size, "")
 
   # Testing for using wrong x,y column names
-  p <- plot_scatter(
+  expect_error(plot_scatter(
     data = df,
-    scatter_x = "xA",
-    scatter_y = "y",
+    x = "xA",
+    y = "y",
     set_color_var = "col_scat",
     set_size_var = "size_scat"
-  )
-  testthat::expect_true(!is.ggplot(p))
+  ))
 })
 
 
@@ -84,17 +82,17 @@ df_absent <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting pass flow maps: ", {
+test_that("Testing plotting pass flow maps: ", {
   p <- plot_shot(df, highlight_goals = TRUE, average_location = FALSE)
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
   p <- plot_shot(df_empty)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
   p <- plot_shot(df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 })
 
 
@@ -122,17 +120,17 @@ df_absent <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting passflow maps: ", {
+test_that("Testing plotting passflow maps: ", {
   p <- plot_passflow(data = df)
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
   p <- plot_passflow(data = df_empty)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
   p <- plot_passflow(data = df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 })
 
 
@@ -162,17 +160,17 @@ df_absent <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting shot maps: ", {
-  p <- plot_pass(data = df, plot_type = "def", outcome = "suc")
-  testthat::expect_true(is.ggplot(p))
+test_that("Testing plotting shot maps: ", {
+  p <- plot_pass(data = df, type = "def", outcome = "suc")
+  expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
   p <- plot_pass(data = df_empty)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
   p <- plot_pass(data = df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 })
 
 
@@ -203,13 +201,13 @@ data4 <- rbind(dat1, dat3, dat2)
 # Normal dataframe
 data5 <- laliga_2022
 
-testthat::test_that("Testing plotting trendlines: ", {
+test_that("Testing plotting trendlines: ", {
   p <- plot_trendline(
     data = laliga_2022, team = "Barcelona",
     color_xg = "blue", color_xga = "red",
     rolling_average = 10, theme = "dark"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for plotting on a dataframe with NA's
   p <- plot_trendline(
@@ -217,7 +215,7 @@ testthat::test_that("Testing plotting trendlines: ", {
     color_xg = "blue", color_xga = "red",
     rolling_average = 10, theme = "dark"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing using a dataframe that has limited rows
   p <- plot_trendline(
@@ -225,7 +223,7 @@ testthat::test_that("Testing plotting trendlines: ", {
     color_xg = "blue", color_xga = "red",
     rolling_average = 10, theme = "dark"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 })
 
 
@@ -249,14 +247,14 @@ data2 <- readRDS(d2)
 # Dataset for comparison plot
 data <- rbind(data1, data2)
 
-testthat::test_that("Testing plotting pizzas: ", {
+test_that("Testing plotting pizzas: ", {
   p <- plot_pizza(
     data = data, type = "comparison", template = "midfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
     color_compare = "#90ee90", theme = "black"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for single player plot
   p <- plot_pizza(
@@ -264,7 +262,7 @@ testthat::test_that("Testing plotting pizzas: ", {
     color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
     color_defense = "#fec44f", theme = "dark"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for comparison plot
   p <- plot_pizza(
@@ -273,7 +271,7 @@ testthat::test_that("Testing plotting pizzas: ", {
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
     color_compare = "#90ee90", theme = "black"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 })
 
 
@@ -300,17 +298,16 @@ df_absent <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting heatmaps: ", {
+test_that("Testing plotting heatmaps: ", {
   p <- plot_heatmap(data = df, type = "hex")
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(data = df_empty)
-  testthat::expect_true(!is.ggplot(p))
-
+  empty_heatmap <- expect_error(plot_heatmap(data = df_empty))
+  expect_equal(empty_heatmap$message, "Please check that your data has the columns: 'x', 'y', 'finalX' and 'finalY'")
+  
   # testing using a dataframe that does not have the required columns
-  p <- plot_heatmap(data = df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  expect_error(plot_heatmap(data = df_absent))
 })
 
 
@@ -333,14 +330,14 @@ df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
 x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
-testthat::test_that("Testing calculation of expected threat: ", {
-  p <- calculate_threat(data = df, data_type = "statsbomb")
-  testthat::expect_equal((ncol(df) + 2), ncol(p))
+test_that("Testing calculation of expected threat: ", {
+  p <- calculate_threat(data = df, type = "statsbomb")
+  expect_equal((ncol(df) + 2), ncol(p))
 
 
   # testing for plotting on an empty dataframe
   p <- plot_heatmap(data = df_empty)
-  testthat::expect_equal(NULL, ncol(p))
+  expect_equal(NULL, ncol(p))
 })
 
 
@@ -369,18 +366,18 @@ df_absent <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting sonars: ", {
+test_that("Testing plotting sonars: ", {
   p <- plot_sonar(data = df, title = "Test 1")
-  testthat::expect_true(is.ggplot(p))
-  testthat::expect_equal(p$labels$title, "Test 1")
+  expect_true(is.ggplot(p))
+  expect_equal(p$labels$title, "Test 1")
 
   # testing for plotting on an empty dataframe
   p <- plot_sonar(data = df_empty)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 
   # testing using a dataframe that does not have the required columns
   p <- plot_sonar(data = df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  expect_true(!is.ggplot(p))
 })
 
 
@@ -551,11 +548,11 @@ data <- data.frame(
 )
 
 
-testthat::test_that("Testing plotting timelines: ", {
+test_that("Testing plotting timelines: ", {
   p <- plot_timeline(
     data = data, match_year = 2021, team_home = "Manchester United", team_away = "Manchester City",
     color_home = "#e31a1c", color_away = "#980043", theme = "dark"
   )
-  testthat::expect_true(is.ggplot(p))
+  expect_true(is.ggplot(p))
 })
 

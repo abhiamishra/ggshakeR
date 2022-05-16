@@ -10,7 +10,6 @@
 #' @param type Type of plot -> single and comparison.
 #' @param template for selecting a group of pre-selected metrics for each position by position namely:
 #'                 forward, winger, midfielder, defender, goalkeeper, full back and custom.
-#' @param theme Theme preferences for display: dark (default), white, black.
 #' @param color_possession for selecting the color for possession group of stats. To be used only for single player plot.
 #' @param color_attack for selecting the color for attacking group of stats. To be used only for single player plot.
 #' @param color_defense for selecting the color for defense group of stats. To be used only for single player plot.

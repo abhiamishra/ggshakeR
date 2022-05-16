@@ -5,7 +5,7 @@
 #'
 #' @param data Dataframe that houses shot data. Dataframe must contain atleast the following columns: X,Y,xG,result,name
 #' @param type Type of showcasing the shotmap: hexbin, density, point (default)
-#' @param bins Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.
+#' @param bins Bin size for creating bins. Use this when using hexbin shotmap. The same argument name as the underlying call to `geom_hex()`. Default = 30.
 #' @param highlight_goals to choose to display only the goals in a different color.
 #' @param average_location for removing lines denoting average location of shots if need be.
 #' @param theme Theme preferences for display: dark (default), white, rose, almond

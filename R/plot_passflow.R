@@ -4,8 +4,8 @@
 #' to make a passflow map. Compatible, for right now, with StatsBomb data only. Returns a ggplot object
 #'
 #' @param data Dataframe that must house pass data only and must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
-#' @param binwidth Details the binsize the passflow needs to bin to. Default is 20.
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param binwidth Details the bin size the passflow needs to bin to. The same argument name as the underlying call to `geom_bin2d()`. Default is 20.
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -20,7 +20,7 @@
 #' plot
 #' }
 
-plot_passflow <- function(data, binwidth = 0, data_type = "statsbomb") {
+plot_passflow <- function(data, data_type = "statsbomb", binwidth = 0) {
 
   fill_b <- "#0d1117"
   color_b <- "white"

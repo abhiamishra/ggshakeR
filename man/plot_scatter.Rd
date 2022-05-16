@@ -13,13 +13,13 @@ plot_scatter(
   set_size_var = "",
   set_color_num = "red",
   set_color_var = "",
-  theme = "classic",
   title = "",
   title_size = 25,
   subtitle = "",
   subtitle_size = 15,
   caption = "",
-  caption_size = 10
+  caption_size = 10,
+  theme = "classic"
 )
 }
 \arguments{
@@ -39,8 +39,6 @@ plot_scatter(
 
 \item{set_color_var}{Enter name of column name in data to set color based on variable.}
 
-\item{theme}{decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"}
-
 \item{title}{pick the title of the scatter plot}
 
 \item{title_size}{sets the size of the title of the scatter plot. Default size = 25.}
@@ -52,6 +50,8 @@ plot_scatter(
 \item{caption}{pick the caption of the scatter plot}
 
 \item{caption_size}{sets the size of the caption of the scatter plot. Default size = 10.}
+
+\item{theme}{decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"}
 }
 \value{
 returns a ggplot2 object

@@ -26,7 +26,10 @@
 #' plot
 #' }
 
-plot_timeline <- function(data, match_year, team_home, team_away, color_home, color_away, theme = "") {
+plot_timeline <- function(data, match_year, 
+                          team_home, team_away, 
+                          color_home, color_away, 
+                          theme = "") {
   
   fill_b <- ""
   color_b <- ""

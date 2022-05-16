@@ -4,12 +4,12 @@
 \alias{calculate_threat}
 \title{Calculating xT for passes, carries, etc}
 \usage{
-calculate_threat(data, data_type = "opta")
+calculate_threat(data, type = "opta")
 }
 \arguments{
 \item{data}{The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
-\item{data_type}{indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"}
+\item{type}{indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"}
 }
 \value{
 returns a dataframe object
@@ -19,7 +19,7 @@ Calculating xT for passes, carries, etc
 }
 \examples{
 \dontrun{
-endResult <- calculate_threat(test, data_type = "statsbomb", x_col = "location.x",
+endResult <- calculate_threat(test, type = "statsbomb", x_col = "location.x",
                               y_col = "location.y", xend_col = "pass.end_location.x",
                               yend_col = "pass.end_location.y")
 endResult

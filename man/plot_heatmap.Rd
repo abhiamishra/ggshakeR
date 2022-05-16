@@ -7,9 +7,9 @@
 plot_heatmap(
   data,
   type = "",
-  theme = "",
   data_type = "statsbomb",
-  binwidth = 20
+  binwidth = 20,
+  theme = ""
 )
 }
 \arguments{
@@ -18,11 +18,11 @@ plot_heatmap(
 \item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 "binwidth" indicates binwidth heatmap pass}
 
-\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
-
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{binwidth}{indicates the size of the binwidth to construct heatmap for type "binwidth". Default set to 20.}
+\item{binwidth}{indicates the size of the bin width to construct heatmap for type "binwidth". The same argument name as the underlying call to \code{geom_bin2d()}. Default set to 20.}
+
+\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
 }
 \value{
 returns a ggplot2 object
@@ -35,7 +35,7 @@ binwidth heatmap
 }
 \examples{
 \dontrun{
-plot <- plot_heatmap(touchData, type = "hex")
+plot <- plot_heatmap(data = touchData, type = "hex")
 plot
 }
 }

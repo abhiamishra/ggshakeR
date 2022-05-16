@@ -18,7 +18,7 @@ plot_shot(
 
 \item{type}{Type of showcasing the shotmap: hexbin, density, point (default)}
 
-\item{bins}{Bin size for creating bins. Use this when using hexbin shotmap. Default = 30.}
+\item{bins}{Bin size for creating bins. Use this when using hexbin shotmap. The same argument name as the underlying call to \code{geom_hex()}. Default = 30.}
 
 \item{highlight_goals}{to choose to display only the goals in a different color.}
 

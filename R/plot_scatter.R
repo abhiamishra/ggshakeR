@@ -12,13 +12,13 @@
 #' @param set_size_var Enter name of column name in data to set size based on variable.
 #' @param set_color_num sets the color of the points set as a constant. Can enter hexcode or a valid ggplot2 color. Default = "red"
 #' @param set_color_var Enter name of column name in data to set color based on variable.
-#' @param theme decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"
 #' @param title pick the title of the scatter plot
 #' @param title_size sets the size of the title of the scatter plot. Default size = 25.
 #' @param subtitle pick the subtitle of the scatter plot
 #' @param subtitle_size sets the size of the subtitle of the scatter plot Default size = 15.
 #' @param caption pick the caption of the scatter plot
 #' @param caption_size sets the size of the caption of the scatter plot. Default size = 10.
+#' @param theme decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -38,14 +38,11 @@
 plot_scatter <- function(data, x = "", y = "", label = "",
                          set_size_num = 5, set_size_var = "",
                          set_color_num = "red", set_color_var = "",
-                         theme = "classic",
-                         title = "",
-                         title_size = 25,
-                         subtitle = "",
-                         subtitle_size = 15,
-                         caption = "",
-                         caption_size = 10) {
-  if (nrow(data) > 0) {
+                         title = "", title_size = 25,
+                         subtitle = "", subtitle_size = 15,
+                         caption = "", caption_size = 10,
+                         theme = "classic") {
+  if (nrow(data) == 0) {
     stop("Please input a data.frame into the 'data' argument.")
   }
   
@@ -174,7 +171,7 @@ plot_scatter <- function(data, x = "", y = "", label = "",
         plot.caption = element_text(color = "black", size = caption_size)
       )
   } else {
-    stop("Please input columns for the 'scatter_x' and/or 'scatter_y' arguments.")
+    stop("Please input columns for the 'x' and/or 'y' arguments.")
   }
   
   return(plot)

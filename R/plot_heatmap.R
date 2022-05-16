@@ -8,9 +8,9 @@
 #' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
 #' "binwidth" indicates binwidth heatmap pass
-#' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
-#' @param binwidth indicates the size of the binwidth to construct heatmap for type "binwidth". Default set to 20.
+#' @param binwidth indicates the size of the bin width to construct heatmap for type "binwidth". The same argument name as the underlying call to `geom_bin2d()`. Default set to 20.
+#' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -22,11 +22,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_heatmap(touchData, type = "hex")
+#' plot <- plot_heatmap(data = touchData, type = "hex")
 #' plot
 #' }
 
-plot_heatmap <- function(data, type = "", theme = "", data_type = "statsbomb", binwidth = 20) {
+plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20, theme = "") {
 
   if (nrow(data) > 0 &&
       sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {

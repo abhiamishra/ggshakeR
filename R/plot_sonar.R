@@ -12,7 +12,6 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import wesanderson
 #'
 #' @export
 #'
@@ -76,9 +75,6 @@ plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
     sonar <- sonar %>%
       mutate(angle.round = angle.round + 0.5)
     
-    #Initializing a Wes Anderson palette
-    pal <- wes_palette("Zissou1", 10, type = "continuous")
-    
     if (titlePlot == "") {
       titlePlot <- "Pass Sonar"
     }
@@ -94,7 +90,7 @@ plot_sonar <- function(sonarData, dataType = "statsbomb", titlePlot = "") {
                    arrow = arrow(length = unit(0.03, "npc"))) +
       scale_alpha(guide = 'none') +
       geom_point(aes(x = angle.round, y = 0, color = distance), size = 6) +
-      scale_color_gradientn(colours = pal) +
+      scale_color_gradientn(colours = zissou_pal) +
       scale_x_continuous(breaks = seq(-180, 180, by = 90), limits = c(-180, 180)) +
       coord_polar(start = pi, direction = -1) +
       labs(x = '', y = '', title = titlePlot,

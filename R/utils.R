@@ -40,6 +40,7 @@ hull_fun <- function(data) {
 #' title zissou_pal
 #' @description 'Zissou' palette hex codes. Useed in `plot_sonar()` function.
 #' Created by Karthik Ram in the {wesanderson} R package.
+#' @keywords internal
 
 zissou_pal <- c("#3B9AB2", "#56A6BA", "#71B3C2", "#9EBE91", "#D1C74C", 
              "#E8C520", "#E4B80E", "#E29E00", "#EA5C00", "#F21A00")
@@ -101,6 +102,3 @@ viridis_d_pal <- c("#440154FF", "#440256FF", "#450457FF", "#450559FF", "#46075AF
                    "#E5E419FF", "#E7E419FF", "#EAE51AFF", "#ECE51BFF", "#EFE51CFF", 
                    "#F1E51DFF", "#F4E61EFF", "#F6E620FF", "#F8E621FF", "#FBE723FF", 
                    "#FDE725FF")
-
-
-

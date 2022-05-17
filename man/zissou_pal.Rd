@@ -14,4 +14,4 @@ zissou_pal
 'Zissou' palette hex codes. Useed in \code{plot_sonar()} function.
 Created by Karthik Ram in the {wesanderson} R package.
 }
-\keyword{datasets}
+\keyword{internal}

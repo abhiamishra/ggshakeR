@@ -10,9 +10,8 @@
 #'
 #' @importFrom magrittr %>%
 #' @import dplyr
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_bin2d geom_segment labs arrow aes scale_fill_gradientn 
 #' @import ggsoccer
-#' @import viridis
 #' @export
 #' @examples
 #' \dontrun{
@@ -97,7 +96,7 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
       plot <- plot +
         geom_bin2d(data = pass_data, aes(x = x, y = 80 - y), alpha = bin_alpha,
                    binwidth = c(bin, bin), position = "identity") +
-        scale_fill_viridis() +
+        scale_fill_gradientn(colours = viridis_d_pal) +
         geom_segment(aes(x = x, y = 80 - y, xend = finalX, yend = 80 - finalY, alpha = countPasses),
                      color = "white", lineend = "round", size = 2, arrow = arrow(length = unit(0.08, "inches"))) +
         labs(

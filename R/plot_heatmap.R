@@ -17,7 +17,6 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import viridis
 #' @export
 #'
 #' @examples

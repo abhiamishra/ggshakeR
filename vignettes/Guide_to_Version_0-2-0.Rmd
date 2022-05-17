@@ -160,7 +160,7 @@ plot_timeline(data, match_year,
 * `color_home`: changed from `home_color`
 * `color_away`: changed from `away_color`
 
-## Conclusion
+## Installing previous versions of the package
 
 For those who are not ready to fully commit to these changes (because you have a large script with {ggshakeR} functions or whatever) but have accidentally installed the new version, fear not as you can go back and install a prior version of the package.
 

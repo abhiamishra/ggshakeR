@@ -58,7 +58,7 @@ After that, write the actual code to install ggshakeR:
 devtools::install_github("abhiamishra/ggshakeR")
 ```
 
-There were many __BIG__ changes made in __version 0.2.0__, so if you want to go back to version `0.1.2` after you've already installed `0.2.0`, you can re-install version `0.1.2` by doing this:
+There were many __BIG__ changes made in __version 0.2.0__, so if you want to go back to version `0.1.2` after you've already installed `0.2.0`, you can __re-install__ version `0.1.2` by doing this:
 
 ```{r}
 devtools::install_github("abhiamishra/ggshakeR@0.1.2")

@@ -626,12 +626,12 @@ testthat::test_that("Testing plotting convex hulls: ", {
   # testing for plotting on an empty dataframe
   testthat::expect_error(plot_convexhull(data_empty, data_type = "opta"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
   
   # testing using a dataframe that does not have the required columns
   testthat::expect_error(plot_convexhull(data_absent, data_type = "opta"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
 })
 ############# TESTING PLOT_CONVEXHULL ################
 
@@ -642,14 +642,14 @@ testthat::test_that("Testing plotting convex hulls: ", {
 
 ############# TESTING PLOT_VORONOI ################
 # Creating simple dataframe for testing basic plots
-x = sample.int(100,10)
-y = sample.int(100,10)
+x <- sample.int(100, 10)
+y <- sample.int(100, 10)
 
 opta_df <- data.frame(x, y)
 
 
-x = sample.int(120,10)
-y = sample.int(80,10)
+x <- sample.int(120, 10)
+y <- sample.int(80, 10)
 
 sb_df <- data.frame(x, y)
 
@@ -659,10 +659,11 @@ x <- c("x", "y")
 colnames(df_empty) <- x
 
 # Creating simple dataframe for testing basic plots
-x = sample.int(100,10)
+x <- sample.int(100, 10)
 
 df_absent <- data.frame(x)
 
+# Test
 
 testthat::test_that("Testing plotting voronoi plots: ", {
   p <- plot_voronoi(opta_df, data_type = "opta", voro_fill = "y", voro_alpha = 0.3)
@@ -674,12 +675,12 @@ testthat::test_that("Testing plotting voronoi plots: ", {
   # testing for plotting on an empty dataframe
   testthat::expect_error(plot_voronoi(df_empty, data_type = "opta"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
   
   # testing using a dataframe that does not have the required columns
   testthat::expect_error(plot_voronoi(df_absent, data_type = "opta"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
 })
 ############# TESTING PLOT_VORONOI ################
 
@@ -745,11 +746,11 @@ testthat::test_that("Testing plotting pass networks: ", {
   # testing for plotting on an empty dataframe
   testthat::expect_error(plot_passnet(data_empty, data_type = "opta", team_name = "Team 1"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
   
   # testing using a dataframe that does not have the required columns
   testthat::expect_error(plot_passnet(data_absent, data_type = "opta", team_name = "Team 1"),
                          "The dataset has insufficient columns and/or insufficient data.",
-                         fixed=TRUE)
+                         fixed = TRUE)
 })
 ############# TESTING PLOT_PASSNET ################

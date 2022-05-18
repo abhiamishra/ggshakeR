@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_timeline.r
 \name{plot_timeline}
 \alias{plot_timeline}
-\title{Create timeline charts (xG) using event data.}
+\title{Create timeline charts (xG) using 'understat' event data.}
 \usage{
 plot_timeline(
   data,
@@ -15,22 +15,22 @@ plot_timeline(
 )
 }
 \arguments{
-\item{data}{is for the dataset used.}
+\item{data}{Data, for now only compatible with understat data.}
 
 \item{match_year}{the year the match was played.}
 
-\item{team_home}{is for the home team according to data.}
+\item{team_home}{home team according to data.}
 
-\item{team_away}{is for the away team according to data.}
+\item{team_away}{away team according to data.}
 
-\item{home_color}{is for the colour of the line for the home team.}
+\item{home_color}{line colour for the home team.}
 
-\item{away_color}{is for the colour of the line for the away team.}
+\item{away_color}{line colour for the away team.}
 
-\item{theme}{to select the colours. Choose from 4 themes -> dark, almond, rose, white.}
+\item{theme}{Choose from 4 ggplot2 themes -> dark, almond, rose, white.}
 }
 \value{
-a ggplot2 object
+ggplot2 object of a xG timeline plot
 }
 \description{
 This function allows to make match timelines using data collected event-by-event.

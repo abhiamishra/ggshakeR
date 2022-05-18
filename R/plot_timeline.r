@@ -1,15 +1,15 @@
-#' Create timeline charts (xG) using event data.
+#' Create timeline charts (xG) using 'understat' event data.
 #'
 #'This function allows to make match timelines using data collected event-by-event.
 #'
-#' @param data is for the dataset used.
+#' @param data Data, for now only compatible with understat data.
 #' @param match_year the year the match was played.
-#' @param team_home is for the home team according to data.
-#' @param team_away is for the away team according to data.
-#' @param home_color is for the colour of the line for the home team.
-#' @param away_color is for the colour of the line for the away team.
-#' @param theme to select the colours. Choose from 4 themes -> dark, almond, rose, white.
-#' @return a ggplot2 object
+#' @param team_home home team according to data.
+#' @param team_away away team according to data.
+#' @param home_color line colour for the home team.
+#' @param away_color line colour for the away team.
+#' @param theme Choose from 4 ggplot2 themes -> dark, almond, rose, white.
+#' @return ggplot2 object of a xG timeline plot
 #'
 #' @import dplyr
 #' @import ggtext
@@ -28,6 +28,91 @@
 
 plot_timeline <- function(data, match_year, team_home, team_away, home_color, away_color, theme = "") {
   
+  if (!"season" %in% colnames(data)) {
+    data <- data %>%
+      rename(season = year)
+  }
+  
+  if (!"home_away" %in% colnames(data)) {
+    data <- data %>%
+      rename(home_away = h_a)
+  }
+  
+  data <- data %>%
+    dplyr::filter(season == match_year) %>% 
+    ## Prepare goal labels
+    mutate(player_label = dplyr::case_when(
+      result == "Goal" & situation != "Penalty"~ paste0(player, ": ", round(xG, digits = 2), " xG"),
+      result == "Goal" & situation == "Penalty" ~ paste0(player, " (Penalty): ", round(xG, digits = 2), " xG"),
+      result == "OwnGoal" ~ paste0(player, " (Own Goal): ", round(xG, digits = 2), " xG"),
+      TRUE ~ ""),
+      minute = as.numeric(minute)) %>%
+    dplyr::filter(home_team == team_home,
+           away_team == team_away) %>% 
+    ## Calculate xG cumulative sum per team
+    group_by(home_away) %>% 
+    mutate(xGsum = cumsum(xG)) %>% 
+    ungroup()
+
+  data1 <- data %>%
+    dplyr::filter(home_away == "h") %>%
+    mutate(xGsum = cumsum(xG))
+  data2 <- data %>%
+    dplyr::filter(home_away == "a") %>%
+    mutate(xGsum = cumsum(xG))
+  
+  # data1 <- insertRows(data1, 1, new = 0)
+  # data2 <- insertRows(data2, 1, new = 0)
+  data1 <- dplyr::add_row(.data = data1, .before = 1, 
+                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
+                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
+                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
+  
+  data2 <- dplyr::add_row(.data = data2, .before = 1, 
+                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
+                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
+                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
+  
+  dat1 <- data1 %>%
+    dplyr::filter(result == "Goal")
+  d1 <- data1 %>%
+    dplyr::filter(result == "OwnGoal")
+  dat1 <- rbind(dat1, d1)
+  dat2 <- data2 %>%
+    dplyr::filter(result == "Goal")
+  d2 <- data2 %>%
+    dplyr::filter(result == "OwnGoal")
+  dat2 <- rbind(dat2, d2)
+  
+  ## Set up labels for plot title ----
+  team1 <- unique(data$home_team)
+  team2 <- unique(data$away_team)
+  
+  xG1 <- round(sum(data1$xG), 2)
+  xG2 <- round(sum(data2$xG), 2)
+  
+  g1 <- unique(data$home_goals)
+  g2 <- unique(data$away_goals)
+  
+  if (any(g1 == 1)) {
+    gls1 <- "Goal"
+  } else {
+    gls1 <- "Goals"
+  }
+  
+  if (any(g2 == 1)) {
+    gls2 <- "Goal"
+  } else {
+    gls2 <- "Goals"
+  }
+  
+  ## Plot title ----
+  # plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  plot_title <- sprintf("<b style='color:%s'> %s : %s %s (%s xG) </b> vs. <b style='color:%s'> %s : %s %s (%s xG)</b>",
+                        home_color, team1, g1, gls1, xG1, 
+                        away_color, team2, g2, gls2, xG2)
+  
+  ## Plot themes ----
   fill_b <- ""
   colour_b <- ""
   colorLine <- ""
@@ -65,101 +150,14 @@ plot_timeline <- function(data, match_year, team_home, team_away, home_color, aw
     colorText <- "#322E2E"
   }
   
-  data$minute <- as.numeric(data$minute)
-  
-  if (!"season" %in% colnames(data)) {
-    data <- data %>%
-      mutate(season = year)
-  }
-  
-  data <- data %>%
-    dplyr::filter(season == match_year)
-  
-  if (!"home_away" %in% colnames(data)) {
-    data <- data %>%
-      mutate(home_away = h_a)
-  }
-  
-  data <- data %>%
-    dplyr::filter(home_team == team_home,
-           away_team == team_away)
-  data1 <- data %>%
-    dplyr::filter(home_away == "h") %>%
-    mutate(xGsum = cumsum(xG))
-  data2 <- data %>%
-    dplyr::filter(home_away == "a") %>%
-    mutate(xGsum = cumsum(xG))
-  
-  # data1 <- insertRows(data1, 1, new = 0)
-  # data2 <- insertRows(data2, 1, new = 0)
-  data1 <- dplyr::add_row(.data = data1, .before = 1, 
-                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
-                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
-                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
-  
-  data2 <- dplyr::add_row(.data = data2, .before = 1, 
-                           id = "0", minute = 0, result = "0", X = 0, Y = 0, xG = 0, player = "0", home_away = "0", player_id = "0",
-                           situation = "0", season = "0", shotType = "0", match_id = "0", home_team = "0", away_team = "0",
-                           home_goals = 0, away_goals = 0, date = "0", player_assisted = "0", lastAction = "0", xGsum = 0)
-  
-  dat1 <- data1 %>%
-    dplyr::filter(result == "Goal")
-  d1 <- data1 %>%
-    dplyr::filter(result == "OwnGoal")
-  dat1 <- rbind(dat1, d1)
-  dat2 <- data2 %>%
-    dplyr::filter(result == "Goal")
-  d2 <- data2 %>%
-    dplyr::filter(result == "OwnGoal")
-  dat2 <- rbind(dat2, d2)
-  
-  team1 <- data$home_team
-  team2 <- data$away_team
-  
-  xG1 <- round(sum(data1$xG), 2)
-  xG2 <- round(sum(data2$xG), 2)
-  
-  g1 <- data$home_goals
-  g2 <- data$away_goals
-  
-  if (any(g1 == 1)) {
-    gls1 <- "Goal"
-  } else {
-    gls1 <- "Goals"
-  }
-  
-  if (any(g2 == 1)) {
-    gls2 <- "Goal"
-  } else {
-    gls2 <- "Goals"
-  }
-  
-  # plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
-  plot_title <- sprintf("<b style='color:%s'> %s : %s %s (%s xG) </b> vs. <b style='color:%s'> %s : %s %s (%s xG)</b>",
-                        home_color, team1, g1, gls1, xG1, 
-                        away_color, team2, g2, gls2, xG2)
-  
-  min1 <- dat1$minute
-  min2 <- dat2$minute
-  p1 <- dat1$player
-  p2 <- dat2$player
-  
-  player_lab1 <- paste0(p1, " : ", min1)
-  player_lab2 <- paste0(p2, " : ", min2)
-  
+  ## Plot! ----
   plot_timeline <- ggplot() +
     geom_step(data = data1, aes(x = minute, y = xGsum), colour = home_color, size = 3) +
     geom_step(data = data2, aes(x = minute, y = xGsum), colour = away_color, size = 3) +
     geom_point(data = dat1, aes(x = minute, y = xGsum), colour = home_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
     geom_point(data = dat2, aes(x = minute, y = xGsum), colour = away_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
-    geom_text_repel(data = dat1, aes(x = minute, y = xGsum, label = player_lab1),
-                    box.padding   = 2,
-                    point.padding = 1.5,
-                    segment.color = colorLine,
-                    alpha = 0.8,
-                    colour = colorText,
-                    size = 5) +
-    geom_text_repel(data = dat2, aes(x = minute, y = xGsum, label = player_lab2),
+    geom_text_repel(data = data %>% filter(result %in% c("Goal", "OwnGoal")), 
+                    aes(x = minute, y = xGsum, label = player_label),
                     box.padding   = 2,
                     point.padding = 1.5,
                     segment.color = colorLine,

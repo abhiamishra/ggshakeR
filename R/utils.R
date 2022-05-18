@@ -20,6 +20,8 @@ text_wrap <- function(x) {
 #' @rdname hull_fun
 #' @keywords internal 
 #' @importFrom dplyr filter slice
+#' @importFrom grDevices chull
+#' @importFrom stats quantile
   
 hull_fun <- function(data) {
 

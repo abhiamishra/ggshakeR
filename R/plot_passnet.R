@@ -16,6 +16,7 @@
 #' @import ggsoccer
 #' @importFrom gridExtra tableGrob ttheme_minimal
 #' @import useful
+#' @importFrom stats na.omit
 #'
 #' @export
 #'

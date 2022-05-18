@@ -607,11 +607,31 @@ data <- data.frame(playerId = names_rep,
                    finalX = finalX, 
                    finalY = finalY)
 
+# Dataset without the required columns 
+
+data_absent <- data[, c("x", "y", "finalX", "finalY")]
+
+# Empty dataset
+
+data_empty <- data.frame(matrix(ncol = 5, nrow = 0))
+x <- c("x", "y", "finalX", "finalY", "playerId")
+colnames(data_empty) <- x
+
 # Test
 
 testthat::test_that("Testing plotting convex hulls: ", {
   p <- plot_convexhull(data, data_type = "opta", title_plot = "Test 1")
   testthat::expect_true(is.ggplot(p))
+  
+  # testing for plotting on an empty dataframe
+  testthat::expect_error(plot_convexhull(data_empty, data_type = "opta"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
+  
+  # testing using a dataframe that does not have the required columns
+  testthat::expect_error(plot_convexhull(data_absent, data_type = "opta"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed=TRUE)
 })
 ############# TESTING PLOT_CONVEXHULL ################
 

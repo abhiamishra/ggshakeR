@@ -1,4 +1,4 @@
-#' Calculating xT for passes, carries, etc
+#' Calculating EPV for passes, carries, etc
 #'
 #' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
 #' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
@@ -10,13 +10,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_threat(test, dataType = "statsbomb")
+#' endResult <- calculate_epv(test, dataType = "statsbomb")
 #' endResult
 #' }
 
-calculate_threat <- function(eventData, dataType = "opta") {
+calculate_epv <- function(eventData, dataType = "opta") {
   if (nrow(eventData) > 0 &&
-      sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
+        sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
     copydata <- eventData
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
@@ -60,49 +60,49 @@ calculate_threat <- function(eventData, dataType = "opta") {
       parsing$endY <- (parsing$yend_col)
     }
     
-    assign_threat <- function(a, b) {
+    assign_epv <- function(a, b) {
       row <- 0
       col <- 0
-      if (a %% 8.33 == 0) {
-        if (b %% 12.5 == 0) {
-          col <- as.integer(a / 8.33)
-          row <- as.integer(b / 12.5)
+      if (a %% 2 == 0) {
+        if (b %% 3.225 == 0) {
+          col <- as.integer(a / 2)
+          row <- as.integer(b / 3.225)
           
         } else {
-          col <- as.integer(a / 8.33)
-          if (as.integer(b / 12.5) + 1 > 8) {
-            row <- as.integer(b / 12.5)
+          col <- as.integer(a / 2)
+          if (as.integer(b / 3.225) + 1 > 31) {
+            row <- as.integer(b / 3.225)
           } else{
-            row <- as.integer(b / 12.5) + 1
+            row <- as.integer(b / 3.225) + 1
           }
         }
       } else {
-        if (b %% 12.5 == 0) {
-          if (as.integer(a / 8.33) + 1 > 12) {
-            col <- as.integer(a / 8.33)
+        if (b %% 3.225 == 0) {
+          if (as.integer(a / 2) + 1 > 50) {
+            col <- as.integer(a / 2)
           } else {
-            col <- as.integer(a / 8.33) + 1
+            col <- as.integer(a / 2) + 1
           }
-          row <- as.integer(b / 12.5)
+          row <- as.integer(b / 3.225)
         } else {
-          if (as.integer(a / 8.33) + 1 > 12) {
-            col <- as.integer(a / 8.33)
+          if (as.integer(a / 2) + 1 > 50) {
+            col <- as.integer(a / 2)
           } else {
-            col <- as.integer(a / 8.33) + 1
+            col <- as.integer(a / 2) + 1
           }
           
-          if (as.integer(b / 12.5) + 1 > 8) {
-            row <- as.integer(b / 12.5)
+          if (as.integer(b / 3.225) + 1 > 31) {
+            row <- as.integer(b / 3.225)
           } else {
-            row <- as.integer(b / 12.5) + 1
+            row <- as.integer(b / 3.225) + 1
           }
         }
       }
-      return(xTGrid[row, col])
+      return(EPVGrid[row, col])
     }
     
-    parsing$xTStart <- mapply(assign_threat, parsing$x, parsing$y)
-    parsing$xTEnd <- mapply(assign_threat, parsing$endX, parsing$endY)
+    parsing$EPVStart <- mapply(assign_epv, parsing$x, parsing$y)
+    parsing$EPVEnd <- mapply(assign_epv, parsing$endX, parsing$endY)
     
     parsing <- parsing %>%
       select(-c(x, y, endX, endY))
@@ -133,11 +133,11 @@ calculate_threat <- function(eventData, dataType = "opta") {
     joined <- joined %>%
       select(-c("uniqueID"))
     
-    joined$xTStart[joined$xTStart == "NULL"] <- -1
-    joined$xTEnd[joined$xTEnd == "NULL"] <- -1
+    joined$EPVStart[joined$EPVStart == "NULL"] <- -1
+    joined$EPVEnd[joined$EPVEnd == "NULL"] <- -1
     
-    joined$xTStart <- as.numeric(joined$xTStart)
-    joined$xTEnd <- as.numeric(joined$xTEnd)
+    joined$EPVStart <- as.numeric(joined$EPVStart)
+    joined$EPVEnd <- as.numeric(joined$EPVEnd)
     
     return(joined)
   } else {

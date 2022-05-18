@@ -724,7 +724,7 @@ data <- data.frame(teamId = teams_rep,
                    type = type_rep,
                    outcome = outcome_rep)
 
-data$type[c(500,600,700)] <- "SubstitutionOff"
+data$type[c(500, 600, 700)] <- "SubstitutionOff"
 
 # Dataset without the required columns 
 

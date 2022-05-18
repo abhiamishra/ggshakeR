@@ -29,7 +29,6 @@ reference:
   - title: Pitch Plots
     desc: Plots on a football/soccer pitch!
     contents:
-      - plot_voronoi
       - plot_convexhull
       - plot_heatmap
       - plot_pass
@@ -37,6 +36,7 @@ reference:
       - plot_passnet
       - plot_shot
       - plot_sonar
+      - plot_voronoi
   - title: Analysis Plots
     desc: Into the Scattergram!
     contents:

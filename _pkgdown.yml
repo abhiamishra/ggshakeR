@@ -45,8 +45,10 @@ reference:
       - plot_trendline
       - plot_timeline
   - title: Expected Threat (xT)
-    desc: Functions for xT analysis
+    desc: Functions for xT and EPV analysis
     contents:
       - calculate_threat
       - xTGrid
+      - calculate_epv
+      - EPVGrid
 

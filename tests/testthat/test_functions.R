@@ -353,14 +353,25 @@ df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
 x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
+#Creating a dataframe with one less column
+df_absent <- data.frame(
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalY = seq(61, 80, by = 1)
+)
+
 testthat::test_that("Testing calculation of expected threat: ", {
   p <- calculate_threat(df, dataType = "statsbomb")
   testthat::expect_equal((ncol(df) + 2), ncol(p))
 
+  p <- calculate_threat(df)
+  testthat::expect_equal((ncol(df) + 2), ncol(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(df_empty)
-  testthat::expect_equal(NULL, ncol(p))
+  testthat::expect_error(calculate_threat(df_empty),
+                         "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
+  testthat::expect_error(calculate_threat(df_absent),
+                         "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
 })
 ############# TESTING CALCULATE_THREAT ################
 
@@ -733,3 +744,48 @@ testthat::test_that("Testing plotting pass networks: ", {
                          fixed=TRUE)
 })
 ############# TESTING PLOT_PASSNET ################
+
+
+
+
+
+
+
+
+
+############# TESTING CALCULATE_EPV ################
+df <- data.frame(
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalX = seq(51, 70, by = 1),
+  finalY = seq(61, 80, by = 1)
+)
+
+# Creating an empty dataframe
+df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
+x <- c("x", "y", "finalX", "finalY")
+colnames(df_empty) <- x
+
+#Creating a dataframe with one less column
+df_absent <- data.frame(
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalY = seq(61, 80, by = 1)
+)
+
+testthat::test_that("Testing calculation of expected threat: ", {
+  p <- calculate_epv(df, dataType = "statsbomb")
+  testthat::expect_equal((ncol(df) + 2), ncol(p))
+  
+  p <- calculate_epv(df)
+  testthat::expect_equal((ncol(df) + 2), ncol(p))
+  
+  
+  # testing for plotting on an empty dataframe
+  testthat::expect_error(calculate_epv(df_empty),
+                         "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
+  
+  testthat::expect_error(calculate_epv(df_absent),
+                         "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
+})
+############# TESTING CALCULATE_EPV ################

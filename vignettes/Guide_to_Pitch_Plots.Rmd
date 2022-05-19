@@ -16,28 +16,32 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is the guide for using Pitch Plots in ggshakeR.
+This is the guide for using Pitch Plots in `ggshakeR`.
 
-These plots aim to plot events on a pitch hence the name...Pitch Plots! 
+These plots aim to plot events on a pitch hence the name...Pitch Plots!
 
-Currently, ggshakeR houses 5 Pitch Plots:
+Currently, `ggshakeR` houses 7 Pitch Plots:
 
-* `plot_pass()`
-* `plot_heatmap()`
-* `plot_sonar()`
-* `plot_passflow()`
-* `plot_shot()`
+-   `plot_pass()`
+-   `plot_heatmap()`
+-   `plot_sonar()`
+-   `plot_passflow()`
+-   `plot_shot()`
+-   `plot_convexhull()`
+-   `plot_passnet()`
 
 Let's learn simple guides on how to use them!
 
-# `plot_shot()`
+# Understat
+
+## `plot_shot()`
 
 Characteristics:
 
-* Only works with [Understat](https://understat.com/) data
-* Has three types: hexbin, density, or point (default)
+-   Only works with [Understat](https://understat.com/) data
+-   Has three types: hexbin, density, or point (default)
 
-The easiest Pitch Plot function to use! To use this package, which *only works with Understat data*, we need the [understatr package](https://github.com/ewenme/understatr).
+The easiest Pitch Plot function to use! To use this function, which *only works with Understat data*, we need the [understatr package](https://github.com/ewenme/understatr).
 
 Once you have installed the package, put the package in your work session by writing:
 
@@ -47,69 +51,79 @@ library(understatr)
 
 We will use the understatr package to get the data for `plot_shot()`. Browse through the understatr package to get their data. As a sanity check, make sure the dataframe has columns with these names:
 
-* `X` (not x)
-* `Y` (not y)
-* `xG`
-* `result`
-* `name`
+-   `X` (not x)
+-   `Y` (not y)
+-   `xG`
+-   `result`
+-   `name`
 
 Here, I am going to get Mohammed Salah's data. To learn more about how to get data, read [Nandy's excellent guide](https://sagnikdas1.medium.com/tabguide-1-making-shot-maps-1c030f08393e).
 
 ```{r, eval=FALSE}
-shot_data <- get_player_shots(player_id = 1250) # Salah's `player_id` on understat is `1250`
+shot_data <- get_player_shots(player_id = 1250) # Salah's `player_id` on Understat is `1250`
 ```
 
 After that, simply write and execute the following code to get a beautiful shot map:
 
 ```{r, eval=FALSE}
 plot <- plot_shot(shot_data, type = "density")
-
 plot
 ```
 
-![plot_shot() of Mohammed Salah](../man/figures/plot_shot.png){width=80%}
+![plot_shot() of Mohammed Salah](../man/figures/plot_shot.png){width="80%"}
 
-Note that, you can write hexbin, density, and point to get three different types of shot maps. Try it out!
+An additional feature is provided through a couple of other arguments within the function in the form of **highlight_goals** and **average_location**. Use them by toggling between *TRUE* and *FALSE*.
 
-# `plot_sonar()`, `plot_heatmap()`, & `plot_passflow()`
+```{r, eval=FALSE}
+plot <- plot_shot(shot_data, highlight_goals = TRUE, average_location = FALSE)
+plot
+```
+
+Note that, you can write *"hexbin"*, *"density"*, and *"point"* to get three different types of shot maps. However, the **highlight_goals** parameter only works for point shot maps. Try it out!
+
+# Opta & StatsBomb
+
+## `plot_sonar()`, `plot_heatmap()`, & `plot_passflow()`
+
 These three functions are quite similar in what they require.
 
-* `plot_sonar()` gives you a pass sonar
-* `plot_heatmap()` gives you a heat map on the pitch
-* `plot_passflow()` gives you a pass flow map on the pitch
+-   `plot_sonar()` gives you a pass sonar
+-   `plot_heatmap()` gives you a heat map on the pitch
+-   `plot_passflow()` gives you a pass flow map on the pitch
 
 Here are some key things to know:
 
-* `plot_sonar()` and `plot_passflow()` expect passing data
-* All three functions require the data to have at minimum four columns named: __x, y, finalX, finalY__
-* All three functions work on either Opta or Statsbomb data
-* All three functions need a minimum of 4 columns named:
-  + `x` (indicates starting x location)
-  + `y` (indicates starting y location)
-  + `finalX` (indicates ending x location for passes)
-  + `finalY` (indicates ending y location for passes)
-  
+-   `plot_sonar()` and `plot_passflow()` expect passing data
+
+-   All three functions require the data to have at minimum four columns named: **x, y, finalX, finalY**
+
+-   All three functions work on either Opta or Statsbomb data
+
+-   All three functions need a minimum of 4 columns named:
+
+    -   `x` (indicates starting x location)
+    -   `y` (indicates starting y location)
+    -   `finalX` (indicates ending x location for passes)
+    -   `finalY` (indicates ending y location for passes)
+
 Let's first get some data! You can either import you data or use [Statsbomb's open free dataset](https://github.com/statsbomb/open-data)
 
-In this example, I'll be using Statsbomb's Messi Data for LaLiga 2014/15:
+In this example, I'll be using StatsBomb's Messi Data for La Liga 2014/15:
 
 ```{r, eval=FALSE}
 library(StatsBombR)
 
 Comp <- FreeCompetitions() %>%
   filter(competition_id == 11 & season_name == "2014/2015")
-
 Matches <- FreeMatches(Comp)
-
 StatsBombData <- StatsBombFreeEvents(MatchesDF = Matches, Parallel = TRUE)
-
-plottingData  <- allclean(StatsBombData)
+plotting_data  <- allclean(StatsBombData)
 ```
 
 Before plotting, I am going to rename my columns:
 
 ```{r, eval=FALSE}
-plottingData <- plottingData %>%
+plotting_data <- plotting_data %>%
   rename("x" = "location.x",
          "y" = "location.y",
          "finalX" = "pass.end_location.x",
@@ -118,53 +132,200 @@ plottingData <- plottingData %>%
 
 Sweet, let's plot!
 
-## `plot_heatmap()`
+### `plot_heatmap()`
 
-For the heat map, we simply select our columns and plot! Note that we don't specify __dataType__ since the default is set to "statsbomb", so we can simply write this:
+For the heat map, we simply select our columns and plot! **Type** options include *bin*, *hex*, *density* and *jdp*. Note that we don't specify **data_type** since the default is set to "statsbomb", so we can simply write this:
 
 ```{r, eval=FALSE}
-heatData  <- plottingData %>%
+heat_data  <- plotting_data %>%
   select(x, y, finalX, finalY)
 
-heatplot <- plot_heatmap(heatData, type = "bin")
-
-heatplot
+heatPlot <- plot_heatmap(heat_data, type = "bin")
+heatPlot
 ```
 
-![plot_heatmap() of all of LaLiga's events in 2014/15](../man/figures/plot_heatmap.png){width=80%}
+![plot_heatmap() of all of La Liga's events in 2014/15](../man/figures/plot_heatmap.png){width="80%"}
 
-## `plot_sonar()`
+### `plot_sonar()`
 
-For the pass sonar, we're going to a bit more data cleaning. I don't want everybody's passing sonar - that's redundant! 
+For the pass sonar, we're going to a bit more data cleaning. I don't want everybody's passing sonar - that's redundant!
 
 For our purposes, I want Jordi Alba's passing sonar. First, let me get all passes from Jordi Alba:
 
 ```{r, eval=FALSE}
-plottingData  <- plottingData %>%
+plotting_data_alba  <- plotting_data %>%
   filter(type.name == "Pass" & team.name == "Barcelona" & player.name == "Jordi Alba Ramos")
 ```
 
-Now I can construct a pass sonar! Default dataType is set to Statsbomb, so here we can simply write:
+Now I can construct a pass sonar! Default **data_type** is set to *"statsbomb"*, so here we can simply write:
 
 ```{r, eval=FALSE}
-sonarPlot <- plot_sonar(plottingData)
-
+sonarPlot <- plot_sonar(plotting_data_alba)
 sonarPlot
 ```
 
-![plot_sonar() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_sonar.png){width=80%}
+![plot_sonar() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_sonar.png){width="80%"}
 
-### Contributors
-Design inspiration credit goes to [e.](https://twitter.com/barcanumbers) and their pass compass while part of the sonar production code goes to [Eliot Mckinley](https://github.com/etmckinley/PassSonar)
-
-## `plot_passflow()`
+### `plot_passflow()`
 
 Since we already have Jordi Alba's passes, we can just construct the pass flow like this:
 
 ```{r, eval=FALSE}
-passflowPlot <- plot_passflow(plottingData)
-
+passflowPlot <- plot_passflow(plotting_data_alba)
 passflowPlot
 ```
 
-![plot_passflow() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_passflow.png){width=80%}
+![plot_passflow() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_passflow.png){width="80%"}
+
+## `plot_convexhull()`
+
+This function allows the user to use event data to plot the convex hulls of multiple or a single player. It works on both Opta and StatsBomb data and requires the following columns:
+
+-   `x`
+-   `y`
+-   `finalX`
+-   `finalY`
+-   `playerId` (Player name's)
+
+Let us plot using the data set we already have.
+
+```{r, eval=FALSE}
+unique(plotting_data$match_id) # Find all match ID's from the data set
+
+convexPlot <- plotting_data %>%
+  filter(match_id == 266631,
+         team.name == "Barcelona") %>%
+  plot_convexhull()
+
+convexPlot
+```
+
+![plot_convexhull() of FC Barcelona players from a match](../man/figures/Convexhull.png){width="80%"}
+
+Note that we do not need to pass any parameters to the function here as the data set has already been specified and the default **data_type** is set to *"statsbomb"*. If using Opta data, set the **data_type** as such. Manipulate the data set as per your needs and use-case. You can also plot a single player convex hull by filtering for the specific name in the pipe before applying the function. You can also alter the title and colors as you wish by using the relevant parameters. 
+
+Here is an example:
+
+```{r, eval=FALSE}
+convexPlot <- plotting_data %>%
+  filter(match_id == 266631,
+         player.name == "Jordi Alba Ramos") %>%
+  plot_convexhull(color = "#41ab5d", title_plot = "Jordi Alba Convex Hull")
+
+convexPlot
+```
+
+![plot_convexhull() of all of Jordi Alba's passes from a match](../man/figures/Convexhull_JordiAlba.png){width="80%"}
+
+## `plot_passnet()`
+
+This function allows users to plot pass networks of a team in a particular match using event data from StatsBomb and Opta. Here we will be demonstrating how to use this function with both data types.
+
+### StatsBomb
+
+Plotting a pass network with StatsBomb data is pretty simple. All you need is a standard StatsBomb data set with the 4 coordinate columns being renamed to `x`, `y`, `finalX` and `finalY`, in line with what we have done for all other functions so far. We select a specific match and then plot away!
+
+```{r, eval=FALSE}
+unique(plotting_data$match_id) # Find all match ID's from the data set
+
+passnetPlot <- plotting_data %>%
+  filter(match_id == 266631) %>%
+  plot_passnet(team_name = "Barcelona")
+
+passnetPlot
+```
+
+![plot_passnet() of FC Barcelona in a match](../man/figures/Passnet_SB.png){width="80%"}
+
+**team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **color_scale** parameter as alter the subtitle with **subtitle_plot** if you wish to do so!
+
+### Opta
+
+Using `plot_passnet()` with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. Here is a data set we created by ourselves to perfectly mimic an Opta data set.
+
+[plot_passnet_test_data](https://docs.google.com/spreadsheets/d/1AvXIQj9C-ikAT1mAedcxvA8byg1XAZsEv3UY7Q6sf60/edit?usp=sharing)
+
+Now that you have your data set, let us see which columns we require for our function:
+
+-   `x`
+-   `y`
+-   `finalX`
+-   `finalY`
+-   `minute`
+-   `playerId` (Player name's)
+-   `teamId` (Team name's)
+-   `outcome` (Outcome of the pass)
+-   `type` (Type of event)
+
+Note that the *playerId* and *teamId* columns need to contain player and team **names**. The data set in our hands only contains their relevant Id's. Let us fix that and transform the data set into one that will be accepted by our function.
+
+```{r, eval=FALSE}
+optadata <- read.csv("plot_passnet_dataset_test.csv") # Read in your data
+
+optadata <- optadata %>%
+  mutate(teamId = case_when(teamId == 2151 ~ "Team 1",
+                            teamId == 3070 ~ "Team 2")) %>%
+  mutate(playerId = case_when(playerId == "1" ~ "Cameron",
+                              playerId == "2" ~ "Sahaj",
+                              playerId == "3" ~ "Trevor",
+                              playerId == "4" ~ "Jolene",
+                              playerId == "5" ~ "David",
+                              playerId == "6" ~ "Marcus",
+                              playerId == "7" ~ "Ryo",
+                              playerId == "8" ~ "Anthony",
+                              playerId == "9" ~ "Aabid",
+                              playerId == "10" ~ "Kylian",
+                              playerId == "11" ~ "Harry",
+                              playerId == "12" ~ "Victor",
+                              playerId == "13" ~ "Jesse",
+                              playerId == "14" ~ "Borges",
+                              playerId == "15" ~ "Miguel",
+                              playerId == "16" ~ "Alex",
+                              playerId == "17" ~ "Abdul",
+                              playerId == "18" ~ "Eric",
+                              playerId == "19" ~ "Marten",
+                              playerId == "20" ~ "Robert",
+                              playerId == "21" ~ "Lionel",
+                              playerId == "22" ~ "Dean",
+                              playerId == "23" ~ "Aaron ",
+                              playerId == "24" ~ "Benjamin",
+                              playerId == "25" ~ "Diego",
+                              playerId == "26" ~ "Abhishek",
+                              playerId == "27" ~ "Samuel",
+                              playerId == "28" ~ "Edward",
+                              playerId == "29" ~ "Malik",
+                              playerId == "30" ~ "Albert",
+                              playerId == "31" ~ "Paul",
+                              playerId == "32" ~ "Smith",
+                              playerId == "33" ~ "Seth",
+                              playerId == "34" ~ "Mohammed",
+                              playerId == "35" ~ "Eder",
+                              playerId == "36" ~ "Adam",
+                              playerId == "37" ~ "Harsh",
+                              playerId == "38" ~ "Jorge",
+                              playerId == "39" ~ "Zak",
+                              playerId == "40" ~ "Brandon"))
+```
+
+Here we have used the `case_when()` function to link the player and team Id's to the relevant names. There is still some work left to do.
+
+```{r, eval=FALSE}
+optadata <- optadata %>%
+  rename(finalX = endX,
+         finalY = endY)
+```
+
+We have cleaned up our data set. It is now ready to be used in the function.
+
+**It is important to note that these steps might not be necessary for all data sets. This is only to make sure that we are following the correct format for the function. A data set with these exact column names and column type specifications will work within the function without any errors.**
+
+Let us now plot. 
+
+```{r, eval=FALSE}
+passnetPlot <- plot_passnet(data = optadata, data_type = "opta", 
+                            team_name = "Team 1", color_scale = "#fec44f")
+
+passnetPlot
+```
+
+![plot_passnet() using opta data](../man/figures/Passnet_Opta.png){width="80%"}

@@ -7,11 +7,55 @@
 #' @importFrom stringi stri_wrap stri_c
 
 text_wrap <- function(x) {
-  wrapped_text <- stringi::stri_wrap(x, width = 10, whitespace_only = TRUE, simplify = FALSE)
-  final_text <- vapply(wrapped_text, stringi::stri_c, collapse = "\n", character(1))
+  wrapped_text <- stri_wrap(x, width = 10, whitespace_only = TRUE, simplify = FALSE)
+  final_text <- vapply(wrapped_text, stri_c, collapse = "\n", character(1))
   
   return(final_text) 
 }
+
+
+#' @title shift_column
+#' @description Port of `shift.column()` from Jared Lander's {useful} package 
+#' with a few minor changes.
+#' @param data data
+#' @param columns columns to shift over
+#' @param new_names New name of shifted columns, Default: sprintf("%s.Shifted", columns)
+#' @param len length of rows to shift, Default: 1
+#' @param up shift rows up (TRUE) or down (FALSE), Default: TRUE
+#' @return data.frame with shifted columns
+#' @keywords internal
+#' @rdname shift_column
+
+shift_column <- function(data, columns, new_names = sprintf("%s.Shifted", columns), len = 1L, up = TRUE) {
+  if (length(columns) != length(new_names)) {
+    stop("columns and new_names must be the same length")
+  }
+  
+  # get the rows to keep based on how much to shift it by and weather to shift up or down
+  rowsToKeep <- seq(from = 1 + len * up, length.out = NROW(data) - len)
+  
+  # for the original data -- it needs to be shifted the other way
+  dataRowsToKeep <- seq(from = 1 + len * !up, length.out = NROW(data) - len)
+  
+  #create a df of the shifted rows
+  shiftedDF <- data[rowsToKeep, columns]
+  
+  # give the right names to these new columns
+  names(shiftedDF) <- new_names
+  
+  # data names
+  dataNames <- names(data)
+  
+  # get rid of excess rows in data
+  data <- data[dataRowsToKeep, ]
+  
+  # tack shifted data onto the end of the original (and cutoff) data
+  data <- cbind(data, shiftedDF)
+  names(data) <- c(dataNames, new_names)
+  
+  return(data)
+}
+
 
 #' @title hull_fun
 #' @description Create boundaries for convex hull
@@ -22,22 +66,23 @@ text_wrap <- function(x) {
 #' @importFrom dplyr filter slice
 #' @importFrom grDevices chull
 #' @importFrom stats quantile
-  
-hull_fun <- function(data) {
 
+hull_fun <- function(data) {
+  
   x_low <- quantile(data$x, 0.05)
   x_high <- quantile(data$x, 0.95)
   
   y_low <- quantile(data$y, 0.05)
   y_high <- quantile(data$y, 0.95)
-
+  
   hull_data <- data %>%  
     filter((x > x_low) & (x < x_high)) %>%
     filter((y > y_low) & (y < y_high)) %>%
     slice(chull(x, y))
-
+  
   return(hull_data)
 }
+
 
 #' title zissou_pal
 #' @description 'Zissou' palette hex codes. Useed in `plot_sonar()` function.
@@ -45,7 +90,8 @@ hull_fun <- function(data) {
 #' @keywords internal
 
 zissou_pal <- c("#3B9AB2", "#56A6BA", "#71B3C2", "#9EBE91", "#D1C74C", 
-             "#E8C520", "#E4B80E", "#E29E00", "#EA5C00", "#F21A00")
+                "#E8C520", "#E4B80E", "#E29E00", "#EA5C00", "#F21A00")
+
 
 #' @title viridis_d_pal
 #' @description Viridis palette hex codes. Used in `plot_passflow()` function.

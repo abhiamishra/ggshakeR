@@ -26,15 +26,12 @@ Imports:
   ggsoccer,
   ggrepel,
   ggtext,
-  Rcpp,
-  RcppRoll,
   TTR,
   stringi, 
   forcats,
   purrr,
   ggforce,
-  gridExtra,
-  useful
+  gridExtra
 Suggests: 
     rmarkdown,
     knitr,

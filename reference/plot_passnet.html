@@ -64,8 +64,10 @@ for plotting pass networks.</p>
   <span class="va">data</span>,
   data_type <span class="op">=</span> <span class="st">"statsbomb"</span>,
   <span class="va">team_name</span>,
-  color_scale <span class="op">=</span> <span class="st">"#E74C3C"</span>,
+  scale_stat <span class="op">=</span> <span class="st">"xT"</span>,
+  scale_color <span class="op">=</span> <span class="st">"#E74C3C"</span>,
   subtitle_plot <span class="op">=</span> <span class="st">""</span>,
+  flip <span class="op">=</span> <span class="cn">FALSE</span>,
   theme <span class="op">=</span> <span class="st">"dark"</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -78,12 +80,16 @@ for plotting pass networks.</p>
 <dd><p>Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"</p></dd>
 <dt>team_name</dt>
 <dd><p>The name of the team of which you want a pass network</p></dd>
-<dt>color_scale</dt>
+<dt>scale_stat</dt>
+<dd><p>Stat for the player node color scale. Choose between "xT" and "EPV"</p></dd>
+<dt>scale_color</dt>
 <dd><p>Color of higher end of xT color scale. Default set to "#E74C3C"</p></dd>
 <dt>subtitle_plot</dt>
 <dd><p>Subtitle of the pass network plot</p></dd>
+<dt>flip</dt>
+<dd><p>Flip plot to vertical orientation. FALSE is the default</p></dd>
 <dt>theme</dt>
-<dd><p>The background theme -&gt; "light" or "dark"</p></dd>
+<dd><p>The background theme -&gt; "dark" or "light"</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

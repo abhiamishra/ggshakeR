@@ -42,13 +42,12 @@ reference:
     contents:
       - plot_pizza
       - plot_scatter
-      - plot_trendline
       - plot_timeline
+      - plot_trendline
   - title: Expected Threat (xT)
     desc: Functions for xT and EPV analysis
     contents:
-      - calculate_threat
-      - xTGrid
       - calculate_epv
       - EPVGrid
-
+      - calculate_threat
+      - xTGrid

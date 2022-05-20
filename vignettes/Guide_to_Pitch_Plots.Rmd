@@ -235,7 +235,7 @@ passnetPlot <- plotting_data %>%
 passnetPlot
 ```
 
-![plot_passnet() of FC Barcelona in a match](../man/figures/Passnet_SB.png){width="80%"}
+![plot_passnet() of FC Barcelona in a match](../man/figures/SB_Passnet.png){width="80%"}
 
 **team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **color_scale** parameter as alter the subtitle with **subtitle_plot** if you wish to do so!
 
@@ -323,9 +323,10 @@ Let us now plot.
 
 ```{r, eval=FALSE}
 passnetPlot <- plot_passnet(data = optadata, data_type = "opta", 
-                            team_name = "Team 1", color_scale = "#fec44f")
+                            team_name = "Team 1", scale_stat = "EPV", 
+                            scale_color = "#fec44f", flip = TRUE)
 
 passnetPlot
 ```
 
-![plot_passnet() using opta data](../man/figures/Passnet_Opta.png){width="80%"}
+![plot_passnet() using opta data](../man/figures/Opta_Passnet.png){width="80%"}

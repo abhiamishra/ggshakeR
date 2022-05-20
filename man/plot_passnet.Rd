@@ -8,8 +8,10 @@ plot_passnet(
   data,
   data_type = "statsbomb",
   team_name,
-  color_scale = "#E74C3C",
+  scale_stat = "xT",
+  scale_color = "#E74C3C",
   subtitle_plot = "",
+  flip = FALSE,
   theme = "dark"
 )
 }
@@ -20,11 +22,15 @@ plot_passnet(
 
 \item{team_name}{The name of the team of which you want a pass network}
 
-\item{color_scale}{Color of higher end of xT color scale. Default set to "#E74C3C"}
+\item{scale_stat}{Stat for the player node color scale. Choose between "xT" and "EPV"}
+
+\item{scale_color}{Color of higher end of xT color scale. Default set to "#E74C3C"}
 
 \item{subtitle_plot}{Subtitle of the pass network plot}
 
-\item{theme}{The background theme -> "light" or "dark"}
+\item{flip}{Flip plot to vertical orientation. FALSE is the default}
+
+\item{theme}{The background theme -> "dark" or "light"}
 }
 \value{
 a ggplot2 object

@@ -6,9 +6,11 @@
 #' @param data Data frame that houses pass data
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param team_name The name of the team of which you want a pass network
-#' @param color_scale Color of higher end of xT color scale. Default set to "#E74C3C"
+#' @param scale_stat Stat for the player node color scale. Choose between "xT" and "EPV" 
+#' @param scale_color Color of higher end of xT color scale. Default set to "#E74C3C"
 #' @param subtitle_plot Subtitle of the pass network plot
-#' @param theme The background theme -> "light" or "dark"
+#' @param flip Flip plot to vertical orientation. FALSE is the default
+#' @param theme The background theme -> "dark" or "light"
 #' @return a ggplot2 object
 #'
 #' @import dplyr
@@ -25,8 +27,8 @@
 #' plot
 #' }
 
-plot_passnet <- function(data, data_type = "statsbomb", team_name, 
-                         color_scale = "#E74C3C", subtitle_plot = "", theme = "dark") {
+plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = "xT", 
+                         scale_color = "#E74C3C", subtitle_plot = "", flip = FALSE, theme = "dark") {
   
   if (theme == "dark") {
     fill_b <- "#151515"
@@ -34,6 +36,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     colorText <- "white"
     colorLine <- "white"
     pitch_line <- "#454545"
+    colorScale <- "black"
   } 
   else if (theme == "light") {
     fill_b <- "#ECF0F1"
@@ -41,6 +44,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     colorText <- "black"
     colorLine <- "black"
     pitch_line <- "#95A5A6"
+    colorScale <- "white"
   }
   
   if (data_type == "statsbomb") {
@@ -48,22 +52,42 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     # Checking dataframe
     
     if ((nrow(data) > 0) &&
-       sum(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name") %in% names(data)) == 10 &&
-       (data_type == "statsbomb")) {
+        sum(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name") %in% names(data)) == 10 &&
+        (data_type == "statsbomb")) {
     } else {
       print(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name"))
       stop("The dataset has insufficient columns and/or insufficient data.")
     }
-
-    df <- data %>%
-      ggshakeR::calculate_threat(dataType = "statsbomb")
     
-    df <- df %>%
-      mutate(xT = xTEnd - xTStart) %>%
-      select(xT)
-    df[is.na(df)] <- 0
-    
-    data$xT <- df$xT
+    if (scale_stat == "xT") {
+      
+      df <- data %>%
+        ggshakeR::calculate_threat(dataType = "statsbomb")
+      
+      df <- df %>%
+        mutate(xT = xTEnd - xTStart) %>%
+        select(xT)
+      df[is.na(df)] <- 0
+      
+      data$stat <- df$xT
+      
+      leg_title <- "xT"
+      
+    } else if (scale_stat == "EPV") {
+      
+      df <- data %>%
+        ggshakeR::calculate_epv(dataType = "statsbomb")
+      
+      df <- df %>%
+        mutate(EPV = EPVEnd - EPVStart) %>%
+        select(EPV)
+      df[is.na(df)] <- 0
+      
+      data$stat <- df$EPV
+      
+      leg_title <- "EPV"
+      
+    }
     
     # Data Wrangling
     
@@ -89,7 +113,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     nodes <- data1 %>% 
       filter(type.name %in% c("Pass", "Ball Receipt*", "Ball Recovery", "Shot", "Dispossessed", "Interception", "Clearance", "Dribble", "Shot", "Goal Keeper", "Miscontrol", "Error")) %>% 
       group_by(player.name) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), xT = sum(xT)) %>% 
+      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges
@@ -124,13 +148,12 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     nodes <- nodes %>%
       arrange(events)
     
-    nodes$id <- 1:nrow(nodes) 
     nodes$player.name <- sub(".* ", "", nodes$player.name)
     
     table <- nodes %>%
-      select(id, player.name) %>%
-      rename(Player = player.name) %>%
-      rename("#" = id)
+      select(player.name, events) %>%
+      rename(Player = player.name,
+             Passes = events)
     
     # Plot 
     
@@ -141,14 +164,15 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     plot_passnet <- ggplot() +
       annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = pitch_line) +
       theme_pitch() +
-      geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, show.legend = FALSE) +
+      geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, alpha = 0.8, show.legend = FALSE) +
       scale_size_continuous(range = c(0.5, 3)) +
-      geom_point(data = nodes, aes(x, y, fill = xT), size = 9, shape = 21, stroke = 1, colour = colorLine) +
-      scale_fill_gradient(low = "black", high = color_scale) +
-      geom_text(data = nodes, aes(x, y, label = id), colour = "white") +
+      geom_point(data = nodes, aes(x, y, colour = stat), size = 9, shape = 21, stroke = 3.5, fill = fill_b) +
+      scale_colour_gradient(low = colorScale, high = scale_color) +
+      geom_text(data = nodes, aes(x, y, label = player.name), size = 3, fontface = "bold", colour = colorText) +
       labs(title = paste0(team_name, " Pass Network"),
            subtitle = subtitle_plot,
-           y = "Only 4+ Pass Connections.\nSize = Number of connections") +
+           x = "Only 4+ Pass Connections.\nSize = Number of connections",
+           colour = leg_title) +
       theme(legend.position = c(0.843, 1.04),
             legend.direction = "horizontal",
             legend.background = element_rect(fill = fill_b),
@@ -159,10 +183,23 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
             plot.title = element_text(colour = colorText, hjust = 0, size = 25, face = "bold"),
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
-      coord_flip(ylim = c(0, 120),
-                 xlim = c(0, 120)) +
-      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin = 0, xmax = 120, ymin = 90, ymax = 120) +
       direction_label(colour = colorLine, x_label = 107, y_label = 10)
+    
+    if (flip == TRUE) {
+      
+      plot_passnet <- plot_passnet +
+        coord_flip(ylim = c(0, 120),
+                   xlim = c(0, 120)) +
+        annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), 
+                          xmin = 0, xmax = 120, ymin = 90, ymax = 120) +
+        labs(y = "Only 4+ Pass Connections.\nSize = Number of connections") +
+        theme(axis.title.x = element_text(colour = colorText, size = 8))
+      
+    } else if (flip == FALSE) {
+      
+      plot_passnet
+      
+    }
   }
   
   else if (data_type == "opta") {
@@ -170,8 +207,8 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     # Checking data frame 
     
     if ((nrow(data) > 0) &&
-       sum(c("x", "y", "finalX", "finalY", "teamId", "playerId", "type", "minute", "outcome") %in% names(data)) == 9 &&
-       (data_type == "opta")) {
+        sum(c("x", "y", "finalX", "finalY", "teamId", "playerId", "type", "minute", "outcome") %in% names(data)) == 9 &&
+        (data_type == "opta")) {
     } else {
       print(c("x", "y", "finalX", "finalY", "teamId", "playerId", "type", "minute", "outcome"))
       stop("The dataset has insufficient columns and/or insufficient data.")
@@ -187,17 +224,37 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
       stop("The teamId column is supposed to contain team names.")
     }
     
-    # Calculate xT 
+    # Calculate scale stat
     
-    df <- data %>%
-      ggshakeR::calculate_threat(dataType = "opta")
-    
-    df <- df %>%
-      mutate(xT = xTEnd - xTStart) %>%
-      select(xT)
-    df[is.na(df)] <- 0
-    
-    data$xT <- df$xT
+    if (scale_stat == "xT") {
+      
+      df <- data %>%
+        ggshakeR::calculate_threat(dataType = "opta")
+      
+      df <- df %>%
+        mutate(xT = xTEnd - xTStart) %>%
+        select(xT)
+      df[is.na(df)] <- 0
+      
+      data$stat <- df$xT
+      
+      leg_title <- "xT"
+      
+    } else if (scale_stat == "EPV") {
+      
+      df <- data %>%
+        ggshakeR::calculate_epv(dataType = "opta")
+      
+      df <- df %>%
+        mutate(EPV = EPVEnd - EPVStart) %>%
+        select(EPV)
+      df[is.na(df)] <- 0
+      
+      data$stat <- df$EPV
+      
+      leg_title <- "EPV"
+      
+    }
     
     # Data Wrangling 
     
@@ -230,7 +287,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     
     nodes <- data1 %>% 
       group_by(playerId) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), xT = sum(xT)) %>% 
+      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges
@@ -264,13 +321,12 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     nodes <- nodes %>%
       arrange(events)
     
-    nodes$id <- 1:nrow(nodes) 
     nodes$playerId <- sub(".* ", "", nodes$playerId)
     
     table <- nodes %>%
-      select(id, playerId) %>%
-      rename(Player = playerId) %>%
-      rename("#" = id)
+      select(playerId, events) %>%
+      rename(Player = playerId,
+             Passes = events)
     
     # Plot 
     
@@ -281,14 +337,15 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
     plot_passnet <- ggplot() +
       annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = pitch_line) +
       theme_pitch() +
-      geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, show.legend = FALSE) +
+      geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, size = n), colour = colorLine, alpha = 0.8, show.legend = FALSE) +
       scale_size_continuous(range = c(0.5, 3)) +
-      geom_point(data = nodes, aes(x, y, fill = xT), size = 9, shape = 21, stroke = 1, colour = colorLine) +
-      scale_fill_gradient(low = "black", high = color_scale) +
-      geom_text(data = nodes, aes(x, y, label = id), colour = "white") +
+      geom_point(data = nodes, aes(x, y, colour = stat), size = 9, shape = 21, stroke = 3.5, fill = fill_b) +
+      scale_colour_gradient(low = colorScale, high = scale_color) +
+      geom_text(data = nodes, aes(x, y, label = playerId), colour = colorText, size = 3, fontface = "bold") +
       labs(title = paste0(team_name, " Pass Network"),
            subtitle = subtitle_plot,
-           y = "Only 4+ Pass Connections.\nSize = Number of connections") +
+           x = "Only 4+ Pass Connections.\nSize = Number of connections",
+           colour = leg_title) +
       theme(legend.position = c(0.843, 1.04),
             legend.direction = "horizontal",
             legend.background = element_rect(fill = fill_b),
@@ -299,10 +356,21 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name,
             plot.title = element_text(colour = colorText, hjust = 0, size = 25, face = "bold"),
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
-      coord_flip(ylim = c(120, 0),
-                 xlim = c(0, 120)) +
-      annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), xmin = 0, xmax = 120, ymin = 120, ymax = 90) +
       direction_label(colour = colorLine, x_label = 107, y_label = 10)
+    
+    if (flip == TRUE) {
+      
+      plot_passnet <- plot_passnet +
+        coord_flip(ylim = c(120, 0),
+                   xlim = c(0, 120)) +
+        annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), 
+                          xmin = 0, xmax = 120, ymin = 120, ymax = 90) +
+        labs(y = "Only 4+ Pass Connections.\nSize = Number of connections") +
+        theme(axis.title.x = element_text(colour = colorText, size = 8))
+      
+    } else if (flip == FALSE) {
+      plot_passnet
+    } 
   }
   return(plot_passnet)
 }

@@ -74,7 +74,7 @@
       <img src="" class="logo" alt=""><h1>Guide to Pitch Plots</h1>
                         <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-05-20</h4>
+            <h4 data-toc-skip class="date">2022-05-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Pitch_Plots.Rmd" class="external-link"><code>vignettes/Guide_to_Pitch_Plots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Pitch_Plots.Rmd</code></div>
@@ -293,7 +293,7 @@
 
 <span class="va">passnetPlot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/Passnet_SB.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() of FC Barcelona in a match</p>
+<img src="../reference/figures/SB_Passnet.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() of FC Barcelona in a match</p>
 </div>
 <p><strong>team_name</strong> is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the <strong>color_scale</strong> parameter as alter the subtitle with <strong>subtitle_plot</strong> if you wish to do so!</p>
 </div>
@@ -375,11 +375,12 @@
 <p>Let us now plot.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">optadata</span>, data_type <span class="op">=</span> <span class="st">"opta"</span>, 
-                            team_name <span class="op">=</span> <span class="st">"Team 1"</span>, color_scale <span class="op">=</span> <span class="st">"#fec44f"</span><span class="op">)</span>
+                            team_name <span class="op">=</span> <span class="st">"Team 1"</span>, scale_stat <span class="op">=</span> <span class="st">"EPV"</span>, 
+                            scale_color <span class="op">=</span> <span class="st">"#fec44f"</span>, flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">passnetPlot</span></code></pre></div>
 <div class="figure">
-<img src="../reference/figures/Passnet_Opta.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() using opta data</p>
+<img src="../reference/figures/Opta_Passnet.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() using opta data</p>
 </div>
 </div>
 </div>

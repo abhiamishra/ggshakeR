@@ -7,7 +7,7 @@
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param team_name The name of the team of which you want a pass network
 #' @param scale_stat Stat for the player node color scale. Choose between "xT" and "EPV" 
-#' @param scale_color Color of higher end of xT color scale. Default set to "#E74C3C"
+#' @param scale_color Color of higher end of xT/EPV color scale. Default set to "#E74C3C"
 #' @param subtitle_plot Subtitle of the pass network plot
 #' @param flip Flip plot to vertical orientation. FALSE is the default
 #' @param theme The background theme -> "dark" or "light"
@@ -29,6 +29,8 @@
 
 plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = "xT", 
                          scale_color = "#E74C3C", subtitle_plot = "", flip = FALSE, theme = "dark") {
+  
+  # Theme
   
   if (theme == "dark") {
     fill_b <- "#151515"
@@ -58,6 +60,8 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       print(c("x", "y", "finalX", "finalY", "team.name", "player.name", "pass.recipient.name", "type.name", "minute", "pass.outcome.name"))
       stop("The dataset has insufficient columns and/or insufficient data.")
     }
+    
+    # Stat calculation
     
     if (scale_stat == "xT") {
       
@@ -224,7 +228,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       stop("The teamId column is supposed to contain team names.")
     }
     
-    # Calculate scale stat
+    # Stat calculation
     
     if (scale_stat == "xT") {
       

@@ -24,7 +24,7 @@ plot_passnet(
 
 \item{scale_stat}{Stat for the player node color scale. Choose between "xT" and "EPV"}
 
-\item{scale_color}{Color of higher end of xT color scale. Default set to "#E74C3C"}
+\item{scale_color}{Color of higher end of xT/EPV color scale. Default set to "#E74C3C"}
 
 \item{subtitle_plot}{Subtitle of the pass network plot}
 

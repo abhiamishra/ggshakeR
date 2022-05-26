@@ -93,7 +93,7 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
     if (template == "forward") {
       
       if (nrow(data) > 148) {
-
+        
         data_selected <- data[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
         
       } else {
@@ -159,7 +159,7 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
                                     Statistic == "Average Pass Length" ~ "Possession",
                                   TRUE ~ "Attacking"))
       } else {
-      
+        
         data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
         data_selected <- data_selected %>%
           mutate(stat = case_when(Statistic == "Save%" |

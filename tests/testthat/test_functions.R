@@ -264,29 +264,31 @@ data2 <- readRDS(d2)
 data <- rbind(data1, data2)
 
 testthat::test_that("Testing plotting pizzas: ", {
-  p <- plot_pizza(
+  p <- suppressWarnings(plot_pizza(
     data = data, type = "comparison", template = "midfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
     colour_compare = "#90ee90", theme = "black"
-  )
+  ))
+  
   testthat::expect_true(is.ggplot(p))
 
   # testing for single player plot
-  p <- plot_pizza(
+  p <- suppressWarnings(plot_pizza(
     data = data1, type = "single", template = "midfielder",
     colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
     colour_def = "#fec44f", theme = "dark"
-  )
+  ))
+  
   testthat::expect_true(is.ggplot(p))
 
   # testing for comparison plot
-  p <- plot_pizza(
+  p <- suppressWarnings(plot_pizza(
     data = data, type = "comparison", template = "midfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
     colour_compare = "#90ee90", theme = "black"
-  )
+  ))
   testthat::expect_true(is.ggplot(p))
 })
 ############# TESTING PLOT_PIZZA ################

@@ -79,8 +79,8 @@ Here are some helpful links to get you started with the package:
 # Credit
 
 Thank you to StatsBomb and [Ewan Henderson](https://github.com/ewenme)
-for their respective packages. A big thank you to Ninad Barbadikar for
-creating the beautiful logo and helping with the package in general.
+for their respective packages. A big thank you to [Ninad Barbadikar](https://twitter.com/NinadB_06) for
+creating the beautiful logo and helping with the package in general. Big thanks to [Maram AlBaharna](https://twitter.com/maramperninety) for giving the package it's iconic name! 
 Thank you [Jase Ziv](https://github.com/JaseZiv) for your help and your
 package [WorldFootballR](https://github.com/JaseZiv/worldfootballR) from
 which this took inspiration from.

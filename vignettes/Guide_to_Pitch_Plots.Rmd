@@ -237,7 +237,7 @@ passnetPlot
 
 ![plot_passnet() of FC Barcelona in a match](../man/figures/SB_Passnet.png){width="80%"}
 
-**team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **color_scale** parameter as alter the subtitle with **subtitle_plot** if you wish to do so!
+**team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **scale_color** parameter, different stats using **scale_stat**, flip the plot's orientation using **flip** and alter the subtitle with **subtitle_plot** if you wish to do so!
 
 ### Opta
 
@@ -330,3 +330,11 @@ passnetPlot
 ```
 
 ![plot_passnet() using opta data](../man/figures/Opta_Passnet.png){width="80%"}
+
+# Contributors
+
+There are a few people to credit with helping in the creation of the pitch plot functions.
+
+The design for `plot_sonar()` is inspired by the pass compass plot designed by [e.](https://twitter.com/barcanumbers) Part of the sonar production code is also credited to [Eliot McKinley](https://twitter.com/etmckinley).
+
+Credit to [Joe Gallagher](https://twitter.com/joedgallagher) and his excellent package [soccermatics](https://github.com/JoGall/soccermatics) for the code used for data wrangling in the `plot_passnet()` function.

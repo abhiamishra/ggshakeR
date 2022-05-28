@@ -244,7 +244,7 @@ passnetPlot
 Using `plot_passnet()` with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. We created a data set to perfectly mimic an Opta data set and it is available within the package for your use. Call it by running:
 
 ```{r, eval=FALSE}
-optadata <- ggshakeR::TestEventData
+optadata <- ggshakeR::SampleEventData
 ```
 
 Now that you have your data set, let us see which columns we require for our function:

@@ -5,4 +5,4 @@
 #' @format A \code{dataframe} with the columns `x`, `y`, `finalX`, `finalY`, `minute`,
 #'  `playerId`, `teamId`, `outcome` and `type`.
 #'
-"TestEventData"
+"SampleEventData"

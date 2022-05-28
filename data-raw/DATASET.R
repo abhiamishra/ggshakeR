@@ -5,5 +5,5 @@ usethis::use_data(xTGrid, overwrite = TRUE, compress = "xz")
 EPVGrid <- read.csv("./inst/extdata/EPV.csv")
 usethis::use_data(EPVGrid, overwrite = TRUE, compress = "xz")
 
-TestEventData <- read.csv("./inst/extdata/TestEventData.csv")
-usethis::use_data(TestEventData, overwrite = TRUE, compress = "xz")
+SampleEventData <- read.csv("./inst/extdata/SampleEventData.csv")
+usethis::use_data(SampleEventData, overwrite = TRUE, compress = "xz")

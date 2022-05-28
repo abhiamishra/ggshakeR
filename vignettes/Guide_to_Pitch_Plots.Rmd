@@ -241,9 +241,11 @@ passnetPlot
 
 ### Opta
 
-Using `plot_passnet()` with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. Here is a data set we created by ourselves to perfectly mimic an Opta data set.
+Using `plot_passnet()` with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. We created a data set to perfectly mimic an Opta data set and it is available within the package for your use. Call it by running:
 
-[plot_passnet_test_data](https://docs.google.com/spreadsheets/d/1AvXIQj9C-ikAT1mAedcxvA8byg1XAZsEv3UY7Q6sf60/edit?usp=sharing)
+```{r, eval=FALSE}
+optadata <- ggshakeR::TestEventData
+```
 
 Now that you have your data set, let us see which columns we require for our function:
 
@@ -260,8 +262,6 @@ Now that you have your data set, let us see which columns we require for our fun
 Note that the *playerId* and *teamId* columns need to contain player and team **names**. The data set in our hands only contains their relevant Id's. Let us fix that and transform the data set into one that will be accepted by our function.
 
 ```{r, eval=FALSE}
-optadata <- read.csv("plot_passnet_dataset_test.csv") # Read in your data
-
 optadata <- optadata %>%
   mutate(teamId = case_when(teamId == 2151 ~ "Team 1",
                             teamId == 3070 ~ "Team 2")) %>%

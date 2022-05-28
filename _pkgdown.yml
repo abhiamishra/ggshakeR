@@ -44,10 +44,14 @@ reference:
       - plot_scatter
       - plot_timeline
       - plot_trendline
-  - title: Expected Threat (xT)
+  - title: Expected Threat & Possession Value (xT & EPV)
     desc: Functions for xT and EPV analysis
     contents:
       - calculate_epv
-      - EPVGrid
       - calculate_threat
+  - title: Data Frames  
+    desc: Data frames housed within the package
+    contents:
+      - EPVGrid
       - xTGrid
+      - TestEventData

@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>Guide to Pitch Plots</h1>
                         <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-05-26</h4>
+            <h4 data-toc-skip class="date">2022-05-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Pitch_Plots.Rmd" class="external-link"><code>vignettes/Guide_to_Pitch_Plots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Pitch_Plots.Rmd</code></div>
@@ -301,8 +301,9 @@
 <div class="section level4">
 <h4 id="opta">Opta<a class="anchor" aria-label="anchor" href="#opta"></a>
 </h4>
-<p>Using <code><a href="../reference/plot_passnet.html">plot_passnet()</a></code> with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. Here is a data set we created by ourselves to perfectly mimic an Opta data set.</p>
-<p><a href="https://docs.google.com/spreadsheets/d/1AvXIQj9C-ikAT1mAedcxvA8byg1XAZsEv3UY7Q6sf60/edit?usp=sharing" class="external-link">plot_passnet_test_data</a></p>
+<p>Using <code><a href="../reference/plot_passnet.html">plot_passnet()</a></code> with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. We created a data set to perfectly mimic an Opta data set and it is available within the package for your use. Call it by running:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="fu">ggshakeR</span><span class="fu">::</span><span class="va"><a href="../reference/TestEventData.html">TestEventData</a></span></code></pre></div>
 <p>Now that you have your data set, let us see which columns we require for our function:</p>
 <ul>
 <li><code>x</code></li>
@@ -320,10 +321,8 @@
 <code>type</code> (Type of event)</li>
 </ul>
 <p>Note that the <em>playerId</em> and <em>teamId</em> columns need to contain player and team <strong>names</strong>. The data set in our hands only contains their relevant Id’s. Let us fix that and transform the data set into one that will be accepted by our function.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"plot_passnet_dataset_test.csv"</span><span class="op">)</span> <span class="co"># Read in your data</span>
-
-<span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>teamId <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">teamId</span> <span class="op">==</span> <span class="fl">2151</span> <span class="op">~</span> <span class="st">"Team 1"</span>,
                             <span class="va">teamId</span> <span class="op">==</span> <span class="fl">3070</span> <span class="op">~</span> <span class="st">"Team 2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>playerId <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">playerId</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="st">"Cameron"</span>,
@@ -367,14 +366,14 @@
                               <span class="va">playerId</span> <span class="op">==</span> <span class="st">"39"</span> <span class="op">~</span> <span class="st">"Zak"</span>,
                               <span class="va">playerId</span> <span class="op">==</span> <span class="st">"40"</span> <span class="op">~</span> <span class="st">"Brandon"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Here we have used the <code><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when()</a></code> function to link the player and team Id’s to the relevant names. There is still some work left to do.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>finalX <span class="op">=</span> <span class="va">endX</span>,
          finalY <span class="op">=</span> <span class="va">endY</span><span class="op">)</span></code></pre></div>
 <p>We have cleaned up our data set. It is now ready to be used in the function.</p>
 <p><strong>It is important to note that these steps might not be necessary for all data sets. This is only to make sure that we are following the correct format for the function. A data set with these exact column names and column type specifications will work within the function without any errors.</strong></p>
 <p>Let us now plot.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">optadata</span>, data_type <span class="op">=</span> <span class="st">"opta"</span>, 
                             team_name <span class="op">=</span> <span class="st">"Team 1"</span>, scale_stat <span class="op">=</span> <span class="st">"EPV"</span>, 
                             scale_color <span class="op">=</span> <span class="st">"#fec44f"</span>, flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>

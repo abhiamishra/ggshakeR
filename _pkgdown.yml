@@ -24,6 +24,8 @@ navbar:
     href: articles/index.html
   - text: News
     href: news/index.html
+  - text: Library
+    href: https://ggshaker.github.io/
 
 reference:
   - title: Pitch Plots

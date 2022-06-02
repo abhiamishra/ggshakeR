@@ -13,7 +13,7 @@ plot_convexhull(
 )
 }
 \arguments{
-\item{data}{Data frame that houses pass data. Opta dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}, \code{playerId}}
+\item{data}{Data frame that houses pass data. Opta data frame must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}, \code{playerId}}
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 

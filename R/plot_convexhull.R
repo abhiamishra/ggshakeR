@@ -3,7 +3,7 @@
 #' This function allows for data, that can be from Opta or StatsBomb, to be used
 #' for plotting convex hulls on top of an outline of a football pitch.
 #'
-#' @param data Data frame that houses pass data. Opta dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`, `playerId`
+#' @param data Data frame that houses pass data. Opta data frame must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`, `playerId`
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param color The color of the outline of the convex hull
 #' @param title_plot Title of the plot

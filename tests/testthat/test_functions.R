@@ -65,7 +65,7 @@ testthat::test_that("Plotting scatterplots: ", {
 
 
 
-############# TESTING PLOT_SHOTS ################
+############# TESTING PLOT_SHOT ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   X = seq(81, 100, by = 1),
@@ -101,7 +101,7 @@ testthat::test_that("Testing plotting pass flow maps: ", {
   p <- plot_shot(df_absent)
   testthat::expect_true(!is.ggplot(p))
 })
-############# TESTING PLOT_SHOTS ################
+############# TESTING PLOT_SHOT ################
 
 
 
@@ -151,39 +151,39 @@ testthat::test_that("Testing plotting passflow maps: ", {
 ############# TESTING PLOT_PASS ################
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
-  location.x = seq(81, 100, by = 1),
-  location.y = seq(81, 100, by = 1),
-  pass.end_location.x = seq(51, 70, by = 1),
-  pass.end_location.y = seq(61, 80, by = 1),
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalX = seq(51, 70, by = 1),
+  finalY = seq(61, 80, by = 1),
   pass.outcome.name = rep(c("Unsuccessful", NA), times = 10),
   player.name = rep(c("Katsu"), times = 20)
 )
 
 # Creating an empty dataframe
-df_empty <- data.frame(matrix(ncol = 5, nrow = 0))
-x <- c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name")
+df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
+x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
 
-# Creating simple dataframe for testing basic plots
+# Creating simple dataframe with missing columns
 df_absent <- data.frame(
-  location.x = seq(81, 100, by = 1),
-  location.y = seq(81, 100, by = 1),
-  pass.end_location.x = seq(51, 70, by = 1),
-  pass.outcome.name = rep(c("Unsuccessful", NA), times = 10)
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalX = seq(51, 70, by = 1)
 )
 
 
-testthat::test_that("Testing plotting shot maps: ", {
-  p <- plot_pass(df, plotType = "def", outcome = "suc")
+testthat::test_that("Testing plotting passes: ", {
+  p <- plot_pass(df, type = "sep", outcome = "suc")
   testthat::expect_true(is.ggplot(p))
 
   # testing for plotting on an empty dataframe
-  p <- plot_pass(df_empty)
-  testthat::expect_true(!is.ggplot(p))
-
-  # testing using a dataframe that does not have the required columns
-  p <- plot_pass(df_absent)
-  testthat::expect_true(!is.ggplot(p))
+  testthat::expect_error(plot_pass(df_empty),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed = TRUE)
+  # testing on a dataframe with insufficient columns
+  testthat::expect_error(plot_pass(df_absent, data_type = "opta"),
+                         "The dataset has insufficient columns and/or insufficient data.",
+                         fixed = TRUE)
 })
 ############# TESTING PLOT_PASS ################
 

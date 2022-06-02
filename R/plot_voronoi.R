@@ -79,7 +79,7 @@ plot_voronoi <- function(data, data_type = "statsbomb",
     annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
                    fill = fill_b) +
     theme_pitch() +
-    geom_point(color = "red", alpha = 0.7, size=5)
+    geom_point(color = colour, alpha = 0.7, size=5)
   
   if (voro_fill != "") {
     voro_plot <- voro_plot + 

@@ -47,7 +47,8 @@
 
 plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colour_att = "#2171b5", 
                        colour_def = "#fec44f", player_1, player_2, colour_compare = "#41ab5d", 
-                       season = "Last 365 Days", season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days", theme = "") {
+                       season = "Last 365 Days", season_player_1 = "Last 365 Days", 
+                       season_player_2 = "Last 365 Days", theme = "") {
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
@@ -174,18 +175,15 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
       data_selected
     }
     
-    player_name <- data$Player
-    title <- paste(player_name, "Percentile Chart")
-    min <- data$BasedOnMinutes
-    sub <- data$Versus
-    sub1 <- data$scouting_period
-    subtitle <- paste("Compared to", sub, " |", sub1, " |", min, "minutes played")
-    caption <- "Plot code by @RobinWilhelmus\nData from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
-    temp <- (360 / (length(data_selected$Player)) / 2)
-    myAng <- seq(-temp, -360 + temp, length.out = length(data_selected$Player))
-    ang <- ifelse(myAng < -90, myAng + 180, myAng)
-    ang <- ifelse(ang < -90, ang + 180, ang)
+    
+    player_name <- unique(data$Player)
+    title <- paste(player_name, "Percentile Chart")
+    min <- unique(data$BasedOnMinutes)
+    sub <- unique(data$Versus)
+    sub1 <- unique(data$scouting_period)
+    subtitle <- paste("Compared to", sub, "|", sub1, "|", min, "minutes played")
+    caption <- "Plot code by @RobinWilhelmus\nData from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
     x <- c(data_selected$Statistic, data_selected$stat)
     
@@ -213,9 +211,9 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText, angle = ang),
+            axis.text.x = element_text(size = 12, colour = colorText),
             text = element_text(colour = colorText, size = 20),
-            plot.title = element_markdown(hjust = 0.5, size = 26, colour = colorText, face = "bold"),
+            plot.title = element_markdown(hjust = 0.5, size = 24, colour = colorText),
             plot.subtitle = element_text(hjust = 0.5, size = 20, colour = colorText),
             plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
             panel.grid.major = element_blank(),
@@ -247,7 +245,7 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
       filter(Player == player_2) %>%
       filter(scouting_period == season_player_2)
     
-    if (template == "forward" || template == "") {
+    if (template == "forward") {
       
       if (nrow(data1) > 148) {
         
@@ -348,20 +346,15 @@ plot_pizza <- function(data, type = "", template, colour_poss = "#41ab5d", colou
              per90 = Per90,
              percentile = Percentile)
     
-    temp <- (360 / (length(data1$Player)) / 2)
-    myAng <- seq(-temp, -360 + temp, length.out = length(data1$Player))
-    ang <- ifelse(myAng < -90, myAng + 180, myAng)
-    ang <- ifelse(ang < -90, ang + 180, ang)
-    
-    player_name1 <- data1$Player
-    player_name2 <- data2$player
-    min1 <- data1$BasedOnMinutes
-    min2 <- data2$BasedOnMinutes
-    sub <- data1$Versus
-    lg1 <- data1$scouting_period
-    lg2 <- data2$scouting_period
-    title <- paste(player_name1, " |", lg1, " |", min1, "minutes")
-    subtitle <- paste(player_name2, " |", lg2, " |", min2, "minutes")
+    player_name1 <- unique(data1$Player)
+    player_name2 <- unique(data2$player)
+    min1 <- unique(data1$BasedOnMinutes)
+    min2 <- unique(data2$BasedOnMinutes)
+    sub <- unique(data1$Versus)
+    lg1 <- unique(data1$scouting_period)
+    lg2 <- unique(data2$scouting_period)
+    title <- paste(player_name1, "|", lg1, "|", min1, "minutes")
+    subtitle <- paste(player_name2, "|", lg2, "|", min2, "minutes")
     caption <- paste("Compared to", sub, ".
 Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshakeR.")
     
@@ -388,10 +381,10 @@ Data from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshak
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText, angle = ang),
+            axis.text.x = element_text(size = 12, colour = colorText),
             text = element_text(colour = colorText, size = 20),
-            plot.title = element_markdown(hjust = 0.5, size = 26, colour = colour_compare, face = "bold"),
-            plot.subtitle = element_text(hjust = 0.5, size = 26, colour = colorLine, face = "bold"),
+            plot.title = element_markdown(hjust = 0.5, size = 24, colour = colour_compare),
+            plot.subtitle = element_text(hjust = 0.5, size = 24, colour = colorLine),
             plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +

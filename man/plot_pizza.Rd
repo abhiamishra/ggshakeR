@@ -68,7 +68,8 @@ plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
 plot1
 
 plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
-                    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+                    color_possession = "green", color_attack = "lightblue", 
+                    season = "Last 365 Days",
                     color_defense = "red", theme = "dark")
 plot2
 }

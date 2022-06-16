@@ -34,7 +34,8 @@ Imports:
   purrr,
   ggforce,
   gridExtra,
-  useful
+  useful,
+  MASS (>= 4.3.0)
 Suggests: 
     rmarkdown,
     knitr,

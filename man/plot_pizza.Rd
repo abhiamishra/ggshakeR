@@ -8,12 +8,12 @@ plot_pizza(
   data,
   type = "",
   template,
-  colour_poss = "#41ab5d",
-  colour_att = "#2171b5",
-  colour_def = "#fec44f",
+  color_possession = "#41ab5d",
+  color_attack = "#2171b5",
+  color_defense = "#fec44f",
   player_1,
   player_2,
-  colour_compare = "#41ab5d",
+  color_compare = "#41ab5d",
   season = "Last 365 Days",
   season_player_1 = "Last 365 Days",
   season_player_2 = "Last 365 Days",
@@ -21,32 +21,32 @@ plot_pizza(
 )
 }
 \arguments{
-\item{data}{that houses data. Data frame can contain either one player or two depending on the type of plot made.}
+\item{data}{Data frame can contain either one player or two depending on the type of plot made}
 
-\item{type}{Type of plot -> single and comparison.}
+\item{type}{Type of plot -> single and comparison}
 
-\item{template}{for selecting a group of pre-selected metrics for each position by position namely:
-forward, winger, midfielder, defender, goalkeeper, full back and custom.}
+\item{template}{Selecting a group of pre-selected metrics for each position by position namely:
+forward, winger, midfielder, defender, goalkeeper, full back and custom}
 
-\item{colour_poss}{for selecting the colour for possession group of stats. To be used only for single player plot.}
+\item{color_possession}{Selecting the color for possession group of stats. To be used only for single player plot}
 
-\item{colour_att}{for selecting the colour for attacking group of stats. To be used only for single player plot.}
+\item{color_attack}{Selecting the color for attacking group of stats. To be used only for single player plot}
 
-\item{colour_def}{for selecting the colour for defense group of stats. To be used only for single player plot.}
+\item{color_defense}{Selecting the color for defense group of stats. To be used only for single player plot}
 
-\item{player_1}{for selecting the first player. To be used only for comparison plot.}
+\item{player_1}{Selecting the first player. To be used only for comparison plot}
 
-\item{player_2}{for selecting the second player. To be used only for comparison plot.}
+\item{player_2}{Selecting the second player. To be used only for comparison plot}
 
-\item{colour_compare}{for selecting the colour of comparison to be used only for comparison plot.}
+\item{color_compare}{Selecting the color of comparison to be used only for comparison plot}
 
-\item{season}{Specify what season to pick for a single player pizza chart. Pick the scouting period from the scouting period column in the data.}
+\item{season}{Specify what season to pick for a single player pizza chart. Pick the scouting period from the scouting period column in the data}
 
 \item{season_player_1}{Specify what season to pick for the first player in a pizza chart}
 
 \item{season_player_2}{Specify what season to pick for the second player in a pizza chart}
 
-\item{theme}{Specify the theme of the pizza chart -> dark, black, and white. Default set to black}
+\item{theme}{Specify the theme of the pizza chart -> dark, black, and white. Default set to dark}
 }
 \value{
 a ggplot2 object
@@ -64,12 +64,12 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")
 plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
                     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                    colour_compare = "lightgreen", theme = "black")
+                    color_compare = "lightgreen", theme = "black")
 plot1
 
 plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
-                    colour_poss = "green", colour_att = "lightblue", season = "Last 365 Days",
-                    colour_def = "red", theme = "dark")
+                    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+                    color_defense = "red", theme = "dark")
 plot2
 }
 }

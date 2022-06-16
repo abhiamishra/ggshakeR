@@ -11,7 +11,7 @@ An object of class \code{character} of length 10.
 zissou_pal
 }
 \description{
-'Zissou' palette hex codes. Useed in \code{plot_sonar()} function.
+'Zissou' palette hex codes. Used in \code{plot_sonar()} function.
 Created by Karthik Ram in the {wesanderson} R package.
 }
 \keyword{internal}

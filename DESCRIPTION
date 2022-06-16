@@ -34,13 +34,13 @@ Imports:
   purrr,
   ggforce,
   gridExtra,
-  useful,
-  MASS (>= 4.3)
+  useful
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    MASS (>= 4.3)
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5.0)

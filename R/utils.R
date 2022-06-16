@@ -38,7 +38,7 @@ hull_fun <- function(data) {
 }
 
 #' title zissou_pal
-#' @description 'Zissou' palette hex codes. Useed in `plot_sonar()` function.
+#' @description 'Zissou' palette hex codes. Used in `plot_sonar()` function.
 #' Created by Karthik Ram in the {wesanderson} R package.
 #' @keywords internal
 

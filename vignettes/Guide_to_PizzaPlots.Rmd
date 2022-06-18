@@ -32,8 +32,8 @@ library(worldfootballR)
 single_player <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-Abraham", pos_versus = "primary")
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "forward", 
-                    colour_poss = "#41ab5d", colour_att = "#fec44f", season = "Last 365 Days", 
-                    colour_def = "#de2d26", theme = "dark")
+                    color_possession = "#41ab5d", color_attack = "#fec44f", 
+                    color_defense = "#de2d26", season = "Last 365 Days", theme = "dark")
 pizza
 ```
 
@@ -59,12 +59,12 @@ Here, when you look at the index column, you'll see the numbers correspond to th
 single_player <- single_player[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "custom", 
-                    colour_poss = "#41ab5d", colour_att = "#fec44f", season = "Last 365 Days", 
-                    colour_def = "#de2d26", theme = "dark")
+                    color_possession = "#41ab5d", color_attack = "#fec44f", 
+                    color_defense = "#de2d26", season = "Last 365 Days", theme = "dark")
 pizza
 ```
 
-![custom pizza plot for Tammy Abraham](../man/figures/pizza_plot_comparison.png){width=80%}
+![custom pizza plot for Tammy Abraham](../man/figures/pizza_plot_cus.png){width=80%}
 
 ## Comparison Plot
 
@@ -72,15 +72,15 @@ The comparison graph can be plotted as shown below.
 
 ```{r, eval=FALSE}
 data1 <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-Abraham", pos_versus = "primary")
-
 data2 <- fb_player_scouting_report("https://fbref.com/en/players/59e6e5bf/Dominic-Calvert-Lewin", pos_versus = "primary")
 
 data <- rbind(data1, data2)
 
 comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
-                         season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                         colour_compare = "#41ab5d", theme = "black")
+                         season_player_1 = "Last 365 Days", 
+                         season_player_2 = "Last 365 Days",
+                         color_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```
 
@@ -118,8 +118,9 @@ data <- rbind(data1, data2)
 
 comp_pizza <- plot_pizza(data = data, type = "comparison", template = "custom",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
-                         season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-                         colour_compare = "#41ab5d", theme = "black")
+                         season_player_1 = "Last 365 Days", 
+                         season_player_2 = "Last 365 Days",
+                         color_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```
 
@@ -167,7 +168,7 @@ img <- image_read(image_path)
 img <- image_scale(img, "62x85")
   
 ## Overlay
-image_composite(fig, img, offset = "+471+425")
+image_composite(fig, img, offset = "+471+417")
 
 }
 

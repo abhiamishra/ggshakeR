@@ -54,9 +54,9 @@ Here are some characteristics:
 
 Here's the cool thing about the `calculate_epv()` function: __It calculates the xT of the start of a pass/carry and the xT of the end of the pass/carry__.
 
-Why is this important? Well, let's take a take-on. That only has a starting `x` ,`y` . In the dataframe, the columns of `finalX` and `finalY` have `NAs` in them. The `calculate_epv()` will give you the EPV for both the starting and ending locations allowing you to give a value to single-event values - basically, it gives you the most freedom and information regarding EPV.
+Why is this important? Well, let's take a take-on. That only has a starting `x` ,`y` . In the dataframe, the columns of `finalX` and `finalY` have `NAs` in them. The `calculate_epv()` will give you the EPV for both the starting and ending locations allowing you to give a value to single-event values. 
 
-This means, you can use this function beyond passes and carries and be able to calculate EPV for clearances, tackles, take-ons, etc!
+This means, you can use this function beyond passes and carries and be able to calculate EPV for clearances, tackles, take-ons, etc! In addition, by separating out the EPV values for the start and end, you can apply more advanced analytics to the passes.
 
 Let's see how we can use it!
 

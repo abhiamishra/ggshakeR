@@ -336,8 +336,7 @@ test_that("Testing calculation of expected threat: ", {
 
 
   # testing for plotting on an empty dataframe
-  p <- plot_heatmap(data = df_empty)
-  expect_equal(NULL, ncol(p))
+  expect_error(plot_heatmap(data = df_empty))
 })
 
 

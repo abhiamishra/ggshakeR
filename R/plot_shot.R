@@ -20,7 +20,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_shot(data, type = "hexbin", bins = 20, average_location = TRUE, highlight_goals = FALSE)
+#' plot <- plot_shot(data, type = "hexbin", bins = 20, 
+#' average_location = TRUE, highlight_goals = FALSE)
 #' }
 
 plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_location = "", theme = "") {

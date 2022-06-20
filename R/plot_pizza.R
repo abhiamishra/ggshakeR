@@ -32,15 +32,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
-#'                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-#'                     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-#'                     color_compare = "lightgreen", theme = "black")
+#' plot1 <- plot_pizza(
+#' data = data, type = "comparison", template = "midfielder",
+#' player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
+#' season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+#' color_compare = "lightgreen", theme = "black")
 #' plot1
 #'
-#' plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
-#'                     color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
-#'                     color_defense = "red", theme = "dark")
+#' plot2 <- plot_pizza(
+#' data = data1, type = "single", template = "midfielder",
+#' color_possession = "green", color_attack = "lightblue", 
+#' season = "Last 365 Days",
+#' color_defense = "red", theme = "dark")
 #' plot2
 #' }
 

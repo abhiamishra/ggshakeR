@@ -35,6 +35,7 @@ for plotting shots.
 }
 \examples{
 \dontrun{
-plot <- plot_shot(data, type = "hexbin", bins = 20, average_location = TRUE, highlight_goals = FALSE)
+plot <- plot_shot(data, type = "hexbin", bins = 20, 
+average_location = TRUE, highlight_goals = FALSE)
 }
 }

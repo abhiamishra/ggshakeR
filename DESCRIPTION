@@ -17,7 +17,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports:
   tidyr,
   magrittr,
@@ -26,20 +26,18 @@ Imports:
   ggsoccer,
   ggrepel,
   ggtext,
-  Rcpp,
-  RcppRoll,
   TTR,
   stringi, 
   forcats,
   purrr,
   ggforce,
-  gridExtra,
-  useful
+  gridExtra
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    stats
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5.0)

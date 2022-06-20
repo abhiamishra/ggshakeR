@@ -17,7 +17,7 @@
 #' @import tidyr
 #' @import ggsoccer
 #' @importFrom gridExtra tableGrob ttheme_minimal
-#' @import useful
+#' @importFrom stats na.omit
 #'
 #' @export
 #'
@@ -270,7 +270,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       filter(teamId == team_name)
     
     data1 <- data1[complete.cases(data1[, "playerId"]), ]
-    data1 <- shift.column(data = data1, columns = "playerId", newNames = "receiver", len = 1, up = TRUE)
+    data1 <- shift_column(data = data1, columns = "playerId", new_names = "receiver", len = 1, up = TRUE)
     
     # Filter to before first substitution
     

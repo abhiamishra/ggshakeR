@@ -21,8 +21,6 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import ggtext
-#' @import Rcpp
-#' @import RcppRoll
 #' @import TTR
 #'
 #' @export

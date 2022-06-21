@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,9 +133,9 @@
          <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,
          <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
          <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
-<p>For <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>, <strong>always write the dataType that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
+<p>For <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>, <strong>always write the <code>type</code> that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plottingData</span>, dataType <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
 <p>If we inspect <code>EPVData</code>, we see these two new columns at the very end:</p>
 <div class="figure">
 <img src="../reference/figures/calculate_epv.png" style="width:90.0%" alt=""><p class="caption">calculate_epv() producing EPVStart and EPVEnd</p>

@@ -24,7 +24,7 @@ Away (Away Team)"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,7 @@ Away (Away Team)</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_trendline</span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">colour_xg</span>, <span class="va">colour_xga</span>, <span class="va">roll_avg</span>, theme <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_trendline</span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">color_xg</span>, <span class="va">color_xga</span>, <span class="va">rolling_average</span>, theme <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -93,15 +93,15 @@ Away (Away Team)</p>
 <dd><p>is to select the specific team for the viz. Team must be accurate as per FBref specifications.</p></dd>
 
 
-<dt>colour_xg</dt>
-<dd><p>is for selecting colour for xGoals.</p></dd>
+<dt>color_xg</dt>
+<dd><p>is for selecting color for xGoals.</p></dd>
 
 
-<dt>colour_xga</dt>
-<dd><p>is for selecting the colour for xGoalsAgainst.</p></dd>
+<dt>color_xga</dt>
+<dd><p>is for selecting the color for xGoalsAgainst.</p></dd>
 
 
-<dt>roll_avg</dt>
+<dt>rolling_average</dt>
 <dd><p>is for setting the rolling average for the data.</p></dd>
 
 
@@ -118,8 +118,8 @@ Away (Away Team)</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">plot_trendline</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pl</span>, team <span class="op">=</span> <span class="st">"Tottenham"</span>,</span>
-<span class="r-in">                       colour_xg <span class="op">=</span> <span class="st">"#08519c"</span>, colour_xga <span class="op">=</span> <span class="st">"#cb181d"</span>,</span>
-<span class="r-in">                       roll_avg <span class="op">=</span> <span class="fl">10</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span></span>
+<span class="r-in">                       color_xg <span class="op">=</span> <span class="st">"#08519c"</span>, color_xga <span class="op">=</span> <span class="st">"#cb181d"</span>,</span>
+<span class="r-in">                       rolling_average <span class="op">=</span> <span class="fl">10</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">plot</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

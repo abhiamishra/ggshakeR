@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,15 +100,16 @@
 <span class="va">single_player</span> <span class="op">&lt;-</span> <span class="fu">fb_player_scouting_report</span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
 <span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"forward"</span>, 
-                    color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, 
-                    color_defense <span class="op">=</span> <span class="st">"#de2d26"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
+                    color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, color_defense <span class="op">=</span> <span class="st">"#de2d26"</span>, 
+                    season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
+
 <span class="va">pizza</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/pizza_plot.png" style="width:80.0%" alt=""><p class="caption">pizza plot for Tammy Abraham</p>
 </div>
-<p>There are 7 different templates to choose from, which are <em>forward</em>, <em>midfielder</em>, <em>winger</em>, <em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and <em>custom</em>. They select specific stats that (subjectively, in the author’s opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the <em>custom</em> template as well. You can filter for the season required and select the colours for each stat subgroup according to your liking.</p>
+<p>There are 7 different templates to choose from, which are <em>forward</em>, <em>midfielder</em>, <em>winger</em>, <em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and <em>custom</em>. They select specific stats that (subjectively, in the author’s opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the <em>custom</em> template as well. You can filter for the season required and select the colors for each stat subgroup according to your liking.</p>
 <p>For the season filter, please look at the data scraped from FBRef and look at the “term” in scouting period. The term there will determine what season you will be filtering for when you put it in the function.</p>
-<p>There are three colour theme’s for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
+<p>There are three color theme’s for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
 <div class="section level4">
 <h4 id="custom-stats---single-player">Custom Stats - Single Player<a class="anchor" aria-label="anchor" href="#custom-stats---single-player"></a>
 </h4>
@@ -121,8 +122,9 @@
 <code class="sourceCode R"><span class="va">single_player</span> <span class="op">&lt;-</span> <span class="va">single_player</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"custom"</span>, 
-                    color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, 
-                    color_defense <span class="op">=</span> <span class="st">"#de2d26"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
+                    color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, 
+                    color_defense <span class="op">=</span> <span class="st">"#de2d26"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
+
 <span class="va">pizza</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/pizza_plot_cus.png" style="width:80.0%" alt=""><p class="caption">custom pizza plot for Tammy Abraham</p>
@@ -150,7 +152,7 @@
 </div>
 <p>There are 7 different templates to choose from, which are <em>forward</em>, <em>midfielder</em>, <em>winger</em>, <em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and <em>custom</em>. They select specific stats that (subjectively, in the author’s opinion) reflect the important attributes requires for each position. Users also have the option to select their own stats using the <em>custom</em> template as well.</p>
 <p>The seasons and names of both players have to be specified within the function in their respective parameters.</p>
-<p>There are three colour themes for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
+<p>There are three color themes for the background, namely <em>dark</em>, <em>black</em> and <em>white</em>.</p>
 <p><strong>An important thing to note with player name’s is the their entire name’s have to specified.</strong> <strong>Special care must be taken to remove any accents from the name of the player.</strong> <strong>For example, <em>Dušan Vlahović</em> should be inputted as <em>Dusan Vlahovic</em>.</strong></p>
 <div class="section level4">
 <h4 id="custom-stats---comparison-plot">Custom Stats - Comparison Plot<a class="anchor" aria-label="anchor" href="#custom-stats---comparison-plot"></a>
@@ -208,17 +210,16 @@
 
 <span class="va">add_image_centre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">plot_path</span>, <span class="va">image_path</span><span class="op">)</span> <span class="op">{</span>
   
-<span class="co">## Read in plot</span>
-<span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu">image_read</span><span class="op">(</span><span class="va">plot_path</span><span class="op">)</span>
-<span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu">image_resize</span><span class="op">(</span><span class="va">fig</span>, <span class="st">"1000x1000"</span><span class="op">)</span>
+  <span class="co">## Read in plot</span>
+  <span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu">image_read</span><span class="op">(</span><span class="va">plot_path</span><span class="op">)</span>
+  <span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu">image_resize</span><span class="op">(</span><span class="va">fig</span>, <span class="st">"1000x1000"</span><span class="op">)</span>
   
-<span class="co">## Read in image</span>
-<span class="va">img</span> <span class="op">&lt;-</span> <span class="fu">image_read</span><span class="op">(</span><span class="va">image_path</span><span class="op">)</span>
-<span class="va">img</span> <span class="op">&lt;-</span> <span class="fu">image_scale</span><span class="op">(</span><span class="va">img</span>, <span class="st">"62x85"</span><span class="op">)</span>
+  <span class="co">## Read in image</span>
+  <span class="va">img</span> <span class="op">&lt;-</span> <span class="fu">image_read</span><span class="op">(</span><span class="va">image_path</span><span class="op">)</span>
+  <span class="va">img</span> <span class="op">&lt;-</span> <span class="fu">image_scale</span><span class="op">(</span><span class="va">img</span>, <span class="st">"62x85"</span><span class="op">)</span>
   
-<span class="co">## Overlay</span>
-<span class="fu">image_composite</span><span class="op">(</span><span class="va">fig</span>, <span class="va">img</span>, offset <span class="op">=</span> <span class="st">"+471+417"</span><span class="op">)</span>
-
+  <span class="co">## Overlay</span>
+  <span class="fu">image_composite</span><span class="op">(</span><span class="va">fig</span>, <span class="va">img</span>, offset <span class="op">=</span> <span class="st">"+471+417"</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># Here you use the function to add the player picture to the plot image.</span>

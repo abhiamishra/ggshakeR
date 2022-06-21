@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,7 +130,8 @@
 <code class="sourceCode R"><span class="va">shot_data</span> <span class="op">&lt;-</span> <span class="fu">get_player_shots</span><span class="op">(</span>player_id <span class="op">=</span> <span class="fl">1250</span><span class="op">)</span> <span class="co"># Salah's `player_id` on Understat is `1250`</span></code></pre></div>
 <p>After that, simply write and execute the following code to get a beautiful shot map:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">shot_data</span>, type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span>
+
 <span class="va">plot</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_shot.png" style="width:80.0%" alt=""><p class="caption">plot_shot() of Mohammed Salah</p>
@@ -203,10 +204,11 @@
 </h4>
 <p>For the heat map, we simply select our columns and plot! <strong>Type</strong> options include <em>bin</em>, <em>hex</em>, <em>density</em> and <em>jdp</em>. Note that we don’t specify <strong>data_type</strong> since the default is set to “statsbomb”, so we can simply write this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">heat_data</span>  <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">heat_data</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">finalX</span>, <span class="va">finalY</span><span class="op">)</span>
 
-<span class="va">heatPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">heat_data</span>, type <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span>
+<span class="va">heatPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">heat_data</span>, type <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span>
+
 <span class="va">heatPlot</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_heatmap.png" style="width:80.0%" alt=""><p class="caption">plot_heatmap() of all of La Liga’s events in 2014/15</p>
@@ -223,7 +225,8 @@
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type.name</span> <span class="op">==</span> <span class="st">"Pass"</span> <span class="op">&amp;</span> <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span> <span class="op">&amp;</span> <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span></code></pre></div>
 <p>Now I can construct a pass sonar! Default <strong>data_type</strong> is set to <em>“statsbomb”</em>, so here we can simply write:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sonarPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">plotting_data_alba</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">sonarPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span>
+
 <span class="va">sonarPlot</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_sonar.png" style="width:80.0%" alt=""><p class="caption">plot_sonar() of all of Jordi Alba’s passes from 2014/15</p>
@@ -251,7 +254,8 @@
 </h4>
 <p>Since we already have Jordi Alba’s passes, we can just construct the pass flow like this:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">passflowPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">plotting_data_alba</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">passflowPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span>
+
 <span class="va">passflowPlot</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_passflow.png" style="width:80.0%" alt=""><p class="caption">plot_passflow() of all of Jordi Alba’s passes from 2014/15</p>
@@ -311,7 +315,7 @@
 <code class="sourceCode R"><span class="va">finalData</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span>, <span class="va">minute</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name<span class="op">=</span><span class="va">mean</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">minute</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span></code></pre></div>
@@ -336,7 +340,7 @@
   <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">EPVStart</span> <span class="op">!=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co">#Getting rid of -1 as that as how we identify null values</span>
   <span class="co">#We get the mean and sum of these three columns</span>
-  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span>,<span class="va">EPVStart</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name<span class="op">=</span><span class="va">mean</span>,<span class="va">sum</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">EPVStart</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span>, <span class="va">sum</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>

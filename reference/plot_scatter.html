@@ -12,7 +12,7 @@ that have passes as some sort of input. Compatible with any data frame of any da
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,20 +65,20 @@ that have passes as some sort of input. Compatible with any data frame of any da
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_scatter</span><span class="op">(</span>
   <span class="va">data</span>,
-  scatter_x <span class="op">=</span> <span class="st">""</span>,
-  scatter_y <span class="op">=</span> <span class="st">""</span>,
-  sc_label <span class="op">=</span> <span class="st">""</span>,
+  x <span class="op">=</span> <span class="st">""</span>,
+  y <span class="op">=</span> <span class="st">""</span>,
+  label <span class="op">=</span> <span class="st">""</span>,
   set_size_num <span class="op">=</span> <span class="fl">5</span>,
   set_size_var <span class="op">=</span> <span class="st">""</span>,
   set_color_num <span class="op">=</span> <span class="st">"red"</span>,
   set_color_var <span class="op">=</span> <span class="st">""</span>,
-  theme <span class="op">=</span> <span class="st">"classic"</span>,
-  scatter_title <span class="op">=</span> <span class="st">""</span>,
+  title <span class="op">=</span> <span class="st">""</span>,
   title_size <span class="op">=</span> <span class="fl">25</span>,
-  scatter_subtitle <span class="op">=</span> <span class="st">""</span>,
-  subt_size <span class="op">=</span> <span class="fl">15</span>,
-  scatter_cap <span class="op">=</span> <span class="st">""</span>,
-  cap_size <span class="op">=</span> <span class="fl">10</span>
+  subtitle <span class="op">=</span> <span class="st">""</span>,
+  subtitle_size <span class="op">=</span> <span class="fl">15</span>,
+  caption <span class="op">=</span> <span class="st">""</span>,
+  caption_size <span class="op">=</span> <span class="fl">10</span>,
+  theme <span class="op">=</span> <span class="st">"classic"</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -88,16 +88,16 @@ that have passes as some sort of input. Compatible with any data frame of any da
 <dd><p>the dataframe passed in for plotting.</p></dd>
 
 
-<dt>scatter_x</dt>
+<dt>x</dt>
 <dd><p>name of column name in data to be used on x-axis</p></dd>
 
 
-<dt>scatter_y</dt>
+<dt>y</dt>
 <dd><p>name of column name in data to be used on y-axis</p></dd>
 
 
-<dt>sc_label</dt>
-<dd><p>the name of column name in data to be label the scatter plot</p></dd>
+<dt>label</dt>
+<dd><p>the name of column name in data to label the scatter plot</p></dd>
 
 
 <dt>set_size_num</dt>
@@ -116,11 +116,7 @@ that have passes as some sort of input. Compatible with any data frame of any da
 <dd><p>Enter name of column name in data to set color based on variable.</p></dd>
 
 
-<dt>theme</dt>
-<dd><p>decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"</p></dd>
-
-
-<dt>scatter_title</dt>
+<dt>title</dt>
 <dd><p>pick the title of the scatter plot</p></dd>
 
 
@@ -128,20 +124,24 @@ that have passes as some sort of input. Compatible with any data frame of any da
 <dd><p>sets the size of the title of the scatter plot. Default size = 25.</p></dd>
 
 
-<dt>scatter_subtitle</dt>
+<dt>subtitle</dt>
 <dd><p>pick the subtitle of the scatter plot</p></dd>
 
 
-<dt>subt_size</dt>
-<dd><p>sets the size of the subtitle of the scatter plot Default size =15.</p></dd>
+<dt>subtitle_size</dt>
+<dd><p>sets the size of the subtitle of the scatter plot Default size = 15.</p></dd>
 
 
-<dt>scatter_cap</dt>
+<dt>caption</dt>
 <dd><p>pick the caption of the scatter plot</p></dd>
 
 
-<dt>cap_size</dt>
+<dt>caption_size</dt>
 <dd><p>sets the size of the caption of the scatter plot. Default size = 10.</p></dd>
+
+
+<dt>theme</dt>
+<dd><p>decide the theme of the plot between four choices: classic, minimal, grey, bw. Default = "classic"</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -154,7 +154,7 @@ that have passes as some sort of input. Compatible with any data frame of any da
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">plot_scatter</span><span class="op">(</span><span class="va">dtaa</span>, scatter_x <span class="op">=</span> <span class="st">"player"</span>, scatter_y <span class="op">=</span> <span class="st">"age"</span>, sc_label <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">plot_scatter</span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"player"</span>, y <span class="op">=</span> <span class="st">"age"</span>, label <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">plot</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

@@ -328,7 +328,7 @@ df_absent <- data.frame(
 )
 
 test_that("Testing calculation of expected threat: ", {
-  p <- calculate_threat(df, dataType = "statsbomb")
+  p <- calculate_threat(df, type = "statsbomb")
   expect_equal((ncol(df) + 2), ncol(p))
   
   p <- calculate_threat(df)
@@ -336,9 +336,8 @@ test_that("Testing calculation of expected threat: ", {
   
   # testing for plotting on an empty dataframe
   expect_error(calculate_threat(df_empty),
-               "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
-  expect_error(calculate_threat(df_absent),
-               "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
+               "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: `x`, `y`, `finalX`, `finalY`")
+  expect_error(calculate_threat(df_absent)) ## 'Can't subset columns that don't exist.'
 })
 
 
@@ -373,12 +372,10 @@ test_that("Testing plotting sonars: ", {
   expect_equal(p$labels$title, "Test 1")
   
   # testing for plotting on an empty dataframe
-  p <- plot_sonar(data = df_empty)
-  expect_true(!is.ggplot(p))
+  expect_error(plot_sonar(data = df_empty))
   
   # testing using a dataframe that does not have the required columns
-  p <- plot_sonar(data = df_absent)
-  expect_true(!is.ggplot(p))
+  expect_error(plot_sonar(data = df_absent))
 })
 
 
@@ -741,7 +738,7 @@ df_absent <- data.frame(
 )
 
 test_that("Testing calculation of expected threat: ", {
-  p <- calculate_epv(df, dataType = "statsbomb")
+  p <- calculate_epv(df, type = "statsbomb")
   expect_equal((ncol(df) + 2), ncol(p))
   
   p <- calculate_epv(df)

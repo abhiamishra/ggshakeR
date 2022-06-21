@@ -75,8 +75,8 @@ plot_sonar <- function(data, data_type = "statsbomb", title = "") {
     sonar <- sonar %>%
       mutate(angle.round = angle.round + 0.5)
     
-    if (titlePlot == "") {
-      titlePlot <- "Pass Sonar"
+    if (title == "") {
+      title <- "Pass Sonar"
     }
     
     plotCaption <- paste("Length of passes is in length of arrows + color of dots while frequency is in transparency. ", "Forward is toward's opponent's goal while backwards is towards own goal. ", sep = "\n")
@@ -90,7 +90,6 @@ plot_sonar <- function(data, data_type = "statsbomb", title = "") {
                    arrow = arrow(length = unit(0.03, "npc"))) +
       scale_alpha(guide = 'none') +
       geom_point(aes(x = angle.round, y = 0, color = distance), size = 6) +
-      scale_color_gradientn(colors = pal) +
       scale_color_gradientn(colours = zissou_pal) +
       scale_x_continuous(breaks = seq(-180, 180, by = 90), limits = c(-180, 180)) +
       coord_polar(start = pi, direction = -1) +

@@ -24,8 +24,8 @@
 #'
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom forcats fct_reorder
 #' @importFrom stringi stri_wrap stri_trans_general
+#' @importFrom stats reorder
 #'
 #' @export
 #'
@@ -190,7 +190,7 @@ plot_pizza <- function(data, type = "", template,
     
     x <- c(data_selected$Statistic, data_selected$stat)
     
-    ggplot(data_selected, aes(fct_reorder(Statistic, stat), Percentile)) +
+    ggplot(data_selected, aes(reorder(Statistic, stat), Percentile)) +
       geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, color = fill_b,
                alpha = 0.1, show.legend = FALSE) +
       geom_bar(stat = "identity", width = 1, aes(fill = stat), color = fill_b, alpha = 1) +
@@ -214,7 +214,7 @@ plot_pizza <- function(data, type = "", template,
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, color = colorText, angle = ang),
+            axis.text.x = element_text(size = 12, color = colorText),
             text = element_text(color = colorText, size = 20),
             plot.title = element_markdown(hjust = 0.5, size = 26, color = colorText, face = "bold"),
             plot.subtitle = element_text(hjust = 0.5, size = 20, color = colorText),
@@ -362,7 +362,7 @@ plot_pizza <- function(data, type = "", template,
     
     x <- data1$Statistic
     
-    ggplot(data1, aes(x = fct_reorder(Statistic, stat), y = Percentile)) +
+    ggplot(data1, aes(x = reorder(Statistic, stat), y = Percentile)) +
       geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, color = gridline,
                alpha = 0.5, show.legend = FALSE) +
       geom_bar(data = data1, aes(y = Percentile, fill = color_compare), color = color_compare, stat = "identity", width = 1, alpha = 1) +
@@ -383,7 +383,7 @@ plot_pizza <- function(data, type = "", template,
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, color = colorText, angle = ang),
+            axis.text.x = element_text(size = 12, color = colorText),
             text = element_text(color = colorText, size = 20),
             plot.title = element_markdown(hjust = 0.5, size = 26, color = color_compare, face = "bold"),
             plot.subtitle = element_text(hjust = 0.5, size = 26, color = colorLine, face = "bold"),

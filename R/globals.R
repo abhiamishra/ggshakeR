@@ -14,4 +14,5 @@ utils::globalVariables(
     "events", "from", "outcome", "pass.recipient.name",
     "playerId", "player_label", "receiver", "teamId",
     "to", "type", "type.name", "xT", "xTEnd",
-    "xTStart", "xend", "yend"))
+    "xTStart", "xend", "yend", "EPVGrid", "colour_b",
+    "EPVEnd", "EPVStart", "EPV"))

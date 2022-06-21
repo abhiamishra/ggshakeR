@@ -66,7 +66,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     if (scale_stat == "xT") {
       
       df <- data %>%
-        ggshakeR::calculate_threat(dataType = "statsbomb")
+        calculate_threat(type = "statsbomb")
       
       df <- df %>%
         mutate(xT = xTEnd - xTStart) %>%
@@ -80,7 +80,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     } else if (scale_stat == "EPV") {
       
       df <- data %>%
-        ggshakeR::calculate_epv(dataType = "statsbomb")
+        calculate_epv(type = "statsbomb")
       
       df <- df %>%
         mutate(EPV = EPVEnd - EPVStart) %>%
@@ -121,9 +121,10 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       na.omit()
     
     # Edges
-    
     edgelist <- data1 %>% 
-      mutate(pass.outcome.name = fct_explicit_na(pass.outcome.name, "Complete")) %>%
+      mutate(pass.outcome.name = factor(pass.outcome.name, exclude = NULL, 
+                                        levels = c(levels(pass.outcome.name), NA), 
+                                        labels = c(levels(pass.outcome.name), "Complete"))) %>%
       filter(type.name == "Pass" & pass.outcome.name == "Complete") %>% 
       select(from = player.name, to = pass.recipient.name) %>% 
       group_by(from, to) %>% 
@@ -204,9 +205,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       plot_passnet
       
     }
-  }
-  
-  else if (data_type == "opta") {
+  } else if (data_type == "opta") {
     
     # Checking data frame 
     
@@ -233,7 +232,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     if (scale_stat == "xT") {
       
       df <- data %>%
-        ggshakeR::calculate_threat(dataType = "opta")
+        ggshakeR::calculate_threat(type = "opta")
       
       df <- df %>%
         mutate(xT = xTEnd - xTStart) %>%
@@ -247,7 +246,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     } else if (scale_stat == "EPV") {
       
       df <- data %>%
-        ggshakeR::calculate_epv(dataType = "opta")
+        ggshakeR::calculate_epv(type = "opta")
       
       df <- df %>%
         mutate(EPV = EPVEnd - EPVStart) %>%

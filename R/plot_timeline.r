@@ -6,8 +6,8 @@
 #' @param match_year the year the match was played.
 #' @param team_home home team according to data.
 #' @param team_away away team according to data.
-#' @param home_color line colour for the home team.
-#' @param away_color line colour for the away team.
+#' @param color_home line colour for the home team.
+#' @param color_away line colour for the away team.
 #' @param theme Choose from 4 ggplot2 themes -> dark, almond, rose, white.
 #' @return ggplot2 object of a xG timeline plot
 #'
@@ -110,7 +110,7 @@ plot_timeline <- function(data, match_year,
   }
   
   ## Plot title ----
-  # plot_title <- glue("<b style='color:{home_color}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{away_color}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
+  # plot_title <- glue("<b style='color:{color_home}'> {team1} : {g1} {gls1} ({xG1} xG) </b> vs. <b style='color:{color_away}'> {team2} : {g2} {gls2} ({xG2} xG)</b>")
   plot_title <- sprintf("<b style='color:%s'> %s : %s %s (%s xG) </b> vs. <b style='color:%s'> %s : %s %s (%s xG)</b>",
                         color_home, team1, g1, gls1, xG1, 
                         color_away, team2, g2, gls2, xG2)
@@ -124,28 +124,28 @@ plot_timeline <- function(data, match_year,
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
-    colour_b <- "white"
+    color_b <- "white"
     
     colorLine <- "white"
     gridc <- "#525252"
     colorText <- "white"
   } else if (theme == "white") {
     fill_b <- "#F5F5F5"
-    colour_b <- "black"
+    color_b <- "black"
     
     colorLine <- "black"
     gridc <- "grey"
     colorText <- "black"
   } else if (theme == "rose") {
     fill_b <- "#FFE4E1"
-    colour_b <- "#696969"
+    color_b <- "#696969"
     
     colorLine <- "#322E2E"
     gridc <- "grey"
     colorText <- "#322E2E"
   } else if (theme == "almond") {
     fill_b <- "#FFEBCD"
-    colour_b <- "#696969"
+    color_b <- "#696969"
     
     colorLine <- "#322E2E"
     gridc <- "grey"
@@ -154,10 +154,10 @@ plot_timeline <- function(data, match_year,
   
   ## Plot! ----
   plot_timeline <- ggplot() +
-    geom_step(data = data1, aes(x = minute, y = xGsum), color = home_color, size = 3) +
-    geom_step(data = data2, aes(x = minute, y = xGsum), color = away_color, size = 3) +
-    geom_point(data = dat1, aes(x = minute, y = xGsum), color = home_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
-    geom_point(data = dat2, aes(x = minute, y = xGsum), color = away_color, fill = fill_b, shape = 21, stroke = 2, size = 6) +
+    geom_step(data = data1, aes(x = minute, y = xGsum), color = color_home, size = 3) +
+    geom_step(data = data2, aes(x = minute, y = xGsum), color = color_away, size = 3) +
+    geom_point(data = dat1, aes(x = minute, y = xGsum), color = color_home, fill = fill_b, shape = 21, stroke = 2, size = 6) +
+    geom_point(data = dat2, aes(x = minute, y = xGsum), color = color_away, fill = fill_b, shape = 21, stroke = 2, size = 6) +
     geom_text_repel(data = data %>% filter(result %in% c("Goal", "OwnGoal")), 
                     aes(x = minute, y = xGsum, label = player_label),
                     box.padding   = 2,

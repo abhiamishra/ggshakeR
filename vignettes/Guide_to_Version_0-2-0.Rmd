@@ -4,7 +4,7 @@ author: "Ryo Nakagawara"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Guide_to_Version_0-2-0}
+  %\VignetteIndexEntry{Guide to function argument changes in Version 0.2.0}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

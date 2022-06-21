@@ -1,7 +1,7 @@
 #' Calculating EPV for passes, carries, etc
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
-#' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
+#' @param data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
+#' @param type indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
@@ -10,14 +10,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_epv(test, dataType = "statsbomb")
+#' endResult <- calculate_epv(test, type = "statsbomb")
 #' endResult
 #' }
 
-calculate_epv <- function(eventData, dataType = "opta") {
-  if (nrow(eventData) > 0 &&
-        sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
-    copydata <- eventData
+calculate_epv <- function(data, type = "opta") {
+  if (nrow(data) > 0 &&
+        sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
+    copydata <- data
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
     
@@ -47,7 +47,7 @@ calculate_epv <- function(eventData, dataType = "opta") {
     parsing <- parsing %>% tidyr::drop_na(xend_col)
     parsing <-  parsing %>% tidyr::drop_na(yend_col)
     
-    if (dataType != "opta") {
+    if (type != "opta") {
       to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)
       parsing$x <- to_opta$x(parsing$x_col)
       parsing$y <- to_opta$y(parsing$y_col)

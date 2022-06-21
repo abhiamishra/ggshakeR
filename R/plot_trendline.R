@@ -144,7 +144,7 @@ plot_trendline <- function(data, team, color_xg, color_xga, rolling_average, the
     theme(plot.title = element_markdown(lineheight = 1.1, size = 40, color = colorText, face = "bold"),
           plot.subtitle = element_textbox_simple(lineheight = 1.1, size = 30, color = colorText),
           plot.background = element_rect(fill = fill_b, color = color_b),
-          panel.background = element_rect(fill = fill_b, color = color_b),
+          # panel.background = element_rect(fill = fill_b, color = color_b),
           axis.title.x = element_text(color = colorText, size = 24, face = "bold"),
           axis.title.y = element_text(color = colorText, size = 24, face = "bold"),
           axis.text.x = element_text(color = colorText, size = 18),

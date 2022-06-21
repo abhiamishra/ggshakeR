@@ -28,7 +28,6 @@ Imports:
   ggtext,
   TTR,
   stringi, 
-  forcats,
   purrr,
   ggforce,
   gridExtra

@@ -23,11 +23,11 @@ plot_timeline(
 
 \item{team_away}{away team according to data.}
 
+\item{color_home}{line colour for the home team.}
+
+\item{color_away}{line colour for the away team.}
+
 \item{theme}{Choose from 4 ggplot2 themes -> dark, almond, rose, white.}
-
-\item{home_color}{line colour for the home team.}
-
-\item{away_color}{line colour for the away team.}
 }
 \value{
 ggplot2 object of a xG timeline plot

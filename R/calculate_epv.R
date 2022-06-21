@@ -72,7 +72,7 @@ calculate_epv <- function(data, type = "opta") {
           col <- as.integer(a / 2)
           if (as.integer(b / 3.225) + 1 > 31) {
             row <- as.integer(b / 3.225)
-          } else{
+          } else {
             row <- as.integer(b / 3.225) + 1
           }
         }

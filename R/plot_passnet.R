@@ -39,8 +39,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     colorLine <- "white"
     pitch_line <- "#454545"
     colorScale <- "black"
-  } 
-  else if (theme == "light") {
+  } else if (theme == "light") {
     fill_b <- "#ECF0F1"
     colour_b <- "#ECF0F1"
     colorText <- "black"
@@ -117,7 +116,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     nodes <- data1 %>% 
       filter(type.name %in% c("Pass", "Ball Receipt*", "Ball Recovery", "Shot", "Dispossessed", "Interception", "Clearance", "Dribble", "Shot", "Goal Keeper", "Miscontrol", "Error")) %>% 
       group_by(player.name) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
+      summarise(x = mean(x, na.rm = TRUE), y = mean(y, na.rm = TRUE), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges
@@ -290,7 +289,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     
     nodes <- data1 %>% 
       group_by(playerId) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
+      summarise(x = mean(x, na.rm = TRUE), y = mean(y, na.rm = TRUE), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges

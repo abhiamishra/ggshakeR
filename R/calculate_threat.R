@@ -10,9 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_threat(test, type = "statsbomb", x_col = "location.x",
-#'                               y_col = "location.y", xend_col = "pass.end_location.x",
-#'                               yend_col = "pass.end_location.y")
+#' endResult <- calculate_threat(test, type = "statsbomb")
 #' endResult
 #' }
 
@@ -142,6 +140,6 @@ calculate_threat <- function(data, type = "opta") {
     
     return(joined)
   } else {
-    return(data)
+    stop("Dataframe has insufficient number of rows and/or you don't have the right amount of columns: `x`, `y`, `finalX`, `finalY`")
   }
 }

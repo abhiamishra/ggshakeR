@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +29,9 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">News</a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://ggshaker.github.io/">Library</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -64,20 +67,23 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>eventData</dt>
 <dd><p>The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: <code>x</code>, <code>y</code>, <code>finalX</code>, <code>finalY</code></p></dd>
+
+
 <dt>dataType</dt>
 <dd><p>indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>returns a dataframe object</p>
+    
+
+<p>returns a dataframe object</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">endResult</span> <span class="op">&lt;-</span> <span class="fu">calculate_threat</span><span class="op">(</span><span class="va">test</span>, dataType <span class="op">=</span> <span class="st">"statsbomb"</span>, x_col <span class="op">=</span> <span class="st">"location.x"</span>,</span>
-<span class="r-in">                              y_col <span class="op">=</span> <span class="st">"location.y"</span>, xend_col <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
-<span class="r-in">                              yend_col <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">endResult</span> <span class="op">&lt;-</span> <span class="fu">calculate_threat</span><span class="op">(</span><span class="va">test</span>, dataType <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">endResult</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
@@ -91,7 +97,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

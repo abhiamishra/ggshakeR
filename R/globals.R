@@ -10,4 +10,8 @@ utils::globalVariables(
     "N", "n.angle", "maxN", "angle.norm", "pass.length", "frequency", "year",
     "season", "h_a", "home_team", "away_team", "home_away", "minute", "xGsum",
     "complete.cases", "Home", "Away", "Away_xG", "xGA", "xGSUM", "Date",
-    "xGSM", "xGASM", "Home_xG", "distance"))
+    "xGSM", "xGASM", "Home_xG", "distance",
+    "events", "from", "outcome", "pass.recipient.name",
+    "playerId", "player_label", "receiver", "teamId",
+    "to", "type", "type.name", "xT", "xTEnd",
+    "xTStart", "xend", "yend"))

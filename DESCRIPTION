@@ -25,19 +25,19 @@ Imports:
   ggplot2,
   ggsoccer,
   ggrepel,
-  viridis,
   ggtext,
-  Rcpp,
-  RcppRoll,
   TTR,
   stringi, 
   forcats,
-  wesanderson
+  purrr,
+  ggforce,
+  gridExtra
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    stats
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5.0)

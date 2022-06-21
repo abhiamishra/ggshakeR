@@ -24,26 +24,36 @@ navbar:
     href: articles/index.html
   - text: News
     href: news/index.html
+  - text: Library
+    href: https://ggshaker.github.io/
 
 reference:
   - title: Pitch Plots
     desc: Plots on a football/soccer pitch!
     contents:
+      - plot_convexhull
       - plot_heatmap
       - plot_pass
       - plot_passflow
+      - plot_passnet
       - plot_shot
       - plot_sonar
+      - plot_voronoi
   - title: Analysis Plots
     desc: Into the Scattergram!
     contents:
       - plot_pizza
       - plot_scatter
-      - plot_trendline
       - plot_timeline
-  - title: Expected Threat (xT)
-    desc: Functions for xT analysis
+      - plot_trendline
+  - title: Expected Threat & Possession Value (xT & EPV)
+    desc: Functions for xT and EPV analysis
     contents:
+      - calculate_epv
       - calculate_threat
+  - title: Data Frames  
+    desc: Data frames housed within the package
+    contents:
+      - EPVGrid
       - xTGrid
-
+      - SampleEventData

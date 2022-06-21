@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +29,9 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">News</a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://ggshaker.github.io/">Library</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -62,6 +65,11 @@
 
       <dl><dt>
           
+          <code><a href="plot_convexhull.html">plot_convexhull()</a></code> 
+        </dt>
+        <dd>Function for plotting convex hulls</dd>
+      </dl><dl><dt>
+          
           <code><a href="plot_heatmap.html">plot_heatmap()</a></code> 
         </dt>
         <dd>Plotting heatmap</dd>
@@ -77,6 +85,11 @@
         <dd>Passflow plot function</dd>
       </dl><dl><dt>
           
+          <code><a href="plot_passnet.html">plot_passnet()</a></code> 
+        </dt>
+        <dd>Function for plotting pass networks</dd>
+      </dl><dl><dt>
+          
           <code><a href="plot_shot.html">plot_shot()</a></code> 
         </dt>
         <dd>Function for plotting shots</dd>
@@ -85,6 +98,11 @@
           <code><a href="plot_sonar.html">plot_sonar()</a></code> 
         </dt>
         <dd>Function for plotting pass sonars</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_voronoi.html">plot_voronoi()</a></code> 
+        </dt>
+        <dd>Function for plotting voronoi diagrams on the pitch</dd>
       </dl></div><div class="section level2">
       <h2 id="analysis-plots">Analysis Plots<a class="anchor" aria-label="anchor" href="#analysis-plots"></a></h2>
       
@@ -108,18 +126,18 @@
         <dd>Plotting scatter plots</dd>
       </dl><dl><dt>
           
+          <code><a href="plot_timeline.html">plot_timeline()</a></code> 
+        </dt>
+        <dd>Create timeline charts (xG) using 'understat' event data.</dd>
+      </dl><dl><dt>
+          
           <code><a href="plot_trendline.html">plot_trendline()</a></code> 
         </dt>
         <dd>Function for plotting xG Trendline with FBref/ StatsBomb data.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_timeline.html">plot_timeline()</a></code> 
-        </dt>
-        <dd>Create timeline charts (xG) using event data.</dd>
       </dl></div><div class="section level2">
-      <h2 id="expected-threat-xt-">Expected Threat (xT)<a class="anchor" aria-label="anchor" href="#expected-threat-xt-"></a></h2>
+      <h2 id="expected-threat-possession-value-xt-epv-">Expected Threat &amp; Possession Value (xT &amp; EPV)<a class="anchor" aria-label="anchor" href="#expected-threat-possession-value-xt-epv-"></a></h2>
       
-      <p class="section-desc"></p><p>Functions for xT analysis</p>
+      <p class="section-desc"></p><p>Functions for xT and EPV analysis</p>
 
       
     </div><div id="" class="section level2">
@@ -129,14 +147,40 @@
 
       <dl><dt>
           
+          <code><a href="calculate_epv.html">calculate_epv()</a></code> 
+        </dt>
+        <dd>Calculating EPV for passes, carries, etc</dd>
+      </dl><dl><dt>
+          
           <code><a href="calculate_threat.html">calculate_threat()</a></code> 
         </dt>
         <dd>Calculating xT for passes, carries, etc</dd>
+      </dl></div><div class="section level2">
+      <h2 id="data-frames">Data Frames<a class="anchor" aria-label="anchor" href="#data-frames"></a></h2>
+      
+      <p class="section-desc"></p><p>Data frames housed within the package</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="EPVGrid.html">EPVGrid</a></code> 
+        </dt>
+        <dd>EPV calculation data for analysis</dd>
       </dl><dl><dt>
           
           <code><a href="xTGrid.html">xTGrid</a></code> 
         </dt>
         <dd>xT calculation data for analysis</dd>
+      </dl><dl><dt>
+          
+          <code><a href="SampleEventData.html">SampleEventData</a></code> 
+        </dt>
+        <dd>Sample event data frame</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
@@ -147,7 +191,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

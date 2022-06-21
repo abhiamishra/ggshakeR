@@ -2,19 +2,16 @@
 #'
 #' This function allows you to plot various types of plots
 #' that have passes as some sort of input. Data entered must have columns for which you want to plot with.
-#' Compatible, for right now, with StatsBomb data only! Returns a ggplot object.
+#' Compatible with StatsBomb and Opta data.
 #'
-#' @param data The dataframe that stores your passing data. Must contain starting x,y and ending x,y locations as well as a player name column
+#' @param data The data frame that stores your passing data. Opta data frame must contain at least the following columns: `x`, `y`, `finalX`, `finalY`
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
 #' @param progressive_pass indicates whether to map out progressive passes
 #' @param cross indicates whether to map out crosses
 #' @param shot indicates whether to map out shot assists
 #' @param switch indicates whether to map out switches of play
-#' @param distance indicates what distance you want to map out
 #' @param outcome indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")
-#' @param team indicates what team's pass map one wants to see
-#' @param player_fname player first name
-#' @param player_lname player last name
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return returns a ggplot2 object
 #'
@@ -22,42 +19,64 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import ggrepel
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' plot  <- plot_pass(data, type = "def", progressive_pass = TRUE, 
-#'                    team = "Barcelona", player_fname = "Lionel")
+#' plot  <- plot_pass(data, type = "all", progressive_pass = TRUE)
 #' plot
 #' }
 
-plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE,
-                      distance = "", outcome = "all", team = "", player_fname = "", player_lname = "", theme = "") {
-  if ((nrow(data) > 0) &&
-      sum(x = c("location.x", "location.y", "pass.end_location.x", "pass.end_location.y", "player.name") %in% names(data)) == 5) {
+plot_pass <- function(data, data_type = "statsbomb", type = "sep", 
+                      progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE, 
+                      outcome = "all", theme = "dark") {
+  
+  if (data_type == "opta") { ## OPTA ----
     
-    data <- data %>%
-      mutate(lname = sub(".* ", "", player.name)) %>%
-      mutate(fname = sub(" .*", "", player.name))
-    
-    if (team != "") {
-      data <- data %>%
-        filter(team.name == team)
+    if (nrow(data) > 0 &&
+        sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
+    } else {
+      print(c("x", "y", "finalX", "finalY"))
+      stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
-    ## Player name
-    if (player_fname != "") {
+    to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
+    data$x <- to_sb$x(data$x)
+    data$y <- to_sb$y(data$y)
+    
+    if (progressive_pass == TRUE) {
       data <- data %>%
-        filter(fname == player_fname)
+        mutate(start = sqrt((120 - x)^2 + (40 - y)^2)) %>%
+        mutate(end = sqrt((120 - finalX)^2 + (40 - finalY)^2)) %>%
+        mutate(isProg = ifelse(end <= 0.75 * start,
+                               1,
+                               0))
+      data <- data %>% filter(isProg == 1)
     }
     
-    if (player_lname != "") {
-      data <- data %>%
-        filter(lname == player_lname)
+    ### PLOT OPTA ----
+    plot <- ggplot(data = data) +
+      annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
+                     fill = fill_b) +
+      theme_pitch() +
+      theme(panel.background = element_rect(fill = fill_b))
+    
+    plot <- plot +
+      geom_segment(aes(x = x, y = 80 - y,
+                       xend = finalX, yend = 80 - finalY, color = "red"),
+                   lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
+                   stat = "identity", position = "identity") +
+      labs(color = "Outcome of Pass")
+    
+    return(plot)
+    
+  } else if (data_type == "statsbomb") { ## STATSBOMB ----
+    
+    if (nrow(data) > 0) {
+    } else {
+      stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
-    ## Outcome
     if (outcome == "suc") {
       data <- data %>%
         filter(is.na(pass.outcome.name))
@@ -68,8 +87,8 @@ plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALS
     
     data$pass.outcome.name <- tidyr::replace_na(data$pass.outcome.name, "Successful")
     data <- data %>% mutate(colorOutcome = ifelse(pass.outcome.name == "Successful",
-                                                            "Successful",
-                                                            "Unsuccessful"))
+                                                  "Successful",
+                                                  "Unsuccessful"))
     
     if (progressive_pass == TRUE) {
       data <- data %>%
@@ -95,7 +114,7 @@ plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALS
     if (switch == TRUE) {
       data <- data %>%
         mutate(delta_y = abs(
-          pass.end_location.y - location.y
+          finalY - y
         )) %>%
         filter(delta_y >= 35)
     }
@@ -114,6 +133,18 @@ plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALS
       color_b <- "#696969"
     }
     
+    if (progressive_pass == TRUE) {
+      data <- data %>%
+        mutate(start = sqrt((120 - x)^2 + (40 - y)^2)) %>%
+        mutate(end = sqrt((120 - finalX)^2 + (40 - finalY)^2)) %>%
+        mutate(isProg = ifelse(end <= 0.75 * start,
+                               1,
+                               0))
+      data <- data %>% filter(isProg == 1)
+      
+    }
+    
+    ### PLOT STATSBOMB ----
     plot <- ggplot(data = data) +
       annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
@@ -123,24 +154,27 @@ plot_pass <- function(data, type = "sep", progressive_pass = FALSE, cross = FALS
     if (nrow(data) > 0) {
       if (type == "sep") {
         plot <- plot +
-          geom_segment(aes(x = location.x, y = 80 - location.y,
-                           xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),
-                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
+          geom_segment(aes(x = x, y = 80 - y,
+                           xend = finalX, yend = 80 - finalY, color = colorOutcome),
+                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
+                       stat = "identity", position = "identity") +
           facet_grid(~colorOutcome) +
           labs(
             color = "Outcome of Pass"
           )
       } else if (type == "all") {
         plot <- plot +
-          geom_segment(aes(x = location.x, y = 80 - location.y,
-                           xend = pass.end_location.x, yend = 80 - (pass.end_location.y), color = colorOutcome),
-                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
+          geom_segment(aes(x = x, y = 80 - y,
+                           xend = finalX, yend = 80 - finalY, color = colorOutcome),
+                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
+                       stat = "identity", position = "identity") +
           labs(
             color = "Outcome of Pass"
           )
       }
     }
-    
-    plot
+    return(plot)
+  } else {
+    stop("Please input either 'statsbomb' OR 'opta' into the `data_type` argument.")
   }
 }

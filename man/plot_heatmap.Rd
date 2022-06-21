@@ -13,10 +13,10 @@ plot_heatmap(
 )
 }
 \arguments{
-\item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}}
+\item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}.}
 
-\item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-"binwidth" indicates binwidth heatmap pass}
+\item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
+"binwidth" indicates binwidth heatmap pass, and "jdp" indicates a binned heatmap according jdp pitch markings.}
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 

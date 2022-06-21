@@ -5,9 +5,9 @@
 #' density heatmap, and
 #' binwidth heatmap
 #'
-#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`
-#' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), and
-#' "binwidth" indicates binwidth heatmap pass
+#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`.
+#' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), 
+#' "binwidth" indicates binwidth heatmap pass, and "jdp" indicates a binned heatmap according jdp pitch markings. 
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param binwidth indicates the size of the bin width to construct heatmap for type "binwidth". The same argument name as the underlying call to `geom_bin2d()`. Default set to 20.
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
@@ -17,7 +17,6 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import viridis
 #' @export
 #'
 #' @examples
@@ -39,7 +38,7 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
 
     plot <- data %>%
       ggplot(aes(x = x, y = y))
-
+    
     if (theme == "dark" || theme == "") {
       fill_b <- "#0d1117"
       color_b <- "white"
@@ -53,12 +52,11 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
       fill_b <- "#FFEBCD"
       color_b <- "#696969"
     }
-
-    plot <- plot + annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
+  plot <- plot + annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                                   fill = fill_b) +
       theme_pitch() +
       theme(panel.background = element_rect(fill = fill_b))
-
+    
     if (type == "" || type == "density") {
       plot <- plot +
         stat_density_2d(aes(x = x, y = 80 - y, fill = ..level..), geom = "polygon")
@@ -70,16 +68,38 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
         geom_bin2d(aes(x = x, y = 80 - y),
                    binwidth = c(binwidth, binwidth),
                    alpha = 0.9)
+    } else if (type == "jdp") {
+      
+      binX1 <- c(0, 18, 39, 60, 81, 102, 120)
+      binY1 <- c(0, 18)
+      
+      binX2 <- c(0, 18, 39, 60, 81, 102, 120)
+      binY2 <- c(62, 80)
+      
+      binX3 <- c(18, 60, 102)
+      binY3 <- c(18, 30, 50, 62)
+      
+      binX4 <- c(0, 18)
+      binY4 <- c(18, 62)
+      
+      binX5 <- c(102, 120)
+      binY5 <- c(18, 62)
+      
+      plot <- plot +
+        geom_bin_2d(breaks = list(binX1, binY1), colour = colour_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX2, binY2), colour = colour_b, alpha  = 0.9) +
+        geom_bin_2d(breaks = list(binX3, binY3), colour = colour_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX4, binY4), colour = colour_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX5, binY5), colour = colour_b, alpha = 0.9)
     }
-
+    
     plot <- plot +
       scale_fill_continuous(type = "viridis") +
       labs(
         fill = "Density"
       )
-
+    
     return(plot)
-
   } else {
     stop("Please check that your data has the columns: 'x', 'y', 'finalX' and 'finalY'")
   }

@@ -632,10 +632,10 @@ df_absent <- data.frame(x)
 # Test
 
 test_that("Testing plotting voronoi plots: ", {
-  p <- plot_voronoi(opta_df, data_type = "opta", voro_fill = "y", voro_alpha = 0.3)
+  p <- plot_voronoi(opta_df, data_type = "opta", fill = "y", alpha = 0.3)
   expect_true(is.ggplot(p))
   
-  p <- plot_voronoi(sb_df, data_type = "statsbomb", voro_fill = "y", voro_alpha = 0.3)
+  p <- plot_voronoi(sb_df, data_type = "statsbomb", fill = "y", alpha = 0.3)
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe

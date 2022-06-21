@@ -28,6 +28,7 @@ Currently, `ggshakeR` houses 7 Pitch Plots:
 -   `plot_passflow()`
 -   `plot_shot()`
 -   `plot_convexhull()`
+-   `plot_voronoi()`
 -   `plot_passnet()`
 
 Let's learn simple guides on how to use them!
@@ -84,17 +85,18 @@ Note that, you can write *"hexbin"*, *"density"*, and *"point"* to get three dif
 
 # Opta & StatsBomb
 
-## `plot_sonar()`, `plot_heatmap()`, & `plot_passflow()`
+## `plot_sonar()`, `plot_heatmap()`, `plot_pass()` & `plot_passflow()`
 
 These three functions are quite similar in what they require.
 
 -   `plot_sonar()` gives you a pass sonar
 -   `plot_heatmap()` gives you a heat map on the pitch
+-   `plot_pass()` gives you all the passes on the pitch
 -   `plot_passflow()` gives you a pass flow map on the pitch
 
 Here are some key things to know:
 
--   `plot_sonar()` and `plot_passflow()` expect passing data
+-   `plot_sonar()`, `plot_pass()` and `plot_passflow()` expect passing data
 
 -   All three functions require the data to have at minimum four columns named: **x, y, finalX, finalY**
 
@@ -169,6 +171,21 @@ sonarPlot
 
 ![plot_sonar() of all of Jordi Alba's passes from 2014/15](../man/figures/plot_sonar.png){width="80%"}
 
+### `plot_pass()`
+
+We can create a pass map of all of Jordi Alba's passes during a particular match by using the `plot_pass()` function. 
+
+```{r, eval=FALSE}
+plotting_data_alba_single <- plotting_data_alba %>%
+  filter(match_id == 70264)
+
+passPlot <- plot_pass(data = plotting_data_alba_single, 
+                      progressive_pass = TRUE, type = "all")
+passPlot
+```
+
+![plot_pass() of all of Jordi Alba's passes from a match in 2014/15](../man/figures/plot_pass.png){width="80%"}
+
 ### `plot_passflow()`
 
 Since we already have Jordi Alba's passes, we can just construct the pass flow like this:
@@ -220,6 +237,79 @@ convexPlot
 ```
 
 ![plot_convexhull() of all of Jordi Alba's passes from a match](../man/figures/Convexhull_JordiAlba.png){width="80%"}
+
+## `plot_voronoi()`
+
+This function allows the user to use event data to plot the voronoi plot of a set of points.
+It works on both Opta and StatsBomb data and requires the following columns:
+
+-   `x`
+-   `y`
+
+Let us plot using the data set we already have. First, we'll get a summarized
+data set of players and their mean positions.
+
+```{r, eval=FALSE}
+finalData <- plotting_data %>%
+  filter(team.name == "Barcelona") %>%
+  group_by(player.name) %>%
+  summarise_at(vars(x, y, minute), list(name = mean), na.rm = TRUE) %>%
+  na.omit() %>%
+  rename("x" = "x_name") %>%
+  rename("y" = "y_name")
+```
+
+After that, we can simply use the voronoi plot function:
+
+```{r, eval=FALSE}
+plotVoronoi <- plot_voronoi(finalData)
+plotVoronoi
+```
+
+![plot_voronoi() of FC Barcelona players and their mean positions](../man/figures/plot_voronoi.png){width="80%"}
+
+A note to remember, the voronoi plot works *best* when you have a summarized
+set of points. 
+
+For example, to see something like all of the start locations of
+a player's passes, you would use convexhull() while to see how the team's mean
+position for each player, you would use voronoi()
+
+Note that we do not need to pass any parameters to the function here as the data set has already been specified and the default **data_type** is set to *"statsbomb"*. If using Opta data, set the **data_type** as such. 
+
+Manipulate the data set as per your needs and use-case. You can also fill the
+voronoi plots based on the values. You will need the fill value as another column.
+As usual, you can use piping to apply the function directly all in one line.
+
+As an example, we will show EPV values calculated through `calculate_epv()`.
+
+```{r, eval=FALSE}
+threatData <- calculate_epv(plotting_data)
+```
+
+Once we have that, we will repeat the same code as before with a small change:
+
+```{r, eval=FALSE}
+finalData <- threatData %>%
+  filter(team.name == "Barcelona") %>%
+  group_by(player.name) %>%
+  filter(EPVStart != -1) %>% #Getting rid of -1 as that as how we identify null values
+  #We get the mean and sum of these three columns
+  summarise_at(vars(x, y, EPVStart), list(name = mean, sum), na.rm = TRUE) %>%
+  na.omit() %>%
+  rename("x" = "x_name") %>%
+  rename("y" = "y_name") %>%
+  rename("EPV_Start" =  "EPVStart_fn1") #Renaming the relevant columns
+
+#Plot voronoi plot
+
+plotVoronoi <- plot_voronoi(data = finalData, 
+                            voro_fill = "EPV_Start", 
+                            title_plot = "Barcelona Voronoi Diagram")
+plotVoronoi
+```
+
+![plot_voronoi() of FC Barcelona players and their mean positions with EPV](../man/figures/plot_voronoi_fill.png){width="80%"}
 
 ## `plot_passnet()`
 

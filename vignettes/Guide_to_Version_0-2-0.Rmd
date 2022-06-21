@@ -66,8 +66,6 @@ plot_heatmap(data, type, data_type, binwidth, theme)
 plot_pass(data, 
           type, progressive_pass, cross, shot, switch, 
           distance, outcome, 
-          team, 
-          player_fname, player_lname, 
           theme)
 ```
 

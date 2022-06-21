@@ -16,7 +16,7 @@
 #' @import tidyr
 #' @import ggplot2
 #' @import ggsoccer
-#' @import ggforce
+#' @importFrom ggforce geom_voronoi_tile geom_voronoi_segment
 #'
 #' @export
 #'
@@ -79,7 +79,7 @@ plot_voronoi <- function(data, data_type = "statsbomb",
     annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
                    fill = fill_b) +
     theme_pitch() +
-    geom_point(color = colour)
+    geom_point(color = colour, alpha = 0.7, size=5)
   
   if (voro_fill != "") {
     voro_plot <- voro_plot + 
@@ -89,7 +89,15 @@ plot_voronoi <- function(data, data_type = "statsbomb",
   voro_plot <- voro_plot + 
     geom_voronoi_segment(color = "white", bound = c(0, 120, 0, 80)) +
     coord_fixed() +
-    ggtitle(title_plot)
+    labs(title = title_plot,
+         x = "Direction of play faces rightward",
+         fill = voro_fill)+
+    theme(plot.background = element_rect(fill = fill_b, colour = NA),
+          panel.background = element_rect(fill = fill_b, colour = NA),
+          strip.background = element_rect(fill = fill_b, colour = NA),
+          strip.text = element_text(colour = colour_b, size = 10),
+          plot.title = element_text(colour = colour_b, size = 20, hjust = 0.5, face = "bold"),
+          axis.title.x = element_text(colour = colour_b, size = 12, face = "bold"))
   
   return(voro_plot)
 }

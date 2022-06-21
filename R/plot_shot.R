@@ -270,10 +270,10 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
       plot <- plot +
         geom_text(x = 110, y = 10, label = player_name, color = colorText, size = 6)
       
-      plot
-    } else{
+      return(plot)
+    } else {
       ## add WARNING that there were no rows in the data frame passed into function??
-      plot
+      return(plot)
     }
   }
 }

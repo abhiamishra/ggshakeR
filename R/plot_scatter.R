@@ -68,7 +68,7 @@ plot_scatter <- function(data, x = "", y = "", label = "",
         
         selection <- append(selection, 'scatter_label')
         renaming <- append(renaming, 'scatter_label')
-      } else{
+      } else {
         selection <- append(selection, scatter_label)
         renaming <- append(renaming, 'scatter_label')
       }
@@ -96,7 +96,7 @@ plot_scatter <- function(data, x = "", y = "", label = "",
         
         selection <- append(selection, 'set_color_var')
         renaming <- append(renaming, 'set_color_var')
-      } else{
+      } else {
         selection <- append(selection, set_color_var)
         renaming <- append(renaming, 'set_color_var')
       }

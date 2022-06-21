@@ -45,7 +45,7 @@ plot_timeline <- function(data, match_year,
     dplyr::filter(season == match_year) %>% 
     ## Prepare goal labels
     mutate(player_label = dplyr::case_when(
-      result == "Goal" & situation != "Penalty"~ paste0(player, ": ", round(xG, digits = 2), " xG"),
+      result == "Goal" & situation != "Penalty" ~ paste0(player, ": ", round(xG, digits = 2), " xG"),
       result == "Goal" & situation == "Penalty" ~ paste0(player, " (Penalty): ", round(xG, digits = 2), " xG"),
       result == "OwnGoal" ~ paste0(player, " (Own Goal): ", round(xG, digits = 2), " xG"),
       TRUE ~ ""),

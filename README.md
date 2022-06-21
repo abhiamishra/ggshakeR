@@ -13,7 +13,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![codecov](https://codecov.io/gh/abhiamishra/ggshakeR/branch/main/graph/badge.svg?token=GO5918U56P)](https://codecov.io/gh/abhiamishra/ggshakeR)
 <!-- badges: end -->
 
-Welcome to ggshakeR!
+Welcome to `ggshakeR`!
 
 This is R’s all-inclusive package for visualization and analysis of
 publicly available soccer data.
@@ -54,22 +54,22 @@ After that, write the actual code to install ggshakeR:
 devtools::install_github("abhiamishra/ggshakeR")
 ```
 
-There were many **BIG** changes made in **version 0.2.0**, so if you
-want to go back to version `0.1.2` after you’ve already installed
-`0.2.0`, you can **re-install** version `0.1.2` by doing this:
+There were many **BIG** changes made in **version 0.2.0**. Do note that
+the changes are permanent and will be the standard going forward. So
+please take the time to read the [Guide to Version 0.2.0 Vignette]() and
+the package documentation carefully so that you can transition over to
+the new argument syntax and make use of the new functionality that
+version `0.2.0` (and beyond!) will provide. If you want to go back to
+version `0.1.2` after you’ve already installed `0.2.0` (because you’re
+not yet ready to edit your scripts to the new syntax or whatever), you
+can **re-install** version `0.1.2` by running this:
 
 ``` r
 devtools::install_github("abhiamishra/ggshakeR@0.1.2")
 ```
 
-Do note that the changes are permanent and will be the standard going
-forward. So please take the time to read this vignette and the
-documentation carefully so that you can transition over to the new
-argument syntax and make use of the new functionality that version
-`0.2.0` (and beyond!) provides.
-
-Now the library is installed but it’s not in your session just yet! When
-a package is in a session means you can actually use the package:
+Now the package is installed, but it’s not in your session just yet!
+When a package is in a session means you can actually use the package:
 
 ``` r
 library(ggshakeR)

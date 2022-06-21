@@ -21,20 +21,20 @@ Along side the new functionality in this update, there have been a lot of change
 
 For guides on new functions please see:
 
-* this 
-* this
+* fill_this_in_later
+* fill_this_in_later
 
 ```{r setup}
 library(ggshakeR)
 ```
 
-The problem that really kicked off these changes was the fact that we had functions with arguments using `snake_case` in some functions, others using `camelCase`, and worst of all some functions that used both `snake_case` __AND__ `camelCase` in the argument names.
+The problem that really kicked off these changes was the fact that as I was looking through the package's code base, I found that we had functions with arguments using `snake_case` in some functions, others using `camelCase`, and worst of all some functions that used both `snake_case` __AND__ `camelCase` in the argument names.
 
 ```{r example-bad}
 plot_passflow(pass_data, dataType, bin_size) # !!!
 ```
 
-After some discussion with the other authors (Abhishek & Harsh), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of consistency. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well).
+After some discussion with the other authors (`Abhishek` & `Harsh`), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of __consistency__. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well). An exception (hopefully a rare one as we go forward) is `binwidth` as this is essentially an argument that is being passed on to some underlying `ggplot2` function calls and we wanted to preserve the same argument name for familiarity's sake.
 
 Some arguments have changed their order in the functions, to learn about why function order is important, check out [Function arguments section in 'Advanced R'](http://adv-r.had.co.nz/Functions.html#function-arguments). The functions in {ggshakeR} follows R function conventions by having the `data` argument come first, then usually a `type` argument, then the rest in an order we think makes sense.
 

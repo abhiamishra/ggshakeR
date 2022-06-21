@@ -4,6 +4,9 @@
     <loc>https://abhiamishra.github.io/ggshakeR/404.html</loc>
   </url>
   <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/articles/Guide_to_EPV.html</loc>
+  </url>
+  <url>
     <loc>https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html</loc>
   </url>
   <url>
@@ -83,6 +86,9 @@
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/SampleEventData.html</loc>
+  </url>
+  <url>
+    <loc>https://abhiamishra.github.io/ggshakeR/reference/shift_column.html</loc>
   </url>
   <url>
     <loc>https://abhiamishra.github.io/ggshakeR/reference/TestEventData.html</loc>

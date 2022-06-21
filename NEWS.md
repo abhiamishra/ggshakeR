@@ -1,3 +1,12 @@
+# ggshakeR 0.2.0
+
+* Standardize function argument and object names
+  * snake_case: `binSize` to `bin_size`, `dataType` to `data_type`, etc.
+  * data arguments all conform to `data` 
+  * US spelling: `color` rather than `colour`, etc.
+  * Argument names made longer for clarity: `subt_size` to `subtitle_size`, `roll_avg` to `rolling_average`, etc.
+  * See [issue #27](https://github.com/abhiamishra/ggshakeR/issues/27;)
+
 # ggshakeR 0.1.2
 
 * Remove extraneous dependencies from package imports

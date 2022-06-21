@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
 
 
 <div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
+  <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Guide to Expected Threat</h1>
                         <h4 data-toc-skip class="author">Abhishek A.
 Mishra</h4>
@@ -169,7 +169,9 @@ Data</a> for La Liga 2014/15:</p>
 dataType that the data is: opta or statsbomb</strong>. After that, we
 simply get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span><span class="va">plottingData</span>, dataType <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">## NOTE: from version 0.2.0 ALL function arguments are now in snake_case</span>
+<span class="co">## 'dataType' is now 'data_type', etc.</span>
+<span class="va">xTData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plottingData</span>, data_type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
 <p>If we inspect <code>xTData</code>, we see these two new columns at
 the very end:</p>
 <div class="figure">
@@ -199,7 +201,8 @@ as take-ons, tackles, if you so wish.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
     </footer>

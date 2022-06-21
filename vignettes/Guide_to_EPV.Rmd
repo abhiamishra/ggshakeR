@@ -91,10 +91,10 @@ plottingData <- plottingData %>%
          "finalY" = "pass.end_location.y")
 ```
 
-For `calculate_epv()`, __always write the dataType that the data is: opta or statsbomb__. After that, we simply get:
+For `calculate_epv()`, __always write the `type` that the data is: opta or statsbomb__. After that, we simply get:
 
 ```{r, eval=FALSE}
-EPVData <- calculate_epv(plottingData, dataType = "statsbomb")
+EPVData <- calculate_epv(plottingData, type = "statsbomb")
 ```
 
 If we inspect `EPVData`, we see these two new columns at the very end:

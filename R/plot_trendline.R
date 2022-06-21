@@ -13,9 +13,9 @@
 #'
 #' @param data is for the dataset used. Select the number of matches wanted in the viz beforehand.
 #' @param team is to select the specific team for the viz. Team must be accurate as per FBref specifications.
-#' @param colour_xg is for selecting colour for xGoals.
-#' @param colour_xga is for selecting the colour for xGoalsAgainst.
-#' @param roll_avg is for setting the rolling average for the data.
+#' @param color_xg is for selecting color for xGoals.
+#' @param color_xga is for selecting the color for xGoalsAgainst.
+#' @param rolling_average is for setting the rolling average for the data.
 #' @param theme to select the theme from 4 options -> dark, almond, rose, white.
 #'
 #' @import dplyr
@@ -28,49 +28,12 @@
 #' @examples
 #' \dontrun{
 #' plot <- plot_trendline(data = pl, team = "Tottenham",
-#'                        colour_xg = "#08519c", colour_xga = "#cb181d",
-#'                        roll_avg = 10, theme = "dark")
+#'                        color_xg = "#08519c", color_xga = "#cb181d",
+#'                        rolling_average = 10, theme = "dark")
 #' plot
 #' }
 
-plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = "") {
-  
-  fill_b <- ""
-  colour_b <- ""
-  colorLine <- ""   ## Not used anywhere...?
-  colorText <- ""
-  gridc <- ""
-  
-  ## Theme ----
-  if (theme == "dark" || theme == "") {
-    fill_b <- "#0d1117"
-    colour_b <- "white"
-    
-    colorLine <- "white"
-    gridc <- "#525252"
-    colorText <- "white"
-  } else if (theme == "white") {
-    fill_b <- "#F5F5F5"
-    colour_b <- "black"
-    
-    colorLine <- "black"
-    gridc <- "grey"
-    colorText <- "black"
-  } else if (theme == "rose") {
-    fill_b <- "#FFE4E1"
-    colour_b <- "#696969"
-    
-    colorLine <- "#322E2E"
-    gridc <- "grey"
-    colorText <- "#322E2E"
-  } else if (theme == "almond") {
-    fill_b <- "#FFEBCD"
-    colour_b <- "#696969"
-    
-    colorLine <- "#322E2E"
-    gridc <- "grey"
-    colorText <- "#322E2E"
-  }
+plot_trendline <- function(data, team, color_xg, color_xga, rolling_average, theme = "") {
   
   ## Clean data ----
   data <- data[complete.cases(data[, 'Date']), ]
@@ -114,42 +77,87 @@ plot_trendline <- function(data, team, colour_xg, colour_xga, roll_avg, theme = 
   
   if (nrow(data) > 0) {
     data <- data %>%
-      mutate(xGSM = TTR::SMA(xG, n = roll_avg),
-             xGASM = TTR::SMA(xGA, n = roll_avg),
-             xGSUM = TTR::SMA(xGSUM, n = roll_avg))
+      mutate(xGSM = TTR::SMA(xG, n = rolling_average),
+             xGASM = TTR::SMA(xGA, n = rolling_average),
+             xGSUM = TTR::SMA(xGSUM, n = rolling_average))
   }
   
+  ## Plot titles
   team <- paste(team, "xG Trendline")
-  # subtitle <- glue("{roll_avg} Game Rolling Average [<b style='color:{colour_xg}'> xG </b> vs <b style='color:{colour_xga}'> xGA </b>]")
+  # subtitle <- glue("{rolling_average} Game Rolling Average [<b style='color:{color_xg}'> xG </b> vs <b style='color:{color_xga}'> xGA </b>]")
   subtitle <- sprintf("%s Game Rolling Average [<b style='color:%s'> xG </b> vs <b style='color:%s'> xGA </b>]",
-                      roll_avg, colour_xg, colour_xga)
+                      rolling_average, color_xg, color_xga)
   
-  ggplot(data, aes(x = Date)) +
-    geom_line(aes(y = xGSM), colour = colour_xg, size = 3) +
-    geom_line(aes(y = xGASM), colour = colour_xga, size = 3) +
-    geom_line(aes(y = xGSUM), colour = fill_b, size = 0.1) +
-    geom_point(aes(y = xGSM), colour = colour_xg, size = 4) +
-    geom_point(aes(y = xGASM), colour = colour_xga, size = 4) +
-    scale_color_manual(values = c(colour_xg, colour_xga)) +
+  ## Plot themes
+  fill_b <- ""
+  color_b <- ""
+  colorLine <- ""   
+  colorText <- ""
+  gridc <- ""
+
+  if (theme == "dark" || theme == "") {
+    fill_b <- "#0d1117"
+    color_b <- "white"
+    
+    colorLine <- "white"
+    gridc <- "#525252"
+    colorText <- "white"
+  } else if (theme == "white") {
+    fill_b <- "#F5F5F5"
+    color_b <- "black"
+    
+    colorLine <- "black"
+    gridc <- "grey"
+    colorText <- "black"
+  } else if (theme == "rose") {
+    fill_b <- "#FFE4E1"
+    color_b <- "#696969"
+    
+    colorLine <- "#322E2E"
+    gridc <- "grey"
+    colorText <- "#322E2E"
+  } else if (theme == "almond") {
+    fill_b <- "#FFEBCD"
+    color_b <- "#696969"
+    
+    colorLine <- "#322E2E"
+    gridc <- "grey"
+    colorText <- "#322E2E"
+  }
+  
+  ## PLOT! ----
+  trendline_plot <- ggplot(data, aes(x = Date)) +
+    ## Lines
+    geom_line(aes(y = xGSM), color = color_xg, size = 3) +
+    geom_line(aes(y = xGASM), color = color_xga, size = 3) +
+    geom_line(aes(y = xGSUM), color = fill_b, size = 0.1) +
+    ## Points
+    geom_point(aes(y = xGSM), color = color_xg, size = 4) +
+    geom_point(aes(y = xGASM), color = color_xga, size = 4) +
+    scale_color_manual(values = c(color_xg, color_xga)) +
     expand_limits(y = c(0.25, 2.25)) +
+    ## labels
     labs(title = team,
-         subtitle = subtitle) +
-    theme(plot.title = element_markdown(lineheight = 1.1, size = 40, colour = colorText, face = "bold"),
-          plot.subtitle = element_textbox_simple(lineheight = 1.1, size = 30, colour = colorText)) +
-    theme(plot.background = element_rect(fill = fill_b, colour = colour_b)) +
-    theme(panel.background = element_rect(fill = fill_b, colour = colour_b)) +
-    labs(x = "Year", y = "xG") +
-    theme(axis.title.x = element_text(colour = colorText, size = 24, face = "bold")) +
-    theme(axis.title.y = element_text(colour = colorText, size = 24, face = "bold")) +
-    theme(axis.text.x = element_text(colour = colorText, size = 18),
-          axis.text.y = element_text(colour = colorText, size = 18)) +
-    theme(panel.grid.major = element_line(colour = gridc, size = 1, linetype = "dashed"),
-          panel.grid.minor = element_blank()) +
-    theme(panel.grid.major.x = element_line(colour = gridc, size = 1, linetype = "dashed"),
-          panel.background = element_blank()) + 
-    theme(axis.line = element_blank()) + 
-    geom_ribbon(aes(ymin = xGASM, ymax = xGSUM, x = Date), fill = colour_xga, alpha = 0.4) +
-    geom_ribbon(aes(ymin = xGSUM, ymax = xGSM, x = Date), fill = colour_xg, alpha = 0.4) +
-    stat_smooth(method = 'lm', aes(y = xGSM), color = colour_xg, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE) +
-    stat_smooth(method = 'lm', aes(y = xGA), color = colour_xga, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)
+         subtitle = subtitle,
+         x = "Year", y = "xG") +
+    ## theme
+    theme(plot.title = element_markdown(lineheight = 1.1, size = 40, color = colorText, face = "bold"),
+          plot.subtitle = element_textbox_simple(lineheight = 1.1, size = 30, color = colorText),
+          plot.background = element_rect(fill = fill_b, color = color_b),
+          # panel.background = element_rect(fill = fill_b, color = color_b),
+          axis.title.x = element_text(color = colorText, size = 24, face = "bold"),
+          axis.title.y = element_text(color = colorText, size = 24, face = "bold"),
+          axis.text.x = element_text(color = colorText, size = 18),
+          axis.text.y = element_text(color = colorText, size = 18),
+          panel.grid.major = element_line(color = gridc, size = 1, linetype = "dashed"),
+          panel.grid.minor = element_blank(),
+          panel.grid.major.x = element_line(color = gridc, size = 1, linetype = "dashed"),
+          panel.background = element_blank(),
+          axis.line = element_blank()) + 
+    geom_ribbon(aes(ymin = xGASM, ymax = xGSUM, x = Date), fill = color_xga, alpha = 0.4) +
+    geom_ribbon(aes(ymin = xGSUM, ymax = xGSM, x = Date), fill = color_xg, alpha = 0.4) +
+    stat_smooth(method = 'lm', aes(y = xGSM), color = color_xg, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE) +
+    stat_smooth(method = 'lm', aes(y = xGA), color = color_xga, linetype = "dashed", alpha = 0.5, size = 2, se = FALSE)
+  
+  return(trendline_plot)
 }

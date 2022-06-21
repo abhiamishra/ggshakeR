@@ -67,7 +67,8 @@ shot_data <- get_player_shots(player_id = 1250) # Salah's `player_id` on Underst
 After that, simply write and execute the following code to get a beautiful shot map:
 
 ```{r, eval=FALSE}
-plot <- plot_shot(shot_data, type = "density")
+plot <- plot_shot(data, type = "density")
+
 plot
 ```
 
@@ -139,10 +140,11 @@ Sweet, let's plot!
 For the heat map, we simply select our columns and plot! **Type** options include *bin*, *hex*, *density* and *jdp*. Note that we don't specify **data_type** since the default is set to "statsbomb", so we can simply write this:
 
 ```{r, eval=FALSE}
-heat_data  <- plotting_data %>%
+heat_data <- plotting_data %>%
   select(x, y, finalX, finalY)
 
-heatPlot <- plot_heatmap(heat_data, type = "bin")
+heatPlot <- plot_heatmap(data = heat_data, type = "bin")
+
 heatPlot
 ```
 
@@ -162,7 +164,8 @@ plotting_data_alba  <- plotting_data %>%
 Now I can construct a pass sonar! Default **data_type** is set to *"statsbomb"*, so here we can simply write:
 
 ```{r, eval=FALSE}
-sonarPlot <- plot_sonar(plotting_data_alba)
+sonarPlot <- plot_sonar(data = plotting_data_alba)
+
 sonarPlot
 ```
 
@@ -188,7 +191,8 @@ passPlot
 Since we already have Jordi Alba's passes, we can just construct the pass flow like this:
 
 ```{r, eval=FALSE}
-passflowPlot <- plot_passflow(plotting_data_alba)
+passflowPlot <- plot_passflow(data = plotting_data_alba)
+
 passflowPlot
 ```
 
@@ -249,7 +253,7 @@ data set of players and their mean positions.
 finalData <- plotting_data %>%
   filter(team.name == "Barcelona") %>%
   group_by(player.name) %>%
-  summarise_at(vars(x,y, minute), list(name=mean), na.rm = TRUE) %>%
+  summarise_at(vars(x, y, minute), list(name = mean), na.rm = TRUE) %>%
   na.omit() %>%
   rename("x" = "x_name") %>%
   rename("y" = "y_name")
@@ -291,7 +295,7 @@ finalData <- threatData %>%
   group_by(player.name) %>%
   filter(EPVStart != -1) %>% #Getting rid of -1 as that as how we identify null values
   #We get the mean and sum of these three columns
-  summarise_at(vars(x,y,EPVStart), list(name=mean,sum), na.rm = TRUE) %>%
+  summarise_at(vars(x, y, EPVStart), list(name = mean, sum), na.rm = TRUE) %>%
   na.omit() %>%
   rename("x" = "x_name") %>%
   rename("y" = "y_name") %>%

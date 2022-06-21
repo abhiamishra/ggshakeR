@@ -81,7 +81,9 @@ plottingData <- plottingData %>%
 For `calculate_threat()`, __always write the dataType that the data is: opta or statsbomb__. After that, we simply get:
 
 ```{r, eval=FALSE}
-xTData <- calculate_threat(plottingData, dataType = "statsbomb")
+## NOTE: from version 0.2.0 ALL function arguments are now in snake_case
+## 'dataType' is now 'data_type', etc.
+xTData <- calculate_threat(data = plottingData, data_type = "statsbomb")
 ```
 
 If we inspect `xTData`, we see these two new columns at the very end:

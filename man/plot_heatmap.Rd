@@ -4,32 +4,38 @@
 \alias{plot_heatmap}
 \title{Plotting heatmap}
 \usage{
-plot_heatmap(data, type = "", data_type = "statsbomb", bin = 20, theme = "")
+plot_heatmap(
+  data,
+  type = "",
+  data_type = "statsbomb",
+  binwidth = 20,
+  theme = ""
+)
 }
 \arguments{
 \item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}.}
 
 \item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
-"bin" indicates bin heatmap pass and "jdp" indicates a binned heatmap according jdp pitch markings.}
+"binwidth" indicates binwidth heatmap pass, and "jdp" indicates a binned heatmap according jdp pitch markings.}
 
-\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb".}
+\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{bin}{indicates the size of the bin to construct heatmap for type "bin". Default set to 20.}
+\item{binwidth}{indicates the size of the bin width to construct heatmap for type "binwidth". The same argument name as the underlying call to \code{geom_bin2d()}. Default set to 20.}
 
-\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond.}
+\item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
 }
 \value{
 returns a ggplot2 object
 }
 \description{
 This function allows you to plot various types of heatmaps of starting x and y coordinates:
-hex bin heatmap,
+hex binwidth heatmap,
 density heatmap, and
-bin heatmap
+binwidth heatmap
 }
 \examples{
 \dontrun{
-plot <- plot_heatmap(touchData, type = "hex")
+plot <- plot_heatmap(data = touchData, type = "hex")
 plot
 }
 }

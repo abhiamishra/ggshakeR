@@ -3,9 +3,9 @@
 #' This function takes in a dataframe and binsizes
 #' to make a passflow map. Compatible, for right now, with StatsBomb data only. Returns a ggplot object
 #'
-#' @param pass_data Dataframe that must house pass data only and must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
-#' @param bin_size Details the binsize the passflow needs to bin to. Default is 20.
-#' @param dataType Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param data Dataframe that must house pass data only and must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
+#' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
+#' @param binwidth Details the bin size the passflow needs to bin to. The same argument name as the underlying call to `geom_bin2d()`. Default is 20.
 #' @return returns a ggplot2 object
 #'
 #' @importFrom magrittr %>%
@@ -15,20 +15,20 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' plot <- plot_passflow(data, bin_size = 30)
+#' plot <- plot_passflow(data, binwidth = 30)
 #' plot
 #' }
 
-plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
+plot_passflow <- function(data, data_type = "statsbomb", binwidth = 0) {
 
   fill_b <- "#0d1117"
-  colour_b <- "white"
+  color_b <- "white"
   bin_alpha <- 0.6
 
-  if (bin_size == 0) {
+  if (binwidth == 0) {
     bin <- 20
   } else {
-    bin <- bin_size
+    bin <- binwidth
   }
 
   x_bin <- 120 / bin
@@ -37,23 +37,23 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
   passfx <- seq(0, 120, by = bin)
   passfy <- seq(0, 80, by = bin)
 
-  if ((nrow(pass_data) > 0) &&
-       sum(x = c("x", "y", "finalX", "finalY") %in% names(pass_data)) == 4) {
+  if ((nrow(data) > 0) &&
+       sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
 
-    # Converting opta data to stasbomb data
-    if (dataType == "opta") {
+    # Converting Opta data
+    if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
-      pass_data$x <- to_sb$x(pass_data$x)
-      pass_data$y <- to_sb$y(pass_data$y)
-      pass_data$finalX <- to_sb$x(pass_data$finalX)
-      pass_data$finalY <- to_sb$y(pass_data$finalY)
+      data$x <- to_sb$x(data$x)
+      data$y <- to_sb$y(data$y)
+      data$finalX <- to_sb$x(data$finalX)
+      data$finalY <- to_sb$y(data$finalY)
     }
 
     PassFlow <- data.frame("x" = 0.0, "y" = 0.0, "finalX" = 0.0, "finalY" = 0.0, countPasses = 0.0)
 
     for (i in 1:x_bin) {
 
-      filterx <- pass_data %>%
+      filterx <- data %>%
         filter(x >= passfx[i]) %>%
         filter(x < passfx[i + 1])
 
@@ -88,13 +88,13 @@ plot_passflow <- function(pass_data, bin_size = 0, dataType = "statsbomb") {
 
     plot <- PassFlow %>%
       ggplot() +
-      annotate_pitch(dimensions = pitch_statsbomb, colour = colour_b,
+      annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
       theme_pitch()
 
     if (nrow(PassFlow) > 0) {
       plot <- plot +
-        geom_bin2d(data = pass_data, aes(x = x, y = 80 - y), alpha = bin_alpha,
+        geom_bin2d(data = data, aes(x = x, y = 80 - y), alpha = bin_alpha,
                    binwidth = c(bin, bin), position = "identity") +
         scale_fill_gradientn(colours = viridis_d_pal) +
         geom_segment(aes(x = x, y = 80 - y, xend = finalX, yend = 80 - finalY, alpha = countPasses),

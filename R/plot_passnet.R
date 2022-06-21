@@ -39,8 +39,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     colorLine <- "white"
     pitch_line <- "#454545"
     colorScale <- "black"
-  } 
-  else if (theme == "light") {
+  } else if (theme == "light") {
     fill_b <- "#ECF0F1"
     colour_b <- "#ECF0F1"
     colorText <- "black"
@@ -66,7 +65,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     if (scale_stat == "xT") {
       
       df <- data %>%
-        ggshakeR::calculate_threat(dataType = "statsbomb")
+        calculate_threat(type = "statsbomb")
       
       df <- df %>%
         mutate(xT = xTEnd - xTStart) %>%
@@ -80,7 +79,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     } else if (scale_stat == "EPV") {
       
       df <- data %>%
-        ggshakeR::calculate_epv(dataType = "statsbomb")
+        calculate_epv(type = "statsbomb")
       
       df <- df %>%
         mutate(EPV = EPVEnd - EPVStart) %>%
@@ -117,13 +116,14 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     nodes <- data1 %>% 
       filter(type.name %in% c("Pass", "Ball Receipt*", "Ball Recovery", "Shot", "Dispossessed", "Interception", "Clearance", "Dribble", "Shot", "Goal Keeper", "Miscontrol", "Error")) %>% 
       group_by(player.name) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
+      summarise(x = mean(x, na.rm = TRUE), y = mean(y, na.rm = TRUE), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges
-    
     edgelist <- data1 %>% 
-      mutate(pass.outcome.name = fct_explicit_na(pass.outcome.name, "Complete")) %>%
+      mutate(pass.outcome.name = factor(pass.outcome.name, exclude = NULL, 
+                                        levels = c(levels(pass.outcome.name), NA), 
+                                        labels = c(levels(pass.outcome.name), "Complete"))) %>%
       filter(type.name == "Pass" & pass.outcome.name == "Complete") %>% 
       select(from = player.name, to = pass.recipient.name) %>% 
       group_by(from, to) %>% 
@@ -204,9 +204,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       plot_passnet
       
     }
-  }
-  
-  else if (data_type == "opta") {
+  } else if (data_type == "opta") {
     
     # Checking data frame 
     
@@ -233,7 +231,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     if (scale_stat == "xT") {
       
       df <- data %>%
-        ggshakeR::calculate_threat(dataType = "opta")
+        ggshakeR::calculate_threat(type = "opta")
       
       df <- df %>%
         mutate(xT = xTEnd - xTStart) %>%
@@ -247,7 +245,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     } else if (scale_stat == "EPV") {
       
       df <- data %>%
-        ggshakeR::calculate_epv(dataType = "opta")
+        ggshakeR::calculate_epv(type = "opta")
       
       df <- df %>%
         mutate(EPV = EPVEnd - EPVStart) %>%
@@ -291,7 +289,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     
     nodes <- data1 %>% 
       group_by(playerId) %>% 
-      summarise(x = mean(x, na.rm = T), y = mean(y, na.rm = T), events = n(), stat = sum(stat)) %>% 
+      summarise(x = mean(x, na.rm = TRUE), y = mean(y, na.rm = TRUE), events = n(), stat = sum(stat)) %>% 
       na.omit()
     
     # Edges

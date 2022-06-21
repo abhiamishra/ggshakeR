@@ -4,14 +4,14 @@
 \alias{plot_passflow}
 \title{Passflow plot function}
 \usage{
-plot_passflow(pass_data, bin_size = 0, dataType = "statsbomb")
+plot_passflow(data, data_type = "statsbomb", binwidth = 0)
 }
 \arguments{
-\item{pass_data}{Dataframe that must house pass data only and must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
+\item{data}{Dataframe that must house pass data only and must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
-\item{bin_size}{Details the binsize the passflow needs to bin to. Default is 20.}
+\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{dataType}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
+\item{binwidth}{Details the bin size the passflow needs to bin to. The same argument name as the underlying call to \code{geom_bin2d()}. Default is 20.}
 }
 \value{
 returns a ggplot2 object
@@ -22,7 +22,7 @@ to make a passflow map. Compatible, for right now, with StatsBomb data only. Ret
 }
 \examples{
 \dontrun{
-plot <- plot_passflow(data, bin_size = 30)
+plot <- plot_passflow(data, binwidth = 30)
 plot
 }
 }

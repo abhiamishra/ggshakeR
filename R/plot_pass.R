@@ -4,7 +4,7 @@
 #' that have passes as some sort of input. Data entered must have columns for which you want to plot with.
 #' Compatible with StatsBomb and Opta data.
 #'
-#' @param data The data frame that stores your passing data. Opta data frame must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`
+#' @param data The data frame that stores your passing data. Opta data frame must contain at least the following columns: `x`, `y`, `finalX`, `finalY`
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
 #' @param progressive_pass indicates whether to map out progressive passes
@@ -31,21 +31,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                       progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE, 
                       outcome = "all", theme = "dark") {
   
-  if (theme == "dark") {
-    fill_b <- "#0d1117"
-    color_b <- "white"
-  } else if (theme == "white") {
-    fill_b <- "#F5F5F5"
-    color_b <- "black"
-  } else if (theme == "rose") {
-    fill_b <- "#FFE4E1"
-    color_b <- "#696969"
-  } else if (theme == "almond") {
-    fill_b <- "#FFEBCD"
-    color_b <- "#696969"
-  }
-  
-  if (data_type == "opta") {
+  if (data_type == "opta") { ## OPTA ----
     
     if (nrow(data) > 0 &&
         sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
@@ -68,6 +54,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
       data <- data %>% filter(isProg == 1)
     }
     
+    ### PLOT OPTA ----
     plot <- ggplot(data = data) +
       annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
@@ -81,9 +68,9 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                    stat = "identity", position = "identity") +
       labs(color = "Outcome of Pass")
     
-  }
-  
-  else if (data_type == "statsbomb") {
+    return(plot)
+    
+  } else if (data_type == "statsbomb") { ## STATSBOMB ----
     
     if (nrow(data) > 0) {
     } else {
@@ -103,6 +90,17 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                                                   "Successful",
                                                   "Unsuccessful"))
     
+    if (progressive_pass == TRUE) {
+      data <- data %>%
+        mutate(start = sqrt((100 - location.x)^2 + (50 - location.y)^2)) %>%
+        mutate(end = sqrt((100 - pass.end_location.x)^2 + (50 - pass.end_location.y)^2)) %>%
+        mutate(isProg = ifelse(end <= 0.75 * start,
+                               1,
+                               0))
+      
+      data <- data %>% filter(isProg == 1)
+    }
+    
     if (cross == TRUE) {
       data <- data %>%
         filter(pass.cross == TRUE)
@@ -121,6 +119,20 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
         filter(delta_y >= 35)
     }
     
+    if (theme == "dark" || theme == "") {
+      fill_b <- "#0d1117"
+      color_b <- "white"
+    } else if (theme == "white") {
+      fill_b <- "#F5F5F5"
+      color_b <- "black"
+    } else if (theme == "rose") {
+      fill_b <- "#FFE4E1"
+      color_b <- "#696969"
+    } else if (theme == "almond") {
+      fill_b <- "#FFEBCD"
+      color_b <- "#696969"
+    }
+    
     if (progressive_pass == TRUE) {
       data <- data %>%
         mutate(start = sqrt((120 - x)^2 + (40 - y)^2)) %>%
@@ -129,8 +141,10 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                                1,
                                0))
       data <- data %>% filter(isProg == 1)
+      
     }
     
+    ### PLOT STATSBOMB ----
     plot <- ggplot(data = data) +
       annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
@@ -142,7 +156,8 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
         plot <- plot +
           geom_segment(aes(x = x, y = 80 - y,
                            xend = finalX, yend = 80 - finalY, color = colorOutcome),
-                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
+                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
+                       stat = "identity", position = "identity") +
           facet_grid(~colorOutcome) +
           labs(
             color = "Outcome of Pass"
@@ -151,12 +166,15 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
         plot <- plot +
           geom_segment(aes(x = x, y = 80 - y,
                            xend = finalX, yend = 80 - finalY, color = colorOutcome),
-                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), stat = "identity", position = "identity") +
+                       lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
+                       stat = "identity", position = "identity") +
           labs(
             color = "Outcome of Pass"
           )
       }
     }
+    return(plot)
+  } else {
+    stop("Please input either 'statsbomb' OR 'opta' into the `data_type` argument.")
   }
-  return(plot)
 }

@@ -17,7 +17,7 @@ plot_pass(
 )
 }
 \arguments{
-\item{data}{The data frame that stores your passing data. Opta data frame must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
+\item{data}{The data frame that stores your passing data. Opta data frame must contain at least the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 

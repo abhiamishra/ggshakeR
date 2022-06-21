@@ -24,8 +24,8 @@
 #'
 #' @import dplyr
 #' @import ggplot2
-#' @importFrom forcats fct_reorder
 #' @importFrom stringi stri_wrap stri_trans_general
+#' @importFrom stats reorder
 #'
 #' @export
 #'
@@ -33,7 +33,8 @@
 #' \dontrun{
 #' plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
 #'                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-#'                     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+#'                     season_player_1 = "Last 365 Days", 
+#'                     season_player_2 = "Last 365 Days",
 #'                     color_compare = "lightgreen", theme = "black")
 #' plot1
 #'
@@ -44,28 +45,33 @@
 #' plot2
 #' }
 
-plot_pizza <- function(data, type = "", template, color_possession = "#41ab5d", color_attack = "#2171b5", 
-                       color_defense = "#fec44f", player_1, player_2, color_compare = "#41ab5d", 
-                       season = "Last 365 Days", season_player_1 = "Last 365 Days", 
-                       season_player_2 = "Last 365 Days", theme = "") {
+plot_pizza <- function(data, type = "", template, 
+                       color_possession = "#41ab5d", color_attack = "#2171b5", 
+                       color_defense = "#fec44f", 
+                       player_1, player_2, 
+                       color_compare = "#41ab5d", 
+                       season = "Last 365 Days", 
+                       season_player_1 = "Last 365 Days", 
+                       season_player_2 = "Last 365 Days", 
+                       theme = "") {
   
   if (theme == "dark" || theme == "") {
     fill_b <- "#0d1117"
-    colour_b <- "#0d1117"
+    color_b <- "#0d1117"
     
     colorText <- "white"
     gridline <- "565656"
     colorLine <- "white"
   } else if (theme == "black") {
     fill_b <- "black"
-    colour_b <- "black"
+    color_b <- "black"
     
     colorText <- "white"
     gridline <- "565656"
     colorLine <- "white"
   } else if (theme == "white") {
     fill_b <- "white"
-    colour_b <- "white"
+    color_b <- "white"
     
     colorText <- "black"
     gridline <- "565656"
@@ -184,14 +190,14 @@ plot_pizza <- function(data, type = "", template, color_possession = "#41ab5d", 
     
     x <- c(data_selected$Statistic, data_selected$stat)
     
-    ggplot(data_selected, aes(fct_reorder(Statistic, stat), Percentile)) +
-      geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, colour = fill_b,
+    ggplot(data_selected, aes(reorder(Statistic, stat), Percentile)) +
+      geom_bar(aes(y = 100, fill = stat), stat = "identity", width = 1, color = fill_b,
                alpha = 0.1, show.legend = FALSE) +
-      geom_bar(stat = "identity", width = 1, aes(fill = stat), colour = fill_b, alpha = 1) +
+      geom_bar(stat = "identity", width = 1, aes(fill = stat), color = fill_b, alpha = 1) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.8) +
-      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.8) +
-      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 25, color = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 50, color = colorLine, linetype = "dashed", alpha = 0.8) +
+      geom_hline(yintercept = 75, color = colorLine, linetype = "dashed", alpha = 0.8) +
       scale_fill_manual(values = c("Possession" = color_possession,
                                    "Attacking" = color_attack,
                                    "Defending" = color_defense)) +
@@ -202,17 +208,17 @@ plot_pizza <- function(data, type = "", template, color_possession = "#41ab5d", 
            title = title,
            subtitle = subtitle) +
       theme_minimal() +
-      theme(plot.background = element_rect(fill = fill_b, color = colour_b),
-            panel.background = element_rect(fill = fill_b, color = colour_b),
+      theme(plot.background = element_rect(fill = fill_b, color = color_b),
+            panel.background = element_rect(fill = fill_b, color = color_b),
             legend.position = "bottom",
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText),
-            text = element_text(colour = colorText, size = 20),
-            plot.title = element_text(hjust = 0.5, size = 26, colour = colorText, face = "bold"),
-            plot.subtitle = element_text(hjust = 0.5, size = 20, colour = colorText),
-            plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
+            axis.text.x = element_text(size = 12, color = colorText),
+            text = element_text(color = colorText, size = 20),
+            plot.title = element_markdown(hjust = 0.5, size = 26, color = colorText, face = "bold"),
+            plot.subtitle = element_text(hjust = 0.5, size = 20, color = colorText),
+            plot.caption = element_text(hjust = 0.5, size = 15, color = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
       scale_x_discrete(labels = function(x) text_wrap(x = x))
@@ -356,32 +362,32 @@ plot_pizza <- function(data, type = "", template, color_possession = "#41ab5d", 
     
     x <- data1$Statistic
     
-    ggplot(data1, aes(x = fct_reorder(Statistic, stat), y = Percentile)) +
-      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, colour = gridline,
+    ggplot(data1, aes(x = reorder(Statistic, stat), y = Percentile)) +
+      geom_bar(aes(y = 100), fill = fill_b, stat = "identity", width = 1, color = gridline,
                alpha = 0.5, show.legend = FALSE) +
-      geom_bar(data = data1, aes(y = Percentile, fill = color_compare), colour = color_compare, stat = "identity", width = 1, alpha = 1) +
+      geom_bar(data = data1, aes(y = Percentile, fill = color_compare), color = color_compare, stat = "identity", width = 1, alpha = 1) +
       scale_fill_manual(values = color_compare) +
-      geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, colour = colorLine, size = 3) +
+      geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, color = colorLine, size = 3) +
       coord_polar(clip = "off") +
-      geom_hline(yintercept = 25, colour = colorLine, linetype = "dashed", alpha = 0.7) +
-      geom_hline(yintercept = 50, colour = colorLine, linetype = "dashed", alpha = 0.7) +
-      geom_hline(yintercept = 75, colour = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 25, color = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 50, color = colorLine, linetype = "dashed", alpha = 0.7) +
+      geom_hline(yintercept = 75, color = colorLine, linetype = "dashed", alpha = 0.7) +
       scale_y_continuous(limits = c(-20, 100)) +
       labs(caption = caption,
            title = title,
            subtitle = subtitle) +
       theme_minimal() +
-      theme(plot.background = element_rect(fill = fill_b, color = colour_b),
-            panel.background = element_rect(fill = fill_b, color = colour_b),
+      theme(plot.background = element_rect(fill = fill_b, color = color_b),
+            panel.background = element_rect(fill = fill_b, color = color_b),
             legend.position = "none",
             axis.title.y = element_blank(),
             axis.title.x = element_blank(),
             axis.text.y = element_blank(),
-            axis.text.x = element_text(size = 12, colour = colorText),
-            text = element_text(colour = colorText, size = 20),
-            plot.title = element_text(hjust = 0.5, size = 26, colour = color_compare, face = "bold"),
-            plot.subtitle = element_text(hjust = 0.5, size = 26, colour = colorLine, face = "bold"),
-            plot.caption = element_text(hjust = 0.5, size = 15, colour = colorText),
+            axis.text.x = element_text(size = 12, color = colorText),
+            text = element_text(color = colorText, size = 20),
+            plot.title = element_markdown(hjust = 0.5, size = 26, color = color_compare, face = "bold"),
+            plot.subtitle = element_text(hjust = 0.5, size = 26, color = colorLine, face = "bold"),
+            plot.caption = element_text(hjust = 0.5, size = 15, color = colorText),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank()) +
       scale_x_discrete(labels = function(x) text_wrap(x = x))

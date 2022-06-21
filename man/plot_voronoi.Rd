@@ -8,8 +8,8 @@ plot_voronoi(
   data,
   data_type = "statsbomb",
   colour = "#E74C3C",
-  voro_fill = "",
-  voro_alpha = 0.4,
+  fill = "",
+  alpha = 0.4,
   title_plot = "",
   theme = "dark"
 )
@@ -21,9 +21,9 @@ plot_voronoi(
 
 \item{colour}{The colour of the points in the voronoi plot.}
 
-\item{voro_fill}{Name of column to add a fill component to the plot}
+\item{fill}{Name of column to add a fill component to the plot}
 
-\item{voro_alpha}{Alpha value for opacity of fill. Default set to 0.4}
+\item{alpha}{Alpha value for opacity of fill. Default set to 0.4}
 
 \item{title_plot}{Title of the plot.}
 

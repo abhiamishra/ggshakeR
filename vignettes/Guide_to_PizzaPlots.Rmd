@@ -32,18 +32,19 @@ library(worldfootballR)
 single_player <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-Abraham", pos_versus = "primary")
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "forward", 
-                    color_possession = "#41ab5d", color_attack = "#fec44f", 
-                    color_defense = "#de2d26", season = "Last 365 Days", theme = "dark")
+                    color_possession = "#41ab5d", color_attack = "#fec44f", color_defense = "#de2d26", 
+                    season = "Last 365 Days", theme = "dark")
+
 pizza
 ```
 
 ![pizza plot for Tammy Abraham](../man/figures/pizza_plot.png){width=80%}
 
-There are 7 different templates to choose from, which are *forward*, *midfielder*, *winger*, *defender*, *full back*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the *custom* template as well. You can filter for the season required and select the colours for each stat subgroup according to your liking.
+There are 7 different templates to choose from, which are *forward*, *midfielder*, *winger*, *defender*, *full back*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the *custom* template as well. You can filter for the season required and select the colors for each stat subgroup according to your liking.
 
 For the season filter, please look at the data scraped from FBRef and look at the "term" in scouting period. The term there will determine what season you will be filtering for when you put it in the function.
 
-There are three colour theme's for the background, namely *dark*, *black* and *white*.
+There are three color theme's for the background, namely *dark*, *black* and *white*.
 
 ### Custom Stats - Single Player
 
@@ -59,8 +60,9 @@ Here, when you look at the index column, you'll see the numbers correspond to th
 single_player <- single_player[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "custom", 
-                    color_possession = "#41ab5d", color_attack = "#fec44f", 
-                    color_defense = "#de2d26", season = "Last 365 Days", theme = "dark")
+                    color_possession = "#41ab5d", color_attack = "#fec44f", season = "Last 365 Days", 
+                    color_defense = "#de2d26", theme = "dark")
+
 pizza
 ```
 
@@ -90,7 +92,7 @@ There are 7 different templates to choose from, which are *forward*, *midfielder
 
 The seasons and names of both players have to be specified within the function in their respective parameters. 
 
-There are three colour themes for the background, namely *dark*, *black* and *white*.
+There are three color themes for the background, namely *dark*, *black* and *white*.
 
 **An important thing to note with player name's is the their entire name's have to specified.** 
 **Special care must be taken to remove any accents from the name of the player.** 
@@ -143,8 +145,7 @@ ggsave("image.png", bg = "black", width = 3000, height = 2800, units = "px")
 
 ## Adding Player Image 
 
-In this section, we shall detail the process of adding an image of the player to the centre of the pizza plot. This can be done via the 
-`magick` package. 
+In this section, we shall detail the process of adding an image of the player to the centre of the pizza plot. This can be done via the `magick` package. 
 
 For this, you have to first save the original pizza plot as a PNG and save a PNG image of the player in question from the internet. 
 Make sure that both the plot and image are in the same working directory (file). 
@@ -159,17 +160,16 @@ library(magick)
 
 add_image_centre <- function(plot_path, image_path) {
   
-## Read in plot
-fig <- image_read(plot_path)
-fig <- image_resize(fig, "1000x1000")
+  ## Read in plot
+  fig <- image_read(plot_path)
+  fig <- image_resize(fig, "1000x1000")
   
-## Read in image
-img <- image_read(image_path)
-img <- image_scale(img, "62x85")
+  ## Read in image
+  img <- image_read(image_path)
+  img <- image_scale(img, "62x85")
   
-## Overlay
-image_composite(fig, img, offset = "+471+417")
-
+  ## Overlay
+  image_composite(fig, img, offset = "+471+417")
 }
 
 # Here you use the function to add the player picture to the plot image.

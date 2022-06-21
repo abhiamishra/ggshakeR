@@ -1,7 +1,7 @@
 #' Calculating xT for passes, carries, etc
 #'
-#' @param eventData The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
-#' @param dataType indicator for what type of data the eventData. Currently, options include "opta" (default) and "statsbomb"
+#' @param data The dataframe that stores your data. Must contain starting x,y locations and ending x,y locations: `x`, `y`, `finalX`, `finalY`
+#' @param type indicator for what type of data the data. Currently, options include "opta" (default) and "statsbomb"
 #' @return returns a dataframe object
 #'
 #' @importFrom magrittr %>%
@@ -10,14 +10,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' endResult <- calculate_threat(test, dataType = "statsbomb")
+#' endResult <- calculate_threat(test, type = "statsbomb")
 #' endResult
 #' }
 
-calculate_threat <- function(eventData, dataType = "opta") {
-  if (nrow(eventData) > 0 &&
-      sum(x = c("x", "y", "finalX", "finalY") %in% names(eventData)) == 4) {
-    copydata <- eventData
+calculate_threat <- function(data, type = "opta") {
+  if (nrow(data) > 0) {
+    copydata <- data
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))
     
@@ -47,7 +46,7 @@ calculate_threat <- function(eventData, dataType = "opta") {
     parsing <- parsing %>% tidyr::drop_na(xend_col)
     parsing <-  parsing %>% tidyr::drop_na(yend_col)
     
-    if (dataType != "opta") {
+    if (type != "opta") {
       to_opta <- rescale_coordinates(from = pitch_statsbomb, to = pitch_opta)
       parsing$x <- to_opta$x(parsing$x_col)
       parsing$y <- to_opta$y(parsing$y_col)
@@ -72,14 +71,14 @@ calculate_threat <- function(eventData, dataType = "opta") {
           col <- as.integer(a / 8.33)
           if (as.integer(b / 12.5) + 1 > 8) {
             row <- as.integer(b / 12.5)
-          } else{
+          } else {
             row <- as.integer(b / 12.5) + 1
           }
         }
       } else {
         if (b %% 12.5 == 0) {
           if (as.integer(a / 8.33) + 1 > 12) {
-            col <- as.integer(a / 8.33)
+            col <- as.integer(a / 8.33)  
           } else {
             col <- as.integer(a / 8.33) + 1
           }
@@ -141,6 +140,6 @@ calculate_threat <- function(eventData, dataType = "opta") {
     
     return(joined)
   } else {
-    stop("Dataframe has insufficient number of rows and/or you don't have the right amount of columns: x,y,finalX, finalY")
+    stop("Dataframe has insufficient number of rows and/or you don't have the right amount of columns: `x`, `y`, `finalX`, `finalY`")
   }
 }

@@ -4,14 +4,14 @@
 \alias{plot_sonar}
 \title{Function for plotting pass sonars}
 \usage{
-plot_sonar(sonarData, dataType = "statsbomb", titlePlot = "")
+plot_sonar(data, data_type = "statsbomb", title = "")
 }
 \arguments{
-\item{sonarData}{Dataframe that houses pass data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
+\item{data}{Dataframe that houses pass data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}}
 
-\item{dataType}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
+\item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{titlePlot}{Title of the passing sonar plot}
+\item{title}{Title of the passing sonar plot}
 }
 \value{
 a ggplot2 object
@@ -22,7 +22,7 @@ for plotting pass sonars.
 }
 \examples{
 \dontrun{
-plot <- plot_sonar(sonarData, dataType = "statsbomb")
+plot <- plot_sonar(data, data_type = "statsbomb")
 plot
 }
 }

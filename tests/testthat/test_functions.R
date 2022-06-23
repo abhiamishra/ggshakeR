@@ -308,14 +308,18 @@ test_that("Testing plotting heatmaps: ", {
 
 
 #############  |- CALCULATE_THREAT ################
-df <- data.frame(
+#Opta Dataset
+opta_df <- data.frame(
   x = seq(81, 100, by = 1),
   y = seq(81, 100, by = 1),
-  finalX = seq(51, 70, by = 1),
-  finalY = seq(61, 80, by = 1)
+  finalX = seq(81, 100, by = 1),
+  finalY = seq(81, 100, by = 1)
 )
 
-# Creating an empty dataframe
+#Statsbomb Dataset
+sb_df <- readRDS("./inst/testdata/sbevents.RDS")
+
+# Creating an empty dataframes
 df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
 x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
@@ -328,16 +332,19 @@ df_absent <- data.frame(
 )
 
 test_that("Testing calculation of expected threat: ", {
-  p <- calculate_threat(df, type = "statsbomb")
-  expect_equal((ncol(df) + 2), ncol(p))
+  p <- calculate_threat(opta_df, type = "opta")
+  expect_equal((ncol(opta_df) + 2), ncol(p))
   
-  p <- calculate_threat(df)
-  expect_equal((ncol(df) + 2), ncol(p))
+  p <- calculate_threat(sb_df, type = "statsbomb")
+  expect_equal((ncol(sb_df) + 2), ncol(p))
   
   # testing for plotting on an empty dataframe
   expect_error(calculate_threat(df_empty),
                "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: `x`, `y`, `finalX`, `finalY`")
-  expect_error(calculate_threat(df_absent)) ## 'Can't subset columns that don't exist.'
+  
+  expect_error(calculate_threat(df_absent),
+               "Dataframe has insufficient number of rows and/or you don't have the right amount of columns: `x`, `y`, `finalX`, `finalY`")
+  ## 'Can't subset columns that don't exist.'
 })
 
 

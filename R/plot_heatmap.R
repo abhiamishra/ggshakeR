@@ -86,11 +86,11 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
       binY5 <- c(18, 62)
       
       plot <- plot +
-        geom_bin_2d(breaks = list(binX1, binY1), colour = colour_b, alpha = 0.9) +
-        geom_bin_2d(breaks = list(binX2, binY2), colour = colour_b, alpha  = 0.9) +
-        geom_bin_2d(breaks = list(binX3, binY3), colour = colour_b, alpha = 0.9) +
-        geom_bin_2d(breaks = list(binX4, binY4), colour = colour_b, alpha = 0.9) +
-        geom_bin_2d(breaks = list(binX5, binY5), colour = colour_b, alpha = 0.9)
+        geom_bin_2d(breaks = list(binX1, binY1), color = color_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX2, binY2), color = color_b, alpha  = 0.9) +
+        geom_bin_2d(breaks = list(binX3, binY3), color = color_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX4, binY4), color = color_b, alpha = 0.9) +
+        geom_bin_2d(breaks = list(binX5, binY5), color = color_b, alpha = 0.9)
     }
     
     plot <- plot +

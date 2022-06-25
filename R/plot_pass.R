@@ -31,6 +31,20 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                       progressive_pass = FALSE, cross = FALSE, shot = FALSE, switch = FALSE, 
                       outcome = "all", theme = "dark") {
   
+  if (theme == "dark" || theme == "") {
+    fill_b <- "#0d1117"
+    color_b <- "white"
+  } else if (theme == "white") {
+    fill_b <- "#F5F5F5"
+    color_b <- "black"
+  } else if (theme == "rose") {
+    fill_b <- "#FFE4E1"
+    color_b <- "#696969"
+  } else if (theme == "almond") {
+    fill_b <- "#FFEBCD"
+    color_b <- "#696969"
+  }
+  
   if (data_type == "opta") { ## OPTA ----
     
     if (nrow(data) > 0 &&
@@ -92,8 +106,8 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
     
     if (progressive_pass == TRUE) {
       data <- data %>%
-        mutate(start = sqrt((100 - location.x)^2 + (50 - location.y)^2)) %>%
-        mutate(end = sqrt((100 - pass.end_location.x)^2 + (50 - pass.end_location.y)^2)) %>%
+        mutate(start = sqrt((100 - x)^2 + (50 - y)^2)) %>%
+        mutate(end = sqrt((100 - finalX)^2 + (50 - finalY)^2)) %>%
         mutate(isProg = ifelse(end <= 0.75 * start,
                                1,
                                0))
@@ -117,20 +131,6 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
           finalY - y
         )) %>%
         filter(delta_y >= 35)
-    }
-    
-    if (theme == "dark" || theme == "") {
-      fill_b <- "#0d1117"
-      color_b <- "white"
-    } else if (theme == "white") {
-      fill_b <- "#F5F5F5"
-      color_b <- "black"
-    } else if (theme == "rose") {
-      fill_b <- "#FFE4E1"
-      color_b <- "#696969"
-    } else if (theme == "almond") {
-      fill_b <- "#FFEBCD"
-      color_b <- "#696969"
     }
     
     if (progressive_pass == TRUE) {

@@ -137,6 +137,10 @@ test_that("Testing plotting passflow maps: ", {
 
 #############  |- PLOT_PASS ################
 
+#StatsBomb dataset 
+sbevents <- system.file("testdata", "sbevents.RDS", package = "ggshakeR")
+sb_df <- readRDS(sbevents)
+
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
@@ -161,7 +165,17 @@ df_absent <- data.frame(
 
 
 test_that("Testing plotting passes: ", {
-  p <- plot_pass(df, type = "sep", outcome = "suc")
+  p <- plot_pass(sb_df, data_type = "statsbomb", type = "sep", 
+                 outcome = "suc", progressive_pass = TRUE, switch = TRUE,
+                 theme = "dark")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_pass(sb_df, data_type = "statsbomb", type = "all", 
+                 outcome = "unsuc", progressive_pass = TRUE,
+                 theme = "rose")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_pass(df, data_type = "opta", progressive_pass = TRUE)
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe
@@ -173,7 +187,6 @@ test_that("Testing plotting passes: ", {
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
 })
-
 
 
 #############  |- PLOT_TRENDLINE ################
@@ -229,9 +242,6 @@ test_that("Testing plotting trendlines: ", {
 })
 
 
-
-
-
 #############  |- PLOT_PIZZA ################
 # Scraping data
 # data1 <- worldfootballR::fb_player_scouting_report("https://fbref.com/en/players/6928979a/Nicolo-Barella", pos_versus = "primary")
@@ -249,6 +259,12 @@ data2 <- readRDS(d2)
 # Dataset for comparison plot
 data <- rbind(data1, data2)
 
+#Dataset for custom pizza plots 
+data1_cus <- data1[c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140), ]
+data2_cus <- data2[c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140), ]
+
+data_cus <- rbind(data1_cus, data2_cus)
+
 test_that("Testing plotting pizzas: ", {
   # testing for single player plot
   p <- suppressWarnings(plot_pizza(
@@ -259,9 +275,25 @@ test_that("Testing plotting pizzas: ", {
   
   expect_true(is.ggplot(p))
   
+  p <- suppressWarnings(plot_pizza(
+    data = data1_cus, type = "single", template = "custom",
+    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+    color_defense = "#fec44f", theme = "dark"
+  ))
+  
+  expect_true(is.ggplot(p))
+  
   # testing for comparison plot
   p <- suppressWarnings(plot_pizza(
-    data = data, type = "comparison", template = "midfielder",
+    data = data, type = "comparison", template = "forward",
+    player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
+    season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+    color_compare = "#90ee90", theme = "white"
+  ))
+  expect_true(is.ggplot(p))
+  
+  p <- suppressWarnings(plot_pizza(
+    data = data_cus, type = "comparison", template = "custom",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
     season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
     color_compare = "#90ee90", theme = "black"
@@ -272,6 +304,11 @@ test_that("Testing plotting pizzas: ", {
 
 
 #############  |- PLOT_HEATMAP ################
+
+#StatsBomb dataset 
+sbevents <- system.file("testdata", "sbevents.RDS", package = "ggshakeR")
+sb_df <- readRDS(sbevents)
+
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
@@ -287,14 +324,20 @@ colnames(df_empty) <- x
 
 # Creating simple dataframe for testing basic plots
 df_absent <- data.frame(
-  location.x = seq(81, 100, by = 1),
-  location.y = seq(81, 100, by = 1),
-  pass.end_location.x = seq(51, 70, by = 1)
+  x = seq(81, 100, by = 1),
+  y = seq(81, 100, by = 1),
+  finalX = seq(51, 70, by = 1)
 )
 
 
 test_that("Testing plotting heatmaps: ", {
-  p <- plot_heatmap(data = df, type = "hex")
+  p <- plot_heatmap(data = sb_df, data_type = "statsbomb", type = "hex")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_heatmap(data = df, data_type = "opta", type = "jdp")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_heatmap(data = df, data_type = "opta", type = "density")
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe
@@ -304,7 +347,6 @@ test_that("Testing plotting heatmaps: ", {
   # testing using a dataframe that does not have the required columns
   expect_error(plot_heatmap(data = df_absent))
 })
-
 
 
 #############  |- CALCULATE_THREAT ################
@@ -545,7 +587,6 @@ data <- data.frame(
   )
 )
 
-
 test_that("Testing plotting timelines: ", {
   p <- plot_timeline(
     data = data, match_year = 2021, team_home = "Manchester United", team_away = "Manchester City",
@@ -557,6 +598,9 @@ test_that("Testing plotting timelines: ", {
 
 ############# |- PLOT_CONVEXHULL ################
 # Creating dataset 
+
+sbevents <- system.file("testdata", "sbevents.RDS", package = "ggshakeR")
+sb_data <- readRDS(sbevents)
 
 names <- c("Jesse", "Jasmine", "Cruz", "Muneeb", "Robert", "Shyanne", 
            "Angela", "Jennifer", "Ariel", "Austin", "Anaisha")
@@ -593,6 +637,10 @@ test_that("Testing plotting convex hulls: ", {
   p <- plot_convexhull(data, data_type = "opta", title_plot = "Test 1")
   expect_true(is.ggplot(p))
   
+  p <- plot_convexhull(sb_data, data_type = "statsbomb", color = "red", 
+                       theme = "rose")
+  expect_true(is.ggplot(p))
+  
   # testing for plotting on an empty dataframe
   expect_error(plot_convexhull(data_empty, data_type = "opta"),
                "The dataset has insufficient columns and/or insufficient data.",
@@ -603,7 +651,6 @@ test_that("Testing plotting convex hulls: ", {
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
 })
-
 
 
 ############# |- PLOT_VORONOI ################
@@ -652,6 +699,9 @@ test_that("Testing plotting voronoi plots: ", {
 
 ############# |- PLOT_PASSNET ################
 # Create Dataset
+
+sbevents <- system.file("testdata", "sbevents.RDS", package = "ggshakeR")
+sb_data <- readRDS(sbevents)
 
 names <- c("Adam", "Tony", "Avery", "Darrick", "Zachary", "Zachary", "Daisha", 
            "Maliha", "Candace", "Jeffrey", "Abdul Khaliq", "Andrew", "Raafi",
@@ -702,7 +752,12 @@ colnames(data_empty) <- x
 
 test_that("Testing plotting pass networks: ", {
   #testing
-  p <- plot_passnet(data, data_type = "opta", team_name = "Team 1", subtitle_plot = "Test 1")
+  p <- plot_passnet(data, data_type = "opta", scale_stat = "xT", scale_color = "blue", 
+                    team_name = "Team 1", flip = FALSE, subtitle_plot = "Test 1", theme = "dark")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_passnet(sb_data, data_type = "statsbomb", scale_stat = "EPV", scale_color = "red", 
+                    team_name = "Barcelona", flip = TRUE, theme = "light")
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe

@@ -1,0 +1,38 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you have a question, please ask on StackOverflow <http://stackoverflow.com>,
+        or RStudio Community <https://community.rstudio.com/> instead.
+        
+        Please make sure the bug comes from {ggshakeR} and not other packages 
+        such as {worldfootballR}, {understatr}, etc.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      value: |
+        Please include a minimal reprex. The goal of a reprex is to make it as 
+        easy as possible for the {ggshakeR} team to recreate your problem so 
+        that we can fix it. If you've never heard of a reprex before, start by 
+        reading <https://www.tidyverse.org/help/#reprex>, and follow the advice 
+        further down the page. Do NOT include session info unless it's 
+        explicitly asked for, or you've used `reprex::reprex(..., si = TRUE)` 
+        to hide it away.
+        
+        (Please delete this section when you're ready to submit.)
+        ---
+        ggshakeR version:
+        R version:
+        ---
+        Brief description of the problem
+
+        ```r
+        # insert reprex here
+        ```
+    validations:
+      required: true

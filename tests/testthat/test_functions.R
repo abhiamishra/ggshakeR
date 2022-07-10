@@ -780,14 +780,18 @@ test_that("Testing plotting pass networks: ", {
 
 
 ############# |- CALCULATE_EPV ################
-df <- data.frame(
+#Opta Dataset
+opta_df <- data.frame(
   x = seq(81, 100, by = 1),
   y = seq(81, 100, by = 1),
-  finalX = seq(51, 70, by = 1),
-  finalY = seq(61, 80, by = 1)
+  finalX = seq(81, 100, by = 1),
+  finalY = seq(81, 100, by = 1)
 )
 
-# Creating an empty dataframe
+#Statsbomb Dataset
+sb_df <- SampleSBData
+
+# Creating an empty dataframes
 df_empty <- data.frame(matrix(ncol = 4, nrow = 0))
 x <- c("x", "y", "finalX", "finalY")
 colnames(df_empty) <- x
@@ -799,12 +803,13 @@ df_absent <- data.frame(
   finalY = seq(61, 80, by = 1)
 )
 
+
 test_that("Testing calculation of expected threat: ", {
-  p <- calculate_epv(df, type = "statsbomb")
-  expect_equal((ncol(df) + 2), ncol(p))
+  p <- calculate_epv(opta_df, type = "statsbomb")
+  expect_equal((ncol(opta_df) + 2), ncol(p))
   
-  p <- calculate_epv(df)
-  expect_equal((ncol(df) + 2), ncol(p))
+  p <- calculate_epv(sb_df)
+  expect_equal((ncol(sb_df) + 2), ncol(p))
   
   
   # testing for plotting on an empty dataframe

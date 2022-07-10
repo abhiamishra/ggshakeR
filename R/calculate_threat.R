@@ -16,7 +16,7 @@
 
 calculate_threat <- function(data, type = "opta") {
   if (nrow(data) > 0 &&
-      sum(c('x','y','finalX','finalY') %in% names(data)) == 4) {
+      sum(c('x', 'y', 'finalX', 'finalY') %in% names(data)) == 4) {
     copydata <- data
     
     copydata <- copydata %>% mutate(uniqueID = 1:nrow(copydata))

@@ -110,7 +110,6 @@ calculate_threat <- function(data, type = "opta") {
     for (i in 1:length(names(parsing))) {
       if (names(parsing)[i] == "x_col") {
         names(parsing)[i] <- "x"
-        #print(names(parsing)[i])
       }
       
       if (names(parsing)[i] == "y_col") {

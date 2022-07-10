@@ -317,7 +317,7 @@ opta_df <- data.frame(
 )
 
 #Statsbomb Dataset
-sb_df <- readRDS("./inst/testdata/sbevents.RDS")
+sb_df <- SampleSBData
 
 # Creating an empty dataframes
 df_empty <- data.frame(matrix(ncol = 4, nrow = 0))

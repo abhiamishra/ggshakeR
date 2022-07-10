@@ -59,7 +59,6 @@ test_that("Plotting scatterplots: ", {
 
 
 #############  |- PLOT_SHOTS ################
-#############  |- PLOT_SHOTS ################
 # Creating simple dataframe for testing basic plots
 shotData <- system.file("testdata", "shot_data.rds", package = "ggshakeR")
 shotData_df <- readRDS(shotData)
@@ -139,12 +138,12 @@ test_that("Testing plotting shot maps: ", {
 
 #############  |- PLOT_PASSFLOW ################
 # Creating simple dataframe for testing basic plots
-df <- data.frame(
-  x = seq(81, 100, by = 1),
-  y = seq(81, 100, by = 1),
-  finalX = seq(51, 70, by = 1),
-  finalY = rep(61, 80, by = 1)
-)
+df <- SampleEventData %>%
+  rename("finalX" = "endX") %>%
+  rename("finalY" = "endY")
+
+#Statsbomb dataset
+sb_df <- SampleSBData
 
 # Creating an empty dataframe
 df_empty <- data.frame(matrix(ncol = 5, nrow = 0))
@@ -160,7 +159,12 @@ df_absent <- data.frame(
 
 
 test_that("Testing plotting passflow maps: ", {
+  # testing opta dataset
   p <- plot_passflow(data = df)
+  expect_true(is.ggplot(p))
+
+  # testing statsbomb dataset
+  p <- plot_passflow(data = sb_df)
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe
@@ -170,6 +174,13 @@ test_that("Testing plotting passflow maps: ", {
   # testing using a dataframe that does not have the required columns
   p <- plot_passflow(data = df_absent)
   expect_true(!is.ggplot(p))
+  
+  # testing binsizes
+  p <- plot_passflow(data = df) # binsize = 20 (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_passflow(data = df, binwidth = 50) #binsize = 50
+  expect_true(is.ggplot(p))
 })
 
 

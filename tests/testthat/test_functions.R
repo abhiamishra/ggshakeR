@@ -59,14 +59,10 @@ test_that("Plotting scatterplots: ", {
 
 
 #############  |- PLOT_SHOTS ################
+#############  |- PLOT_SHOTS ################
 # Creating simple dataframe for testing basic plots
-df <- data.frame(
-  X = seq(81, 100, by = 1),
-  Y = seq(81, 100, by = 1),
-  xG = seq(1, 20, by = 1),
-  result = rep(c("A", "B"), times = 10),
-  player = rep(c("Abhishek"), times = 20)
-)
+shotData <- system.file("testdata", "shot_data.rds", package = "ggshakeR")
+shotData_df <- readRDS(shotData)
 
 # Creating an empty dataframe
 df_empty <- data.frame(matrix(ncol = 5, nrow = 0))
@@ -82,8 +78,9 @@ df_absent <- data.frame(
 )
 
 
-test_that("Testing plotting pass flow maps: ", {
-  p <- plot_shot(df, highlight_goals = TRUE, average_location = FALSE)
+test_that("Testing plotting shot maps: ", {
+  # testing normal shot plotting
+  p <- plot_shot(shotData_df, highlight_goals = TRUE, average_location = FALSE)
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe
@@ -93,9 +90,51 @@ test_that("Testing plotting pass flow maps: ", {
   # testing using a dataframe that does not have the required columns
   p <- plot_shot(df_absent)
   expect_true(!is.ggplot(p))
+  
+  # testing the different types that exist
+  p <- plot_shot(shotData_df) # type: point (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, type = "hexbin") # type: hexbin
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, type = "density") # type: density
+  expect_true(is.ggplot(p))
+  
+  # testing different bin sizes
+  p <- plot_shot(shotData_df, type = "hexbin") # bins: 30 (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, type = "hexbin", bins = 50) # bins: 50
+  expect_true(is.ggplot(p))
+  
+  # testing highlight_goals
+  p <- plot_shot(shotData_df, highlight_goals = FALSE) # default choice of FALSE for highlight_goals 
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, highlight_goals = TRUE) # highlight_goals = TRUE
+  expect_true(is.ggplot(p))
+  
+  # testing average_location
+  p <- plot_shot(shotData_df, average_location = TRUE) # average_location = TRUE (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, average_location = FALSE) # average_location = FALSE
+  expect_true(is.ggplot(p))
+  
+  # testing themes on shot maps
+  p <- plot_shot(shotData_df, theme = "dark") # theme = dark (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, theme = "white") # theme = dark (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, theme = "rose") # theme = dark (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_shot(shotData_df, theme = "almond") # theme = dark (default)
+  expect_true(is.ggplot(p))
 })
-
-
 
 
 #############  |- PLOT_PASSFLOW ################

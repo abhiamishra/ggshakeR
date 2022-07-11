@@ -20,9 +20,8 @@ body:
         easy as possible for the {ggshakeR} team to recreate your problem so 
         that we can fix it. If you've never heard of a reprex before, start by 
         reading <https://www.tidyverse.org/help/#reprex>, and follow the advice 
-        further down the page. Do NOT include session info unless it's 
-        explicitly asked for, or you've used `reprex::reprex(..., si = TRUE)` 
-        to hide it away.
+        further down the page. Please don't include the `sessionInfo()`, although
+        we may ask for it later.
         
         (Please delete this section when you're ready to submit.)
         ---

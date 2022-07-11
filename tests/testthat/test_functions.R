@@ -711,34 +711,26 @@ test_that("Testing plotting convex hulls: ", {
 
 
 ############# |- PLOT_VORONOI ################
-# Creating simple dataframe for testing basic plots
-x <- sample.int(100, 10)
-y <- sample.int(100, 10)
-
-opta_df <- data.frame(x, y)
-
-
-x <- sample.int(120, 10)
-y <- sample.int(80, 10)
-
-sb_df <- data.frame(x, y)
+# Creating simple dataframes for testing basic plots
+opta_df <- SampleEventData
+sb_df <- SampleSBData
 
 # Creating an empty dataframe
 df_empty <- data.frame(matrix(ncol = 2, nrow = 0))
 x <- c("x", "y")
 colnames(df_empty) <- x
 
-# Creating simple dataframe for testing basic plots
+# Creating dataframe with missing columns
 x <- sample.int(100, 10)
-
 df_absent <- data.frame(x)
 
 # Test
-
 test_that("Testing plotting voronoi plots: ", {
+  # testing on opta dataset
   p <- plot_voronoi(opta_df, data_type = "opta", fill = "y", alpha = 0.3)
   expect_true(is.ggplot(p))
   
+  # testing on statsbomb dataset
   p <- plot_voronoi(sb_df, data_type = "statsbomb", fill = "y", alpha = 0.3)
   expect_true(is.ggplot(p))
   
@@ -751,6 +743,47 @@ test_that("Testing plotting voronoi plots: ", {
   expect_error(plot_voronoi(df_absent, data_type = "opta"),
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
+  
+  # testing fill argument
+  p <- plot_voronoi(opta_df, data_type = "opta") # fill = "" (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", fill = "x") # fill = "x"
+  expect_true(is.ggplot(p))
+  
+  # testing alpha values
+  p <- plot_voronoi(opta_df, data_type = "opta") # alpha = 0.4 (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", alpha = 0.2) # alpha = 0.2
+  expect_true(is.ggplot(p))
+  
+  # testing title of the plot values
+  p <- plot_voronoi(opta_df, data_type = "opta") # title_plot = "" (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", title_plot = "Testing Plot One") # alpha = 0.2
+  expect_true(is.ggplot(p))
+  
+  # testing the colour values
+  p <- plot_voronoi(opta_df, data_type = "opta") # colour = "#E74C3C" (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", colour = "red") # colour = red
+  expect_true(is.ggplot(p))
+  
+  # testing the theme values
+  p <- plot_voronoi(opta_df, data_type = "opta") # theme = "dark" (default)
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", theme = "white") # theme = white
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", theme = "rose") # theme = rose
+  expect_true(is.ggplot(p))
+  
+  p <- plot_voronoi(opta_df, data_type = "opta", theme = "almond") # theme = almond
+  expect_true(is.ggplot(p))
 })
 
 

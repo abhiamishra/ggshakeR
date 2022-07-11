@@ -47,8 +47,9 @@ plot_voronoi <- function(data, data_type = "statsbomb",
       drop_na(x, y)
     
   } else if (data_type == "statsbomb") {
-    if (nrow(data) <= 0) {
-      stop("The dataset has insufficient data.")
+    if (nrow(data) <= 0 ||
+        sum(x = c("x", "y") %in% names(data)) < 2) {
+      stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
     data <- data %>% drop_na(x, y)

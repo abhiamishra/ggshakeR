@@ -33,7 +33,7 @@ test_that("Plotting scatterplots: ", {
     x = "xA",
     y = "yA",
     set_size_var = "size_scat"
-  ))
+  ), "Please input a data.frame into the 'data' argument.")
   
   # Testing for using wrong/nonexistent column names
   p <- plot_scatter(
@@ -53,7 +53,236 @@ test_that("Plotting scatterplots: ", {
     y = "y",
     set_color_var = "col_scat",
     set_size_var = "size_scat"
-  ))
+  ), "Please input columns for the 'x' and/or 'y' arguments.")
+  
+  # testing for themes
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_var = "col_scat",
+    set_size_var = "size_scat"
+  )
+  expect_true(is.ggplot(p)) # theme = dark (classic)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_var = "col_scat",
+    set_size_var = "size_scat",
+    theme = "minimal"
+  )
+  expect_true(is.ggplot(p)) # theme = minimal
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_var = "col_scat",
+    set_size_var = "size_scat",
+    theme = "grey"
+  )
+  expect_true(is.ggplot(p)) # theme = grey
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_var = "col_scat",
+    set_size_var = "size_scat",
+    theme = "bw"
+  )
+  expect_true(is.ggplot(p)) # theme = bw
+  
+  # Testing captions
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # caption = "" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    caption = "This is testing"
+  )
+  expect_true(is.ggplot(p)) # caption = "This is testing"
+  expect_identical(p$labels$caption, "This is testing")
+  
+  # Testing caption size
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    caption = "This is testing"
+  )
+  expect_true(is.ggplot(p)) # caption_size = 10 (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    caption = "This is testing",
+    caption_size = 40
+  )
+  expect_true(is.ggplot(p)) # caption_size = 40
+  
+  # Testing subtitles
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # subtitle = "" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    subtitle = "Made by ggshakeR"
+  )
+  expect_true(is.ggplot(p)) # subtitle = "Made by ggshakeR"
+  expect_identical(p$labels$subtitle, "Made by ggshakeR")
+  
+  # testing subtitle size
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    subtitle = "Made by ggshakeR"
+  )
+  expect_true(is.ggplot(p)) # subtitle_size = 15 (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    subtitle = "Made by ggshakeR",
+    subtitle_size = 25
+  )
+  expect_true(is.ggplot(p)) # subtitle_size = 25
+  
+  
+  # Testing titles
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # title = "" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    title = "Plot One"
+  )
+  expect_true(is.ggplot(p)) # subtitle = "Plot One"
+  expect_identical(p$labels$title, "Plot One")
+  
+  # testing title size
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    title = "Made by ggshakeR"
+  )
+  expect_true(is.ggplot(p)) # title_size = 25 (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    title = "Made by ggshakeR",
+    title_size = 45
+  )
+  expect_true(is.ggplot(p)) # subtitle_size = 45
+  
+  # testing coloring in scatter plot with constant color
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # set_color_num = "red" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_num = "blue"
+  )
+  expect_true(is.ggplot(p)) # set_color_num = "blue" (default)
+  
+  # testing coloring in scatter plot with different color
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # set_color_var = "" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_color_var = "xA"
+  )
+  expect_true(is.ggplot(p)) # set_color_var = "xA"
+  expect_identical(p$labels$colour, "xA")
+  
+  # testing sizing in scatter plot with constant size
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # set_size_num = 5 (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_size_num = 10
+  )
+  expect_true(is.ggplot(p)) # set_color_num = 10
+  
+  # testing sizing in scatter plot with different size
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # set_size_var = "" (default)
+  
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA",
+    set_size_var = "col_scat"
+  )
+  expect_true(is.ggplot(p)) # set_color_var = "col_scat"
+  expect_identical(p$labels$size, "col_scat")
+  
+  # testing labels
+  p <- plot_scatter(
+    data = df,
+    x = "xA",
+    y = "yA"
+  )
+  expect_true(is.ggplot(p)) # label = "" (default)
+  
+  p <- plot_scatter(
+    data = df %>% filter(xA <= 10),
+    x = "xA",
+    y = "yA",
+    label = "xA"
+  )
+  expect_true(is.ggplot(p)) # label = "xA"
+  
 })
 
 

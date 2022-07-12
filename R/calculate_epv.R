@@ -64,26 +64,26 @@ calculate_epv <- function(data, type = "opta") {
       row <- 0
       col <- 0
       if (a %% 2 == 0) {
-        if (b %% 3.225 == 0) {
+        if (b %% 3.125 == 0) {
           col <- as.integer(a / 2)
-          row <- as.integer(b / 3.225)
+          row <- as.integer(b / 3.125)
           
         } else {
           col <- as.integer(a / 2)
-          if (as.integer(b / 3.225) + 1 > 31) {
-            row <- as.integer(b / 3.225)
+          if (as.integer(b / 3.125) + 1 > 32) {
+            row <- as.integer(b / 3.125)
           } else {
-            row <- as.integer(b / 3.225) + 1
+            row <- as.integer(b / 3.125) + 1
           }
         }
       } else {
-        if (b %% 3.225 == 0) {
+        if (b %% 3.125 == 0) {
           if (as.integer(a / 2) + 1 > 50) {
             col <- as.integer(a / 2)
           } else {
             col <- as.integer(a / 2) + 1
           }
-          row <- as.integer(b / 3.225)
+          row <- as.integer(b / 3.125)
         } else {
           if (as.integer(a / 2) + 1 > 50) {
             col <- as.integer(a / 2)
@@ -91,14 +91,14 @@ calculate_epv <- function(data, type = "opta") {
             col <- as.integer(a / 2) + 1
           }
           
-          if (as.integer(b / 3.225) + 1 > 31) {
-            row <- as.integer(b / 3.225)
+          if (as.integer(b / 3.125) + 1 > 32) {
+            row <- as.integer(b / 3.125)
           } else {
-            row <- as.integer(b / 3.225) + 1
+            row <- as.integer(b / 3.125) + 1
           }
         }
       }
-      return(EPVGrid[row, col])
+      return(EPVGrid[(33-row), col])
     }
     
     parsing$EPVStart <- mapply(assign_epv, parsing$x, parsing$y)

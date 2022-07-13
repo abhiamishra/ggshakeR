@@ -21,7 +21,17 @@ navbar:
   - text: Reference
     href: reference/index.html
   - text: Guides
-    href: articles/index.html
+    menu:
+    - text: Guide to EPV
+      href: articles/Guide_to_EPV.html
+    - text: Guide to Expected Threat
+      href: articles/Guide_to_Exp_Threat.html
+    - text: Guide to Pitch Plots
+      href: articles/Guide_to_Pitch_Plots.html
+    - text: Guide to Pizza Plots
+      href: articles/Guide_to_PizzaPlots.html
+    - text: Guide to Version 0.2.0
+      href: articles/Guide_to_Version_0-2-0.html
   - text: News
     href: news/index.html
   - text: Library

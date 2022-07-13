@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggshakeR <img src="man/figures/ggshakeRhex-small.png" align="right"/>
+# ggshakeR <img src="man/figures/logo.png" style="float:right; height:200px;">
 
 <!-- badges: start -->
 

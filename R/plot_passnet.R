@@ -8,7 +8,7 @@
 #' @param team_name The name of the team of which you want a pass network
 #' @param scale_stat Stat for the player node color scale. Choose between "xT" and "EPV" 
 #' @param scale_color Color of higher end of xT/EPV color scale. Default set to "#E74C3C"
-#' @param subtitle_plot Subtitle of the pass network plot
+#' @param subtitle Subtitle of the pass network plot
 #' @param flip Flip plot to vertical orientation. FALSE is the default
 #' @param theme The background theme -> "dark" or "light"
 #' @return a ggplot2 object
@@ -28,7 +28,7 @@
 #' }
 
 plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = "xT", 
-                         scale_color = "#E74C3C", subtitle_plot = "", flip = FALSE, theme = "dark") {
+                         scale_color = "#E74C3C", subtitle = "", flip = FALSE, theme = "dark") {
   
   # Theme
   
@@ -161,8 +161,8 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     
     # Plot 
     
-    if (subtitle_plot == "") {
-      subtitle_plot <- paste0("Till First Substitution (", min, "')")
+    if (subtitle == "") {
+      subtitle <- paste0("Till First Substitution (", min, "')")
     }
     
     plot_passnet <- ggplot() +
@@ -174,7 +174,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       scale_colour_gradient(low = colorScale, high = scale_color) +
       geom_text(data = nodes, aes(x, y, label = player.name), size = 3, fontface = "bold", colour = colorText) +
       labs(title = paste0(team_name, " Pass Network"),
-           subtitle = subtitle_plot,
+           subtitle = subtitle,
            x = "Only 4+ Pass Connections.\nSize = Number of connections",
            colour = leg_title) +
       theme(legend.position = c(0.843, 1.04),
@@ -332,8 +332,8 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     
     # Plot 
     
-    if (subtitle_plot == "") {
-      subtitle_plot <- paste0("Till First Substitution (", min, "')")
+    if (subtitle == "") {
+      subtitle <- paste0("Till First Substitution (", min, "')")
     }
     
     plot_passnet <- ggplot() +
@@ -345,7 +345,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       scale_colour_gradient(low = colorScale, high = scale_color) +
       geom_text(data = nodes, aes(x, y, label = playerId), colour = colorText, size = 3, fontface = "bold") +
       labs(title = paste0(team_name, " Pass Network"),
-           subtitle = subtitle_plot,
+           subtitle = subtitle,
            x = "Only 4+ Pass Connections.\nSize = Number of connections",
            colour = leg_title) +
       theme(legend.position = c(0.843, 1.04),

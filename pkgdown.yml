@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   Guide_to_EPV: Guide_to_EPV.html
@@ -7,7 +7,7 @@ articles:
   Guide_to_Pitch_Plots: Guide_to_Pitch_Plots.html
   Guide_to_PizzaPlots: Guide_to_PizzaPlots.html
   Guide_to_Version_0-2-0: Guide_to_Version_0-2-0.html
-last_built: 2022-07-14T13:09Z
+last_built: 2022-07-17T04:27Z
 urls:
   reference: https://abhiamishra.github.io/ggshakeR/reference
   article: https://abhiamishra.github.io/ggshakeR/articles

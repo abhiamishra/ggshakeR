@@ -6,6 +6,7 @@ Before creating the Pull-Request, I...
 -   [ ] Ran `devtools::check()` (GHA will do this but doesn't hurt to check yourself).
 -   [ ] (If applicable) Checked changes made to website with `pkgdown::build_site()`.
 -   [ ] Wrote commit message(s) throughout the time spent working on this branch with clear details of changes made.
+-   [ ] Updated package version with `usethis::use_version()` (choosing one of "major", "minor", "patch", "dev" options) and wrote down changes made in `NEWS.md`
 -   [ ] (If applicable) Created new tests for new functions or changes made to existing functions (Check `codecov`).
 
 After all of the Github Actions Checks have finished, I...

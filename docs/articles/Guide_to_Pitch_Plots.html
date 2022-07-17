@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,7 @@
                         <h4 data-toc-skip class="author">Abhishek A.
 Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-07-16</h4>
+            <h4 data-toc-skip class="date">2022-07-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Pitch_Plots.Rmd" class="external-link"><code>vignettes/Guide_to_Pitch_Plots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Pitch_Plots.Rmd</code></div>
@@ -356,7 +356,7 @@ wish by using the relevant parameters.</p>
 <code class="sourceCode R"><span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,
          <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title_plot <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span>
 
 <span class="va">convexPlot</span></code></pre></div>
 <div class="figure">
@@ -427,8 +427,8 @@ small change:</p>
 <span class="co">#Plot voronoi plot</span>
 
 <span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">finalData</span>, 
-                            voro_fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, 
-                            title_plot <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span>
+                            fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, 
+                            title <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span>
 <span class="va">plotVoronoi</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_voronoi_fill.png" style="width:80.0%" alt=""><p class="caption">plot_voronoi() of FC Barcelona players and their mean
@@ -466,7 +466,7 @@ here, as the all other parameters have been set to their default. Work
 with different colors using the <strong>scale_color</strong> parameter,
 different stats using <strong>scale_stat</strong>, flip the plot’s
 orientation using <strong>flip</strong> and alter the subtitle with
-<strong>subtitle_plot</strong> if you wish to do so!</p>
+<strong>subtitle</strong> if you wish to do so!</p>
 </div>
 <div class="section level4">
 <h4 id="opta">Opta<a class="anchor" aria-label="anchor" href="#opta"></a>

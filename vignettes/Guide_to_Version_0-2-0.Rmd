@@ -21,8 +21,9 @@ Along side the new functionality in this update, there have been a lot of change
 
 For guides on new functions please see:
 
-* fill_this_in_later
-* fill_this_in_later
+* [Guide to Pitch Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html)
+* [Guide to Creating Pizza Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html)
+* [Guide to Expected Threat](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html)
 
 ```{r setup}
 library(ggshakeR)
@@ -64,8 +65,8 @@ plot_heatmap(data, type, data_type, binwidth, theme)
 
 ```{r}
 plot_pass(data, 
-          type, progressive_pass, cross, shot, switch, 
-          distance, outcome, 
+          type, progressive_pass, 
+          cross, shot, switch, outcome, 
           theme)
 ```
 

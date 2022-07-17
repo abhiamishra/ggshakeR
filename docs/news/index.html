@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,26 +62,58 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="ggshaker-020">ggshakeR 0.2.0<a class="anchor" aria-label="anchor" href="#ggshaker-020"></a></h2>
-<ul><li>Standardize function argument and object names
-<ul><li>snake_case: <code>binSize</code> to <code>bin_size</code>, <code>dataType</code> to <code>data_type</code>, etc.</li>
-<li>data arguments all conform to <code>data</code>
+<ul><li>Standardized function argument and object names
+<ul><li>Use snake_case: <code>binSize</code> to <code>bin_size</code>, <code>dataType</code> to <code>data_type</code>, etc.</li>
+<li>Data arguments all conform to <code>data</code>
 </li>
-<li>US spelling: <code>color</code> rather than <code>colour</code>, etc.</li>
+<li>Use US spelling: <code>color</code> rather than <code>colour</code>, etc.</li>
 <li>Argument names made longer for clarity: <code>subt_size</code> to <code>subtitle_size</code>, <code>roll_avg</code> to <code>rolling_average</code>, etc.</li>
-<li>See <a href="https://github.com/abhiamishra/ggshakeR/issues/27;" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/27" class="external-link">#27</a>
+<li>See <a href="https://github.com/abhiamishra/ggshakeR/issues/27" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/27" class="external-link">#27</a>
+</li>
+</ul></li>
+<li>Created new functions
+<ul><li>
+<code><a href="../reference/plot_convexhull.html">plot_convexhull()</a></code> &amp; <code><a href="../reference/hull_fun.html">hull_fun()</a></code> utility function: See <a href="https://github.com/abhiamishra/ggshakeR/issues/28" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/28" class="external-link">#28</a>
+</li>
+<li>
+<code><a href="../reference/plot_voronoi.html">plot_voronoi()</a></code> function: See <a href="https://github.com/abhiamishra/ggshakeR/issues/28" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/28" class="external-link">#28</a>
+</li>
+<li>
+<code><a href="../reference/plot_passnet.html">plot_passnet()</a></code> function: See <a href="https://github.com/abhiamishra/ggshakeR/issues/31" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/31" class="external-link">#31</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/53" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/53" class="external-link">#53</a>
+</li>
+<li>
+<code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> function: See <a href="https://github.com/abhiamishra/ggshakeR/issues/25" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/25" class="external-link">#25</a>
+</li>
+<li>Created vignettes for new functions: See <a href="https://github.com/abhiamishra/ggshakeR/issues/45" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/45" class="external-link">#45</a>
+</li>
+</ul></li>
+<li>Improved functions
+<ul><li>Improved <code><a href="../reference/plot_pizza.html">plot_pizza()</a></code>: See <a href="https://github.com/abhiamishra/ggshakeR/issues/37" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/37" class="external-link">#37</a>
+</li>
+<li>Added <code>jdp</code> pitch type option for <code><a href="../reference/plot_heatmap.html">plot_heatmap()</a></code>: See <a href="https://github.com/abhiamishra/ggshakeR/issues/37" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/37" class="external-link">#37</a>
+</li>
+<li>Simplified <code><a href="../reference/plot_pass.html">plot_pass()</a></code>: See <a href="https://github.com/abhiamishra/ggshakeR/issues/64" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/64" class="external-link">#64</a>
+</li>
+</ul></li>
+<li>Improved test coverage
+<ul><li>See <a href="https://github.com/abhiamishra/ggshakeR/issues/44" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/44" class="external-link">#44</a>
+</li>
+</ul></li>
+<li>Other minor fixes
+<ul><li>See <a href="https://github.com/abhiamishra/ggshakeR/issues/21" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/21" class="external-link">#21</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/29" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/29" class="external-link">#29</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/32" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/32" class="external-link">#32</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/33" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/33" class="external-link">#33</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/47" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/47" class="external-link">#47</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/56" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/56" class="external-link">#56</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/58" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/58" class="external-link">#58</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/59" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/59" class="external-link">#59</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/62" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/62" class="external-link">#62</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/66" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/66" class="external-link">#66</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/76" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/76" class="external-link">#76</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/78" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/78" class="external-link">#78</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/81" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/81" class="external-link">#81</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/82" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/82" class="external-link">#82</a>, <a href="https://github.com/abhiamishra/ggshakeR/issues/88" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/88" class="external-link">#88</a>
 </li>
 </ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="ggshaker-012">ggshakeR 0.1.2<a class="anchor" aria-label="anchor" href="#ggshaker-012"></a></h2>
-<ul><li>Remove extraneous dependencies from package imports
+<ul><li>Removed extraneous dependencies from package imports
 <ul><li>See <a href="https://github.com/abhiamishra/ggshakeR/issues/20" class="external-link">issue </a><a href="https://github.com/abhiamishra/ggshakeR/issues/20" class="external-link">#20</a>
 </li>
 </ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="ggshaker-011">ggshakeR 0.1.1<a class="anchor" aria-label="anchor" href="#ggshaker-011"></a></h2>
-<ul><li>Implement Github Actions CI tools:
+<ul><li>Implemented Github Actions CI tools:
 <ul><li>codecov test coverage checks</li>
 <li>R Package Build checks</li>
 <li>lintr checks</li>

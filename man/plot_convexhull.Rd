@@ -8,7 +8,7 @@ plot_convexhull(
   data,
   data_type = "statsbomb",
   color = "#E74C3C",
-  title_plot = "",
+  title = "",
   theme = "dark"
 )
 }
@@ -19,7 +19,7 @@ plot_convexhull(
 
 \item{color}{The color of the outline of the convex hull}
 
-\item{title_plot}{Title of the plot}
+\item{title}{Title of the plot}
 
 \item{theme}{Indicates what theme the map must be shown in: dark (default), white, rose, almond}
 }
@@ -32,7 +32,7 @@ for plotting convex hulls on top of an outline of a football pitch.
 }
 \examples{
 \dontrun{
-plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title_plot = "Team 1")
+plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title = "Team 1")
 plot
 }
 }

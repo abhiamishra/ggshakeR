@@ -613,10 +613,13 @@ test_that("Testing plotting heatmaps: ", {
   p <- plot_heatmap(data = sb_df, data_type = "statsbomb", type = "hex")
   expect_true(is.ggplot(p))
   
-  p <- plot_heatmap(data = df, data_type = "opta", type = "jdp")
+  p <- plot_heatmap(data = df, data_type = "opta", type = "jdp", theme = "white")
   expect_true(is.ggplot(p))
   
-  p <- plot_heatmap(data = df, data_type = "opta", type = "density")
+  p <- plot_heatmap(data = df, data_type = "opta", type = "density", theme = "rose")
+  expect_true(is.ggplot(p))
+  
+  p <- plot_heatmap(data = df, data_type = "opta", type = "binwidth", theme = "almond")
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe
@@ -920,7 +923,7 @@ colnames(data_empty) <- x
 # Test
 
 test_that("Testing plotting convex hulls: ", {
-  p <- plot_convexhull(data, data_type = "opta", title_plot = "Test 1")
+  p <- plot_convexhull(data, data_type = "opta", title = "Test 1")
   expect_true(is.ggplot(p))
   
   p <- plot_convexhull(sb_data, data_type = "statsbomb", color = "red", 
@@ -991,7 +994,7 @@ test_that("Testing plotting voronoi plots: ", {
   p <- plot_voronoi(opta_df, data_type = "opta") # title_plot = "" (default)
   expect_true(is.ggplot(p))
   
-  p <- plot_voronoi(opta_df, data_type = "opta", title_plot = "Testing Plot One") # alpha = 0.2
+  p <- plot_voronoi(opta_df, data_type = "opta", title = "Testing Plot One") # alpha = 0.2
   expect_true(is.ggplot(p))
   
   # testing the colour values

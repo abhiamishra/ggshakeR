@@ -6,7 +6,7 @@
 #' @param data Data frame that houses pass data. Opta dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`, `playerId`
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
 #' @param color The color of the outline of the convex hull
-#' @param title_plot Title of the plot
+#' @param title Title of the plot
 #' @param theme Indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return a ggplot2 object
 #'
@@ -20,12 +20,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title_plot = "Team 1")
+#' plot <- plot_convexhull(data = data, data_type = "opta", color = "blue", title = "Team 1")
 #' plot
 #' }
 
 plot_convexhull <- function(data, data_type = "statsbomb", 
-                            color = "#E74C3C", title_plot = "", theme = "dark") {
+                            color = "#E74C3C", title = "", theme = "dark") {
   
   if (data_type == "opta") {
     if (nrow(data) > 0 &&
@@ -72,8 +72,8 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     purrr::map(hull_fun) %>%
     purrr::reduce(full_join)
   
-  if (title_plot == "") {
-    title_plot <- "Convex Hulls"
+  if (title == "") {
+    title <- "Convex Hulls"
   }
   
   convex_hull <- ggplot(hull_data) +
@@ -82,7 +82,7 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     geom_point(data = data, aes(x = x, y = y), alpha = 0.5, colour = colour_b) +
     geom_polygon(aes(x = x, y = y), colour = color, alpha = 0.2, fill = color, size = 1) +
     facet_wrap(~playerId) +
-    labs(title = title_plot,
+    labs(title = title,
          x = "Direction of play faces rightward") +
     theme(plot.background = element_rect(fill = fill_b, colour = NA),
           panel.background = element_rect(fill = fill_b, colour = NA),

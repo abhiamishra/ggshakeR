@@ -231,7 +231,7 @@ Here is an example:
 convexPlot <- plotting_data %>%
   filter(match_id == 266631,
          player.name == "Jordi Alba Ramos") %>%
-  plot_convexhull(color = "#41ab5d", title_plot = "Jordi Alba Convex Hull")
+  plot_convexhull(color = "#41ab5d", title = "Jordi Alba Convex Hull")
 
 convexPlot
 ```
@@ -304,8 +304,8 @@ finalData <- threatData %>%
 #Plot voronoi plot
 
 plotVoronoi <- plot_voronoi(data = finalData, 
-                            voro_fill = "EPV_Start", 
-                            title_plot = "Barcelona Voronoi Diagram")
+                            fill = "EPV_Start", 
+                            title = "Barcelona Voronoi Diagram")
 plotVoronoi
 ```
 
@@ -331,7 +331,7 @@ passnetPlot
 
 ![plot_passnet() of FC Barcelona in a match](../man/figures/SB_Passnet.png){width="80%"}
 
-**team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **scale_color** parameter, different stats using **scale_stat**, flip the plot's orientation using **flip** and alter the subtitle with **subtitle_plot** if you wish to do so!
+**team_name** is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the **scale_color** parameter, different stats using **scale_stat**, flip the plot's orientation using **flip** and alter the subtitle with **subtitle** if you wish to do so!
 
 ### Opta
 

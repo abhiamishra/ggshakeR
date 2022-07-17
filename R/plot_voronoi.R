@@ -8,7 +8,7 @@
 #' @param colour The colour of the points in the voronoi plot.
 #' @param fill Name of column to add a fill component to the plot
 #' @param alpha Alpha value for opacity of fill. Default set to 0.4
-#' @param title_plot Title of the plot.
+#' @param title Title of the plot.
 #' @param theme Indicates what theme the map must be shown in: dark (default), white, rose, almond.
 #' @return a ggplot2 object
 #'
@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot <- plot_voronoi(data = data, colour = "blue", title_plot = "Team 1")
+#' plot <- plot_voronoi(data = data, colour = "blue", title = "Team 1")
 #' plot
 #' }
 #' 
@@ -30,7 +30,7 @@ plot_voronoi <- function(data, data_type = "statsbomb",
                             colour = "#E74C3C", 
                             fill = "",
                             alpha = 0.4,
-                            title_plot = "", 
+                            title = "", 
                             theme = "dark") {
 
   if (data_type == "opta") {
@@ -89,7 +89,7 @@ plot_voronoi <- function(data, data_type = "statsbomb",
   voro_plot <- voro_plot + 
     geom_voronoi_segment(color = "white", bound = c(0, 120, 0, 80)) +
     coord_fixed() +
-    labs(title = title_plot,
+    labs(title = title,
          x = "Direction of play faces rightward",
          fill = fill) +
     theme(plot.background = element_rect(fill = fill_b, colour = NA),

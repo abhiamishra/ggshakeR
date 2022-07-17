@@ -10,7 +10,7 @@ plot_voronoi(
   colour = "#E74C3C",
   fill = "",
   alpha = 0.4,
-  title_plot = "",
+  title = "",
   theme = "dark"
 )
 }
@@ -25,7 +25,7 @@ plot_voronoi(
 
 \item{alpha}{Alpha value for opacity of fill. Default set to 0.4}
 
-\item{title_plot}{Title of the plot.}
+\item{title}{Title of the plot.}
 
 \item{theme}{Indicates what theme the map must be shown in: dark (default), white, rose, almond.}
 }
@@ -38,7 +38,7 @@ with either Opta or Statsbomb data.
 }
 \examples{
 \dontrun{
-plot <- plot_voronoi(data = data, colour = "blue", title_plot = "Team 1")
+plot <- plot_voronoi(data = data, colour = "blue", title = "Team 1")
 plot
 }
 

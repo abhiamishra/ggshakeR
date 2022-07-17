@@ -308,7 +308,7 @@
 <code class="sourceCode R"><span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,
          <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title_plot <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span>
 
 <span class="va">convexPlot</span></code></pre></div>
 <div class="figure">
@@ -363,8 +363,8 @@
 <span class="co">#Plot voronoi plot</span>
 
 <span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">finalData</span>, 
-                            voro_fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, 
-                            title_plot <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span>
+                            fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, 
+                            title <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span>
 <span class="va">plotVoronoi</span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_voronoi_fill.png" style="width:80.0%" alt=""><p class="caption">plot_voronoi() of FC Barcelona players and their mean positions with EPV</p>
@@ -390,7 +390,7 @@
 <div class="figure">
 <img src="../reference/figures/SB_Passnet.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() of FC Barcelona in a match</p>
 </div>
-<p><strong>team_name</strong> is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the <strong>scale_color</strong> parameter, different stats using <strong>scale_stat</strong>, flip the plot’s orientation using <strong>flip</strong> and alter the subtitle with <strong>subtitle_plot</strong> if you wish to do so!</p>
+<p><strong>team_name</strong> is the one parameter that needs to be used here, as the all other parameters have been set to their default. Work with different colors using the <strong>scale_color</strong> parameter, different stats using <strong>scale_stat</strong>, flip the plot’s orientation using <strong>flip</strong> and alter the subtitle with <strong>subtitle</strong> if you wish to do so!</p>
 </div>
 <div class="section level4">
 <h4 id="opta">Opta<a class="anchor" aria-label="anchor" href="#opta"></a>

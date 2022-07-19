@@ -10,3 +10,4 @@
 ^\.lintr$
 ^lintr-generator\.R$
 ^codecov\.yml$
+^CODE_OF_CONDUCT\.md$

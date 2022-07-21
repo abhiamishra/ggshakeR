@@ -80,6 +80,8 @@ Here are some helpful links to get you started with the package:
 * [Guide To Pitch Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html)
 * [Guide To Expected Threat](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html)
 * [Guide To Pizza Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html)
+* [Guide To Expected Possession Value](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_EPV.html)
+* [Guide To Version 0.2.0](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Version_0-2-0.html)
 
 # Credit
 Thank you to StatsBomb and [Ewan Henderson](https://github.com/ewenme) for their respective packages. A big thank you to Ninad Barbadikar for creating the beautiful logo and helping with the package in general. Thank you [Jase Ziv](https://github.com/JaseZiv) for your help and your package [WorldFootballR](https://github.com/JaseZiv/worldfootballR) from which this took inspiration from. 

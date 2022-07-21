@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Along side the new functionality in this update, there have been a lot of changes made to existing {ggshakeR} functions as well. This is regarding the consistency and standardization of argument names in the package.
+Along side the new functionality in the `v0.2.0` update, there have been a lot of changes made to existing {ggshakeR} functions as well. This is regarding the consistency and standardization of argument names in the package.
 
 For guides on new functions please see:
 
@@ -32,14 +32,16 @@ library(ggshakeR)
 The problem that really kicked off these changes was the fact that as I was looking through the package's code base, I found that we had functions with arguments using `snake_case` in some functions, others using `camelCase`, and worst of all some functions that used both `snake_case` __AND__ `camelCase` in the argument names.
 
 ```{r example-bad}
-plot_passflow(pass_data, dataType, bin_size) # !!!
+plot_passflow(pass_data, dataType, bin_size) # !!!   (╯°□°）╯︵ ┻━┻
 ```
 
-After some discussion with the other authors (`Abhishek` & `Harsh`), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of __consistency__. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well). An exception (hopefully a rare one as we go forward) is `binwidth` as this is essentially an argument that is being passed on to some underlying `ggplot2` function calls and we wanted to preserve the same argument name for familiarity's sake.
+After some discussion with the other authors (`Abhishek` & `Harsh`), I have standardized everything to `snake_case` as well as making a number of other changes to argument names for the sake of __consistency__. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, but this shouldn't be an issue as in RStudio you can simply press `Tab` while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well). An exception (hopefully a rare one as we go forward) is `binwidth` as this is essentially an argument that is being passed on to some underlying `ggplot2` function calls and we wanted to preserve the same argument name for familiarity's sake. 
+
+The `type` arguments have also been rejigged so that the **first** `type` argument will always be the `type` related to the function. So for example each `plot_*()` function's `type` argument will specify the **plot** type, then other arguments for the `type` of other things will have their own prefix such as `data_type` and so on. Another QOL change was to make the `data` argument be standardized across **all** functions so you don't have to figure out whether it's `event_data` or `pass_data` or `sonarData` or even simply `data`... it's __all__ just `data` now.
 
 Some arguments have changed their order in the functions, to learn about why function order is important, check out [Function arguments section in 'Advanced R'](http://adv-r.had.co.nz/Functions.html#function-arguments). The functions in {ggshakeR} follows R function conventions by having the `data` argument come first, then usually a `type` argument, then the rest in an order we think makes sense.
 
-Listed below are the changes made for version `0.2.0`:
+Listed below are the changes made for version `0.2.0` to previously existing functions:
 
 ## `calculate_threat()`
 
@@ -57,6 +59,7 @@ plot_heatmap(data, type, data_type, binwidth, theme)
 ```
 
 * `data`: changed from `event_data`
+* `type`: specifically refers to the **plot** type while `data_type` (below) allows you to specify the data type (`StatsBomb`, `Opta`, etc.)
 * `data_type`: changed from `dataType`
 * `binwidth`: changed from `bin`, now the same argument name as the underlying call to `geom_bin2d()`
 * `theme`: moved to be the last argument
@@ -72,7 +75,8 @@ plot_pass(data,
 
 * `data`: changed from `pass_data`
 * `progressive_pass`: changed from `prog`
-* `type`: changed from `plot_type`
+* `type`: changed from `plot_type`, specifically refers to **plot** type as it is a `plot_*()` function
+* `data_type`: changed from `dataType`
 
 ## `plot_passflow()`
 
@@ -118,7 +122,6 @@ plot_scatter(data, x, y, label,
 * `subtitle_size`: changed from `subt_size`
 * `caption`: changed from `scatter_cap`
 * `caption_size`: changed from `cap_size`
-* `scatter_label`: changed from `sc_label`
 * `theme`: moved to the very end of the argument order
 
 ## `plot_shot()`

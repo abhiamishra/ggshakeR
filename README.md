@@ -89,6 +89,10 @@ Here are some helpful links to get you started with the package:
     Threat](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html)
 -   [Guide To Pizza
     Plots](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html)
+-   [Guide To Expected Possession
+    Value](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_EPV.html)
+-   [Guide To Version
+    0.2.0](https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Version_0-2-0.html)
 
 # Credit
 

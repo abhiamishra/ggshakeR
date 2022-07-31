@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Guide to Expected Threat">
@@ -88,12 +88,11 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to Expected Threat</h1>
-                        <h4 data-toc-skip class="author">Abhishek A.
-Mishra</h4>
+                        <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-07-21</h4>
+            <h4 data-toc-skip class="date">2022-07-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Exp_Threat.Rmd" class="external-link"><code>vignettes/Guide_to_Exp_Threat.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Exp_Threat.Rmd</code></div>
@@ -102,105 +101,76 @@ Mishra</h4>
     
     
 <p>Welcome to the Expected Threat Guide for ggshakeR!</p>
-<p>First things first, we are only able to do this because of the
-amazing work by Karun Singh. Read his excellent <a href="https://karun.in/blog/expected-threat.html" class="external-link">xT blog post</a> that
-goes into in-depth explanation of the need and use of the metric.</p>
-<p>Karun Singh’s xT grid is what ggshakeR uses. Every time you load in
-the package, ggshakeR will load in a dataframe called
-<strong>xTGrid</strong>. <strong>xTGrid</strong> houses all the xT data
-that Karun Singh made public and now it is available for you in a line
-of code!</p>
+<p>First things first, we are only able to do this because of the amazing work by Karun Singh. Read his excellent <a href="https://karun.in/blog/expected-threat.html" class="external-link">xT blog post</a> that goes into in-depth explanation of the need and use of the metric.</p>
+<p>Karun Singh’s xT grid is what ggshakeR uses. Every time you load in the package, ggshakeR will load in a dataframe called <strong>xTGrid</strong>. <strong>xTGrid</strong> houses all the xT data that Karun Singh made public and now it is available for you in a line of code!</p>
 <p>Simply write:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">xTGrid</span><span class="op">)</span>
-<span class="co">#&gt;           X0         X1         X2         X3         X4         X5         X6</span>
-<span class="co">#&gt; 1 0.00638303 0.00779616 0.00844854 0.00977659 0.01126267 0.01248344 0.01473596</span>
-<span class="co">#&gt; 2 0.00750072 0.00878589 0.00942382 0.01059490 0.01214719 0.01384540 0.01611813</span>
-<span class="co">#&gt; 3 0.00887990 0.00977745 0.01001304 0.01110462 0.01269174 0.01429128 0.01685596</span>
-<span class="co">#&gt; 4 0.00941056 0.01082722 0.01016549 0.01132376 0.01262646 0.01484598 0.01689528</span>
-<span class="co">#&gt; 5 0.00941056 0.01082722 0.01016549 0.01132376 0.01262646 0.01484598 0.01689528</span>
-<span class="co">#&gt; 6 0.00887990 0.00977745 0.01001304 0.01110462 0.01269174 0.01429128 0.01685596</span>
-<span class="co">#&gt;           X7         X8         X9        X10        X11</span>
-<span class="co">#&gt; 1 0.01745060 0.02122129 0.02756312 0.03485072 0.03792590</span>
-<span class="co">#&gt; 2 0.01870347 0.02401521 0.02953272 0.04066992 0.04647721</span>
-<span class="co">#&gt; 3 0.01935132 0.02412240 0.02855202 0.05491138 0.06442595</span>
-<span class="co">#&gt; 4 0.01997070 0.02385149 0.03511326 0.10805102 0.25745362</span>
-<span class="co">#&gt; 5 0.01997070 0.02385149 0.03511326 0.10805102 0.25745362</span>
-<span class="co">#&gt; 6 0.01935132 0.02412240 0.02855202 0.05491138 0.06442595</span></code></pre></div>
-<p>This dataframe is there for you to use and play with. The columns
-correspond to pitch divisions from your own goal (X0) to the opponent’s
-goal (X11). The grid is symmetrical in half and as such, there is no
-“top”/“bottom” of the pitch.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">xTGrid</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           X0         X1         X2         X3         X4         X5         X6</span></span>
+<span><span class="co">#&gt; 1 0.00638303 0.00779616 0.00844854 0.00977659 0.01126267 0.01248344 0.01473596</span></span>
+<span><span class="co">#&gt; 2 0.00750072 0.00878589 0.00942382 0.01059490 0.01214719 0.01384540 0.01611813</span></span>
+<span><span class="co">#&gt; 3 0.00887990 0.00977745 0.01001304 0.01110462 0.01269174 0.01429128 0.01685596</span></span>
+<span><span class="co">#&gt; 4 0.00941056 0.01082722 0.01016549 0.01132376 0.01262646 0.01484598 0.01689528</span></span>
+<span><span class="co">#&gt; 5 0.00941056 0.01082722 0.01016549 0.01132376 0.01262646 0.01484598 0.01689528</span></span>
+<span><span class="co">#&gt; 6 0.00887990 0.00977745 0.01001304 0.01110462 0.01269174 0.01429128 0.01685596</span></span>
+<span><span class="co">#&gt;           X7         X8         X9        X10        X11</span></span>
+<span><span class="co">#&gt; 1 0.01745060 0.02122129 0.02756312 0.03485072 0.03792590</span></span>
+<span><span class="co">#&gt; 2 0.01870347 0.02401521 0.02953272 0.04066992 0.04647721</span></span>
+<span><span class="co">#&gt; 3 0.01935132 0.02412240 0.02855202 0.05491138 0.06442595</span></span>
+<span><span class="co">#&gt; 4 0.01997070 0.02385149 0.03511326 0.10805102 0.25745362</span></span>
+<span><span class="co">#&gt; 5 0.01997070 0.02385149 0.03511326 0.10805102 0.25745362</span></span>
+<span><span class="co">#&gt; 6 0.01935132 0.02412240 0.02855202 0.05491138 0.06442595</span></span></code></pre></div>
+<p>This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (X0) to the opponent’s goal (X11). The grid is symmetrical in half and as such, there is no “top”/“bottom” of the pitch.</p>
 <p>However, what if you want to use xT? Calculate it?</p>
-<p>ggshakeR offers you the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function that
-calculates xT for the data that is passed in!</p>
+<p>ggshakeR offers you the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function that calculates xT for the data that is passed in!</p>
 <p>Here are some characteristics:</p>
 <ul>
-<li>Needs 4 columns named as <code>x</code>, <code>y</code>,
-<code>finalX</code>, <code>finalY</code>.</li>
+<li>Needs 4 columns named as <code>x</code>, <code>y</code>, <code>finalX</code>, <code>finalY</code>.</li>
 </ul>
-<p>Here’s the cool thing about the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>
-function: <strong>It calculates the xT of the start of a pass/carry and
-the xT of the end of the pass/carry</strong>.</p>
-<p>Why is this important? Well, let’s take a take-on. That only has a
-starting <code>x</code> ,<code>y</code> . In the dataframe, the columns
-of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in
-them. The <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will give you the xT for both
-the starting and ending locations allowing you to give a value to
-single-event values - basically, it gives you the most freedom and
-information regarding xT.</p>
+<p>Here’s the cool thing about the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function: <strong>It calculates the xT of the start of a pass/carry and the xT of the end of the pass/carry</strong>.</p>
+<p>Why is this important? Well, let’s take a take-on. That only has a starting <code>x</code> ,<code>y</code> . In the dataframe, the columns of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in them. The <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will give you the xT for both the starting and ending locations allowing you to give a value to single-event values - basically, it gives you the most freedom and information regarding xT.</p>
 <p>Let’s see how we can use it!</p>
 <div class="section level2">
 <h2 id="using-the-calculate_threat-function">Using the <code>calculate_threat()</code> function<a class="anchor" aria-label="anchor" href="#using-the-calculate_threat-function"></a>
 </h2>
-<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free
-dataset</a></p>
-<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi
-Data</a> for La Liga 2014/15:</p>
+<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free dataset</a></p>
+<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi Data</a> for La Liga 2014/15:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span>
-
-<span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeCompetitions.html" class="external-link">FreeCompetitions</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
-
-<span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeMatches.html" class="external-link">FreeMatches</a></span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
-
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/StatsBombFreeEvents.html" class="external-link">StatsBombFreeEvents</a></span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/allclean.html" class="external-link">allclean</a></span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span>
-
-<span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">StatsBombData</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">StatsBombData</span></span></code></pre></div>
 <p>Before plotting, I am going to rename my columns:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,
-         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,
-         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
-         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
-<p>For <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>, <strong>always write the type
-that the data is: opta or statsbomb</strong>. After that, we simply
-get:</p>
+<code class="sourceCode R"><span><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,</span>
+<span>         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,</span>
+<span>         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
+<span>         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span></code></pre></div>
+<p>For <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>, <strong>always write the type that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## NOTE: from version 0.2.0 ALL function arguments are now in snake_case</span>
-<span class="co">## 'dataType' is now 'data_type', etc.</span>
-<span class="va">xTData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
-<p>If we inspect <code>xTData</code>, we see these two new columns at
-the very end:</p>
+<code class="sourceCode R"><span><span class="co">## NOTE: from version 0.2.0 ALL function arguments are now in snake_case</span></span>
+<span><span class="co">## 'dataType' is now 'data_type', etc.</span></span>
+<span><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></span></code></pre></div>
+<p>If we inspect <code>xTData</code>, we see these two new columns at the very end:</p>
 <div class="figure">
 <img src="../reference/figures/calculate_threat.png" style="width:90.0%" alt=""><p class="caption">calculate_threat() producing xTStart and xTEnd</p>
 </div>
-<p>As you’ll see, <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will put a -1 in areas
-where there was a value that was not right for calculation. To calculate
-the difference in xT, simply write:</p>
+<p>As you’ll see, <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in xT, simply write:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="va">xTData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>xT <span class="op">=</span> <span class="va">xTEnd</span> <span class="op">-</span> <span class="va">xTStart</span><span class="op">)</span></code></pre></div>
-<p>This will give you the difference in xT and this value can be used
-for passes, carries - anything that has a start and an end location. Use
-<code>xTStart</code>/<code>xTEn</code>d for single-occuring events such
-as take-ons, tackles, if you so wish.</p>
+<code class="sourceCode R"><span><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="va">xTData</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>xT <span class="op">=</span> <span class="va">xTEnd</span> <span class="op">-</span> <span class="va">xTStart</span><span class="op">)</span></span></code></pre></div>
+<p>This will give you the difference in xT and this value can be used for passes, carries - anything that has a start and an end location. Use <code>xTStart</code>/<code>xTEn</code>d for single-occuring events such as take-ons, tackles, if you so wish.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -215,8 +185,7 @@ as take-ons, tackles, if you so wish.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

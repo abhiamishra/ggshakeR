@@ -5,7 +5,7 @@
 #' density heatmap, and
 #' binwidth heatmap
 #'
-#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`, `finalX`, `finalY`.
+#' @param data The dataframe that stores your data. Dataframe must contain atleast the following columns: `x`, `y`.
 #' @param type indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default), 
 #' "binwidth" indicates binwidth heatmap pass, and "jdp" indicates a binned heatmap according jdp pitch markings. 
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
@@ -28,7 +28,7 @@
 plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20, theme = "") {
 
   if (nrow(data) > 0 &&
-      sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
+      sum(x = c("x", "y") %in% names(data)) == 2) {
 
     if (data_type == "opta") {
       to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
@@ -101,6 +101,6 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
     
     return(plot)
   } else {
-    stop("Please check that your data has the columns: 'x', 'y', 'finalX' and 'finalY'")
+    stop("Please check that your data has the columns: 'x' and 'y'")
   }
 }

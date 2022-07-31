@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Guide to function argument changes in Version 0.2.0">
@@ -88,12 +88,11 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to function argument changes in Version 0.2.0</h1>
-                        <h4 data-toc-skip class="author">Ryo
-Nakagawara</h4>
+                        <h4 data-toc-skip class="author">Ryo Nakagawara</h4>
             
-            <h4 data-toc-skip class="date">2022-07-21</h4>
+            <h4 data-toc-skip class="date">2022-07-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Version_0-2-0.Rmd" class="external-link"><code>vignettes/Guide_to_Version_0-2-0.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Version_0-2-0.Rmd</code></div>
@@ -101,69 +100,28 @@ Nakagawara</h4>
 
     
     
-<p>Along side the new functionality in the <code>v0.2.0</code> update,
-there have been a lot of changes made to existing {ggshakeR} functions
-as well. This is regarding the consistency and standardization of
-argument names in the package.</p>
+<p>Along side the new functionality in the <code>v0.2.0</code> update, there have been a lot of changes made to existing {ggshakeR} functions as well. This is regarding the consistency and standardization of argument names in the package.</p>
 <p>For guides on new functions please see:</p>
 <ul>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html">Guide
-to Pitch Plots</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html">Guide
-to Creating Pizza Plots</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html">Guide
-to Expected Threat</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html">Guide to Pitch Plots</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html">Guide to Creating Pizza Plots</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html">Guide to Expected Threat</a></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></code></pre></div>
-<p>The problem that really kicked off these changes was the fact that as
-I was looking through the package’s code base, I found that we had
-functions with arguments using <code>snake_case</code> in some
-functions, others using <code>camelCase</code>, and worst of all some
-functions that used both <code>snake_case</code> <strong>AND</strong>
-<code>camelCase</code> in the argument names.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span></code></pre></div>
+<p>The problem that really kicked off these changes was the fact that as I was looking through the package’s code base, I found that we had functions with arguments using <code>snake_case</code> in some functions, others using <code>camelCase</code>, and worst of all some functions that used both <code>snake_case</code> <strong>AND</strong> <code>camelCase</code> in the argument names.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">pass_data</span>, <span class="va">dataType</span>, <span class="va">bin_size</span><span class="op">)</span> <span class="co"># !!!   (╯°□°）╯︵ ┻━┻</span></code></pre></div>
-<p>After some discussion with the other authors (<code>Abhishek</code>
-&amp; <code>Harsh</code>), I have standardized everything to
-<code>snake_case</code> as well as making a number of other changes to
-argument names for the sake of <strong>consistency</strong>. This does
-mean some pain in the short-term, but please do know these changes are
-done with user experience in mind in the long-term by lessening the
-cognitive load for using the functions in the package. Some argument
-names are longer now, but this shouldn’t be an issue as in RStudio you
-can simply press <code>Tab</code> while typing to auto-complete longer
-argument names (other modern IDEs should have a similar feature as
-well). An exception (hopefully a rare one as we go forward) is
-<code>binwidth</code> as this is essentially an argument that is being
-passed on to some underlying <code>ggplot2</code> function calls and we
-wanted to preserve the same argument name for familiarity’s sake.</p>
-<p>The <code>type</code> arguments have also been rejigged so that the
-<strong>first</strong> <code>type</code> argument will always be the
-<code>type</code> related to the function. So for example each
-<code>plot_*()</code> function’s <code>type</code> argument will specify
-the <strong>plot</strong> type, then other arguments for the
-<code>type</code> of other things will have their own prefix such as
-<code>data_type</code> and so on. Another QOL change was to make the
-<code>data</code> argument be standardized across <strong>all</strong>
-functions so you don’t have to figure out whether it’s
-<code>event_data</code> or <code>pass_data</code> or
-<code>sonarData</code> or even simply <code>data</code>… it’s
-<strong>all</strong> just <code>data</code> now.</p>
-<p>Some arguments have changed their order in the functions, to learn
-about why function order is important, check out <a href="http://adv-r.had.co.nz/Functions.html#function-arguments" class="external-link">Function
-arguments section in ‘Advanced R’</a>. The functions in {ggshakeR}
-follows R function conventions by having the <code>data</code> argument
-come first, then usually a <code>type</code> argument, then the rest in
-an order we think makes sense.</p>
-<p>Listed below are the changes made for version <code>0.2.0</code> to
-previously existing functions:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">pass_data</span>, <span class="va">dataType</span>, <span class="va">bin_size</span><span class="op">)</span> <span class="co"># !!!   (╯°□°）╯︵ ┻━┻</span></span></code></pre></div>
+<p>After some discussion with the other authors (<code>Abhishek</code> &amp; <code>Harsh</code>), I have standardized everything to <code>snake_case</code> as well as making a number of other changes to argument names for the sake of <strong>consistency</strong>. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, but this shouldn’t be an issue as in RStudio you can simply press <code>Tab</code> while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well). An exception (hopefully a rare one as we go forward) is <code>binwidth</code> as this is essentially an argument that is being passed on to some underlying <code>ggplot2</code> function calls and we wanted to preserve the same argument name for familiarity’s sake.</p>
+<p>The <code>type</code> arguments have also been rejigged so that the <strong>first</strong> <code>type</code> argument will always be the <code>type</code> related to the function. So for example each <code>plot_*()</code> function’s <code>type</code> argument will specify the <strong>plot</strong> type, then other arguments for the <code>type</code> of other things will have their own prefix such as <code>data_type</code> and so on. Another QOL change was to make the <code>data</code> argument be standardized across <strong>all</strong> functions so you don’t have to figure out whether it’s <code>event_data</code> or <code>pass_data</code> or <code>sonarData</code> or even simply <code>data</code>… it’s <strong>all</strong> just <code>data</code> now.</p>
+<p>Some arguments have changed their order in the functions, to learn about why function order is important, check out <a href="http://adv-r.had.co.nz/Functions.html#function-arguments" class="external-link">Function arguments section in ‘Advanced R’</a>. The functions in {ggshakeR} follows R function conventions by having the <code>data</code> argument come first, then usually a <code>type</code> argument, then the rest in an order we think makes sense.</p>
+<p>Listed below are the changes made for version <code>0.2.0</code> to previously existing functions:</p>
 <div class="section level2">
 <h2 id="calculate_threat">
 <code>calculate_threat()</code><a class="anchor" aria-label="anchor" href="#calculate_threat"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>event_data</code>
@@ -178,21 +136,18 @@ previously existing functions:</p>
 <code>plot_heatmap()</code><a class="anchor" aria-label="anchor" href="#plot_heatmap"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">data_type</span>, <span class="va">binwidth</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">data_type</span>, <span class="va">binwidth</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>event_data</code>
 </li>
 <li>
-<code>type</code>: specifically refers to the <strong>plot</strong>
-type while <code>data_type</code> (below) allows you to specify the data
-type (<code>StatsBomb</code>, <code>Opta</code>, etc.)</li>
+<code>type</code>: specifically refers to the <strong>plot</strong> type while <code>data_type</code> (below) allows you to specify the data type (<code>StatsBomb</code>, <code>Opta</code>, etc.)</li>
 <li>
 <code>data_type</code>: changed from <code>dataType</code>
 </li>
 <li>
-<code>binwidth</code>: changed from <code>bin</code>, now the same
-argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="external-link">geom_bin2d()</a></code>
+<code>binwidth</code>: changed from <code>bin</code>, now the same argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="external-link">geom_bin2d()</a></code>
 </li>
 <li>
 <code>theme</code>: moved to be the last argument</li>
@@ -203,10 +158,10 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>plot_pass()</code><a class="anchor" aria-label="anchor" href="#plot_pass"></a>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span><span class="va">data</span>, 
-          <span class="va">type</span>, <span class="va">progressive_pass</span>, 
-          <span class="va">cross</span>, <span class="va">shot</span>, <span class="va">switch</span>, <span class="va">outcome</span>, 
-          <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span><span class="va">data</span>, </span>
+<span>          <span class="va">type</span>, <span class="va">progressive_pass</span>, </span>
+<span>          <span class="va">cross</span>, <span class="va">shot</span>, <span class="va">switch</span>, <span class="va">outcome</span>, </span>
+<span>          <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>pass_data</code>
@@ -215,9 +170,7 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>progressive_pass</code>: changed from <code>prog</code>
 </li>
 <li>
-<code>type</code>: changed from <code>plot_type</code>, specifically
-refers to <strong>plot</strong> type as it is a <code>plot_*()</code>
-function</li>
+<code>type</code>: changed from <code>plot_type</code>, specifically refers to <strong>plot</strong> type as it is a <code>plot_*()</code> function</li>
 <li>
 <code>data_type</code>: changed from <code>dataType</code>
 </li>
@@ -228,18 +181,15 @@ function</li>
 <code>plot_passflow()</code><a class="anchor" aria-label="anchor" href="#plot_passflow"></a>
 </h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">binwidth</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">binwidth</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>pass_data</code>
 </li>
 <li>
-<code>data_type</code>: moved to come after the <code>data</code>
-argument</li>
+<code>data_type</code>: moved to come after the <code>data</code> argument</li>
 <li>
-<code>binwidth</code>: changed from <code>bin_size</code>, now the
-same argument name as the underlying call to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="external-link">geom_bin2d()</a></code>
+<code>binwidth</code>: changed from <code>bin_size</code>, now the same argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html" class="external-link">geom_bin2d()</a></code>
 </li>
 </ul>
 </div>
@@ -248,15 +198,14 @@ same argument name as the underlying call to
 <code>plot_pizza()</code><a class="anchor" aria-label="anchor" href="#plot_pizza"></a>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">template</span>, 
-           <span class="va">color_possession</span>, <span class="va">color_attack</span>, <span class="va">color_defense</span>, <span class="va">color_compare</span>,
-           <span class="va">player_1</span>, <span class="va">player_2</span>, 
-           <span class="va">season</span>, <span class="va">season_player_1</span>, <span class="va">season_player_2</span>, 
-           <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">template</span>, </span>
+<span>           <span class="va">color_possession</span>, <span class="va">color_attack</span>, <span class="va">color_defense</span>, <span class="va">color_compare</span>,</span>
+<span>           <span class="va">player_1</span>, <span class="va">player_2</span>, </span>
+<span>           <span class="va">season</span>, <span class="va">season_player_1</span>, <span class="va">season_player_2</span>, </span>
+<span>           <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
-<code>color_possession</code>: changed from
-<code>color_poss</code>
+<code>color_possession</code>: changed from <code>color_poss</code>
 </li>
 <li>
 <code>color_attack</code>: changed from <code>color_att</code>
@@ -271,13 +220,13 @@ same argument name as the underlying call to
 <code>plot_scatter()</code><a class="anchor" aria-label="anchor" href="#plot_scatter"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_scatter.html">plot_scatter</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">label</span>,
-             <span class="va">set_size_num</span>, <span class="va">set_size_var</span>,
-             <span class="va">set_color_num</span>, <span class="va">set_color_var</span>,
-             <span class="va">title</span>, <span class="va">title_size</span>,
-             <span class="va">subtitle</span>, <span class="va">subtitle_size</span>,
-             <span class="va">caption</span>, <span class="va">caption_size</span>,
-             <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_scatter.html">plot_scatter</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">label</span>,</span>
+<span>             <span class="va">set_size_num</span>, <span class="va">set_size_var</span>,</span>
+<span>             <span class="va">set_color_num</span>, <span class="va">set_color_var</span>,</span>
+<span>             <span class="va">title</span>, <span class="va">title_size</span>,</span>
+<span>             <span class="va">subtitle</span>, <span class="va">subtitle_size</span>,</span>
+<span>             <span class="va">caption</span>, <span class="va">caption_size</span>,</span>
+<span>             <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>x</code>: changed from <code>scatter_x</code>
@@ -292,8 +241,7 @@ same argument name as the underlying call to
 <code>title</code>: changed from <code>scatter_title</code>
 </li>
 <li>
-<code>subtitle</code>: changed from
-<code>scatter_subtitle</code>
+<code>subtitle</code>: changed from <code>scatter_subtitle</code>
 </li>
 <li>
 <code>subtitle_size</code>: changed from <code>subt_size</code>
@@ -313,15 +261,13 @@ same argument name as the underlying call to
 <code>plot_shot()</code><a class="anchor" aria-label="anchor" href="#plot_shot"></a>
 </h2>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">bins</span>, <span class="va">highlight_goals</span>, <span class="va">average_location</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">bins</span>, <span class="va">highlight_goals</span>, <span class="va">average_location</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
-<code>bins</code>: changed from <code>bin_size</code>, now the same
-argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="external-link">geom_hex()</a></code>
+<code>bins</code>: changed from <code>bin_size</code>, now the same argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="external-link">geom_hex()</a></code>
 </li>
 <li>
-<code>average_location</code>: changed from
-<code>avg_loc</code>
+<code>average_location</code>: changed from <code>avg_loc</code>
 </li>
 </ul>
 </div>
@@ -330,7 +276,7 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>plot_sonar()</code><a class="anchor" aria-label="anchor" href="#plot_sonar"></a>
 </h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">title</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">title</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>sonarData</code>
@@ -342,7 +288,7 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>plot_trendline()</code><a class="anchor" aria-label="anchor" href="#plot_trendline"></a>
 </h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_trendline.html">plot_trendline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">color_xg</span>, <span class="va">color_xga</span>, <span class="va">rolling_average</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_trendline.html">plot_trendline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">color_xg</span>, <span class="va">color_xga</span>, <span class="va">rolling_average</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>color_xg</code>: changed from <code>colour_xg</code>
@@ -351,8 +297,7 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>color_xga</code>: changed from <code>colour_xga</code>
 </li>
 <li>
-<code>rolling_average</code>: changed from
-<code>roll_avg</code>
+<code>rolling_average</code>: changed from <code>roll_avg</code>
 </li>
 </ul>
 </div>
@@ -361,9 +306,9 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <code>plot_timeline()</code><a class="anchor" aria-label="anchor" href="#plot_timeline"></a>
 </h2>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_timeline.html">plot_timeline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">match_year</span>, 
-              <span class="va">team_home</span>, <span class="va">team_away</span>,
-              <span class="va">color_home</span>, <span class="va">color_away</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_timeline.html">plot_timeline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">match_year</span>, </span>
+<span>              <span class="va">team_home</span>, <span class="va">team_away</span>,</span>
+<span>              <span class="va">color_home</span>, <span class="va">color_away</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>color_home</code>: changed from <code>home_color</code>
@@ -376,18 +321,11 @@ argument name as the underlying call to <code><a href="https://ggplot2.tidyverse
 <div class="section level2">
 <h2 id="installing-previous-versions-of-the-package">Installing previous versions of the package<a class="anchor" aria-label="anchor" href="#installing-previous-versions-of-the-package"></a>
 </h2>
-<p>For those who are not ready to fully commit to these changes (because
-you have a large script with {ggshakeR} functions or whatever) but have
-accidentally installed the new version, fear not as you can go back and
-install a prior version of the package.</p>
+<p>For those who are not ready to fully commit to these changes (because you have a large script with {ggshakeR} functions or whatever) but have accidentally installed the new version, fear not as you can go back and install a prior version of the package.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Install previous 0.1.2 version</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR@0.1.2"</span><span class="op">)</span></code></pre></div>
-<p>Do note that the changes listed in this vignette are permanent and
-will be the standard going forward. So please take the time to read this
-vignette and the documentation carefully so that you can transition over
-to the new argument syntax and make use of the new functionality that
-version 0.2.0 (and beyond!) provides.</p>
+<code class="sourceCode R"><span><span class="co">## Install previous 0.1.2 version</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR@0.1.2"</span><span class="op">)</span></span></code></pre></div>
+<p>Do note that the changes listed in this vignette are permanent and will be the standard going forward. So please take the time to read this vignette and the documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version 0.2.0 (and beyond!) provides.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -402,8 +340,7 @@ version 0.2.0 (and beyond!) provides.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

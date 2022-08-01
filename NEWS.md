@@ -1,4 +1,5 @@
-# ggshakeR 0.3.0
+# ggshakeR (development version)
+
 
 # ggshakeR 0.2.0
 

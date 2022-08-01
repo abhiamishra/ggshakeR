@@ -591,9 +591,7 @@ sb_df <- readRDS(sbevents)
 # Creating simple dataframe for testing basic plots
 df <- data.frame(
   x = seq(81, 100, by = 1),
-  y = seq(81, 100, by = 1),
-  finalX = seq(51, 70, by = 1),
-  finalY = seq(61, 80, by = 1)
+  y = seq(81, 100, by = 1)
 )
 
 # Creating an empty dataframe
@@ -603,9 +601,7 @@ colnames(df_empty) <- x
 
 # Creating simple dataframe for testing basic plots
 df_absent <- data.frame(
-  x = seq(81, 100, by = 1),
-  y = seq(81, 100, by = 1),
-  finalX = seq(51, 70, by = 1)
+  x = seq(81, 100, by = 1)
 )
 
 
@@ -624,7 +620,7 @@ test_that("Testing plotting heatmaps: ", {
   
   # testing for plotting on an empty dataframe
   empty_heatmap <- expect_error(plot_heatmap(data = df_empty))
-  expect_equal(empty_heatmap$message, "Please check that your data has the columns: 'x', 'y', 'finalX' and 'finalY'")
+  expect_equal(empty_heatmap$message, "Please check that your data has the columns: 'x' and 'y'")
   
   # testing using a dataframe that does not have the required columns
   expect_error(plot_heatmap(data = df_absent))

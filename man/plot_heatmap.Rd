@@ -13,7 +13,7 @@ plot_heatmap(
 )
 }
 \arguments{
-\item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}, \code{finalX}, \code{finalY}.}
+\item{data}{The dataframe that stores your data. Dataframe must contain atleast the following columns: \code{x}, \code{y}.}
 
 \item{type}{indicates the type of heatmap to plot. "hex" indicates hex bins, "density" indicates density (default),
 "binwidth" indicates binwidth heatmap pass, and "jdp" indicates a binned heatmap according jdp pitch markings.}

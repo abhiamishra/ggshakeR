@@ -1,3 +1,6 @@
+# ggshakeR (development version)
+
+
 # ggshakeR 0.2.0
 
 * Standardized function argument and object names
@@ -23,7 +26,7 @@
   * See [issue #44](https://github.com/abhiamishra/ggshakeR/issues/44)
 
 * Other minor fixes
-  * See [issue #21](https://github.com/abhiamishra/ggshakeR/issues/21), [issue #29](https://github.com/abhiamishra/ggshakeR/issues/29), [issue #32](https://github.com/abhiamishra/ggshakeR/issues/32), [issue #33](https://github.com/abhiamishra/ggshakeR/issues/33), [issue #47](https://github.com/abhiamishra/ggshakeR/issues/47), [issue #56](https://github.com/abhiamishra/ggshakeR/issues/56), [issue #58](https://github.com/abhiamishra/ggshakeR/issues/58), [issue #59](https://github.com/abhiamishra/ggshakeR/issues/59), [issue #62](https://github.com/abhiamishra/ggshakeR/issues/62), [issue #66](https://github.com/abhiamishra/ggshakeR/issues/66), [issue #76](https://github.com/abhiamishra/ggshakeR/issues/76), [issue #78](https://github.com/abhiamishra/ggshakeR/issues/78), [issue #81](https://github.com/abhiamishra/ggshakeR/issues/81), [issue #82](https://github.com/abhiamishra/ggshakeR/issues/82), [issue #88](https://github.com/abhiamishra/ggshakeR/issues/88)
+  * See [issue #21](https://github.com/abhiamishra/ggshakeR/issues/21), [issue #29](https://github.com/abhiamishra/ggshakeR/issues/29), [issue #32](https://github.com/abhiamishra/ggshakeR/issues/32), [issue #33](https://github.com/abhiamishra/ggshakeR/issues/33), [issue #47](https://github.com/abhiamishra/ggshakeR/issues/47), [issue #56](https://github.com/abhiamishra/ggshakeR/issues/56), [issue #58](https://github.com/abhiamishra/ggshakeR/issues/58), [issue #59](https://github.com/abhiamishra/ggshakeR/issues/59), [issue #62](https://github.com/abhiamishra/ggshakeR/issues/62), [issue #66](https://github.com/abhiamishra/ggshakeR/issues/66), [issue #76](https://github.com/abhiamishra/ggshakeR/issues/76), [issue #78](https://github.com/abhiamishra/ggshakeR/issues/78), [issue #81](https://github.com/abhiamishra/ggshakeR/issues/81), [issue #82](https://github.com/abhiamishra/ggshakeR/issues/82), [issue #88](https://github.com/abhiamishra/ggshakeR/issues/88), [issue #101](https://github.com/abhiamishra/ggshakeR/issues/101)
 
 # ggshakeR 0.1.2
 

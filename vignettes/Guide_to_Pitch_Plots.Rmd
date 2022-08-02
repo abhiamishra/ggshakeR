@@ -12,7 +12,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -141,7 +142,7 @@ For the heat map, we simply select our columns and plot! **Type** options includ
 
 ```{r, eval=FALSE}
 heat_data <- plotting_data %>%
-  select(x, y, finalX, finalY)
+  select(x, y)
 
 heatPlot <- plot_heatmap(data = heat_data, type = "bin")
 

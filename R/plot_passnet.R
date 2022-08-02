@@ -231,7 +231,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     if (scale_stat == "xT") {
       
       df <- data %>%
-        ggshakeR::calculate_threat(type = "opta")
+        calculate_threat(type = "opta")
       
       df <- df %>%
         mutate(xT = xTEnd - xTStart) %>%
@@ -245,7 +245,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
     } else if (scale_stat == "EPV") {
       
       df <- data %>%
-        ggshakeR::calculate_epv(type = "opta")
+        calculate_epv(type = "opta")
       
       df <- df %>%
         mutate(EPV = EPVEnd - EPVStart) %>%

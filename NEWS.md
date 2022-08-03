@@ -2,6 +2,7 @@
 
 -   Bug Fixes
     -   See [issue #101](https://github.com/abhiamishra/ggshakeR/issues/101)
+    -   Fixed pkgdown build issues [issue #104](https://github.com/abhiamishra/ggshakeR/issues/104)
 
 # ggshakeR 0.2.0
 

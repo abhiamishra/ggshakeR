@@ -12,7 +12,7 @@ for plotting single and comparison percentile plots."><meta property="og:image" 
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,21 +70,21 @@ for plotting single and comparison percentile plots.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_pizza</span><span class="op">(</span>
-  <span class="va">data</span>,
-  type <span class="op">=</span> <span class="st">""</span>,
-  <span class="va">template</span>,
-  color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>,
-  color_attack <span class="op">=</span> <span class="st">"#2171b5"</span>,
-  color_defense <span class="op">=</span> <span class="st">"#fec44f"</span>,
-  <span class="va">player_1</span>,
-  <span class="va">player_2</span>,
-  color_compare <span class="op">=</span> <span class="st">"#41ab5d"</span>,
-  season <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
-  season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
-  season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
-  theme <span class="op">=</span> <span class="st">""</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_pizza</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  <span class="va">template</span>,</span>
+<span>  color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>,</span>
+<span>  color_attack <span class="op">=</span> <span class="st">"#2171b5"</span>,</span>
+<span>  color_defense <span class="op">=</span> <span class="st">"#fec44f"</span>,</span>
+<span>  <span class="va">player_1</span>,</span>
+<span>  <span class="va">player_2</span>,</span>
+<span>  color_compare <span class="op">=</span> <span class="st">"#41ab5d"</span>,</span>
+<span>  season <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span>
+<span>  season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span>
+<span>  season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="st">""</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -156,20 +156,20 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">plot_pizza</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, type <span class="op">=</span> <span class="st">"comparison"</span>, template <span class="op">=</span> <span class="st">"midfielder"</span>,</span>
-<span class="r-in">                    player_1 <span class="op">=</span> <span class="st">"Nicolo Barella"</span>, player_2 <span class="op">=</span> <span class="st">"Ilkay Gundogan"</span>,</span>
-<span class="r-in">                    season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>, </span>
-<span class="r-in">                    season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span>
-<span class="r-in">                    color_compare <span class="op">=</span> <span class="st">"lightgreen"</span>, theme <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">plot1</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">plot_pizza</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data1</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"midfielder"</span>,</span>
-<span class="r-in">                    color_possession <span class="op">=</span> <span class="st">"green"</span>, color_attack <span class="op">=</span> <span class="st">"lightblue"</span>, </span>
-<span class="r-in">                    season <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span>
-<span class="r-in">                    color_defense <span class="op">=</span> <span class="st">"red"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">plot2</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">plot_pizza</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, type <span class="op">=</span> <span class="st">"comparison"</span>, template <span class="op">=</span> <span class="st">"midfielder"</span>,</span></span>
+<span class="r-in"><span>                    player_1 <span class="op">=</span> <span class="st">"Nicolo Barella"</span>, player_2 <span class="op">=</span> <span class="st">"Ilkay Gundogan"</span>,</span></span>
+<span class="r-in"><span>                    season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>, </span></span>
+<span class="r-in"><span>                    season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span></span>
+<span class="r-in"><span>                    color_compare <span class="op">=</span> <span class="st">"lightgreen"</span>, theme <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plot1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">plot_pizza</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data1</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"midfielder"</span>,</span></span>
+<span class="r-in"><span>                    color_possession <span class="op">=</span> <span class="st">"green"</span>, color_attack <span class="op">=</span> <span class="st">"lightblue"</span>, </span></span>
+<span class="r-in"><span>                    season <span class="op">=</span> <span class="st">"Last 365 Days"</span>,</span></span>
+<span class="r-in"><span>                    color_defense <span class="op">=</span> <span class="st">"red"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plot2</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

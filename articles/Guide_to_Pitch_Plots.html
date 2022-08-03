@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,12 +86,13 @@
 
 
 
-<script src="Guide_to_Pitch_Plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to Pitch Plots</h1>
                         <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-07-21</h4>
+            <h4 data-toc-skip class="date">2022-08-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Pitch_Plots.Rmd" class="external-link"><code>vignettes/Guide_to_Pitch_Plots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Pitch_Plots.Rmd</code></div>
@@ -128,7 +129,7 @@
 <p>The easiest Pitch Plot function to use! To use this function, which <em>only works with Understat data</em>, we need the <a href="https://github.com/ewenme/understatr" class="external-link">understatr package</a>.</p>
 <p>Once you have installed the package, put the package in your work session by writing:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">understatr</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">understatr</span><span class="op">)</span></span></code></pre></div>
 <p>We will use the understatr package to get the data for <code><a href="../reference/plot_shot.html">plot_shot()</a></code>. Browse through the understatr package to get their data. As a sanity check, make sure the dataframe has columns with these names:</p>
 <ul>
 <li>
@@ -141,19 +142,19 @@
 </ul>
 <p>Here, I am going to get Mohammed Salah’s data. To learn more about how to get data, read <a href="https://sagnikdas1.medium.com/tabguide-1-making-shot-maps-1c030f08393e" class="external-link">Nandy’s excellent guide</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">shot_data</span> <span class="op">&lt;-</span> <span class="fu">get_player_shots</span><span class="op">(</span>player_id <span class="op">=</span> <span class="fl">1250</span><span class="op">)</span> <span class="co"># Salah's `player_id` on Understat is `1250`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">shot_data</span> <span class="op">&lt;-</span> <span class="fu">get_player_shots</span><span class="op">(</span>player_id <span class="op">=</span> <span class="fl">1250</span><span class="op">)</span> <span class="co"># Salah's `player_id` on Understat is `1250`</span></span></code></pre></div>
 <p>After that, simply write and execute the following code to get a beautiful shot map:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span>
-
-<span class="va">plot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_shot.png" style="width:80.0%" alt=""><p class="caption">plot_shot() of Mohammed Salah</p>
 </div>
 <p>An additional feature is provided through a couple of other arguments within the function in the form of <strong>highlight_goals</strong> and <strong>average_location</strong>. Use them by toggling between <em>TRUE</em> and <em>FALSE</em>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">shot_data</span>, highlight_goals <span class="op">=</span> <span class="cn">TRUE</span>, average_location <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">plot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">shot_data</span>, highlight_goals <span class="op">=</span> <span class="cn">TRUE</span>, average_location <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">plot</span></span></code></pre></div>
 <p>Note that, you can write <em>“hexbin”</em>, <em>“density”</em>, and <em>“point”</em> to get three different types of shot maps. However, the <strong>highlight_goals</strong> parameter only works for point shot maps. Try it out!</p>
 </div>
 </div>
@@ -197,20 +198,20 @@
 <p>Let’s first get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free dataset</a></p>
 <p>In this example, I’ll be using StatsBomb’s Messi Data for La Liga 2014/15:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span>
-
-<span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
-<span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">plotting_data</span>  <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span></span>
+<span><span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span></span>
+<span><span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">plotting_data</span>  <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></span></code></pre></div>
 <p>Before plotting, I am going to rename my columns:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plotting_data</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,
-         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,
-         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
-         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plotting_data</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,</span>
+<span>         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,</span>
+<span>         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
+<span>         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span></code></pre></div>
 <p>Sweet, let’s plot!</p>
 <div class="section level4">
 <h4 id="plot_heatmap">
@@ -218,12 +219,12 @@
 </h4>
 <p>For the heat map, we simply select our columns and plot! <strong>Type</strong> options include <em>bin</em>, <em>hex</em>, <em>density</em> and <em>jdp</em>. Note that we don’t specify <strong>data_type</strong> since the default is set to “statsbomb”, so we can simply write this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">heat_data</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">finalX</span>, <span class="va">finalY</span><span class="op">)</span>
-
-<span class="va">heatPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">heat_data</span>, type <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span>
-
-<span class="va">heatPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">heat_data</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">heatPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">heat_data</span>, type <span class="op">=</span> <span class="st">"bin"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">heatPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_heatmap.png" style="width:80.0%" alt=""><p class="caption">plot_heatmap() of all of La Liga’s events in 2014/15</p>
 </div>
@@ -235,13 +236,13 @@
 <p>For the pass sonar, we’re going to a bit more data cleaning. I don’t want everybody’s passing sonar - that’s redundant!</p>
 <p>For our purposes, I want Jordi Alba’s passing sonar. First, let me get all passes from Jordi Alba:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plotting_data_alba</span>  <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type.name</span> <span class="op">==</span> <span class="st">"Pass"</span> <span class="op">&amp;</span> <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span> <span class="op">&amp;</span> <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plotting_data_alba</span>  <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type.name</span> <span class="op">==</span> <span class="st">"Pass"</span> <span class="op">&amp;</span> <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span> <span class="op">&amp;</span> <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span></span></code></pre></div>
 <p>Now I can construct a pass sonar! Default <strong>data_type</strong> is set to <em>“statsbomb”</em>, so here we can simply write:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sonarPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span>
-
-<span class="va">sonarPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sonarPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sonarPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_sonar.png" style="width:80.0%" alt=""><p class="caption">plot_sonar() of all of Jordi Alba’s passes from 2014/15</p>
 </div>
@@ -252,12 +253,12 @@
 </h4>
 <p>We can create a pass map of all of Jordi Alba’s passes during a particular match by using the <code><a href="../reference/plot_pass.html">plot_pass()</a></code> function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plotting_data_alba_single</span> <span class="op">&lt;-</span> <span class="va">plotting_data_alba</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">70264</span><span class="op">)</span>
-
-<span class="va">passPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba_single</span>, 
-                      progressive_pass <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
-<span class="va">passPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plotting_data_alba_single</span> <span class="op">&lt;-</span> <span class="va">plotting_data_alba</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">70264</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">passPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba_single</span>, </span>
+<span>                      progressive_pass <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">passPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_pass.png" style="width:80.0%" alt=""><p class="caption">plot_pass() of all of Jordi Alba’s passes from a match in 2014/15</p>
 </div>
@@ -268,9 +269,9 @@
 </h4>
 <p>Since we already have Jordi Alba’s passes, we can just construct the pass flow like this:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">passflowPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span>
-
-<span class="va">passflowPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">passflowPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plotting_data_alba</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">passflowPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_passflow.png" style="width:80.0%" alt=""><p class="caption">plot_passflow() of all of Jordi Alba’s passes from 2014/15</p>
 </div>
@@ -291,26 +292,26 @@
 </ul>
 <p>Let us plot using the data set we already have.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">$</span><span class="va">match_id</span><span class="op">)</span> <span class="co"># Find all match ID's from the data set</span>
-
-<span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,
-         <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">convexPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">$</span><span class="va">match_id</span><span class="op">)</span> <span class="co"># Find all match ID's from the data set</span></span>
+<span></span>
+<span><span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,</span>
+<span>         <span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">convexPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/Convexhull.png" style="width:80.0%" alt=""><p class="caption">plot_convexhull() of FC Barcelona players from a match</p>
 </div>
 <p>Note that we do not need to pass any parameters to the function here as the data set has already been specified and the default <strong>data_type</strong> is set to <em>“statsbomb”</em>. If using Opta data, set the <strong>data_type</strong> as such. Manipulate the data set as per your needs and use-case. You can also plot a single player convex hull by filtering for the specific name in the pipe before applying the function. You can also alter the title and colors as you wish by using the relevant parameters.</p>
 <p>Here is an example:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,
-         <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span>
-
-<span class="va">convexPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">convexPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span>,</span>
+<span>         <span class="va">player.name</span> <span class="op">==</span> <span class="st">"Jordi Alba Ramos"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="../reference/plot_convexhull.html">plot_convexhull</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#41ab5d"</span>, title <span class="op">=</span> <span class="st">"Jordi Alba Convex Hull"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">convexPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/Convexhull_JordiAlba.png" style="width:80.0%" alt=""><p class="caption">plot_convexhull() of all of Jordi Alba’s passes from a match</p>
 </div>
@@ -326,17 +327,17 @@
 </ul>
 <p>Let us plot using the data set we already have. First, we’ll get a summarized data set of players and their mean positions.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">finalData</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">minute</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">finalData</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">minute</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span></span></code></pre></div>
 <p>After that, we can simply use the voronoi plot function:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span><span class="va">finalData</span><span class="op">)</span>
-<span class="va">plotVoronoi</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span><span class="va">finalData</span><span class="op">)</span></span>
+<span><span class="va">plotVoronoi</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_voronoi.png" style="width:80.0%" alt=""><p class="caption">plot_voronoi() of FC Barcelona players and their mean positions</p>
 </div>
@@ -346,26 +347,26 @@
 <p>Manipulate the data set as per your needs and use-case. You can also fill the voronoi plots based on the values. You will need the fill value as another column. As usual, you can use piping to apply the function directly all in one line.</p>
 <p>As an example, we will show EPV values calculated through <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">threatData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">threatData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">)</span></span></code></pre></div>
 <p>Once we have that, we will repeat the same code as before with a small change:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">finalData</span> <span class="op">&lt;-</span> <span class="va">threatData</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">EPVStart</span> <span class="op">!=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co">#Getting rid of -1 as that as how we identify null values</span>
-  <span class="co">#We get the mean and sum of these three columns</span>
-  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">EPVStart</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span>, <span class="va">sum</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"EPV_Start"</span> <span class="op">=</span>  <span class="st">"EPVStart_fn1"</span><span class="op">)</span> <span class="co">#Renaming the relevant columns</span>
-
-<span class="co">#Plot voronoi plot</span>
-
-<span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">finalData</span>, 
-                            fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, 
-                            title <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span>
-<span class="va">plotVoronoi</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">finalData</span> <span class="op">&lt;-</span> <span class="va">threatData</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">team.name</span> <span class="op">==</span> <span class="st">"Barcelona"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">player.name</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">EPVStart</span> <span class="op">!=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co">#Getting rid of -1 as that as how we identify null values</span></span>
+<span>  <span class="co">#We get the mean and sum of these three columns</span></span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">EPVStart</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">mean</span>, <span class="va">sum</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"x_name"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"y"</span> <span class="op">=</span> <span class="st">"y_name"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"EPV_Start"</span> <span class="op">=</span>  <span class="st">"EPVStart_fn1"</span><span class="op">)</span> <span class="co">#Renaming the relevant columns</span></span>
+<span></span>
+<span><span class="co">#Plot voronoi plot</span></span>
+<span></span>
+<span><span class="va">plotVoronoi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_voronoi.html">plot_voronoi</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">finalData</span>, </span>
+<span>                            fill <span class="op">=</span> <span class="st">"EPV_Start"</span>, </span>
+<span>                            title <span class="op">=</span> <span class="st">"Barcelona Voronoi Diagram"</span><span class="op">)</span></span>
+<span><span class="va">plotVoronoi</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/plot_voronoi_fill.png" style="width:80.0%" alt=""><p class="caption">plot_voronoi() of FC Barcelona players and their mean positions with EPV</p>
 </div>
@@ -380,13 +381,13 @@
 </h4>
 <p>Plotting a pass network with StatsBomb data is pretty simple. All you need is a standard StatsBomb data set with the 4 coordinate columns being renamed to <code>x</code>, <code>y</code>, <code>finalX</code> and <code>finalY</code>, in line with what we have done for all other functions so far. We select a specific match and then plot away!</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">$</span><span class="va">match_id</span><span class="op">)</span> <span class="co"># Find all match ID's from the data set</span>
-
-<span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="st">"Barcelona"</span><span class="op">)</span>
-
-<span class="va">passnetPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">plotting_data</span><span class="op">$</span><span class="va">match_id</span><span class="op">)</span> <span class="co"># Find all match ID's from the data set</span></span>
+<span></span>
+<span><span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="va">plotting_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fl">266631</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="st">"Barcelona"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">passnetPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/SB_Passnet.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() of FC Barcelona in a match</p>
 </div>
@@ -397,7 +398,7 @@
 </h4>
 <p>Using <code><a href="../reference/plot_passnet.html">plot_passnet()</a></code> with Opta data is a bit more complicated. But fear not! We will be guiding you through the entire process so that you get the hang of it. Firstly you need an Opta data set. We created a data set to perfectly mimic an Opta data set and it is available within the package for your use. Call it by running:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="fu">ggshakeR</span><span class="fu">::</span><span class="va"><a href="../reference/SampleEventData.html">SampleEventData</a></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="fu">ggshakeR</span><span class="fu">::</span><span class="va"><a href="../reference/SampleEventData.html">SampleEventData</a></span></span></code></pre></div>
 <p>Now that you have your data set, let us see which columns we require for our function:</p>
 <ul>
 <li><code>x</code></li>
@@ -416,63 +417,63 @@
 </ul>
 <p>Note that the <em>playerId</em> and <em>teamId</em> columns need to contain player and team <strong>names</strong>. The data set in our hands only contains their relevant Id’s. Let us fix that and transform the data set into one that will be accepted by our function.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>teamId <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">teamId</span> <span class="op">==</span> <span class="fl">2151</span> <span class="op">~</span> <span class="st">"Team 1"</span>,
-                            <span class="va">teamId</span> <span class="op">==</span> <span class="fl">3070</span> <span class="op">~</span> <span class="st">"Team 2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>playerId <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">playerId</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="st">"Cameron"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"2"</span> <span class="op">~</span> <span class="st">"Sahaj"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"3"</span> <span class="op">~</span> <span class="st">"Trevor"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"4"</span> <span class="op">~</span> <span class="st">"Jolene"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"5"</span> <span class="op">~</span> <span class="st">"David"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"6"</span> <span class="op">~</span> <span class="st">"Marcus"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"7"</span> <span class="op">~</span> <span class="st">"Ryo"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"8"</span> <span class="op">~</span> <span class="st">"Anthony"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"9"</span> <span class="op">~</span> <span class="st">"Aabid"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"10"</span> <span class="op">~</span> <span class="st">"Kylian"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"11"</span> <span class="op">~</span> <span class="st">"Harry"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"12"</span> <span class="op">~</span> <span class="st">"Victor"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"13"</span> <span class="op">~</span> <span class="st">"Jesse"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"14"</span> <span class="op">~</span> <span class="st">"Borges"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"15"</span> <span class="op">~</span> <span class="st">"Miguel"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"16"</span> <span class="op">~</span> <span class="st">"Alex"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"17"</span> <span class="op">~</span> <span class="st">"Abdul"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"18"</span> <span class="op">~</span> <span class="st">"Eric"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"19"</span> <span class="op">~</span> <span class="st">"Marten"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"20"</span> <span class="op">~</span> <span class="st">"Robert"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"21"</span> <span class="op">~</span> <span class="st">"Lionel"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"22"</span> <span class="op">~</span> <span class="st">"Dean"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"23"</span> <span class="op">~</span> <span class="st">"Aaron "</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"24"</span> <span class="op">~</span> <span class="st">"Benjamin"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"25"</span> <span class="op">~</span> <span class="st">"Diego"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"26"</span> <span class="op">~</span> <span class="st">"Abhishek"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"27"</span> <span class="op">~</span> <span class="st">"Samuel"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"28"</span> <span class="op">~</span> <span class="st">"Edward"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"29"</span> <span class="op">~</span> <span class="st">"Malik"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"30"</span> <span class="op">~</span> <span class="st">"Albert"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"31"</span> <span class="op">~</span> <span class="st">"Paul"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"32"</span> <span class="op">~</span> <span class="st">"Smith"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"33"</span> <span class="op">~</span> <span class="st">"Seth"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"34"</span> <span class="op">~</span> <span class="st">"Mohammed"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"35"</span> <span class="op">~</span> <span class="st">"Eder"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"36"</span> <span class="op">~</span> <span class="st">"Adam"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"37"</span> <span class="op">~</span> <span class="st">"Harsh"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"38"</span> <span class="op">~</span> <span class="st">"Jorge"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"39"</span> <span class="op">~</span> <span class="st">"Zak"</span>,
-                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"40"</span> <span class="op">~</span> <span class="st">"Brandon"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>teamId <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">teamId</span> <span class="op">==</span> <span class="fl">2151</span> <span class="op">~</span> <span class="st">"Team 1"</span>,</span>
+<span>                            <span class="va">teamId</span> <span class="op">==</span> <span class="fl">3070</span> <span class="op">~</span> <span class="st">"Team 2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>playerId <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">playerId</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="st">"Cameron"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"2"</span> <span class="op">~</span> <span class="st">"Sahaj"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"3"</span> <span class="op">~</span> <span class="st">"Trevor"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"4"</span> <span class="op">~</span> <span class="st">"Jolene"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"5"</span> <span class="op">~</span> <span class="st">"David"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"6"</span> <span class="op">~</span> <span class="st">"Marcus"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"7"</span> <span class="op">~</span> <span class="st">"Ryo"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"8"</span> <span class="op">~</span> <span class="st">"Anthony"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"9"</span> <span class="op">~</span> <span class="st">"Aabid"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"10"</span> <span class="op">~</span> <span class="st">"Kylian"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"11"</span> <span class="op">~</span> <span class="st">"Harry"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"12"</span> <span class="op">~</span> <span class="st">"Victor"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"13"</span> <span class="op">~</span> <span class="st">"Jesse"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"14"</span> <span class="op">~</span> <span class="st">"Borges"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"15"</span> <span class="op">~</span> <span class="st">"Miguel"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"16"</span> <span class="op">~</span> <span class="st">"Alex"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"17"</span> <span class="op">~</span> <span class="st">"Abdul"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"18"</span> <span class="op">~</span> <span class="st">"Eric"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"19"</span> <span class="op">~</span> <span class="st">"Marten"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"20"</span> <span class="op">~</span> <span class="st">"Robert"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"21"</span> <span class="op">~</span> <span class="st">"Lionel"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"22"</span> <span class="op">~</span> <span class="st">"Dean"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"23"</span> <span class="op">~</span> <span class="st">"Aaron "</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"24"</span> <span class="op">~</span> <span class="st">"Benjamin"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"25"</span> <span class="op">~</span> <span class="st">"Diego"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"26"</span> <span class="op">~</span> <span class="st">"Abhishek"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"27"</span> <span class="op">~</span> <span class="st">"Samuel"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"28"</span> <span class="op">~</span> <span class="st">"Edward"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"29"</span> <span class="op">~</span> <span class="st">"Malik"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"30"</span> <span class="op">~</span> <span class="st">"Albert"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"31"</span> <span class="op">~</span> <span class="st">"Paul"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"32"</span> <span class="op">~</span> <span class="st">"Smith"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"33"</span> <span class="op">~</span> <span class="st">"Seth"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"34"</span> <span class="op">~</span> <span class="st">"Mohammed"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"35"</span> <span class="op">~</span> <span class="st">"Eder"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"36"</span> <span class="op">~</span> <span class="st">"Adam"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"37"</span> <span class="op">~</span> <span class="st">"Harsh"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"38"</span> <span class="op">~</span> <span class="st">"Jorge"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"39"</span> <span class="op">~</span> <span class="st">"Zak"</span>,</span>
+<span>                              <span class="va">playerId</span> <span class="op">==</span> <span class="st">"40"</span> <span class="op">~</span> <span class="st">"Brandon"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Here we have used the <code>case_when()</code> function to link the player and team Id’s to the relevant names. There is still some work left to do.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span>finalX <span class="op">=</span> <span class="va">endX</span>,
-         finalY <span class="op">=</span> <span class="va">endY</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">optadata</span> <span class="op">&lt;-</span> <span class="va">optadata</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span>finalX <span class="op">=</span> <span class="va">endX</span>,</span>
+<span>         finalY <span class="op">=</span> <span class="va">endY</span><span class="op">)</span></span></code></pre></div>
 <p>We have cleaned up our data set. It is now ready to be used in the function.</p>
 <p><strong>It is important to note that these steps might not be necessary for all data sets. This is only to make sure that we are following the correct format for the function. A data set with these exact column names and column type specifications will work within the function without any errors.</strong></p>
 <p>Let us now plot.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">optadata</span>, data_type <span class="op">=</span> <span class="st">"opta"</span>, 
-                            team_name <span class="op">=</span> <span class="st">"Team 1"</span>, scale_stat <span class="op">=</span> <span class="st">"EPV"</span>, 
-                            scale_color <span class="op">=</span> <span class="st">"#fec44f"</span>, flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">passnetPlot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">passnetPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_passnet.html">plot_passnet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">optadata</span>, data_type <span class="op">=</span> <span class="st">"opta"</span>, </span>
+<span>                            team_name <span class="op">=</span> <span class="st">"Team 1"</span>, scale_stat <span class="op">=</span> <span class="st">"EPV"</span>, </span>
+<span>                            scale_color <span class="op">=</span> <span class="st">"#fec44f"</span>, flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">passnetPlot</span></span></code></pre></div>
 <div class="figure">
 <img src="../reference/figures/Opta_Passnet.png" style="width:80.0%" alt=""><p class="caption">plot_passnet() using opta data</p>
 </div>

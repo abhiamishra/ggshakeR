@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,12 +86,13 @@
 
 
 
-<script src="Guide_to_EPV_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to Expected Possession Value</h1>
                         <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-07-21</h4>
+            <h4 data-toc-skip class="date">2022-08-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_EPV.Rmd" class="external-link"><code>vignettes/Guide_to_EPV.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_EPV.Rmd</code></div>
@@ -108,9 +109,9 @@
 <p>Every time you load in the package, ggshakeR will load in a dataframe called <strong>EPVGrid</strong>. <strong>EPVGrid</strong> houses all the EPV data that Laurie Shaw made public and now it is available for you in a line of code!</p>
 <p>Simply write:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPVGrid</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPVGrid</span><span class="op">)</span></span></code></pre></div>
 <p>This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (V1) to the opponent’s goal (V50). The grid is symmetrical in half and as such, there is no “top”/“bottom” of the pitch.</p>
 <p>However, what if you want to use EPV? Calculate it?</p>
 <p>ggshakeR offers you the <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> function that calculates EPV for the data that is passed in!</p>
@@ -128,36 +129,36 @@
 <p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free dataset</a></p>
 <p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi Data</a> for La Liga 2014/15:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span>
-
-<span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
-
-<span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
-
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span>
-
-<span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">StatsBombData</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu">FreeCompetitions</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu">FreeMatches</span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">StatsBombFreeEvents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">allclean</span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">StatsBombData</span></span></code></pre></div>
 <p>Before plotting, I am going to rename my columns:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span>
-  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,
-         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,
-         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,
-         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">plottingData</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="st">"location.x"</span>,</span>
+<span>         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,</span>
+<span>         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
+<span>         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span></code></pre></div>
 <p>For <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>, <strong>always write the <code>type</code> that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></span></code></pre></div>
 <p>If we inspect <code>EPVData</code>, we see these two new columns at the very end:</p>
 <div class="figure">
 <img src="../reference/figures/calculate_epv.png" style="width:90.0%" alt=""><p class="caption">calculate_epv() producing EPVStart and EPVEnd</p>
 </div>
 <p>As you’ll see, <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in EPV, simply write:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="va">EPVData</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>EPV <span class="op">=</span> <span class="va">EPVEnd</span> <span class="op">-</span> <span class="va">EPVStart</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="va">EPVData</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>EPV <span class="op">=</span> <span class="va">EPVEnd</span> <span class="op">-</span> <span class="va">EPVStart</span><span class="op">)</span></span></code></pre></div>
 <p>This will give you the difference in EPV and this value can be used for passes, carries - anything that has a start and an end location. Use <code>EPVStart</code>/<code>EPVEnd</code> for single-occuring events such as take-ons, tackles, if you so wish.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

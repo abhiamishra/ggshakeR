@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggshakeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,12 +86,13 @@
 
 
 
-<script src="Guide_to_Version_0-2-0_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to function argument changes in Version 0.2.0</h1>
                         <h4 data-toc-skip class="author">Ryo Nakagawara</h4>
             
-            <h4 data-toc-skip class="date">2022-07-21</h4>
+            <h4 data-toc-skip class="date">2022-08-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Version_0-2-0.Rmd" class="external-link"><code>vignettes/Guide_to_Version_0-2-0.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Version_0-2-0.Rmd</code></div>
@@ -107,10 +108,10 @@
 <li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html">Guide to Expected Threat</a></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span></code></pre></div>
 <p>The problem that really kicked off these changes was the fact that as I was looking through the package’s code base, I found that we had functions with arguments using <code>snake_case</code> in some functions, others using <code>camelCase</code>, and worst of all some functions that used both <code>snake_case</code> <strong>AND</strong> <code>camelCase</code> in the argument names.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">pass_data</span>, <span class="va">dataType</span>, <span class="va">bin_size</span><span class="op">)</span> <span class="co"># !!!   (╯°□°）╯︵ ┻━┻</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">pass_data</span>, <span class="va">dataType</span>, <span class="va">bin_size</span><span class="op">)</span> <span class="co"># !!!   (╯°□°）╯︵ ┻━┻</span></span></code></pre></div>
 <p>After some discussion with the other authors (<code>Abhishek</code> &amp; <code>Harsh</code>), I have standardized everything to <code>snake_case</code> as well as making a number of other changes to argument names for the sake of <strong>consistency</strong>. This does mean some pain in the short-term, but please do know these changes are done with user experience in mind in the long-term by lessening the cognitive load for using the functions in the package. Some argument names are longer now, but this shouldn’t be an issue as in RStudio you can simply press <code>Tab</code> while typing to auto-complete longer argument names (other modern IDEs should have a similar feature as well). An exception (hopefully a rare one as we go forward) is <code>binwidth</code> as this is essentially an argument that is being passed on to some underlying <code>ggplot2</code> function calls and we wanted to preserve the same argument name for familiarity’s sake.</p>
 <p>The <code>type</code> arguments have also been rejigged so that the <strong>first</strong> <code>type</code> argument will always be the <code>type</code> related to the function. So for example each <code>plot_*()</code> function’s <code>type</code> argument will specify the <strong>plot</strong> type, then other arguments for the <code>type</code> of other things will have their own prefix such as <code>data_type</code> and so on. Another QOL change was to make the <code>data</code> argument be standardized across <strong>all</strong> functions so you don’t have to figure out whether it’s <code>event_data</code> or <code>pass_data</code> or <code>sonarData</code> or even simply <code>data</code>… it’s <strong>all</strong> just <code>data</code> now.</p>
 <p>Some arguments have changed their order in the functions, to learn about why function order is important, check out <a href="http://adv-r.had.co.nz/Functions.html#function-arguments" class="external-link">Function arguments section in ‘Advanced R’</a>. The functions in {ggshakeR} follows R function conventions by having the <code>data</code> argument come first, then usually a <code>type</code> argument, then the rest in an order we think makes sense.</p>
@@ -120,7 +121,7 @@
 <code>calculate_threat()</code><a class="anchor" aria-label="anchor" href="#calculate_threat"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>event_data</code>
@@ -135,7 +136,7 @@
 <code>plot_heatmap()</code><a class="anchor" aria-label="anchor" href="#plot_heatmap"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">data_type</span>, <span class="va">binwidth</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">data_type</span>, <span class="va">binwidth</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>event_data</code>
@@ -157,10 +158,10 @@
 <code>plot_pass()</code><a class="anchor" aria-label="anchor" href="#plot_pass"></a>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span><span class="va">data</span>, 
-          <span class="va">type</span>, <span class="va">progressive_pass</span>, 
-          <span class="va">cross</span>, <span class="va">shot</span>, <span class="va">switch</span>, <span class="va">outcome</span>, 
-          <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pass.html">plot_pass</a></span><span class="op">(</span><span class="va">data</span>, </span>
+<span>          <span class="va">type</span>, <span class="va">progressive_pass</span>, </span>
+<span>          <span class="va">cross</span>, <span class="va">shot</span>, <span class="va">switch</span>, <span class="va">outcome</span>, </span>
+<span>          <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>pass_data</code>
@@ -180,7 +181,7 @@
 <code>plot_passflow()</code><a class="anchor" aria-label="anchor" href="#plot_passflow"></a>
 </h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">binwidth</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_passflow.html">plot_passflow</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">binwidth</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>pass_data</code>
@@ -197,11 +198,11 @@
 <code>plot_pizza()</code><a class="anchor" aria-label="anchor" href="#plot_pizza"></a>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">template</span>, 
-           <span class="va">color_possession</span>, <span class="va">color_attack</span>, <span class="va">color_defense</span>, <span class="va">color_compare</span>,
-           <span class="va">player_1</span>, <span class="va">player_2</span>, 
-           <span class="va">season</span>, <span class="va">season_player_1</span>, <span class="va">season_player_2</span>, 
-           <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">template</span>, </span>
+<span>           <span class="va">color_possession</span>, <span class="va">color_attack</span>, <span class="va">color_defense</span>, <span class="va">color_compare</span>,</span>
+<span>           <span class="va">player_1</span>, <span class="va">player_2</span>, </span>
+<span>           <span class="va">season</span>, <span class="va">season_player_1</span>, <span class="va">season_player_2</span>, </span>
+<span>           <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>color_possession</code>: changed from <code>color_poss</code>
@@ -219,13 +220,13 @@
 <code>plot_scatter()</code><a class="anchor" aria-label="anchor" href="#plot_scatter"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_scatter.html">plot_scatter</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">label</span>,
-             <span class="va">set_size_num</span>, <span class="va">set_size_var</span>,
-             <span class="va">set_color_num</span>, <span class="va">set_color_var</span>,
-             <span class="va">title</span>, <span class="va">title_size</span>,
-             <span class="va">subtitle</span>, <span class="va">subtitle_size</span>,
-             <span class="va">caption</span>, <span class="va">caption_size</span>,
-             <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_scatter.html">plot_scatter</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, <span class="va">label</span>,</span>
+<span>             <span class="va">set_size_num</span>, <span class="va">set_size_var</span>,</span>
+<span>             <span class="va">set_color_num</span>, <span class="va">set_color_var</span>,</span>
+<span>             <span class="va">title</span>, <span class="va">title_size</span>,</span>
+<span>             <span class="va">subtitle</span>, <span class="va">subtitle_size</span>,</span>
+<span>             <span class="va">caption</span>, <span class="va">caption_size</span>,</span>
+<span>             <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>x</code>: changed from <code>scatter_x</code>
@@ -260,7 +261,7 @@
 <code>plot_shot()</code><a class="anchor" aria-label="anchor" href="#plot_shot"></a>
 </h2>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">bins</span>, <span class="va">highlight_goals</span>, <span class="va">average_location</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_shot.html">plot_shot</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">type</span>, <span class="va">bins</span>, <span class="va">highlight_goals</span>, <span class="va">average_location</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>bins</code>: changed from <code>bin_size</code>, now the same argument name as the underlying call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="external-link">geom_hex()</a></code>
@@ -275,7 +276,7 @@
 <code>plot_sonar()</code><a class="anchor" aria-label="anchor" href="#plot_sonar"></a>
 </h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">title</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sonar.html">plot_sonar</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">data_type</span>, <span class="va">title</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>data</code>: changed from <code>sonarData</code>
@@ -287,7 +288,7 @@
 <code>plot_trendline()</code><a class="anchor" aria-label="anchor" href="#plot_trendline"></a>
 </h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_trendline.html">plot_trendline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">color_xg</span>, <span class="va">color_xga</span>, <span class="va">rolling_average</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_trendline.html">plot_trendline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">team</span>, <span class="va">color_xg</span>, <span class="va">color_xga</span>, <span class="va">rolling_average</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>color_xg</code>: changed from <code>colour_xg</code>
@@ -305,9 +306,9 @@
 <code>plot_timeline()</code><a class="anchor" aria-label="anchor" href="#plot_timeline"></a>
 </h2>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_timeline.html">plot_timeline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">match_year</span>, 
-              <span class="va">team_home</span>, <span class="va">team_away</span>,
-              <span class="va">color_home</span>, <span class="va">color_away</span>, <span class="va">theme</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_timeline.html">plot_timeline</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">match_year</span>, </span>
+<span>              <span class="va">team_home</span>, <span class="va">team_away</span>,</span>
+<span>              <span class="va">color_home</span>, <span class="va">color_away</span>, <span class="va">theme</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>color_home</code>: changed from <code>home_color</code>
@@ -322,8 +323,8 @@
 </h2>
 <p>For those who are not ready to fully commit to these changes (because you have a large script with {ggshakeR} functions or whatever) but have accidentally installed the new version, fear not as you can go back and install a prior version of the package.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Install previous 0.1.2 version</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR@0.1.2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Install previous 0.1.2 version</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR@0.1.2"</span><span class="op">)</span></span></code></pre></div>
 <p>Do note that the changes listed in this vignette are permanent and will be the standard going forward. So please take the time to read this vignette and the documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version 0.2.0 (and beyond!) provides.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

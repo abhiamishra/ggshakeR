@@ -11,7 +11,6 @@ plot_passnet(
   scale_stat = "xT",
   scale_color = "#E74C3C",
   subtitle = "",
-  flip = FALSE,
   theme = "dark"
 )
 }
@@ -27,8 +26,6 @@ plot_passnet(
 \item{scale_color}{Color of higher end of xT/EPV color scale. Default set to "#E74C3C"}
 
 \item{subtitle}{Subtitle of the pass network plot}
-
-\item{flip}{Flip plot to vertical orientation. FALSE is the default}
 
 \item{theme}{The background theme -> "dark" or "light"}
 }

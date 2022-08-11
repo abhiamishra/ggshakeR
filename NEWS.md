@@ -1,8 +1,9 @@
 # ggshakeR 0.2.0.9000
 
 -   Bug Fixes
-    -   See [issue #101](https://github.com/abhiamishra/ggshakeR/issues/101)
-    -   Fixed pkgdown build issues [issue #104](https://github.com/abhiamishra/ggshakeR/issues/104)
+    - Fixed `plot_heatmap` verification assessment [issue #101](https://github.com/abhiamishra/ggshakeR/issues/101)
+    - Fixed pkgdown build issues [issue #104](https://github.com/abhiamishra/ggshakeR/issues/104)
+    - Fixed `plot_passnet` direction orientation [issue #108](https://github.com/abhiamishra/ggshakeR/issues/108)
 
 # ggshakeR 0.2.0
 

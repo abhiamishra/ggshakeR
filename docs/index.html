@@ -86,23 +86,17 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="ggshaker-">ggshakeR
-<a class="anchor" aria-label="anchor" href="#ggshaker-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="ggshaker-">ggshakeR <a class="anchor" aria-label="anchor" href="#ggshaker-"></a>
 </h1>
 </div>
 <!-- badges: start -->
 
 <p>Welcome to <code>ggshakeR</code>!</p>
-<p>This is R’s all-inclusive package for visualization and analysis of
-publicly available soccer data.</p>
-<p>This package aims to provide people interested in football analysis
-and visualization a platform to learn about it while also learning a new
-language at the same time. This package is designed to work with free
-soccer data and, for now, include:</p>
+<p>This is R’s all-inclusive package for visualization and analysis of publicly available soccer data.</p>
+<p>This package aims to provide people interested in football analysis and visualization a platform to learn about it while also learning a new language at the same time. This package is designed to work with free soccer data and, for now, include:</p>
 <ul>
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
-<li><a href="https://github.com/statsbomb/StatsBombR" class="external-link">StatsBomb Open
-Dataset</a></li>
+<li><a href="https://github.com/statsbomb/StatsBombR" class="external-link">StatsBomb Open Dataset</a></li>
 <li><a href="https://understat.com/" class="external-link">Understat</a></li>
 </ul>
 <p>Let’s get you started with the package!</p>
@@ -110,9 +104,7 @@ Dataset</a></li>
 <div class="section level1">
 <h1 id="getting-started-with-ggshaker">Getting Started With ggshakeR<a class="anchor" aria-label="anchor" href="#getting-started-with-ggshaker"></a>
 </h1>
-<p>First things first, install R and RStudio. R is the actual language
-while RStudio is the IDE that will help you work with the R programming
-language in a nice way.</p>
+<p>First things first, install R and RStudio. R is the actual language while RStudio is the IDE that will help you work with the R programming language in a nice way.</p>
 <p>Here are links to download both:</p>
 <ul>
 <li><a href="https://www.r-project.org/" class="external-link">R</a></li>
@@ -125,21 +117,10 @@ language in a nice way.</p>
 <p>After that, write the actual code to install ggshakeR:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR"</span><span class="op">)</span></code></pre></div>
-<p>There were many <strong>BIG</strong> changes made in <strong>version
-0.2.0</strong>. Do note that the changes are permanent and will be the
-standard going forward. So please take the time to read the <a href="">Guide to Version 0.2.0 Vignette</a> and the package
-documentation carefully so that you can transition over to the new
-argument syntax and make use of the new functionality that version
-<code>0.2.0</code> (and beyond!) will provide. If you want to go back to
-version <code>0.1.2</code> after you’ve already installed
-<code>0.2.0</code> (because you’re not yet ready to edit your scripts to
-the new syntax or whatever), you can <strong>re-install</strong> version
-<code>0.1.2</code> by running this:</p>
+<p>There were many <strong>BIG</strong> changes made in <strong>version 0.2.0</strong>. Do note that the changes are permanent and will be the standard going forward. So please take the time to read the <a href="">Guide to Version 0.2.0 Vignette</a> and the package documentation carefully so that you can transition over to the new argument syntax and make use of the new functionality that version <code>0.2.0</code> (and beyond!) will provide. If you want to go back to version <code>0.1.2</code> after you’ve already installed <code>0.2.0</code> (because you’re not yet ready to edit your scripts to the new syntax or whatever), you can <strong>re-install</strong> version <code>0.1.2</code> by running this:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"abhiamishra/ggshakeR@0.1.2"</span><span class="op">)</span></code></pre></div>
-<p>Now the package is installed, but it’s not in your session just yet!
-When a package is in a session means you can actually use the
-package:</p>
+<p>Now the package is installed, but it’s not in your session just yet! When a package is in a session means you can actually use the package:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></code></pre></div>
 <p>And that’s it you’re done!</p>
@@ -149,68 +130,38 @@ package:</p>
 </h2>
 <p>Here are some helpful links to get you started with the package:</p>
 <ul>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html">Guide
-To Pitch Plots</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html">Guide
-To Expected Threat</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html">Guide
-To Pizza Plots</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_EPV.html">Guide
-To Expected Possession Value</a></li>
-<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Version_0-2-0.html">Guide
-To Version 0.2.0</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Pitch_Plots.html">Guide To Pitch Plots</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Exp_Threat.html">Guide To Expected Threat</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_PizzaPlots.html">Guide To Pizza Plots</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_EPV.html">Guide To Expected Possession Value</a></li>
+<li><a href="https://abhiamishra.github.io/ggshakeR/articles/Guide_to_Version_0-2-0.html">Guide To Version 0.2.0</a></li>
 </ul>
 </div>
 </div>
 <div class="section level1">
 <h1 id="credit">Credit<a class="anchor" aria-label="anchor" href="#credit"></a>
 </h1>
-<p>Thank you to StatsBomb and <a href="https://github.com/ewenme" class="external-link">Ewan
-Henderson</a> for their respective packages. A big thank you to Ninad
-Barbadikar for creating the beautiful logo and helping with the package
-in general. Thank you <a href="https://github.com/JaseZiv" class="external-link">Jase Ziv</a>
-for your help and your package <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">WorldFootballR</a> from
-which this took inspiration from.</p>
+<p>Thank you to StatsBomb and <a href="https://github.com/ewenme" class="external-link">Ewan Henderson</a> for their respective packages. A big thank you to Ninad Barbadikar for creating the beautiful logo and helping with the package in general. Thank you <a href="https://github.com/JaseZiv" class="external-link">Jase Ziv</a> for your help and your package <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">WorldFootballR</a> from which this took inspiration from.</p>
 </div>
 <div class="section level1">
 <h1 id="contact-and-support">Contact and Support<a class="anchor" aria-label="anchor" href="#contact-and-support"></a>
 </h1>
-<p>Tell your friends about ggshakeR and shake theiR lives away! You can
-contact me at <a href="abhiamishra0@gmail.com">email</a> or at my <a href="https://twitter.com/MishraAbhiA" class="external-link">Twitter</a></p>
+<p>Tell your friends about ggshakeR and shake theiR lives away! You can contact me at <a href="abhiamishra0@gmail.com">email</a> or at my <a href="https://twitter.com/MishraAbhiA" class="external-link">Twitter</a></p>
 <p>Powered by Chatalytics<span class="emoji" data-emoji="tm">™️</span></p>
-<p>Owner and Creator: <a href="https://github.com/abhiamishra" class="external-link"><strong>Abhishek Amol
-Mishra</strong></a></p>
-<p>Authors: <a href="https://github.com/harshkrishna17" class="external-link"><strong>Harsh
-Krishna</strong></a> &amp; <a href="https://github.com/Ryo-N7" class="external-link"><strong>Ryo Nakagawara</strong></a></p>
+<p>Owner and Creator: <a href="https://github.com/abhiamishra" class="external-link"><strong>Abhishek Amol Mishra</strong></a></p>
+<p>Authors: <a href="https://github.com/harshkrishna17" class="external-link"><strong>Harsh Krishna</strong></a> &amp; <a href="https://github.com/Ryo-N7" class="external-link"><strong>Ryo Nakagawara</strong></a></p>
 </div>
 <div class="section level1">
 <h1 id="licenses-used">Licenses Used<a class="anchor" aria-label="anchor" href="#licenses-used"></a>
 </h1>
 <ul>
 <li>
-<a href="https://github.com/Torvaney/ggsoccer" class="external-link">Torvaney</a> and the
-ggsoccer package has been used in the package for creation of pitches.
-The use of this adheres to the <a href="https://github.com/Torvaney/ggsoccer/blob/master/LICENSE.md" class="external-link">MIT
-License</a> provided.</li>
+<a href="https://github.com/Torvaney/ggsoccer" class="external-link">Torvaney</a> and the ggsoccer package has been used in the package for creation of pitches. The use of this adheres to the <a href="https://github.com/Torvaney/ggsoccer/blob/master/LICENSE.md" class="external-link">MIT License</a> provided.</li>
 </ul>
-<p>Licensing Copyright Statement: Copyright (c) 2019 Benjamin
-Torvaney</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-“Software”), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p>Licensing Copyright Statement: Copyright (c) 2019 Benjamin Torvaney</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -273,8 +224,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>

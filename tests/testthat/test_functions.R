@@ -1071,11 +1071,11 @@ colnames(data_empty) <- x
 test_that("Testing plotting pass networks: ", {
   #testing
   p <- plot_passnet(data, data_type = "opta", scale_stat = "xT", scale_color = "blue", 
-                    team_name = "Team 1", flip = FALSE, subtitle = "Test 1", theme = "dark")
+                    team_name = "Team 1", subtitle = "Test 1", theme = "dark")
   expect_true(is.ggplot(p))
   
   p <- plot_passnet(sb_data, data_type = "statsbomb", scale_stat = "EPV", scale_color = "red", 
-                    team_name = "Barcelona", flip = TRUE, theme = "light")
+                    team_name = "Barcelona", theme = "light")
   expect_true(is.ggplot(p))
   
   # testing for plotting on an empty dataframe

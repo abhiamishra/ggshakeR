@@ -9,7 +9,6 @@
 #' @param scale_stat Stat for the player node color scale. Choose between "xT" and "EPV" 
 #' @param scale_color Color of higher end of xT/EPV color scale. Default set to "#E74C3C"
 #' @param subtitle Subtitle of the pass network plot
-#' @param flip Flip plot to vertical orientation. FALSE is the default
 #' @param theme The background theme -> "dark" or "light"
 #' @return a ggplot2 object
 #'
@@ -28,7 +27,7 @@
 #' }
 
 plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = "xT", 
-                         scale_color = "#E74C3C", subtitle = "", flip = FALSE, theme = "dark") {
+                         scale_color = "#E74C3C", subtitle = "", theme = "dark") {
   
   # Theme
   
@@ -187,23 +186,9 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
             plot.title = element_text(colour = colorText, hjust = 0, size = 25, face = "bold"),
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
-      direction_label(colour = colorLine, x_label = 107, y_label = 10)
+      scale_y_reverse() +
+      direction_label(colour = colorLine, x_label = 106, y_label = 6)
     
-    if (flip == TRUE) {
-      
-      plot_passnet <- plot_passnet +
-        coord_flip(ylim = c(0, 120),
-                   xlim = c(0, 120)) +
-        annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), 
-                          xmin = 0, xmax = 120, ymin = 90, ymax = 120) +
-        labs(y = "Only 4+ Pass Connections.\nSize = Number of connections") +
-        theme(axis.title.x = element_text(colour = colorText, size = 8))
-      
-    } else if (flip == FALSE) {
-      
-      plot_passnet
-      
-    }
   } else if (data_type == "opta") {
     
     # Checking data frame 
@@ -359,20 +344,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
             axis.title.x = element_text(colour = colorText, size = 8),
             plot.subtitle = element_text(colour = colorText, hjust = 0, size = 14)) +
       direction_label(colour = colorLine, x_label = 107, y_label = 10)
-    
-    if (flip == TRUE) {
-      
-      plot_passnet <- plot_passnet +
-        coord_flip(ylim = c(120, 0),
-                   xlim = c(0, 120)) +
-        annotation_custom(tableGrob(table, theme = ttheme_minimal(base_colour = colorText), rows = NULL), 
-                          xmin = 0, xmax = 120, ymin = 120, ymax = 90) +
-        labs(y = "Only 4+ Pass Connections.\nSize = Number of connections") +
-        theme(axis.title.x = element_text(colour = colorText, size = 8))
-      
-    } else if (flip == FALSE) {
-      plot_passnet
-    } 
+
   }
   return(plot_passnet)
 }

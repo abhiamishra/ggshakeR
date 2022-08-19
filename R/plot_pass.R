@@ -6,12 +6,12 @@
 #'
 #' @param data The data frame that stores your passing data. Opta data frame must contain at least the following columns: `x`, `y`, `finalX`, `finalY`
 #' @param data_type Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"
-#' @param type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"
-#' @param progressive_pass indicates whether to map out progressive passes
-#' @param cross indicates whether to map out crosses
-#' @param shot indicates whether to map out shot assists
-#' @param switch indicates whether to map out switches of play
-#' @param outcome indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")
+#' @param type indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep". Only available for StatsBomb data
+#' @param progressive_pass indicates whether to map out progressive passes. Only available for StatsBomb data
+#' @param cross indicates whether to map out crosses. Only available for StatsBomb data
+#' @param shot indicates whether to map out shot assists. Only available for StatsBomb data
+#' @param switch indicates whether to map out switches of play. Only available for StatsBomb data
+#' @param outcome indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all"). Only available for StatsBomb data
 #' @param theme indicates what theme the map must be shown in: dark (default), white, rose, almond
 #' @return returns a ggplot2 object
 #'
@@ -45,18 +45,20 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
     color_b <- "#696969"
   }
   
+  
   if (data_type == "opta") { ## OPTA ----
     
-    if (nrow(data) > 0 &&
-        sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) == 4) {
-    } else {
-      print(c("x", "y", "finalX", "finalY"))
+    if (nrow(data) <= 0 ||
+        sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) != 4) {
       stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
     to_sb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
+    
     data$x <- to_sb$x(data$x)
     data$y <- to_sb$y(data$y)
+    data$finalX <- to_sb$x(data$finalX)
+    data$finalY <- to_sb$y(data$finalY)
     
     if (progressive_pass == TRUE) {
       data <- data %>%
@@ -76,18 +78,20 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
       theme(panel.background = element_rect(fill = fill_b))
     
     plot <- plot +
-      geom_segment(aes(x = x, y = 80 - y,
-                       xend = finalX, yend = 80 - finalY, color = "red"),
+      geom_segment(aes(x = x, y = y,
+                       xend = finalX, yend = finalY, color = "red"),
                    lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
                    stat = "identity", position = "identity") +
-      labs(color = "Outcome of Pass")
+      labs(color = "Outcome of Pass",
+           caption = "Created using ggshakeR") +
+      theme(plot.caption = element_text(color = "black"))
     
     return(plot)
     
   } else if (data_type == "statsbomb") { ## STATSBOMB ----
     
-    if (nrow(data) > 0) {
-    } else {
+    if (nrow(data) <= 0 ||
+        sum(x = c("x", "y", "finalX", "finalY") %in% names(data)) != 4) {
       stop("The dataset has insufficient columns and/or insufficient data.")
     }
     
@@ -154,22 +158,24 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
     if (nrow(data) > 0) {
       if (type == "sep") {
         plot <- plot +
-          geom_segment(aes(x = x, y = 80 - y,
-                           xend = finalX, yend = 80 - finalY, color = colorOutcome),
+          geom_segment(aes(x = x, y = y,
+                           xend = finalX, yend = finalY, color = colorOutcome),
                        lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
                        stat = "identity", position = "identity") +
           facet_grid(~colorOutcome) +
           labs(
-            color = "Outcome of Pass"
+            color = "Outcome of Pass",
+            caption = "Created using ggshakeR"
           )
       } else if (type == "all") {
         plot <- plot +
-          geom_segment(aes(x = x, y = 80 - y,
-                           xend = finalX, yend = 80 - finalY, color = colorOutcome),
+          geom_segment(aes(x = x, y = y,
+                           xend = finalX, yend = finalY, color = colorOutcome),
                        lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
                        stat = "identity", position = "identity") +
           labs(
-            color = "Outcome of Pass"
+            color = "Outcome of Pass",
+            caption = "Created using ggshakeR"
           )
       }
     }

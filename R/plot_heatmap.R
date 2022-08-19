@@ -59,13 +59,13 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
     
     if (type == "" || type == "density") {
       plot <- plot +
-        stat_density_2d(aes(x = x, y = 80 - y, fill = ..level..), geom = "polygon")
+        stat_density_2d(aes(x = x, y = y, fill = ..level..), geom = "polygon")
     } else if (type == "hex") {
       plot <- plot +
-        geom_hex(aes(x = x, y = 80 - y))
+        geom_hex(aes(x = x, y = y))
     } else if (type == "binwidth") {
       plot <- plot +
-        geom_bin2d(aes(x = x, y = 80 - y),
+        geom_bin2d(aes(x = x, y = y),
                    binwidth = c(binwidth, binwidth),
                    alpha = 0.9)
     } else if (type == "jdp") {
@@ -96,7 +96,8 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
     plot <- plot +
       scale_fill_continuous(type = "viridis") +
       labs(
-        fill = "Density"
+        fill = "Density",
+        caption = "Created using ggshakeR"
       )
     
     return(plot)

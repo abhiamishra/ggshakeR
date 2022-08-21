@@ -21,17 +21,17 @@ plot_pass(
 
 \item{data_type}{Type of data that is being put in: opta or statsbomb. Default set to "statsbomb"}
 
-\item{type}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep"}
+\item{type}{indicates the type of plot to pass. "sep" separates successful and unsuccessful passes. "all" plots all passes on one pitch. Default = "sep". Only available for StatsBomb data}
 
-\item{progressive_pass}{indicates whether to map out progressive passes}
+\item{progressive_pass}{indicates whether to map out progressive passes. Only available for StatsBomb data}
 
-\item{cross}{indicates whether to map out crosses}
+\item{cross}{indicates whether to map out crosses. Only available for StatsBomb data}
 
-\item{shot}{indicates whether to map out shot assists}
+\item{shot}{indicates whether to map out shot assists. Only available for StatsBomb data}
 
-\item{switch}{indicates whether to map out switches of play}
+\item{switch}{indicates whether to map out switches of play. Only available for StatsBomb data}
 
-\item{outcome}{indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all")}
+\item{outcome}{indicates whether you want successful ("suc"), unsuccessful ("unsuc"), or all ("all"). Only available for StatsBomb data}
 
 \item{theme}{indicates what theme the map must be shown in: dark (default), white, rose, almond}
 }

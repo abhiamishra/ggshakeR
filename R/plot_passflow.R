@@ -94,14 +94,15 @@ plot_passflow <- function(data, data_type = "statsbomb", binwidth = 0) {
 
     if (nrow(PassFlow) > 0) {
       plot <- plot +
-        geom_bin2d(data = data, aes(x = x, y = 80 - y), alpha = bin_alpha,
+        geom_bin2d(data = data, aes(x = x, y = y), alpha = bin_alpha,
                    binwidth = c(bin, bin), position = "identity") +
         scale_fill_gradientn(colours = viridis_d_pal) +
-        geom_segment(aes(x = x, y = 80 - y, xend = finalX, yend = 80 - finalY, alpha = countPasses),
+        geom_segment(aes(x = x, y = y, xend = finalX, yend = finalY, alpha = countPasses),
                      color = "white", lineend = "round", size = 2, arrow = arrow(length = unit(0.08, "inches"))) +
         labs(
           fill = "Count of Passes Started",
-          alpha = "Number of Passes Made"
+          alpha = "Number of Passes Made",
+          caption = "Created using ggshakeR"
         )
     }
     plot

@@ -86,12 +86,15 @@ plot_voronoi <- function(data, data_type = "statsbomb",
       geom_voronoi_tile(data = data, aes(fill = fill), alpha = alpha, bound = c(0, 120, 0, 80))
   }
   
+  plotCaption <- "Created using ggshakeR"
+  
   voro_plot <- voro_plot + 
     geom_voronoi_segment(color = "white", bound = c(0, 120, 0, 80)) +
     coord_fixed() +
     labs(title = title,
          x = "Direction of play faces rightward",
-         fill = fill) +
+         fill = fill,
+         caption = plotCaption) +
     theme(plot.background = element_rect(fill = fill_b, colour = NA),
           panel.background = element_rect(fill = fill_b, colour = NA),
           strip.background = element_rect(fill = fill_b, colour = NA),

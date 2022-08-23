@@ -91,6 +91,8 @@ plot_passflow <- function(data, data_type = "statsbomb", binwidth = 0) {
       annotate_pitch(dimensions = pitch_statsbomb, colour = color_b,
                      fill = fill_b) +
       theme_pitch()
+    
+    plotCaption <- "Created using ggshakeR"
 
     if (nrow(PassFlow) > 0) {
       plot <- plot +
@@ -102,7 +104,7 @@ plot_passflow <- function(data, data_type = "statsbomb", binwidth = 0) {
         labs(
           fill = "Count of Passes Started",
           alpha = "Number of Passes Made",
-          caption = "Created using ggshakeR"
+          caption = plotCaption
         )
     }
     plot

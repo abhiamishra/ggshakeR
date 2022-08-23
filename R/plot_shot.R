@@ -37,6 +37,7 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
     color_b <- ""
     colorLine <- ""
     colorText <- ""
+    plotCaption <- "Created using ggshakeR"
     
     ## theme ----
     if (theme == "dark" || theme == "") {
@@ -106,7 +107,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
                          ylim = c(0, 80)) +
               labs(
                 color = "Result of Shot",
-                size = "xG of Shot"
+                size = "xG of Shot",
+                caption = plotCaption
               )
           } else if (highlight_goals == TRUE) { ## Highlight goals ----
             
@@ -132,7 +134,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
                          ylim = c(0, 80)) +
               labs(
                 color = "Result of Shot",
-                size = "xG of Shot"
+                size = "xG of Shot",
+                caption = plotCaption
               )
           } 
         } else if (type == "density") { ## DENSITY ----
@@ -154,6 +157,9 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
             geom_text(x = 80, y = 40, label = "xG/Shot", color = colorText, size = 10) +
             coord_flip(xlim = c(80, 120),
                        ylim = c(0, 80)) +
+            labs(
+              caption = plotCaption
+            ) +
             theme(legend.position = "none")
           
         } else if (type == "hexbin") { ## HEXBIN ----
@@ -175,7 +181,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
             coord_flip(xlim = c(80, 120),
                        ylim = c(0, 80)) +
             labs(
-              fill = "Count of Shots"
+              fill = "Count of Shots",
+              caption = plotCaption
             )
         }
       } else if (average_location == FALSE) {
@@ -199,7 +206,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
                          ylim = c(0, 80)) +
               labs(
                 color = "Result of Shot",
-                size = "xG of Shot"
+                size = "xG of Shot",
+                caption = plotCaption
               )
           } else if (highlight_goals == TRUE) {
             
@@ -223,7 +231,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
                          ylim = c(0, 80)) +
               labs(
                 color = "Result of Shot",
-                size = "xG of Shot"
+                size = "xG of Shot",
+                caption = plotCaption
               )
           } 
         } else if (type == "density") {
@@ -243,6 +252,9 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
             geom_text(x = 80, y = 40, label = "xG/Shot", color = colorText, size = 10) +
             coord_flip(xlim = c(80, 120),
                        ylim = c(0, 80)) +
+            labs(
+              caption = plotCaption
+            ) +
             theme(legend.position = "none")
           
         } else if (type == "hexbin") {
@@ -262,7 +274,8 @@ plot_shot <- function(data, type = "", bins = 30, highlight_goals = "", average_
             coord_flip(xlim = c(80, 120),
                        ylim = c(0, 80)) +
             labs(
-              fill = "Count of Shots"
+              fill = "Count of Shots",
+              caption = plotCaption
             )
         } 
       }

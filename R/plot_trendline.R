@@ -125,6 +125,8 @@ plot_trendline <- function(data, team, color_xg, color_xga, rolling_average, the
     colorText <- "#322E2E"
   }
   
+  plotCaption <- "Created using ggshakeR"
+  
   ## PLOT! ----
   trendline_plot <- ggplot(data, aes(x = Date)) +
     ## Lines
@@ -139,7 +141,8 @@ plot_trendline <- function(data, team, color_xg, color_xga, rolling_average, the
     ## labels
     labs(title = team,
          subtitle = subtitle,
-         x = "Year", y = "xG") +
+         x = "Year", y = "xG",
+         caption = plotCaption) +
     ## theme
     theme(plot.title = element_markdown(lineheight = 1.1, size = 40, color = colorText, face = "bold"),
           plot.subtitle = element_textbox_simple(lineheight = 1.1, size = 30, color = colorText),

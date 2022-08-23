@@ -45,6 +45,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
     color_b <- "#696969"
   }
   
+  plotCaption <- "Created using ggshakeR"
   
   if (data_type == "opta") { ## OPTA ----
     
@@ -83,7 +84,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                    lineend = "round", size = 1.5, arrow = arrow(length = unit(0.10, "inches")), 
                    stat = "identity", position = "identity") +
       labs(color = "Outcome of Pass",
-           caption = "Created using ggshakeR") +
+           caption = plotCaption) +
       theme(plot.caption = element_text(color = "black"))
     
     return(plot)
@@ -165,7 +166,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
           facet_grid(~colorOutcome) +
           labs(
             color = "Outcome of Pass",
-            caption = "Created using ggshakeR"
+            caption = plotCaption
           )
       } else if (type == "all") {
         plot <- plot +
@@ -175,7 +176,7 @@ plot_pass <- function(data, data_type = "statsbomb", type = "sep",
                        stat = "identity", position = "identity") +
           labs(
             color = "Outcome of Pass",
-            caption = "Created using ggshakeR"
+            caption = plotCaption
           )
       }
     }

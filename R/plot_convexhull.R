@@ -76,6 +76,8 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     title <- "Convex Hulls"
   }
   
+  plotCaption <- "Created using ggshakeR"
+  
   convex_hull <- ggplot(hull_data) +
     annotate_pitch(dimensions = pitch_statsbomb, fill = fill_b, colour = colour_b) +
     theme_pitch() +
@@ -83,7 +85,8 @@ plot_convexhull <- function(data, data_type = "statsbomb",
     geom_polygon(aes(x = x, y = y), colour = color, alpha = 0.2, fill = color, size = 1) +
     facet_wrap(~playerId) +
     labs(title = title,
-         x = "Direction of play faces rightward") +
+         x = "Direction of play faces rightward",
+         caption = plotCaption) +
     theme(plot.background = element_rect(fill = fill_b, colour = NA),
           panel.background = element_rect(fill = fill_b, colour = NA),
           strip.background = element_rect(fill = fill_b, colour = NA),

@@ -92,12 +92,14 @@ plot_heatmap <- function(data, type = "", data_type = "statsbomb", binwidth = 20
         geom_bin_2d(breaks = list(binX4, binY4), color = color_b, alpha = 0.9) +
         geom_bin_2d(breaks = list(binX5, binY5), color = color_b, alpha = 0.9)
     }
-    
+  
+    plotCaption <- "Created using ggshakeR"
+  
     plot <- plot +
       scale_fill_continuous(type = "viridis") +
       labs(
         fill = "Density",
-        caption = "Created using ggshakeR"
+        caption = plotCaption
       )
     
     return(plot)

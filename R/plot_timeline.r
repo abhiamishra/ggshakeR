@@ -152,6 +152,8 @@ plot_timeline <- function(data, match_year,
     colorText <- "#322E2E"
   }
   
+  plotCaption <- "Created using ggshakeR"
+  
   ## Plot! ----
   plot_timeline <- ggplot() +
     geom_step(data = data1, aes(x = minute, y = xGsum), color = color_home, size = 3) +
@@ -167,7 +169,7 @@ plot_timeline <- function(data, match_year,
                     color = colorText,
                     size = 5) +
     theme_minimal() +
-    labs(title = plot_title) +
+    labs(title = plot_title, caption = plotCaption) +
     theme(plot.title = element_markdown(lineheight = 1.1, color = colorText, hjust = 0.5, size = 20, face = "bold")) +
     theme(plot.background = element_rect(fill = fill_b, color = color_b)) +
     theme(panel.background = element_rect(fill = fill_b, color = color_b)) +

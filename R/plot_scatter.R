@@ -155,11 +155,15 @@ plot_scatter <- function(data, x = "", y = "", label = "",
         theme_bw()
     }
     
+    plotCaption <- "Created using ggshakeR"
+    plotCaption <- paste(caption, plotCaption, sep = "\n")
+    
+    
     plot <- plot +
       labs(
         title = title,
         subtitle = subtitle,
-        caption = caption,
+        caption = plotCaption,
         color = col_var,
         size = size_var,
         x = x_title,

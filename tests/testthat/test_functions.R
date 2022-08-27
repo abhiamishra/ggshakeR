@@ -26,7 +26,7 @@ test_that("Plotting scatterplots: ", {
   expect_identical(p$labels$y, "yA")
   expect_identical(p$labels$colour, "col_scat") ## in internals it's 'colour' here
   expect_identical(p$labels$size, "size_scat")
-  
+
   # Testting for plotting with an empty dataframe
   expect_error(plot_scatter(
     data = df_empty,
@@ -110,7 +110,8 @@ test_that("Plotting scatterplots: ", {
     caption = "This is testing"
   )
   expect_true(is.ggplot(p)) # caption = "This is testing"
-  expect_identical(p$labels$caption, "This is testing")
+  plotCaption <- paste("This is testing", "Created using ggshakeR", sep = "\n")
+  expect_identical(p$labels$caption, plotCaption)
   
   # Testing caption size
   p <- plot_scatter(
@@ -362,6 +363,10 @@ test_that("Testing plotting shot maps: ", {
   
   p <- plot_shot(shotData_df, theme = "almond") # theme = dark (default)
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- plot_shot(shotData_df, theme = "almond") # theme = dark (default)
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -410,6 +415,10 @@ test_that("Testing plotting passflow maps: ", {
   
   p <- plot_passflow(data = df, binwidth = 50) #binsize = 50
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- plot_passflow(data = df, binwidth = 50)
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -465,6 +474,11 @@ test_that("Testing plotting passes: ", {
   expect_error(plot_pass(df_absent, data_type = "opta"),
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
+  
+  #testing captions
+  p <- plot_pass(df, data_type = "opta", progressive_pass = TRUE)
+  expect_identical(p$labels$caption, "Created using ggshakeR")
+  
 })
 
 
@@ -518,6 +532,14 @@ test_that("Testing plotting trendlines: ", {
     rolling_average = 10, theme = "dark"
   )
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- plot_trendline(
+    data = data1, team = "Barcelona",
+    color_xg = "blue", color_xga = "red",
+    rolling_average = 10, theme = "dark"
+  )
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -578,6 +600,15 @@ test_that("Testing plotting pizzas: ", {
     color_compare = "#90ee90", theme = "black"
   ))
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- suppressWarnings(plot_pizza(
+  data = data_cus, type = "comparison", template = "custom",
+  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
+  season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+  color_compare = "#90ee90", theme = "black"))
+
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -624,6 +655,10 @@ test_that("Testing plotting heatmaps: ", {
   
   # testing using a dataframe that does not have the required columns
   expect_error(plot_heatmap(data = df_absent))
+  
+  #testing captions
+  p <- plot_heatmap(data = df, data_type = "opta", type = "binwidth", theme = "almond")
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -703,6 +738,10 @@ test_that("Testing plotting sonars: ", {
   
   # testing using a dataframe that does not have the required columns
   expect_error(plot_sonar(data = df_absent))
+  
+  #testing captions
+  p <- plot_sonar(data = df, title = "Test 1")
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -878,6 +917,13 @@ test_that("Testing plotting timelines: ", {
     color_home = "#e31a1c", color_away = "#980043", theme = "dark"
   )
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- plot_timeline(
+    data = data, match_year = 2021, team_home = "Manchester United", team_away = "Manchester City",
+    color_home = "#e31a1c", color_away = "#980043", theme = "dark"
+  )
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -935,6 +981,11 @@ test_that("Testing plotting convex hulls: ", {
   expect_error(plot_convexhull(data_absent, data_type = "opta"),
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
+  
+  #testing captions
+  p <- plot_convexhull(sb_data, data_type = "statsbomb", color = "red", 
+                       theme = "rose")
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -1012,6 +1063,10 @@ test_that("Testing plotting voronoi plots: ", {
   
   p <- plot_voronoi(opta_df, data_type = "opta", theme = "almond") # theme = almond
   expect_true(is.ggplot(p))
+  
+  #testing captions
+  p <- plot_voronoi(opta_df, data_type = "opta", theme = "almond") # theme = almond
+  expect_identical(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -1087,6 +1142,11 @@ test_that("Testing plotting pass networks: ", {
   expect_error(plot_passnet(data_absent, data_type = "opta", team_name = "Team 1"),
                "The dataset has insufficient columns and/or insufficient data.",
                fixed = TRUE)
+  
+  #testing captions
+  p <- plot_passnet(sb_data, data_type = "statsbomb", scale_stat = "EPV", scale_color = "red", 
+                    team_name = "Barcelona", theme = "light")
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 

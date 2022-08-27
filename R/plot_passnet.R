@@ -30,7 +30,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
                          scale_color = "#E74C3C", subtitle = "", theme = "dark") {
   
   plotCaption <- "Created using ggshakeR"
-  
+
   # Theme
   
   if (theme == "dark") {
@@ -177,6 +177,7 @@ plot_passnet <- function(data, data_type = "statsbomb", team_name, scale_stat = 
       labs(title = paste0(team_name, " Pass Network"),
            subtitle = subtitle,
            x = "Only 4+ Pass Connections.\nSize = Number of connections",
+           caption = plotCaption,
            colour = leg_title) +
       theme(legend.position = c(0.843, 1.04),
             legend.direction = "horizontal",

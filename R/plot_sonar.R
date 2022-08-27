@@ -80,7 +80,7 @@ plot_sonar <- function(data, data_type = "statsbomb", title = "") {
     }
     
     plotCaption <- paste("Length of passes is in length of arrows + color of dots while frequency is in transparency. ", "Forward is toward's opponent's goal while backwards is towards own goal. ", sep = "\n")
-    plotCaption <- paste(plotCaption, "Left and right correspond to left and right of pitch. Made by ggshakeR", sep = "\n")
+    plotCaption <- paste(plotCaption, "Left and right correspond to left and right of pitch. Created using ggshakeR", sep = "\n")
     #drawing the sonar plot
     plot <- ggplot(data = sonar) +
       geom_segment(aes(x = angle.round, y = 0, xend = angle.round, yend = angle.norm, alpha = frequency),

@@ -602,13 +602,13 @@ test_that("Testing plotting pizzas: ", {
   expect_true(is.ggplot(p))
   
   #testing captions
-  #p <- suppressWarnings(plot_pizza(
-  #  data = data_cus, type = "comparison", template = "custom",
-  #  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-  #  season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
-  #  color_compare = "#90ee90", theme = "black"
-  #))
-  #expect_identical(p$labels$caption, "Created using ggshakeR")
+  p <- suppressWarnings(plot_pizza(
+  data = data_cus, type = "comparison", template = "custom",
+  player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
+  season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+  color_compare = "#90ee90", theme = "black"))
+
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -740,8 +740,8 @@ test_that("Testing plotting sonars: ", {
   expect_error(plot_sonar(data = df_absent))
   
   #testing captions
-  #p <- plot_sonar(data = df, title = "Test 1")
-  #expect_identical(p$labels$caption, "Created using ggshakeR")
+  p <- plot_sonar(data = df, title = "Test 1")
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 
@@ -1144,9 +1144,9 @@ test_that("Testing plotting pass networks: ", {
                fixed = TRUE)
   
   #testing captions
-  #p <- plot_passnet(sb_data, data_type = "statsbomb", scale_stat = "EPV", scale_color = "red", 
-  #                  team_name = "Barcelona", theme = "light")
-  #expect_identical(p$labels$caption, "Created using ggshakeR")
+  p <- plot_passnet(sb_data, data_type = "statsbomb", scale_stat = "EPV", scale_color = "red", 
+                    team_name = "Barcelona", theme = "light")
+  expect_match(p$labels$caption, "Created using ggshakeR")
 })
 
 

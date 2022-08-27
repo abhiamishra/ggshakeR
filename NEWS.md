@@ -5,8 +5,8 @@
     - Fixed pkgdown build issues [issue #104](https://github.com/abhiamishra/ggshakeR/issues/104)
     - Fixed `plot_passnet` direction orientation [issue #108](https://github.com/abhiamishra/ggshakeR/issues/108)
     - Fixed `plot_heatmap` and `plot_passflow`direction orientation + `plot_pass`opta functionality was fixed.[issue #111](https://github.com/abhiamishra/ggshakeR/issues/111)
-    - Added "Created using ggshakeR" to `plot_heatmap`, `plot_passflow`, and `plot_pass`[issue 110](https://github.com/abhiamishra/ggshakeR/issues/110)
-    - Added "Created using ggshakeR" to the rest of the functions [issue 114](https://github.com/abhiamishra/ggshakeR/issues/114)
+    - Added "Created using ggshakeR" to `plot_heatmap`, `plot_passflow`, and `plot_pass`[issue #110](https://github.com/abhiamishra/ggshakeR/issues/110)
+    - Added "Created using ggshakeR" to the rest of the functions [issue #110](https://github.com/abhiamishra/ggshakeR/issues/110)
 
 # ggshakeR 0.2.0
 

@@ -93,7 +93,7 @@
                         <h4 data-toc-skip class="author">Abhishek A.
 Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-08-11</h4>
+            <h4 data-toc-skip class="date">2022-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_EPV.Rmd" class="external-link"><code>vignettes/Guide_to_EPV.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_EPV.Rmd</code></div>
@@ -161,11 +161,8 @@ Data</a> for La Liga 2014/15:</p>
 
 <span class="va">Comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeCompetitions.html" class="external-link">FreeCompetitions</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">competition_id</span> <span class="op">==</span> <span class="fl">11</span> <span class="op">&amp;</span> <span class="va">season_name</span> <span class="op">==</span> <span class="st">"2014/2015"</span><span class="op">)</span>
-
 <span class="va">Matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/FreeMatches.html" class="external-link">FreeMatches</a></span><span class="op">(</span><span class="va">Comp</span><span class="op">)</span>
-
-<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/StatsBombFreeEvents.html" class="external-link">StatsBombFreeEvents</a></span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
+<span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu">free_allevents</span><span class="op">(</span>MatchesDF <span class="op">=</span> <span class="va">Matches</span>, Parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">StatsBombData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/StatsBombR/man/allclean.html" class="external-link">allclean</a></span><span class="op">(</span><span class="va">StatsBombData</span><span class="op">)</span>
 
 <span class="va">plottingData</span> <span class="op">&lt;-</span> <span class="va">StatsBombData</span></code></pre></div>

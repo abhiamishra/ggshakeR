@@ -72,11 +72,8 @@ library(StatsBombR)
 
 Comp <- FreeCompetitions() %>%
   filter(competition_id == 11 & season_name == "2014/2015")
-
 Matches <- FreeMatches(Comp)
-
-StatsBombData <- StatsBombFreeEvents(MatchesDF = Matches, Parallel = TRUE)
-
+StatsBombData <- free_allevents(MatchesDF = Matches, Parallel = TRUE)
 StatsBombData <- allclean(StatsBombData)
 
 plottingData <- StatsBombData

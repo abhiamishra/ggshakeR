@@ -90,9 +90,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to Expected Possession Value</h1>
-                        <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
+                        <h4 data-toc-skip class="author">Abhishek A.
+Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-09-27</h4>
+            <h4 data-toc-skip class="date">2022-10-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_EPV.Rmd" class="external-link"><code>vignettes/Guide_to_EPV.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_EPV.Rmd</code></div>
@@ -101,33 +102,60 @@
     
     
 <p>Welcome to the Expected Possession Value Guide for ggshakeR!</p>
-<p>EPV - short for Expected Possession Value - is one of the most popular and informative metrics out there! Measuring the probability that an action leads to a goal, EPV allows you to objectively calculate passes, carries, and other events.</p>
-<p>EPV was developed by <a href="https://link.springer.com/article/10.1007/s10994-021-05989-6" class="external-link">Javier Fernández, Luke Bornn &amp; Daniel Cervone</a>.</p>
-<p>There are various iterations of EPV that exist out there. OptaPro has their own PV while StatsBomb has something similar with their OBV.</p>
-<p>The only publicly available data regarding EPV comes from Laurie Shaw who made an EPV grid public with his work with <a href="https://www.youtube.com/watch?v=KXSLKwADXKI&amp;feature=emb_title" class="external-link">Friends of Tracking</a></p>
+<p>EPV - short for Expected Possession Value - is one of the most
+popular and informative metrics out there! Measuring the probability
+that an action leads to a goal, EPV allows you to objectively calculate
+passes, carries, and other events.</p>
+<p>EPV was developed by <a href="https://link.springer.com/article/10.1007/s10994-021-05989-6" class="external-link">Javier
+Fernández, Luke Bornn &amp; Daniel Cervone</a>.</p>
+<p>There are various iterations of EPV that exist out there. OptaPro has
+their own PV while StatsBomb has something similar with their OBV.</p>
+<p>The only publicly available data regarding EPV comes from Laurie Shaw
+who made an EPV grid public with his work with <a href="https://www.youtube.com/watch?v=KXSLKwADXKI&amp;feature=emb_title" class="external-link">Friends
+of Tracking</a></p>
 <p>Laurie Shaw’s EPV grid is what ggshakeR uses.</p>
-<p>Every time you load in the package, ggshakeR will load in a dataframe called <strong>EPVGrid</strong>. <strong>EPVGrid</strong> houses all the EPV data that Laurie Shaw made public and now it is available for you in a line of code!</p>
+<p>Every time you load in the package, ggshakeR will load in a dataframe
+called <strong>EPVGrid</strong>. <strong>EPVGrid</strong> houses all the
+EPV data that Laurie Shaw made public and now it is available for you in
+a line of code!</p>
 <p>Simply write:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPVGrid</span><span class="op">)</span></span></code></pre></div>
-<p>This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (V1) to the opponent’s goal (V50). The grid is symmetrical in half and as such, there is no “top”/“bottom” of the pitch.</p>
+<p>This dataframe is there for you to use and play with. The columns
+correspond to pitch divisions from your own goal (V1) to the opponent’s
+goal (V50). The grid is symmetrical in half and as such, there is no
+“top”/“bottom” of the pitch.</p>
 <p>However, what if you want to use EPV? Calculate it?</p>
-<p>ggshakeR offers you the <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> function that calculates EPV for the data that is passed in!</p>
+<p>ggshakeR offers you the <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> function that
+calculates EPV for the data that is passed in!</p>
 <p>Here are some characteristics:</p>
 <ul>
-<li>Needs 4 columns named as <code>x</code>, <code>y</code>, <code>finalX</code>, <code>finalY</code>.</li>
+<li>Needs 4 columns named as <code>x</code>, <code>y</code>,
+<code>finalX</code>, <code>finalY</code>.</li>
 </ul>
-<p>Here’s the cool thing about the <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> function: <strong>It calculates the xT of the start of a pass/carry and the xT of the end of the pass/carry</strong>.</p>
-<p>Why is this important? Well, let’s take a take-on. That only has a starting <code>x</code> ,<code>y</code> . In the dataframe, the columns of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in them. The <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> will give you the EPV for both the starting and ending locations allowing you to give a value to single-event values.</p>
-<p>This means, you can use this function beyond passes and carries and be able to calculate EPV for clearances, tackles, take-ons, etc! In addition, by separating out the EPV values for the start and end, you can apply more advanced analytics to the passes.</p>
+<p>Here’s the cool thing about the <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>
+function: <strong>It calculates the xT of the start of a pass/carry and
+the xT of the end of the pass/carry</strong>.</p>
+<p>Why is this important? Well, let’s take a take-on. That only has a
+starting <code>x</code> ,<code>y</code> . In the dataframe, the columns
+of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in
+them. The <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> will give you the EPV for both
+the starting and ending locations allowing you to give a value to
+single-event values.</p>
+<p>This means, you can use this function beyond passes and carries and
+be able to calculate EPV for clearances, tackles, take-ons, etc! In
+addition, by separating out the EPV values for the start and end, you
+can apply more advanced analytics to the passes.</p>
 <p>Let’s see how we can use it!</p>
 <div class="section level2">
 <h2 id="using-the-calculate_epv-function">Using the <code>calculate_epv()</code> function<a class="anchor" aria-label="anchor" href="#using-the-calculate_epv-function"></a>
 </h2>
-<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free dataset</a></p>
-<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi Data</a> for La Liga 2014/15:</p>
+<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free
+dataset</a></p>
+<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi
+Data</a> for La Liga 2014/15:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span></span>
 <span></span>
@@ -145,18 +173,26 @@
 <span>         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,</span>
 <span>         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
 <span>         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span></code></pre></div>
-<p>For <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>, <strong>always write the <code>type</code> that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
+<p>For <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code>, <strong>always write the
+<code>type</code> that the data is: opta or statsbomb</strong>. After
+that, we simply get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_epv.html">calculate_epv</a></span><span class="op">(</span><span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></span></code></pre></div>
-<p>If we inspect <code>EPVData</code>, we see these two new columns at the very end:</p>
+<p>If we inspect <code>EPVData</code>, we see these two new columns at
+the very end:</p>
 <div class="figure">
 <img src="../reference/figures/calculate_epv.png" style="width:90.0%" alt=""><p class="caption">calculate_epv() producing EPVStart and EPVEnd</p>
 </div>
-<p>As you’ll see, <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in EPV, simply write:</p>
+<p>As you’ll see, <code><a href="../reference/calculate_epv.html">calculate_epv()</a></code> will put a -1 in areas
+where there was a value that was not right for calculation. To calculate
+the difference in EPV, simply write:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">EPVData</span> <span class="op">&lt;-</span> <span class="va">EPVData</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>EPV <span class="op">=</span> <span class="va">EPVEnd</span> <span class="op">-</span> <span class="va">EPVStart</span><span class="op">)</span></span></code></pre></div>
-<p>This will give you the difference in EPV and this value can be used for passes, carries - anything that has a start and an end location. Use <code>EPVStart</code>/<code>EPVEnd</code> for single-occuring events such as take-ons, tackles, if you so wish.</p>
+<p>This will give you the difference in EPV and this value can be used
+for passes, carries - anything that has a start and an end location. Use
+<code>EPVStart</code>/<code>EPVEnd</code> for single-occuring events
+such as take-ons, tackles, if you so wish.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

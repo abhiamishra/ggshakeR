@@ -90,9 +90,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Guide to Expected Threat</h1>
-                        <h4 data-toc-skip class="author">Abhishek A. Mishra</h4>
+                        <h4 data-toc-skip class="author">Abhishek A.
+Mishra</h4>
             
-            <h4 data-toc-skip class="date">2022-09-27</h4>
+            <h4 data-toc-skip class="date">2022-10-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_Exp_Threat.Rmd" class="external-link"><code>vignettes/Guide_to_Exp_Threat.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_Exp_Threat.Rmd</code></div>
@@ -101,28 +102,49 @@
     
     
 <p>Welcome to the Expected Threat Guide for ggshakeR!</p>
-<p>First things first, we are only able to do this because of the amazing work by Karun Singh. Read his excellent <a href="https://karun.in/blog/expected-threat.html" class="external-link">xT blog post</a> that goes into in-depth explanation of the need and use of the metric.</p>
-<p>Karun Singh’s xT grid is what ggshakeR uses. Every time you load in the package, ggshakeR will load in a dataframe called <strong>xTGrid</strong>. <strong>xTGrid</strong> houses all the xT data that Karun Singh made public and now it is available for you in a line of code!</p>
+<p>First things first, we are only able to do this because of the
+amazing work by Karun Singh. Read his excellent <a href="https://karun.in/blog/expected-threat.html" class="external-link">xT blog post</a> that
+goes into in-depth explanation of the need and use of the metric.</p>
+<p>Karun Singh’s xT grid is what ggshakeR uses. Every time you load in
+the package, ggshakeR will load in a dataframe called
+<strong>xTGrid</strong>. <strong>xTGrid</strong> houses all the xT data
+that Karun Singh made public and now it is available for you in a line
+of code!</p>
 <p>Simply write:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/abhiamishra/ggshakeR" class="external-link">ggshakeR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">xTGrid</span><span class="op">)</span></span></code></pre></div>
-<p>This dataframe is there for you to use and play with. The columns correspond to pitch divisions from your own goal (X0) to the opponent’s goal (X11). The grid is symmetrical in half and as such, there is no “top”/“bottom” of the pitch.</p>
+<p>This dataframe is there for you to use and play with. The columns
+correspond to pitch divisions from your own goal (X0) to the opponent’s
+goal (X11). The grid is symmetrical in half and as such, there is no
+“top”/“bottom” of the pitch.</p>
 <p>However, what if you want to use xT? Calculate it?</p>
-<p>ggshakeR offers you the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function that calculates xT for the data that is passed in!</p>
+<p>ggshakeR offers you the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function that
+calculates xT for the data that is passed in!</p>
 <p>Here are some characteristics:</p>
 <ul>
-<li>Needs 4 columns named as <code>x</code>, <code>y</code>, <code>finalX</code>, <code>finalY</code>.</li>
+<li>Needs 4 columns named as <code>x</code>, <code>y</code>,
+<code>finalX</code>, <code>finalY</code>.</li>
 </ul>
-<p>Here’s the cool thing about the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> function: <strong>It calculates the xT of the start of a pass/carry and the xT of the end of the pass/carry</strong>.</p>
-<p>Why is this important? Well, let’s take a take-on. That only has a starting <code>x</code> ,<code>y</code> . In the dataframe, the columns of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in them. The <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will give you the xT for both the starting and ending locations allowing you to give a value to single-event values - basically, it gives you the most freedom and information regarding xT.</p>
+<p>Here’s the cool thing about the <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>
+function: <strong>It calculates the xT of the start of a pass/carry and
+the xT of the end of the pass/carry</strong>.</p>
+<p>Why is this important? Well, let’s take a take-on. That only has a
+starting <code>x</code> ,<code>y</code> . In the dataframe, the columns
+of <code>finalX</code> and <code>finalY</code> have <code>NAs</code> in
+them. The <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will give you the xT for both
+the starting and ending locations allowing you to give a value to
+single-event values - basically, it gives you the most freedom and
+information regarding xT.</p>
 <p>Let’s see how we can use it!</p>
 <div class="section level2">
 <h2 id="using-the-calculate_threat-function">Using the <code>calculate_threat()</code> function<a class="anchor" aria-label="anchor" href="#using-the-calculate_threat-function"></a>
 </h2>
-<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free dataset</a></p>
-<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi Data</a> for La Liga 2014/15:</p>
+<p>First, let’s get some data! You can either import you data or use <a href="https://github.com/statsbomb/open-data" class="external-link">Statsbomb’s open free
+dataset</a></p>
+<p>In this example, I’ll be using StatsBomb’s <a href="https://statsbomb.com/2019/12/messi-data-biography-15-seasons-now-complete-and-available/" class="external-link">Messi
+Data</a> for La Liga 2014/15:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">StatsBombR</span><span class="op">)</span></span>
 <span></span>
@@ -140,20 +162,28 @@
 <span>         <span class="st">"y"</span> <span class="op">=</span> <span class="st">"location.y"</span>,</span>
 <span>         <span class="st">"finalX"</span> <span class="op">=</span> <span class="st">"pass.end_location.x"</span>,</span>
 <span>         <span class="st">"finalY"</span> <span class="op">=</span> <span class="st">"pass.end_location.y"</span><span class="op">)</span></span></code></pre></div>
-<p>For <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>, <strong>always write the type that the data is: opta or statsbomb</strong>. After that, we simply get:</p>
+<p>For <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code>, <strong>always write the type
+that the data is: opta or statsbomb</strong>. After that, we simply
+get:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## NOTE: from version 0.2.0 ALL function arguments are now in snake_case</span></span>
 <span><span class="co">## 'dataType' is now 'data_type', etc.</span></span>
 <span><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_threat.html">calculate_threat</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plottingData</span>, type <span class="op">=</span> <span class="st">"statsbomb"</span><span class="op">)</span></span></code></pre></div>
-<p>If we inspect <code>xTData</code>, we see these two new columns at the very end:</p>
+<p>If we inspect <code>xTData</code>, we see these two new columns at
+the very end:</p>
 <div class="figure">
 <img src="../reference/figures/calculate_threat.png" style="width:90.0%" alt=""><p class="caption">calculate_threat() producing xTStart and xTEnd</p>
 </div>
-<p>As you’ll see, <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will put a -1 in areas where there was a value that was not right for calculation. To calculate the difference in xT, simply write:</p>
+<p>As you’ll see, <code><a href="../reference/calculate_threat.html">calculate_threat()</a></code> will put a -1 in areas
+where there was a value that was not right for calculation. To calculate
+the difference in xT, simply write:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xTData</span> <span class="op">&lt;-</span> <span class="va">xTData</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>xT <span class="op">=</span> <span class="va">xTEnd</span> <span class="op">-</span> <span class="va">xTStart</span><span class="op">)</span></span></code></pre></div>
-<p>This will give you the difference in xT and this value can be used for passes, carries - anything that has a start and an end location. Use <code>xTStart</code>/<code>xTEn</code>d for single-occuring events such as take-ons, tackles, if you so wish.</p>
+<p>This will give you the difference in xT and this value can be used
+for passes, carries - anything that has a start and an end location. Use
+<code>xTStart</code>/<code>xTEn</code>d for single-occuring events such
+as take-ons, tackles, if you so wish.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

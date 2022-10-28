@@ -7,6 +7,7 @@
     - Fixed `plot_heatmap` and `plot_passflow`direction orientation + `plot_pass`opta functionality was fixed.[issue #111](https://github.com/abhiamishra/ggshakeR/issues/111)
     - Added "Created using ggshakeR" to `plot_heatmap`, `plot_passflow`, and `plot_pass`[issue #110](https://github.com/abhiamishra/ggshakeR/issues/110)
     - Added "Created using ggshakeR" to the rest of the functions [issue #110](https://github.com/abhiamishra/ggshakeR/issues/110)
+    - Converted `plot_pizza` to work with new FBRef data from Opta. [issue #118](https://github.com/abhiamishra/ggshakeR/issues/118)
 
 # ggshakeR 0.2.0
 

@@ -32,7 +32,7 @@ library(worldfootballR)
 
 single_player <- fb_player_scouting_report("https://fbref.com/en/players/f586779e/Tammy-Abraham", pos_versus = "primary")
 
-pizza <- plot_pizza(data = single_player, type = "single", template = "forward", 
+pizza <- plot_pizza(data = single_player, type = "single", template = "outfielder", 
                     color_possession = "#41ab5d", color_attack = "#fec44f", color_defense = "#de2d26", 
                     season = "Last 365 Days", theme = "dark")
 
@@ -41,7 +41,7 @@ pizza
 
 ![pizza plot for Tammy Abraham](../man/figures/pizza_plot.png){width=80%}
 
-There are 7 different templates to choose from, which are *forward*, *midfielder*, *winger*, *defender*, *full back*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the *custom* template as well. You can filter for the season required and select the colors for each stat subgroup according to your liking.
+There are 3 different templates to choose from, which are *outfielder*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes required for each position. Users have the option to select their own stats using the *custom* template as well. You can filter for the season required and select the colors for each stat subgroup according to your liking.
 
 For the season filter, please look at the data scraped from FBRef and look at the "term" in scouting period. The term there will determine what season you will be filtering for when you put it in the function.
 
@@ -58,7 +58,7 @@ single_player$index <- 1:nrow(single_player) ## use this column for reference in
 
 Here, when you look at the index column, you'll see the numbers correspond to the statistics. Choose those numbers as shown below to select the specific stats!
 ```{r, eval=FALSE}
-single_player <- single_player[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
+single_player <- single_player[c(1,2,3,4,5,6,7,8,9,10,11,12), ]
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "custom", 
                     color_possession = "#41ab5d", color_attack = "#fec44f", season = "Last 365 Days", 
@@ -79,7 +79,7 @@ data2 <- fb_player_scouting_report("https://fbref.com/en/players/59e6e5bf/Domini
 
 data <- rbind(data1, data2)
 
-comp_pizza <- plot_pizza(data = data, type = "comparison", template = "forward",
+comp_pizza <- plot_pizza(data = data, type = "comparison", template = "outfielder",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
                          season_player_1 = "Last 365 Days", 
                          season_player_2 = "Last 365 Days",
@@ -89,7 +89,7 @@ comp_pizza
 
 ![pizza plot comparison, Tammy Abraham vs. D. Calvert-Lewin](../man/figures/comp_pizza_plot.png){width=80%}
 
-There are 7 different templates to choose from, which are *forward*, *midfielder*, *winger*, *defender*, *full back*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes requires for each position. Users also have the option to select their own stats using the *custom* template as well. 
+There are 3 different templates to choose from, which are *outfielder*, *goalkeeper* and *custom*. They select specific stats that (subjectively, in the author's opinion) reflect the important attributes requires for each position. Users also have the option to select their own stats using the *custom* template as well. 
 
 The seasons and names of both players have to be specified within the function in their respective parameters. 
 
@@ -114,8 +114,8 @@ data2$index <- 1:nrow(data2) ## reference for stats selection
 
 After that, we select the numbers that reflect the stats and plot away!
 ```{r, eval=FALSE}
-data1 <- data1[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
-data2 <- data2[c(1,10,20,30,40,50,60,70,80,90,100,110,120,130,140), ]
+data1 <- data1[c(1,2,3,4,5,6,7,8,9,10,11,12), ]
+data2 <- data2[c(1,2,3,4,5,6,7,8,9,10,11,12), ]
 
 data <- rbind(data1, data2)
 

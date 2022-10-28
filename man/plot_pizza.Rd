@@ -26,7 +26,7 @@ plot_pizza(
 \item{type}{Type of plot -> single and comparison}
 
 \item{template}{Selecting a group of pre-selected metrics for each position by position namely:
-forward, winger, midfielder, defender, goalkeeper, full back and custom}
+outfielder, goalkeeper and custom}
 
 \item{color_possession}{Selecting the color for possession group of stats. To be used only for single player plot}
 
@@ -61,14 +61,14 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")
 }
 \examples{
 \dontrun{
-plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
+plot1 <- plot_pizza(data = data, type = "comparison", template = "outfielder",
                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
                     season_player_1 = "Last 365 Days", 
                     season_player_2 = "Last 365 Days",
                     color_compare = "lightgreen", theme = "black")
 plot1
 
-plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
+plot2 <- plot_pizza(data = data1, type = "single", template = "outfielder",
                     color_possession = "green", color_attack = "lightblue", 
                     season = "Last 365 Days",
                     color_defense = "red", theme = "dark")

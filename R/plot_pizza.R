@@ -9,7 +9,7 @@
 #' @param data Data frame can contain either one player or two depending on the type of plot made
 #' @param type Type of plot -> single and comparison
 #' @param template Selecting a group of pre-selected metrics for each position by position namely:
-#'                 forward, winger, midfielder, defender, goalkeeper, full back and custom
+#'                 outfielder, goalkeeper and custom
 #' @param color_possession Selecting the color for possession group of stats. To be used only for single player plot
 #' @param color_attack Selecting the color for attacking group of stats. To be used only for single player plot
 #' @param color_defense Selecting the color for defense group of stats. To be used only for single player plot
@@ -30,14 +30,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot1 <- plot_pizza(data = data, type = "comparison", template = "midfielder",
+#' plot1 <- plot_pizza(data = data, type = "comparison", template = "outfielder",
 #'                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
 #'                     season_player_1 = "Last 365 Days", 
 #'                     season_player_2 = "Last 365 Days",
 #'                     color_compare = "lightgreen", theme = "black")
 #' plot1
 #'
-#' plot2 <- plot_pizza(data = data1, type = "single", template = "midfielder",
+#' plot2 <- plot_pizza(data = data1, type = "single", template = "outfielder",
 #'                     color_possession = "green", color_attack = "lightblue", 
 #'                     season = "Last 365 Days",
 #'                     color_defense = "red", theme = "dark")
@@ -84,100 +84,136 @@ plot_pizza <- function(data, type = "", template,
     
     data <- data %>% 
       mutate(stat = case_when(
-        StatGroup == "Standard" ~ "Attacking", 
-        StatGroup == "Shooting" ~ "Attacking",
-        StatGroup == "Passing" ~ "Possession",
-        StatGroup == "Pass Types" ~ "Possession",
-        StatGroup == "Goal and Shot Creation" ~ "Possession",
-        StatGroup == "Defense" ~ "Defending",
-        StatGroup == "Possession" ~ "Possession",
-        StatGroup == "Miscellaneous Stats" ~ "Defending",
+        Statistic == "Non-Penalty Goals" |
+          Statistic == "Non-Penalty xG" |
+          Statistic == "Shots Total" |
+          Statistic == "Assists" |
+          Statistic == "xAG" |
+          Statistic == "npxG + xAG" ~ "Attacking",
+        Statistic == "Shot-Creating Actions" |
+          Statistic == "Passes Attempted" |
+          Statistic == "Pass Completion %" |
+          Statistic == "Progressive Passes" |
+          Statistic == "Dribbles Completed" |
+          Statistic == "Touches (Att Pen)" |
+          Statistic == "Progressive Passes Rec" ~ "Possession",
+        Statistic == "Tackles" |
+          Statistic == "Interceptions" |
+          Statistic == "Blocks" |
+          Statistic == "Clearances" |
+          Statistic == "Aerials won" ~ "Defending",
         TRUE ~ NA_character_
       ))
     
-    if (template == "forward") {
+    if (template == "outfielder") {
       
-      if (nrow(data) > 148) {
-        
-        data_selected <- data[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
-        
-      } else {
-        
-        data_selected <- data[c(3, 8, 13, 24, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
-        
-      }
-    } else if (template == "midfielder") {
+      data_selected <- data[c(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18), ]
       
-      if (nrow(data) > 148) {
-        
-        data_selected <- data[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
-        
-      } else {
-        
-        data_selected <- data[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 97), ]
-        
-      }
-    } else if (template == "defender") {
-      
-      if (nrow(data) > 148) {
-        
-        data_selected <- data[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
-        
-      } else {
-        
-        data_selected <- data[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
-        
-      }
-    } else if (template == "full back") {
-      
-      if (nrow(data) > 148) {
-        
-        data_selected <- data[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
-        
-      } else {
-        
-        data_selected <- data[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
-        
-      }
-    } else if (template == "winger") {
-      
-      if (nrow(data) > 148) {
-        
-        data_selected <- data[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
-        
-      } else {
-        
-        data_selected <- data[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
-        
-      }
-    } else if (template == "goalkeeper") {
-      
-      if (nrow(data) > 36) {
-        
-        data_selected <- data[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Save%" |
-                                    Statistic == "PSxG" |
-                                    Statistic == "PSxG-GA" ~ "Defending",
-                                  Statistic == "Passes Attempted (Launched)" |
-                                    Statistic == "Passes Attempted" |
-                                    Statistic == "Average Pass Length" ~ "Possession",
-                                  TRUE ~ "Attacking"))
-      } else {
-        
-        data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
-        data_selected <- data_selected %>%
-          mutate(stat = case_when(Statistic == "Save%" |
-                                    Statistic == "PSxG" |
-                                    Statistic == "PSxG-GA" ~ "Defending",
-                                  Statistic == "Passes Attempted (Launched)" |
-                                    Statistic == "Passes Attempted" |
-                                    Statistic == "Average Pass Length" ~ "Possession",
-                                  TRUE ~ "Attacking"))
-      }
-    } else if (template == "custom") {
-      data_selected <- data
     }
+    else if (template == "goalkeeper") {
+      
+      data_selected <- data[c(1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13), ]
+      data_selected <- data_selected %>%
+        mutate(stat = case_when(Statistic == "Goals Against" |
+                                  Statistic == "PSxG/SoT" |
+                                  Statistic == "Save Percentage" |
+                                  Statistic == "PSxG-GA" ~ "Defending",
+                                Statistic == "Touches" |
+                                  Statistic == "Launch %" |
+                                  Statistic == "Goal Kicks" |
+                                  Statistic == "Avg. Length of Goal Kicks" ~ "Possession",
+                                TRUE ~ "Attacking"))
+      
+    }
+    else if (template == "custom") {
+      
+      data_selected <- data
+      
+    }
+    
+    #    if (template == "forward") {
+    #      
+    #     if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 8, 13, 24, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
+    #        
+    #      }
+    #    } else if (template == "midfielder") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 97), ]
+    #        
+    #      }
+    #    } else if (template == "defender") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
+    #        
+    #      }
+    #    } else if (template == "full back") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
+    #        
+    #      }
+    #    } else if (template == "winger") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
+    #        
+    #      }
+    #    } else if (template == "goalkeeper") {
+    #      
+    #      if (nrow(data) > 36) {
+    #        
+    #        data_selected <- data[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #        data_selected <- data_selected %>%
+    #          mutate(stat = case_when(Statistic == "Save%" |
+    #                                    Statistic == "PSxG" |
+    #                                    Statistic == "PSxG-GA" ~ "Defending",
+    #                                  Statistic == "Passes Attempted (Launched)" |
+    #                                    Statistic == "Passes Attempted" |
+    #                                    Statistic == "Average Pass Length" ~ "Possession",
+    #                                  TRUE ~ "Attacking"))
+    #      } else {
+    #        
+    #        data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
+    #        data_selected <- data_selected %>%
+    #          mutate(stat = case_when(Statistic == "Save%" |
+    #                                    Statistic == "PSxG" |
+    #                                    Statistic == "PSxG-GA" ~ "Defending",
+    #                                  Statistic == "Passes Attempted (Launched)" |
+    #                                    Statistic == "Passes Attempted" |
+    #                                    Statistic == "Average Pass Length" ~ "Possession",
+    #                                  TRUE ~ "Attacking"))
+    #      }
+    #    } else if (template == "custom") {
+    #      data_selected <- data
+    #    }
     
     player_name <- unique(data$Player)
     title <- paste(player_name, "Percentile Chart")
@@ -185,7 +221,7 @@ plot_pizza <- function(data, type = "", template,
     sub <- unique(data$Versus)
     sub1 <- unique(data$scouting_period)
     subtitle <- paste("Compared to", sub, "|", sub1, "|", min, "minutes played")
-    caption <- "Plot code by @RobinWilhelmus\nData from StatsBomb via FBref. Inspired by @NathanAClark. Created using ggshakeR."
+    caption <- "Plot code by @RobinWilhelmus\nData from Stats Perform via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
     x <- c(data_selected$Statistic, data_selected$stat)
     
@@ -232,15 +268,24 @@ plot_pizza <- function(data, type = "", template,
     
     data <- data %>% 
       mutate(stat = case_when(
-        StatGroup == "Standard" ~ "Attacking", 
-        StatGroup == "Shooting" ~ "Attacking",
-        StatGroup == "Passing" ~ "Possession",
-        StatGroup == "Pass Types" ~ "Possession",
-        StatGroup == "Goal and Shot Creation" ~ "Possession",
-        StatGroup == "Defense" ~ "Defending",
-        StatGroup == "Possession" ~ "Possession",
-        StatGroup == "Miscellaneous Stats" ~ "Defending",
-        StatGroup == "Advanced Goalkeeping" ~ "Attacking",
+        Statistic == "Non-Penalty Goals" |
+          Statistic == "Non-Penalty xG" |
+          Statistic == "Shots Total" |
+          Statistic == "Assists" |
+          Statistic == "xAG" |
+          Statistic == "npxG + xAG" ~ "Attacking",
+        Statistic == "Shot-Creating Actions" |
+          Statistic == "Passes Attempted" |
+          Statistic == "Pass Completion %" |
+          Statistic == "Progressive Passes" |
+          Statistic == "Dribbles Completed" |
+          Statistic == "Touches (Att Pen)" |
+          Statistic == "Progressive Passes Rec" ~ "Possession",
+        Statistic == "Tackles" |
+          Statistic == "Interceptions" |
+          Statistic == "Blocks" |
+          Statistic == "Clearances" |
+          Statistic == "Aerials won" ~ "Defending",
         TRUE ~ NA_character_
       ))
     
@@ -251,101 +296,120 @@ plot_pizza <- function(data, type = "", template,
       filter(Player == player_2) %>%
       filter(scouting_period == season_player_2)
     
-    if (template == "forward") {
+    if (template == "outfielder") {
       
-      if (nrow(data1) > 148) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
-        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 8, 13, 23, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
-        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
-      }
-    } else if (template == "midfielder") {
+      data1 <- data1[c(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18), ]
+      data2 <- data2[c(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18), ]
       
-      if (nrow(data1) > 148) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
-        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 95), ]
-        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
-      }
-    } else if (template == "defender") {
+    }
+    else if (template == "goalkeeper") {
       
-      if (nrow(data1) > 148) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
-        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
-        
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
-        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
-      }
-    } else if (template == "full back") {
+      data1 <- data1[c(1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13), ]
+      data2 <- data2[c(1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13), ]
       
-      if (nrow(data1) > 148) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
-        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
-        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
-      }
-    } else if (template == "winger") {
+    }
+    else if (template == "custom") {
       
-      if (nrow(data1) > 148) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
-        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
-        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
-      }
-    } else if (template == "goalkeeper") {
-      
-      if (nrow(data1) > 36) {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
-        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
-      } else {
-        
-        data1$no <- 1:nrow(data1)
-        data2$no <- 1:nrow(data2)
-        data1 <- data1[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
-        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
-      }
-    } else if (template == "custom") {
       data1
       data2
+      
     }
+    
+    #    if (template == "forward") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 8, 13, 23, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
+    #        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #      }
+    #    } else if (template == "midfielder") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 95), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #      }
+    #    } else if (template == "defender") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
+    #        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #      }
+    #    } else if (template == "full back") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #      }
+    #    } else if (template == "winger") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
+    #        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #      }
+    #    } else if (template == "goalkeeper") {
+    #      
+    #     if (nrow(data1) > 36) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
+    #        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #      }
+    #    } else if (template == "custom") {
+    #      data1
+    #      data2
+    #    }
     
     data2 <- data2 %>%
       rename(player = Player,
@@ -361,7 +425,7 @@ plot_pizza <- function(data, type = "", template,
     lg2 <- unique(data2$scouting_period)
     title <- paste(player_name1, "|", lg1, "|", min1, "minutes")
     subtitle <- paste(player_name2, "|", lg2, "|", min2, "minutes")
-    caption <- paste("Compared to", sub, ".\nData from StatsBomb via FBref. Inspired by @FootballSlices. Created using ggshakeR.")
+    caption <- paste("Compared to", sub, ".\nData from Stats Perform via FBref. Inspired by @FootballSlices. Created using ggshakeR.")
     
     x <- data1$Statistic
     

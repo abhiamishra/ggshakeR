@@ -93,7 +93,7 @@
                         <h4 data-toc-skip class="author">Harsh
 Krishna</h4>
             
-            <h4 data-toc-skip class="date">2022-09-27</h4>
+            <h4 data-toc-skip class="date">2022-10-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/abhiamishra/ggshakeR/blob/HEAD/vignettes/Guide_to_PizzaPlots.Rmd" class="external-link"><code>vignettes/Guide_to_PizzaPlots.Rmd</code></a></small>
       <div class="d-none name"><code>Guide_to_PizzaPlots.Rmd</code></div>
@@ -121,7 +121,7 @@ library.</p>
 
 <span class="va">single_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldfootballR/man/fb_player_scouting_report.html" class="external-link">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/f586779e/Tammy-Abraham"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 
-<span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"forward"</span>, 
+<span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"outfielder"</span>, 
                     color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, color_defense <span class="op">=</span> <span class="st">"#de2d26"</span>, 
                     season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, theme <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>
 
@@ -129,15 +129,13 @@ library.</p>
 <div class="figure">
 <img src="../reference/figures/pizza_plot.png" style="width:80.0%" alt=""><p class="caption">pizza plot for Tammy Abraham</p>
 </div>
-<p>There are 7 different templates to choose from, which are
-<em>forward</em>, <em>midfielder</em>, <em>winger</em>,
-<em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and
-<em>custom</em>. They select specific stats that (subjectively, in the
-author’s opinion) reflect the important attributes required for each
-position. Users have the option to select their own stats using the
-<em>custom</em> template as well. You can filter for the season required
-and select the colors for each stat subgroup according to your
-liking.</p>
+<p>There are 3 different templates to choose from, which are
+<em>outfielder</em>, <em>goalkeeper</em> and <em>custom</em>. They
+select specific stats that (subjectively, in the author’s opinion)
+reflect the important attributes required for each position. Users have
+the option to select their own stats using the <em>custom</em> template
+as well. You can filter for the season required and select the colors
+for each stat subgroup according to your liking.</p>
 <p>For the season filter, please look at the data scraped from FBRef and
 look at the “term” in scouting period. The term there will determine
 what season you will be filtering for when you put it in the
@@ -156,7 +154,7 @@ well.</p>
 correspond to the statistics. Choose those numbers as shown below to
 select the specific stats!</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">single_player</span> <span class="op">&lt;-</span> <span class="va">single_player</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
+<code class="sourceCode R"><span class="va">single_player</span> <span class="op">&lt;-</span> <span class="va">single_player</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="va">pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">single_player</span>, type <span class="op">=</span> <span class="st">"single"</span>, template <span class="op">=</span> <span class="st">"custom"</span>, 
                     color_possession <span class="op">=</span> <span class="st">"#41ab5d"</span>, color_attack <span class="op">=</span> <span class="st">"#fec44f"</span>, season <span class="op">=</span> <span class="st">"Last 365 Days"</span>, 
@@ -178,7 +176,7 @@ select the specific stats!</p>
 
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">data1</span>, <span class="va">data2</span><span class="op">)</span>
 
-<span class="va">comp_pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, type <span class="op">=</span> <span class="st">"comparison"</span>, template <span class="op">=</span> <span class="st">"forward"</span>,
+<span class="va">comp_pizza</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pizza.html">plot_pizza</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, type <span class="op">=</span> <span class="st">"comparison"</span>, template <span class="op">=</span> <span class="st">"outfielder"</span>,
                          player_1 <span class="op">=</span> <span class="st">"Tammy Abraham"</span>, player_2 <span class="op">=</span> <span class="st">"Dominic Calvert-Lewin"</span>, 
                          season_player_1 <span class="op">=</span> <span class="st">"Last 365 Days"</span>, 
                          season_player_2 <span class="op">=</span> <span class="st">"Last 365 Days"</span>,
@@ -188,13 +186,12 @@ select the specific stats!</p>
 <img src="../reference/figures/comp_pizza_plot.png" style="width:80.0%" alt=""><p class="caption">pizza plot comparison, Tammy Abraham vs. D.
 Calvert-Lewin</p>
 </div>
-<p>There are 7 different templates to choose from, which are
-<em>forward</em>, <em>midfielder</em>, <em>winger</em>,
-<em>defender</em>, <em>full back</em>, <em>goalkeeper</em> and
-<em>custom</em>. They select specific stats that (subjectively, in the
-author’s opinion) reflect the important attributes requires for each
-position. Users also have the option to select their own stats using the
-<em>custom</em> template as well.</p>
+<p>There are 3 different templates to choose from, which are
+<em>outfielder</em>, <em>goalkeeper</em> and <em>custom</em>. They
+select specific stats that (subjectively, in the author’s opinion)
+reflect the important attributes requires for each position. Users also
+have the option to select their own stats using the <em>custom</em>
+template as well.</p>
 <p>The seasons and names of both players have to be specified within the
 function in their respective parameters.</p>
 <p>There are three color themes for the background, namely
@@ -220,8 +217,8 @@ column first.</p>
 <p>After that, we select the numbers that reflect the stats and plot
 away!</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="va">data1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
-<span class="va">data2</span> <span class="op">&lt;-</span> <span class="va">data2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">90</span>,<span class="fl">100</span>,<span class="fl">110</span>,<span class="fl">120</span>,<span class="fl">130</span>,<span class="fl">140</span><span class="op">)</span>, <span class="op">]</span>
+<code class="sourceCode R"><span class="va">data1</span> <span class="op">&lt;-</span> <span class="va">data1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span><span class="op">)</span>, <span class="op">]</span>
+<span class="va">data2</span> <span class="op">&lt;-</span> <span class="va">data2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">data1</span>, <span class="va">data2</span><span class="op">)</span>
 

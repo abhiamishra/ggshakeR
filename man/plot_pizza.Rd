@@ -14,9 +14,9 @@ plot_pizza(
   player_1,
   player_2,
   color_compare = "#41ab5d",
-  season = "Last 365 Days",
-  season_player_1 = "Last 365 Days",
-  season_player_2 = "Last 365 Days",
+  season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
+  season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
+  season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
   theme = ""
 )
 }

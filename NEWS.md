@@ -1,3 +1,13 @@
+# ggshakeR 0.2.0.9001
+
+- Bug Fixes
+	- Fixed `plot_pizza` bugs caused by FBRef updates [issue #121](https://github.com/abhiamishra/ggshakeR/issues/121)
+		- Changed stat selection to named stats instead of selecting row numbers, which change because of FBRef data changes.
+		- Added method to de-duplicate some stats that were returned for multiple positions, causing errors.
+		- Changed season default argument to "Last 365 Days Men's Big 5 Leagues, UCL, UEL" to match FBRef data for men's big 5 league players. (this makes the caption wider than before, so some have been split over two lines)
+		- Replaced long `|`-statements with `%in%`.
+		- Deleted some old unused code.
+
 # ggshakeR 0.2.0.9000
 
 -   Bug Fixes

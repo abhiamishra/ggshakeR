@@ -1,3 +1,8 @@
+# ggshakeR 0.2.0.9002
+
+- Bug Fixes
+  - Fixes bugs in the `plot_pizza` in the custom option of the comparison plot [issue #123](https://github.com/abhiamishra/ggshakeR/issues/123). 
+
 # ggshakeR 0.2.0.9001
 
 - Bug Fixes

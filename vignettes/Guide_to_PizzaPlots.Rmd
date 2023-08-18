@@ -34,7 +34,7 @@ single_player <- fb_player_scouting_report("https://fbref.com/en/players/f586779
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "outfielder", 
                     color_possession = "#41ab5d", color_attack = "#fec44f", color_defense = "#de2d26", 
-                    season = "Last 365 Days", theme = "dark")
+                    season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", theme = "dark")
 
 pizza
 ```
@@ -61,7 +61,7 @@ Here, when you look at the index column, you'll see the numbers correspond to th
 single_player <- single_player[c(1,2,3,4,5,6,7,8,9,10,11,12), ]
 
 pizza <- plot_pizza(data = single_player, type = "single", template = "custom", 
-                    color_possession = "#41ab5d", color_attack = "#fec44f", season = "Last 365 Days", 
+                    color_possession = "#41ab5d", color_attack = "#fec44f", season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", 
                     color_defense = "#de2d26", theme = "dark")
 
 pizza
@@ -81,8 +81,8 @@ data <- rbind(data1, data2)
 
 comp_pizza <- plot_pizza(data = data, type = "comparison", template = "outfielder",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
-                         season_player_1 = "Last 365 Days", 
-                         season_player_2 = "Last 365 Days",
+                         season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", 
+                         season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
                          color_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```
@@ -121,8 +121,8 @@ data <- rbind(data1, data2)
 
 comp_pizza <- plot_pizza(data = data, type = "comparison", template = "custom",
                          player_1 = "Tammy Abraham", player_2 = "Dominic Calvert-Lewin", 
-                         season_player_1 = "Last 365 Days", 
-                         season_player_2 = "Last 365 Days",
+                         season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", 
+                         season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
                          color_compare = "#41ab5d", theme = "black")
 comp_pizza
 ```

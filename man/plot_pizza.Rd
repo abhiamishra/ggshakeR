@@ -63,14 +63,14 @@ ggsave("image.png", width = 2900, height = 2800, units = "px")
 \dontrun{
 plot1 <- plot_pizza(data = data, type = "comparison", template = "outfielder",
                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-                    season_player_1 = "Last 365 Days", 
-                    season_player_2 = "Last 365 Days",
+                    season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", 
+                    season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
                     color_compare = "lightgreen", theme = "black")
 plot1
 
 plot2 <- plot_pizza(data = data1, type = "single", template = "outfielder",
                     color_possession = "green", color_attack = "lightblue", 
-                    season = "Last 365 Days",
+                    season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
                     color_defense = "red", theme = "dark")
 plot2
 }

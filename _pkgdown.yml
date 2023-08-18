@@ -10,7 +10,7 @@ template:
     text-secondary-color: "#44A2A7"
     link-hover-color: "#44A2A7"
     navbar-bg: "#78d4d8"
-    headings-color: "#44A2A7"
+    headings-color: "#FFFFFF"
 
 navbar:
   title: ggshakeR

@@ -32,14 +32,14 @@
 #' \dontrun{
 #' plot1 <- plot_pizza(data = data, type = "comparison", template = "outfielder",
 #'                     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-#'                     season_player_1 = "Last 365 Days", 
-#'                     season_player_2 = "Last 365 Days",
+#'                     season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", 
+#'                     season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
 #'                     color_compare = "lightgreen", theme = "black")
 #' plot1
 #'
 #' plot2 <- plot_pizza(data = data1, type = "single", template = "outfielder",
 #'                     color_possession = "green", color_attack = "lightblue", 
-#'                     season = "Last 365 Days",
+#'                     season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
 #'                     color_defense = "red", theme = "dark")
 #' plot2
 #' }
@@ -76,91 +76,163 @@ plot_pizza <- function(data, type = "", template,
   
   if (type == "single" || type == "") { ## SINGLE PLOT ----
     
-    data <-
-      data %>%
-      as_tibble() %>%
-      filter(scouting_period == season) %>%
-      select(-any_of("StatGroup")) %>%
-      distinct()
+    data <- data %>%
+      filter(scouting_period == season)
     
     if (template == "outfielder") {
       
-      data_labelled <-
-        data %>%
+      data_selected <- data %>% 
         mutate(stat = case_when(
-          Statistic %in% c(
-            "Non-Penalty Goals",
-            "Non-Penalty xG",
-            "Shots Total",
-            "Assists",
-            "xAG",
-            "npxG + xAG" 
-          ) ~ "Attacking",
-          Statistic %in% c(
-            "Shot-Creating Actions",
-            "Passes Attempted",
-            "Pass Completion %",
-            "Progressive Passes",
-            "Carries",
-            "Touches (Att Pen)",
-            "Progressive Passes Rec"
-          ) ~ "Possession",
-          Statistic %in% c(
-            "Tackles",
-            "Interceptions",
-            "Blocks",
-            "Clearances",
-            "Aerials won"
-          ) ~ "Defending",
-          .default=NA
-        ))
+          Statistic == "Non-Penalty Goals" |
+            Statistic == "Non-Penalty xG" |
+            Statistic == "Shots Total" |
+            Statistic == "Assists" |
+            Statistic == "xAG" |
+            Statistic == "npxG + xAG" ~ "Attacking",
+          Statistic == "Shot-Creating Actions" |
+            Statistic == "Passes Attempted" |
+            Statistic == "Pass Completion %" |
+            Statistic == "Progressive Passes" |
+            Statistic == "Dribbles Completed" |
+            Statistic == "Touches (Att Pen)" |
+            Statistic == "Progressive Passes Rec" ~ "Possession",
+          Statistic == "Tackles" |
+            Statistic == "Interceptions" |
+            Statistic == "Blocks" |
+            Statistic == "Clearances" |
+            Statistic == "Aerials won" ~ "Defending",
+          TRUE ~ NA_character_
+        )) %>%
+        drop_na(stat) %>%
+        distinct(Statistic, .keep_all = TRUE)
       
-      data_selected <-
-        data_labelled %>%
-        filter(stat %in% c("Attacking","Possession","Defending"))
     }
     else if (template == "goalkeeper") {
       
-      data_labelled <-
-        data %>%
-        mutate(stat = case_when(
-          Statistic %in% c(
-            "Goals Against",
-            "PSxG/SoT",
-            "Save Percentage",
-            "PSxG-GA",
-            "Crosses Stopped %"
-          ) ~ "Defending",
-          Statistic %in% c(
-            "Goal Kicks",
-            "Launch% (Goal kicks)",
-            "Avg. Length of Goal Kicks",
-            "Avg. Distance of Def. Actions"
-          ) ~ "Possession",
-          Statistic %in% c(
-            "Def. Actions Outside Pen. Area"
-          ) ~ "Attacking",
-          .default=NA
-        ))
+      data_selected <- data %>%
+        mutate(stat = case_when(Statistic == "Goals Against" |
+                                  Statistic == "PSxG/SoT" |
+                                  Statistic == "Save Percentage" |
+                                  Statistic == "PSxG-GA" ~ "Defending",
+                                Statistic == "Touches" |
+                                  Statistic == "Launch %" |
+                                  Statistic == "Goal Kicks" |
+                                  Statistic == "Avg. Length of Goal Kicks" ~ "Possession",
+                                Statistic == "Crosses Stopped %" |
+                                  Statistic == "Def. Actions Outside Pen. Area" |
+                                  Statistic == "Avg. Distance of Def. Actions" ~ "Attacking",
+                                TRUE ~ NA_character_)) %>%
+        drop_na(stat) %>%
+        distinct(Statistic, .keep_all = TRUE)
       
-      data_selected <-
-        data_labelled %>%
-        filter(stat %in% c("Attacking","Possession","Defending"))
     }
     else if (template == "custom") {
-      data_selected <- data
+      
+      data_selected <- data %>% 
+        mutate(stat = case_when(
+          StatGroup == "Standard" ~ "Attacking", 
+          StatGroup == "Shooting" ~ "Attacking",
+          StatGroup == "Passing" ~ "Possession",
+          StatGroup == "Pass Types" ~ "Possession",
+          StatGroup == "Goal and Shot Creation" ~ "Possession",
+          StatGroup == "Defense" ~ "Defending",
+          StatGroup == "Possession" ~ "Possession",
+          StatGroup == "Miscellaneous Stats" ~ "Defending",
+          TRUE ~ NA_character_
+        ))
+      
     }
-    else {
-      data_selected <- data
-    }
+    
+    #    if (template == "forward") {
+    #      
+    #     if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 8, 13, 24, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
+    #        
+    #      }
+    #    } else if (template == "midfielder") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 97), ]
+    #        
+    #      }
+    #    } else if (template == "defender") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
+    #        
+    #      }
+    #    } else if (template == "full back") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
+    #        
+    #      }
+    #    } else if (template == "winger") {
+    #      
+    #      if (nrow(data) > 148) {
+    #        
+    #        data_selected <- data[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #        
+    #      } else {
+    #        
+    #        data_selected <- data[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
+    #        
+    #      }
+    #    } else if (template == "goalkeeper") {
+    #      
+    #      if (nrow(data) > 36) {
+    #        
+    #        data_selected <- data[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #        data_selected <- data_selected %>%
+    #          mutate(stat = case_when(Statistic == "Save%" |
+    #                                    Statistic == "PSxG" |
+    #                                    Statistic == "PSxG-GA" ~ "Defending",
+    #                                  Statistic == "Passes Attempted (Launched)" |
+    #                                    Statistic == "Passes Attempted" |
+    #                                    Statistic == "Average Pass Length" ~ "Possession",
+    #                                  TRUE ~ "Attacking"))
+    #      } else {
+    #        
+    #        data_selected <- data[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
+    #        data_selected <- data_selected %>%
+    #          mutate(stat = case_when(Statistic == "Save%" |
+    #                                    Statistic == "PSxG" |
+    #                                    Statistic == "PSxG-GA" ~ "Defending",
+    #                                  Statistic == "Passes Attempted (Launched)" |
+    #                                    Statistic == "Passes Attempted" |
+    #                                    Statistic == "Average Pass Length" ~ "Possession",
+    #                                  TRUE ~ "Attacking"))
+    #      }
+    #    } else if (template == "custom") {
+    #      data_selected <- data
+    #    }
     
     player_name <- unique(data$Player)
     title <- paste(player_name, "Percentile Chart")
     min <- unique(data$BasedOnMinutes)
     sub <- unique(data$Versus)
     sub1 <- unique(data$scouting_period)
-    # subtitle <- paste("Compared to", sub, "|", sub1, "|", min, "minutes played")
-    subtitle <- paste("Compared to", sub, "|", min, "minutes played","\n",sub1)
+    subtitle <- paste("Compared to", sub, "|", sub1, "|", min, "minutes played")
     caption <- "Plot code by @RobinWilhelmus\nData from Stats Perform via FBref. Inspired by @NathanAClark. Created using ggshakeR."
     
     x <- c(data_selected$Statistic, data_selected$stat)
@@ -204,118 +276,206 @@ plot_pizza <- function(data, type = "", template,
     
   } else if (type == "comparison") { ## COMPARISON PLOT ----
     
-    data <- as_tibble(data)
     data$Player <- stri_trans_general(str = data$Player, id = "Latin-ASCII")
     
     if (template == "outfielder") {
       
-      data_labelled <-
-        data %>%
+      data <- data %>% 
         mutate(stat = case_when(
-          Statistic %in% c(
-            "Non-Penalty Goals",
-            "Non-Penalty xG",
-            "Shots Total",
-            "Assists",
-            "xAG",
-            "npxG + xAG" 
-          ) ~ "Attacking",
-          Statistic %in% c(
-            "Shot-Creating Actions",
-            "Passes Attempted",
-            "Pass Completion %",
-            "Progressive Passes",
-            "Carries",
-            "Touches (Att Pen)",
-            "Progressive Passes Rec"
-          ) ~ "Possession",
-          Statistic %in% c(
-            "Tackles",
-            "Interceptions",
-            "Blocks",
-            "Clearances",
-            "Aerials won"
-          ) ~ "Defending",
-          .default=NA
-        ))
+          Statistic == "Non-Penalty Goals" |
+            Statistic == "Non-Penalty xG" |
+            Statistic == "Shots Total" |
+            Statistic == "Assists" |
+            Statistic == "xAG" |
+            Statistic == "npxG + xAG" ~ "Attacking",
+          Statistic == "Shot-Creating Actions" |
+            Statistic == "Passes Attempted" |
+            Statistic == "Pass Completion %" |
+            Statistic == "Progressive Passes" |
+            Statistic == "Dribbles Completed" |
+            Statistic == "Touches (Att Pen)" |
+            Statistic == "Progressive Passes Rec" ~ "Possession",
+          Statistic == "Tackles" |
+            Statistic == "Interceptions" |
+            Statistic == "Blocks" |
+            Statistic == "Clearances" |
+            Statistic == "Aerials won" ~ "Defending",
+          TRUE ~ NA_character_)) %>%
+        drop_na(stat)
       
-      data_selected <-
-        data_labelled %>%
-        filter(stat %in% c("Attacking","Possession","Defending"))
-      
-      data1 <- data_selected %>%
+      data1 <- data %>%
         filter(Player == player_1) %>%
-        filter(scouting_period == season_player_1)
-      
-      data2 <- data_selected %>%
+        filter(scouting_period == season_player_1) %>%
+        distinct(Statistic, .keep_all = TRUE)
+      data2 <- data %>%
         filter(Player == player_2) %>%
-        filter(scouting_period == season_player_2)
+        filter(scouting_period == season_player_2) %>%
+        distinct(Statistic, .keep_all = TRUE)
       
     }
     else if (template == "goalkeeper") {
       
-      data_labelled <-
-        data %>%
+      data <- data %>%
+        mutate(stat = case_when(Statistic == "Goals Against" |
+                                  Statistic == "PSxG/SoT" |
+                                  Statistic == "Save Percentage" |
+                                  Statistic == "PSxG-GA" ~ "Defending",
+                                Statistic == "Touches" |
+                                  Statistic == "Launch %" |
+                                  Statistic == "Goal Kicks" |
+                                  Statistic == "Avg. Length of Goal Kicks" ~ "Possession",
+                                Statistic == "Crosses Stopped %" |
+                                  Statistic == "Def. Actions Outside Pen. Area" |
+                                  Statistic == "Avg. Distance of Def. Actions" ~ "Attacking",
+                                TRUE ~ NA_character_)) %>%
+        drop_na(stat)
+      
+      data1 <- data %>%
+        filter(Player == player_1) %>%
+        filter(scouting_period == season_player_1) %>%
+        distinct(Statistic, .keep_all = TRUE)
+      data2 <- data %>%
+        filter(Player == player_2) %>%
+        filter(scouting_period == season_player_2) %>%
+        distinct(Statistic, .keep_all = TRUE)
+      
+    }
+    else if (template == "custom") {
+      
+      data <- data %>% 
         mutate(stat = case_when(
-          Statistic %in% c(
-            "Goals Against",
-            "PSxG/SoT",
-            "Save Percentage",
-            "PSxG-GA",
-            "Crosses Stopped %"
-          ) ~ "Defending",
-          Statistic %in% c(
-            "Goal Kicks",
-            "Launch% (Goal kicks)",
-            "Avg. Length of Goal Kicks",
-            "Avg. Distance of Def. Actions"
-          ) ~ "Possession",
-          Statistic %in% c(
-            "Def. Actions Outside Pen. Area"
-          ) ~ "Attacking",
-          .default=NA
+          StatGroup == "Standard" ~ "Attacking", 
+          StatGroup == "Shooting" ~ "Attacking",
+          StatGroup == "Passing" ~ "Possession",
+          StatGroup == "Pass Types" ~ "Possession",
+          StatGroup == "Goal and Shot Creation" ~ "Possession",
+          StatGroup == "Defense" ~ "Defending",
+          StatGroup == "Possession" ~ "Possession",
+          StatGroup == "Miscellaneous Stats" ~ "Defending",
+          TRUE ~ NA_character_
         ))
       
-      data_selected <-
-        data_labelled %>%
-        filter(stat %in% c("Attacking","Possession","Defending"))
-      
-      data1 <- data_selected %>%
+      data1 <- data %>%
         filter(Player == player_1) %>%
         filter(scouting_period == season_player_1)
-      
-      data2 <- data_selected %>%
+      data2 <- data %>%
         filter(Player == player_2) %>%
         filter(scouting_period == season_player_2)
       
     }
-    else if (template == "custom") {
-      data1
-      data2
-    }
     
-    data1 <-
-      data1 %>%
-      as_tibble() %>%
-      select(-any_of("StatGroup")) %>%
-      distinct()
+    #    if (template == "forward") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 8, 13, 23, 41, 127, 44, 114, 132, 106, 100, 101, 25, 146), ]
+    #        data2 <- data2[c(3, 8, 13, 24, 42, 128, 45, 115, 133, 107, 101, 102, 26, 147), ]
+    #      }
+    #    } else if (template == "midfielder") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 52, 43, 46, 115, 124, 132, 145, 146, 106, 95), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 53, 44, 47, 116, 125, 133, 146, 147, 107, 96), ]
+    #      }
+    #    } else if (template == "defender") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #        
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 11, 13, 43, 46, 128, 124, 109, 87, 95, 101, 105, 146, 107), ]
+    #        data2 <- data2[c(3, 11, 13, 44, 47, 129, 125, 110, 88, 96, 102, 106, 147, 108), ]
+    #      }
+    #    } else if (template == "full back") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 9, 10, 13, 113, 45, 46, 124, 42, 43, 146, 95, 106, 101), ]
+    #        data2 <- data2[c(3, 9, 10, 13, 114, 46, 47, 125, 43, 44, 147, 96, 107, 102), ]
+    #      }
+    #    } else if (template == "winger") {
+    #      
+    #      if (nrow(data1) > 148) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(3, 21, 23, 41, 142, 44, 118, 46, 123, 132, 106, 145, 100, 101), ]
+    #        data2 <- data2[c(3, 22, 24, 42, 143, 45, 119, 47, 124, 133, 107, 146, 101, 102), ]
+    #      }
+    #    } else if (template == "goalkeeper") {
+    #      
+    #     if (nrow(data1) > 36) {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #      } else {
+    #        
+    #        data1$no <- 1:nrow(data1)
+    #        data2$no <- 1:nrow(data2)
+    #        data1 <- data1[c(4, 19, 21, 23, 25, 28, 34, 35, 36), ]
+    #        data2 <- data2[c(4, 20, 22, 24, 26, 29, 35, 36, 37), ]
+    #      }
+    #    } else if (template == "custom") {
+    #      data1
+    #      data2
+    #    }
     
-    data2 <-
-      data2 %>%
-      as_tibble() %>%
-      select(-any_of("StatGroup")) %>%
-      distinct()
+    data2 <- data2 %>%
+      rename(player = Player,
+             per90 = Per90,
+             percentile = Percentile)
     
     player_name1 <- unique(data1$Player)
-    player_name2 <- unique(data2$Player)
+    player_name2 <- unique(data2$player)
     min1 <- unique(data1$BasedOnMinutes)
     min2 <- unique(data2$BasedOnMinutes)
     sub <- unique(data1$Versus)
     lg1 <- unique(data1$scouting_period)
     lg2 <- unique(data2$scouting_period)
-    title <- paste(player_name1, "|", min1, "minutes", "\n", lg1)
-    subtitle <- paste(player_name2, "|", min2, "minutes", "\n", lg2)
+    title <- paste(player_name1, "|", lg1, "|", min1, "minutes")
+    subtitle <- paste(player_name2, "|", lg2, "|", min2, "minutes")
     caption <- paste("Compared to", sub, ".\nData from Stats Perform via FBref. Inspired by @FootballSlices. Created using ggshakeR.")
+    
     x <- data1$Statistic
     
     data1 <- data1 %>%
@@ -323,7 +483,7 @@ plot_pizza <- function(data, type = "", template,
       mutate(Statistic = factor(Statistic, levels = Statistic))
     
     data2 <- data2 %>%
-      arrange(desc(stat), desc(Percentile)) %>%
+      arrange(desc(stat), desc(percentile)) %>%
       mutate(Statistic = factor(Statistic, levels = Statistic))
     
     ggplot(data1, aes(x = Statistic, y = Percentile)) +
@@ -331,7 +491,7 @@ plot_pizza <- function(data, type = "", template,
                alpha = 0.5, show.legend = FALSE) +
       geom_bar(data = data1, aes(y = Percentile, fill = color_compare), color = color_compare, stat = "identity", width = 1, alpha = 1) +
       scale_fill_manual(values = color_compare) +
-      geom_bar(data = data2, aes(y = Percentile, fill = NA), stat = "identity", width = 1, alpha = 0, color = colorLine, size = 3) +
+      geom_bar(data = data2, aes(y = percentile, fill = NA), stat = "identity", width = 1, alpha = 0, color = colorLine, size = 3) +
       coord_polar(clip = "off") +
       geom_hline(yintercept = 25, color = colorLine, linetype = "dashed", alpha = 0.7) +
       geom_hline(yintercept = 50, color = colorLine, linetype = "dashed", alpha = 0.7) +

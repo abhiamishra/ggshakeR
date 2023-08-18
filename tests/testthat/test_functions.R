@@ -548,9 +548,9 @@ test_that("Testing plotting trendlines: ", {
 # data1 <- worldfootballR::fb_player_scouting_report("https://fbref.com/en/players/6928979a/Nicolo-Barella", pos_versus = "primary")
 # data2 <- worldfootballR::fb_player_scouting_report("https://fbref.com/en/players/819b3158/Ilkay-Gundogan", pos_versus = "primary")
 
-d1 <- system.file("testdata", "nicob.RDS", package = "ggshakeR")
+d1 <- system.file("testdata", "nico.RDS", package = "ggshakeR")
 data1 <- readRDS(d1)
-d2 <- system.file("testdata", "ilkayg.RDS", package = "ggshakeR")
+d2 <- system.file("testdata", "ilkay.RDS", package = "ggshakeR")
 data2 <- readRDS(d2)
 
 # Dataset for single player plot (Do NOT keep `View()` uncommented unless manually checking things!)
@@ -570,7 +570,7 @@ test_that("Testing plotting pizzas: ", {
   # testing for single player plot
   p <- suppressWarnings(plot_pizza(
     data = data1, type = "single", template = "outfielder",
-    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
     color_defense = "#fec44f", theme = "dark"
   ))
   
@@ -578,7 +578,7 @@ test_that("Testing plotting pizzas: ", {
   
   p <- suppressWarnings(plot_pizza(
     data = data1_cus, type = "single", template = "custom",
-    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days",
+    color_possession = "green", color_attack = "lightblue", season = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
     color_defense = "#fec44f", theme = "dark"
   ))
   
@@ -588,7 +588,7 @@ test_that("Testing plotting pizzas: ", {
   p <- suppressWarnings(plot_pizza(
     data = data, type = "comparison", template = "outfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-    season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+    season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
     color_compare = "#90ee90", theme = "white"
   ))
   expect_true(is.ggplot(p))
@@ -596,7 +596,7 @@ test_that("Testing plotting pizzas: ", {
   p <- suppressWarnings(plot_pizza(
     data = data_cus, type = "comparison", template = "outfielder",
     player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-    season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+    season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
     color_compare = "#90ee90", theme = "black"
   ))
   expect_true(is.ggplot(p))
@@ -605,7 +605,7 @@ test_that("Testing plotting pizzas: ", {
   p <- suppressWarnings(plot_pizza(
   data = data_cus, type = "comparison", template = "custom",
   player_1 = "Nicolo Barella", player_2 = "Ilkay Gundogan",
-  season_player_1 = "Last 365 Days", season_player_2 = "Last 365 Days",
+  season_player_1 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL", season_player_2 = "Last 365 Days Men's Big 5 Leagues, UCL, UEL",
   color_compare = "#90ee90", theme = "black"))
 
   expect_match(p$labels$caption, "Created using ggshakeR")
